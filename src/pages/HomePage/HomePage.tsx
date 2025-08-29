@@ -2,6 +2,7 @@ import './HomePage.css';
 import HowItWorks from '../../components/HowItWorks/HowItWorks';
 import HeroSection from '../../components/HeroSection/HeroSection';
 import OurSkillsInNumbers from '../../components/OurSkillsInNumbers/OurSkillsInNumbers';
+import HappyStorySection from '../../components/HappyStorySection/HappyStorySection';
 
 const HomePage = () => {
   return (
@@ -9,8 +10,8 @@ const HomePage = () => {
       <HeroSection />
       <HowItWorks />
       <OurSkillsInNumbers />
+      <HappyStorySection />
     </div>
-
   );
 };
 
