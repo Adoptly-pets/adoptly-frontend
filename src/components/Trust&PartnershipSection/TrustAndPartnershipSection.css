@@ -1,0 +1,47 @@
+.trust-partnership-section {
+  position: relative;
+  padding: 100px 40px 21px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1440px;
+  margin-bottom: 54px;
+}
+
+.trust-partnership-section h2 {
+  font-weight: 800;
+  font-size: 48px;
+  line-height: 120%;
+  color: #0a0c20;
+  width: 100%;
+  max-width: 506px;
+}
+
+.trust-partnership-section .buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 670px;
+  z-index: 1;
+}
+
+.footprint-img {
+  position: absolute;
+}
+
+.footprint-right-img {
+  top: 5%;
+  right: 25%;
+}
+
+.footprint-left-img {
+  top: 11%;
+  left: 2%;
+}
+
+.footprint-bottom-img {
+  bottom: 1%;
+  left: 22%;
+}

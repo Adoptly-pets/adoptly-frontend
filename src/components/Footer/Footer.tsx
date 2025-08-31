@@ -7,7 +7,7 @@ const Footer = () => {
     if (headerElement) {
       headerElement.scrollIntoView({ behavior: 'smooth' });
     }
-  }
+  };
   return (
     <footer>
       <div className="footer">
@@ -39,35 +39,67 @@ const Footer = () => {
               </ul>
             </div>
             <nav className="buttons">
-              <a className="btn-footer" type="button" title="Instagram" target='_blank' href="https://www.instagram.com" aria-label='Instagram'>
+              <a
+                className="btn-footer"
+                type="button"
+                title="Instagram"
+                target="_blank"
+                href="https://www.instagram.com"
+                aria-label="Instagram"
+              >
                 <Icon id="icon-instagram" size={25} />
               </a>
-              <a className="btn-footer" type="button" title="Facebook" target='_blank' href="https://www.facebook.com" aria-label='Facebook'>
+              <a
+                className="btn-footer"
+                type="button"
+                title="Facebook"
+                target="_blank"
+                href="https://www.facebook.com"
+                aria-label="Facebook"
+              >
                 <Icon id="icon-facebook" size={25} />
               </a>
-              <a className="btn-footer" type="button" title="TikTok" target='_blank' href="https://www.tiktok.com" aria-label='TikTok'>
+              <a
+                className="btn-footer"
+                type="button"
+                title="TikTok"
+                target="_blank"
+                href="https://www.tiktok.com"
+                aria-label="TikTok"
+              >
                 <Icon id="icon-tiktok" size={25} />
               </a>
             </nav>
           </div>
           <div className="containerBtn">
-            <a className="btnUp" href='#header' aria-label='Back to top' onClick={(e) => {
-              e.preventDefault();
-              scrollToHeader();
-            }}>
+            <a
+              className="btnUp"
+              href="#header"
+              aria-label="Back to top"
+              onClick={e => {
+                e.preventDefault();
+                scrollToHeader();
+              }}
+            >
               <Icon id="icon-up" className="icon-up" size={16} />
             </a>
           </div>
           <hr className="divider" />
           <ul className="police-list">
-            <li><a href="/privacy-policy">Privacy Policy</a></li>
-            <li><a href="/terms">Terms & Conditions</a></li>
-            <li><a href="/sitemap">Sitemap</a></li>
+            <li>
+              <a href="/privacy-policy">Privacy Policy</a>
+            </li>
+            <li>
+              <a href="/terms">Terms & Conditions</a>
+            </li>
+            <li>
+              <a href="/sitemap">Sitemap</a>
+            </li>
           </ul>
         </div>
       </div>
     </footer>
   );
-}
+};
 
 export default Footer;

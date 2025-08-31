@@ -4,7 +4,7 @@ import './Header.css';
 
 const Header = () => {
   return (
-    <header className="header" id='header' tabIndex={-1}>
+    <header className="header" id="header" tabIndex={-1}>
       <div className="header_inner">
         <div>
           <Navigation />
@@ -26,9 +26,6 @@ const Header = () => {
           <button type="button" className="btn" title="Username">
             <Icon id="icon-user" size={16} />
           </button>
-
-
-
         </div>
       </div>
     </header>
