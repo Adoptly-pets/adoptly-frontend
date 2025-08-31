@@ -19,7 +19,12 @@ const GuideCard: React.FC<GuideCardProps> = React.memo(
     return (
       <article className="guide-card">
         <div>
-          <img src={cardImgSrc} alt={cardImgAlt ?? 'Guide card image'} loading='lazy' decoding='async' />
+          <img
+            src={cardImgSrc}
+            alt={cardImgAlt ?? 'Guide card image'}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
         <div className="guide-card-text">
           <h3>{cardNumber}</h3>
