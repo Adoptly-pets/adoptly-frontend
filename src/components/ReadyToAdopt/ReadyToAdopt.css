@@ -1,51 +1,52 @@
-.ready-to-adopt{
-    border-radius: 44px;
-max-width: 1360px;
-min-height: 602px;
-   background: #95b1ff;
-   display: flex;
-   position: relative;
-   background-image: url('images/paw-1.svg'), url('images/paw-2.svg'), url('images/paw-3.svg'), url('images/paw-4.svg');
+.ready-to-adopt {
+  border-radius: 44px;
+  max-width: 1360px;
+  min-height: 602px;
+  background: #95b1ff;
+  display: flex;
+  position: relative;
+  background-image:
+    url('images/paw-1.svg'), url('images/paw-2.svg'), url('images/paw-3.svg'),
+    url('images/paw-4.svg');
   background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
   background-position:
     top 26px left 15px,
     bottom 24px left 336px,
-     top 221px left 802px,
+    top 221px left 802px,
     bottom 36px right 82px;
-    margin-top: 100px;
+  margin-top: 100px;
 }
-.title{
-font-family: var(--second-family);
-font-weight: 800;
-font-size: 42px;
-line-height: 120%;
-color: #fff;
-margin-bottom: 24px;
+.title {
+  font-family: var(--second-family);
+  font-weight: 800;
+  font-size: 42px;
+  line-height: 120%;
+  color: #fff;
+  margin-bottom: 24px;
 }
-.text-box{
-    padding: 158px 0 0 88px;
-    width: 754px;
-
+.text-box {
+  padding: 158px 0 0 88px;
+  width: 754px;
 }
-.description{
-font-family: var(--third-family);
-font-weight: 500;
-font-size: 24px;
-line-height: 150%;
-color: #fff;
-margin-bottom: 56px;
+.description {
+  font-family: var(--third-family);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 150%;
+  color: #fff;
+  margin-bottom: 56px;
 }
-.search-btn{
-    border-radius: 20px;
-padding: 24px 22px;
-width: 440px;
-height: 75px;
-font-family: var(--second-family);
-font-weight: 800;
-font-size: 22px;
-color: #fff;
-text-align: center;
-background: #ff8c00;
+.search-btn {
+  border-radius: 20px;
+  padding: 24px 22px;
+  width: 440px;
+  height: 75px;
+  font-family: var(--second-family);
+  font-weight: 800;
+  font-size: 22px;
+  color: #fff;
+  text-align: center;
+  background: #ff8c00;
 }
 .search-btn:hover {
   background-color: #ff7b00;
@@ -56,21 +57,19 @@ background: #ff8c00;
   transform: translateY(0);
 }
 
-
-.img-cat{
-    width: 416px;
-height: 318px;
-position:absolute;
-  bottom: 0; 
-    left: 625px; 
-    top: 348px; 
-
+.img-cat {
+  width: 416px;
+  height: 318px;
+  position: absolute;
+  bottom: 0;
+  left: 625px;
+  top: 348px;
 }
 
-.img-dog{
-    width: 254px;
-    height: 420px;
-     position: absolute;
-    top: 18px; 
-    right: 0; 
+.img-dog {
+  width: 254px;
+  height: 420px;
+  position: absolute;
+  top: 18px;
+  right: 0;
 }

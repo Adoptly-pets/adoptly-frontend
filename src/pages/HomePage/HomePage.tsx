@@ -13,7 +13,7 @@ const HomePage = () => {
       <HowItWorks />
       <TrustAndPartnershipSection />
       <OurSkillsInNumbers />
-      <ReadyToAdopt/>
+      <ReadyToAdopt />
     </div>
   );
 };
