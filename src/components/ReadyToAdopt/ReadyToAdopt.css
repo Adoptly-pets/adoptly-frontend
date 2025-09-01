@@ -1,7 +1,7 @@
 .ready-to-adopt{
     border-radius: 44px;
 max-width: 1360px;
-height: 602px;
+min-height: 602px;
    background: #95b1ff;
    display: flex;
    position: relative;
@@ -27,7 +27,7 @@ margin-bottom: 24px;
     width: 754px;
 
 }
-.descripthion{
+.description{
 font-family: var(--third-family);
 font-weight: 500;
 font-size: 24px;
@@ -60,8 +60,6 @@ background: #ff8c00;
 .img-cat{
     width: 416px;
 height: 318px;
-bottom: 0;
-left: 60%;
 position:absolute;
   bottom: 0; 
     left: 625px; 
