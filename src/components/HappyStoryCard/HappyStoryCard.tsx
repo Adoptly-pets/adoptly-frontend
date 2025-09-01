@@ -1,10 +1,10 @@
 import React from 'react';
 import './HappyStoryCard.css';
 
-interface HappyStoryCardProps {
+export interface HappyStoryCardProps {
   src: string;
   name: string;
-  description: string;
+  description: string[];
 }
 const HappyStoryCard: React.FC<HappyStoryCardProps> = ({
   src,
@@ -16,15 +16,12 @@ const HappyStoryCard: React.FC<HappyStoryCardProps> = ({
       <img src={src} />
       <div>
         <h3>{name}</h3>
-        {description
-          .split('\n')
-          .map((paragraph, index) =>
-            paragraph.trim() ? (
-              <p key={index}>{paragraph}</p>
-            ) : (
-              <br key={index} />
-            )
-          )}
+        {description.map((paragraph, index) => (
+          <>
+            <p key={index}>{paragraph}</p>
+            <br />
+          </>
+        ))}
       </div>
     </div>
   );
