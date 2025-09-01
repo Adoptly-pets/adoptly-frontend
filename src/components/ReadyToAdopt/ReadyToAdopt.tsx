@@ -5,7 +5,7 @@ return(
         <div className='text-box'>
         <h3 className='title'>Готовий зустріти нового друга?</h3>
         <p className='description'>Обирай фільтри - котик чи собачка, вік, розмір та інші параметри і починай пошук друга прямо зараз.</p>
-        <a href="#findpet"> <button onClick={() => alert('Кнопка "Почати пошук улюбленця“ натиснута!')} type='button' className='search-btn'>Почати пошук улюбленця</button></a>
+      <button onClick={() => alert('Кнопка "Почати пошук улюбленця“ натиснута!')} type='button' className='search-btn'>Почати пошук улюбленця</button>
         
         </div>
       
