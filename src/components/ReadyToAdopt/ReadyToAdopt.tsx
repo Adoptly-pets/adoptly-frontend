@@ -1,0 +1,20 @@
+import './ReadyToAdopt.css'
+const ReadyToAdopt=()=>{
+return(
+    <section className='ready-to-adopt'>
+        <div className='text-box'>
+        <h3 className='title'>Готовий зустріти нового друга?</h3>
+        <p className='descripthion'>Обирай фільтри - котик чи собачка, вік, розмір та інші параметри і починай пошук друга прямо зараз.</p>
+        <a href="#findpet"> <button onClick={() => alert('Кнопка "Почати пошук улюбленця“ натиснута!')} type='button' className='search-btn'>Почати пошук улюбленця</button></a>
+        
+        </div>
+      
+          <img className='img-dog' src="images/Dog.svg" alt="dog" />
+        <img className='img-cat' src="images/Cat.svg" alt="cat" />
+      
+        </section>
+   
+
+)
+}
+export default ReadyToAdopt;
