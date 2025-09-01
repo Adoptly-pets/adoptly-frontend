@@ -1,0 +1,19 @@
+.happy-story-card {
+  display: flex;
+  gap: 32px;
+  width: 1065px;
+  padding: 38px;
+  border-radius: 28px;
+  box-shadow: 0px 5px 25px 0px #51515114;
+}
+
+.happy-story-card h3 {
+  color: #6d82bd;
+  font-size: 44px;
+  font-weight: 800;
+  padding: 34px 0 16px;
+}
+
+.happy-story-card p {
+  font-size: 20px;
+}

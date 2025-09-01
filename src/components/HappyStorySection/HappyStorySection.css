@@ -1,0 +1,13 @@
+.happy-story-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.happy-story-section h2 {
+  font-size: 74px;
+  font-weight: 800;
+  line-height: 1;
+  padding: 100px 0 32px;
+}
