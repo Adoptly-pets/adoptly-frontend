@@ -54,6 +54,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: #f8f8f8;
 }
 
 #root {
