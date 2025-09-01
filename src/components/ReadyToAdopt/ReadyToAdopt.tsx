@@ -8,13 +8,13 @@ const ReadyToAdopt = () => {
           Обирай фільтри - котик чи собачка, вік, розмір та інші параметри і
           починай пошук друга прямо зараз.
         </p>
-        <button
-          onClick={() => alert('Кнопка "Почати пошук улюбленця“ натиснута!')}
-          type="button"
+        <a
+          href="#findpet"
           className="search-btn"
+          onClick={() => alert('Кнопка "Почати пошук улюбленця" натиснута!')}
         >
           Почати пошук улюбленця
-        </button>
+        </a>
       </div>
 
       <img className="img-dog" src="images/Dog.svg" alt="dog" />
@@ -23,3 +23,13 @@ const ReadyToAdopt = () => {
   );
 };
 export default ReadyToAdopt;
+
+{
+  /*  <button
+          onClick={() => alert('Кнопка "Почати пошук улюбленця“ натиснута!')}
+          type="button"
+          className="search-btn"
+        >
+          Почати пошук улюбленця
+        </button> */
+}
