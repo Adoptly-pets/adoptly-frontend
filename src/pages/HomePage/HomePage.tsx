@@ -13,6 +13,7 @@ const HomePage = () => {
       <HowItWorks />
       <TrustAndPartnershipSection />
       <OurSkillsInNumbers />
+      <HappyStorySection/>
       <ReadyToAdopt />
     </div>
   );
