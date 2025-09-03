@@ -8,24 +8,22 @@
   justify-content: center;
 }
 
+.button:hover {
+  background-color: #ffffff;
+  color: #0a0c20;
+  border: none;
+}
+
+.button:active {
+  background-color: #ff7b00;
+}
+
 .button--primary {
   background-color: #ff8c00;
   color: white;
-  &:hover {
-    background-color: #ff7b00;
-  }
-  &:active {
-    background-color: #ffffff;
-    color: #0a0c20;
-    border: none;
-  }
 }
 .button--secondary {
   background-color: transparent;
   border: 2px solid #ff8c00;
   color: #111827;
-
-  &:hover {
-    background-color: #ff7b00;
-  }
 }
