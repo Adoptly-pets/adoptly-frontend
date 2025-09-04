@@ -5,15 +5,6 @@
   background: #95b1ff;
   display: flex;
   position: relative;
-  background-image:
-    url('images/paw-1.svg'), url('images/paw-2.svg'), url('images/paw-3.svg'),
-    url('images/paw-4.svg');
-  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
-  background-position:
-    top 26px left 15px,
-    bottom 24px left 336px,
-    top 221px left 802px,
-    bottom 36px right 82px;
   margin-top: 100px;
 }
 .title {
@@ -73,3 +64,26 @@
   top: 18px;
   right: 0;
 }
+
+.images-footprint{
+  position:absolute;
+}
+
+.footprint{
+  top: 4%;
+  left: 1%;
+}
+.footprint-1{
+  bottom:4%;
+  left:24%;
+}
+.footprint-2{
+  top: 37%;
+  right: 32%;
+}
+.footprint-3{
+   bottom:6%;
+  right:6%;
+}
+
+

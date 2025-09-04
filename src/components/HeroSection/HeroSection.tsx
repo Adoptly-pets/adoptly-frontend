@@ -1,5 +1,7 @@
 import Button from '../Button/Button';
 import './HeroSection.css';
+import catFootprint1 from '../../assets/images/Hero/cat-footprint-1.png'
+import catFootprint2 from '../../assets/images/Hero/cat-footprint-2.png'
 
 const HeroSection = () => {
   return (
@@ -28,8 +30,11 @@ const HeroSection = () => {
         </div>
       </div>
       <div>
-        <img src="images/pets.svg" alt="Ілюстрація тварин для адопції" />
+        <img  className="pets" src="images/pets.svg" alt="Ілюстрація тварин для адопції" />
       </div>
+      <img className='images-footprints paw-1' src={catFootprint1} alt="cat-footprint" />
+               <img className='images-footprints paw-2' src={catFootprint2} alt="cat-footprint" />
+
     </section>
   );
 };
