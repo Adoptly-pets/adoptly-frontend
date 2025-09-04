@@ -65,25 +65,23 @@
   right: 0;
 }
 
-.images-footprint{
-  position:absolute;
+.images-footprint {
+  position: absolute;
 }
 
-.footprint{
+.footprint {
   top: 4%;
   left: 1%;
 }
-.footprint-1{
-  bottom:4%;
-  left:24%;
+.footprint-1 {
+  bottom: 4%;
+  left: 24%;
 }
-.footprint-2{
+.footprint-2 {
   top: 37%;
   right: 32%;
 }
-.footprint-3{
-   bottom:6%;
-  right:6%;
+.footprint-3 {
+  bottom: 6%;
+  right: 6%;
 }
-
-

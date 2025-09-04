@@ -6,11 +6,11 @@
   font-weight: 800;
   column-gap: 59px;
   position: relative;
-/*   background-image: url('images/paw-100.svg'), url('images/paw-68.svg');
+  /*   background-image: url('images/paw-100.svg'), url('images/paw-68.svg');
   background-repeat: no-repeat, no-repeat;
   background-position:
     top 27px right 39px,
-    bottom 48px left 89px; */ 
+    bottom 48px left 89px; */
 }
 .hero .text-and-buttons {
   padding-left: 89px;
@@ -33,22 +33,21 @@
   padding-top: 36px;
 }
 
-.hero .pets{
+.hero .pets {
   padding-top: 46px;
   display: block;
 }
 
-.images-footprints{
-  position:absolute;
+.images-footprints {
+  position: absolute;
 }
 
-.paw-1{
-bottom:6%;
-left:6%;
-
+.paw-1 {
+  bottom: 6%;
+  left: 6%;
 }
 
-.paw-2{
-  top:3%;
-  right:3%;
+.paw-2 {
+  top: 3%;
+  right: 3%;
 }
