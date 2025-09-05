@@ -1,5 +1,6 @@
 :root {
   --primary-color: #ff8c00;
+  --subtitle-color: rgba(10, 12, 32, 0.75);
   --font-primary: 'Nunito', sans-serif;
   --section-padding: 54px 0;
   --header-padding-top: 100px;
@@ -41,6 +42,7 @@
   line-height: 120%;
   letter-spacing: normal;
   padding-bottom: var(--header-padding-bottom);
+  color: var(--subtitle-color);
 }
 .how-it-works-header img {
   max-width: var(--header-img-max-width);
