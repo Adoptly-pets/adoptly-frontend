@@ -34,17 +34,25 @@ const HeroSection = () => {
           className="pets"
           src="images/pets.svg"
           alt="Ілюстрація тварин для адопції"
+          fetchPriority="high"
+          decoding="async"
         />
       </div>
       <img
         className="images-footprints paw-1"
         src={catFootprint1}
         alt="cat-footprint"
+        aria-hidden="true"
+        loading="lazy"
+        decoding="async"
       />
       <img
         className="images-footprints paw-2"
         src={catFootprint2}
         alt="cat-footprint"
+        aria-hidden="true"
+        loading="lazy"
+        decoding="async"
       />
     </section>
   );
