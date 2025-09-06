@@ -1,5 +1,11 @@
 .our-skills-in-numbers {
-  background-color: #ecf1ff;
+  --text-color: #0a0c20bf;
+  --title-color: #0a0c20;
+  --background-color: #ecf1ff;
+}
+
+.our-skills-in-numbers {
+  background-color: var(--background-color);
   border-radius: 44px;
   padding: 100px 0;
 }
@@ -8,6 +14,7 @@
   font-weight: 800;
   font-size: 74px;
   line-height: 1.2;
+  color: var(--title-color);
 }
 
 .our-skills-in-numbers .text-grid {
@@ -16,6 +23,7 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   column-gap: 32px;
+  color: var(--text-color);
 }
 
 .our-skills-in-numbers p {
