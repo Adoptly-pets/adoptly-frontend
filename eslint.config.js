@@ -15,7 +15,10 @@ export default [
       parser: tsParser,
       ecmaVersion: 2020,
       sourceType: 'module',
-      globals: globals.browser,
+      globals: {
+        ...globals.browser,
+        ...globals.jest,
+      },
     },
     plugins: {
       '@typescript-eslint': tseslint,
@@ -31,8 +34,21 @@ export default [
         'error',
         { varsIgnorePattern: '^_', argsIgnorePattern: '^_' },
       ],
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { varsIgnorePattern: '^_', argsIgnorePattern: '^_' },
+      ],
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
+    },
+  },
+
+  {
+    files: ['**/*.{test,spec}.{ts,tsx}'],
+    languageOptions: {
+      globals: {
+        ...globals.jest,
+      },
     },
   },
 ];

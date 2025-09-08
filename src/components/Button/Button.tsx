@@ -11,7 +11,11 @@ interface ButtonProps {
   variant?: ButtonVariant;
 }
 
-const Button: React.FC<ButtonProps> = ({ children, onClick, variant }) => {
+const Button: React.FC<ButtonProps> = ({
+  children,
+  onClick,
+  variant = 'primary',
+}) => {
   return (
     <button onClick={onClick} className={`button button--${variant}`}>
       {children}
