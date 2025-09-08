@@ -8,7 +8,7 @@ type IconProps = {
 export const Icon: React.FC<IconProps> = ({ id, className, size }) => {
   return (
     <svg className={className} height={size} width={size}>
-      <use href={`${import.meta.env.BASE_URL}/svg/sprite.svg#${id}`}></use>
+      <use href={`${import.meta.env.BASE_URL}svg/sprite.svg#${id}`}></use>
     </svg>
   );
 };
