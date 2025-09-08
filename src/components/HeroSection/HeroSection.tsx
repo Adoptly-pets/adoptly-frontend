@@ -1,8 +1,8 @@
 import Button from '../Button/Button';
 import './HeroSection.css';
-import catFootprint1 from '../../assets/images/Hero/cat-footprint-1.png';
-import catFootprint2 from '../../assets/images/Hero/cat-footprint-2.png';
-import pets from '../../assets/images/Hero/pets.svg';
+import catFootprint1 from '../../assets/images/Hero/cat-footprint-1.webp';
+import catFootprint2 from '../../assets/images/Hero/cat-footprint-2.webp';
+import pets from '../../assets/images/Hero/pets.webp';
 
 const HeroSection = () => {
   return (
@@ -36,6 +36,7 @@ const HeroSection = () => {
           src={pets}
           alt="Ілюстрація тварин для адопції"
           fetchPriority="high"
+          loading="lazy"
           decoding="async"
         />
       </div>
