@@ -10,7 +10,7 @@ import Footer from './components/Footer/Footer';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/adoptly-frontend">
       <Header />
       <main>
         <Routes>
