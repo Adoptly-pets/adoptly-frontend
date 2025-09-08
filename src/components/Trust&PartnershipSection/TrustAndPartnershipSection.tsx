@@ -1,9 +1,9 @@
-import footprintRight from '../../assets/images/cat_footprint-1.png';
-import footprintBottom from '../../assets/images/cat_footprint-2.png';
-import footprintLeft from '../../assets/images/cat_footprint-3.png';
-import catTrackHeart from '../../assets/images/cat_track_heart.png';
-import dogWalking from '../../assets/images/dog_walking.png';
-import catContainer from '../../assets/images/cat_container.png';
+import footprintRight from '../../assets/images/cat_footprint-1.webp';
+import footprintBottom from '../../assets/images/cat_footprint-2.webp';
+import footprintLeft from '../../assets/images/cat_footprint-3.webp';
+import catTrackHeart from '../../assets/images/cat_track_heart.webp';
+import dogWalking from '../../assets/images/dog_walking.webp';
+import catContainer from '../../assets/images/cat_container.webp';
 import SupportButton from '../SupportButton/SupportButton';
 import './TrustAndPartnershipSection.css';
 
@@ -35,16 +35,19 @@ const TrustAndPartnershipSection = () => {
         className="footprint-img footprint-right-img"
         src={footprintRight}
         alt="cat footprint"
+        loading="lazy"
       />
       <img
         className="footprint-img footprint-left-img"
         src={footprintLeft}
         alt="cat footprint"
+        loading="lazy"
       />
       <img
         className="footprint-img footprint-bottom-img"
         src={footprintBottom}
         alt="cat footprint"
+        loading="lazy"
       />
     </section>
   );

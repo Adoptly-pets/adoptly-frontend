@@ -1,8 +1,10 @@
+import catFootprint from '../../assets/images/ReadyToAdopt/cat-footprint.webp';
+import catFootprint1 from '../../assets/images/ReadyToAdopt/cat-footprint-1.webp';
+import catFootprint2 from '../../assets/images/ReadyToAdopt/cat-footprint-2.webp';
+import catFootprint3 from '../../assets/images/ReadyToAdopt/cat-footprint-3.webp';
+import catImg from '../../assets/images/Cat.webp';
+import dogimg from '../../assets/images/Dog.webp';
 import './ReadyToAdopt.css';
-import catFootprint from '../../assets/images/ReadyToAdopt/cat-footprint.png';
-import catFootprint1 from '../../assets/images/ReadyToAdopt/cat-footprint-1.png';
-import catFootprint2 from '../../assets/images/ReadyToAdopt/cat-footprint-2.png';
-import catFootprint3 from '../../assets/images/ReadyToAdopt/cat-footprint-3.png';
 
 const ReadyToAdopt = () => {
   return (
@@ -18,8 +20,8 @@ const ReadyToAdopt = () => {
         </a>
       </div>
 
-      <img className="img-dog" src="images/Dog.svg" alt="dog" />
-      <img className="img-cat" src="images/Cat.svg" alt="cat" />
+      <img className="img-dog" src={dogimg} alt="dog" loading="lazy" />
+      <img className="img-cat" src={catImg} alt="cat" loading="lazy" />
 
       <img
         className="images-footprint footprint"

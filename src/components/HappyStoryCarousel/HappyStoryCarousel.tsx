@@ -22,14 +22,14 @@ const HappyStoryCarousel: React.FC<HappyStoryCarouselProps> = ({ stories }) => {
     <div>
       <div className="carousel">
         <button onClick={handlePrev}>
-          <img src="icons/arrow_left.svg" alt="Previous" />
+          <img src="icons/arrow_left.svg" alt="Previous" loading="lazy" />
         </button>
         <div className="slide">
           <HappyStoryCard {...stories[currentIndex]} />
         </div>
 
         <button onClick={handleNext}>
-          <img src="icons/arrow_right.svg" alt="Next" />
+          <img src="icons/arrow_right.svg" alt="Next" loading="lazy" />
         </button>
       </div>
       <div className="indicators">

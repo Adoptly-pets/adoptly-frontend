@@ -16,7 +16,7 @@ const SupportButton: React.FC<SupportButtonProps> = ({
 }) => {
   return (
     <button className="support-btn" aria-label={ariaLabel}>
-      <img src={imgSrc} alt={altText} />
+      <img src={imgSrc} alt={altText} loading="lazy" />
       <h4>{text}</h4>
     </button>
   );

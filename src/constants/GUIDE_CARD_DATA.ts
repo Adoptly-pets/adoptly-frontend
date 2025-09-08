@@ -1,7 +1,7 @@
-import guideCardImg1 from '../assets/images/guideCardImg1.png';
-import guideCardImg2 from '../assets/images/guideCardImg2.png';
-import guideCardImg3 from '../assets/images/guideCardImg3.png';
-import guideCardImg4 from '../assets/images/guideCardImg4.png';
+import guideCardImg1 from '../assets/images/guideCardImg1.webp';
+import guideCardImg2 from '../assets/images/guideCardImg2.webp';
+import guideCardImg3 from '../assets/images/guideCardImg3.webp';
+import guideCardImg4 from '../assets/images/guideCardImg4.webp';
 
 export const GUIDE_CARD_DATA = [
   {
