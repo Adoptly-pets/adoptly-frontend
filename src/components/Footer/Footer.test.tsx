@@ -16,7 +16,7 @@ describe('Footer Component', () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    jest.restoreAllMocks();
   });
 
   test('renders footer with correct structure and content', () => {
@@ -77,7 +77,7 @@ describe('Footer Component', () => {
   });
 
   test('does not call scrollIntoView if header element is not found', () => {
-    jest.spyOn(document, 'getElementById').mockReturnValue(null);
+    (document.getElementById as unknown as jest.Mock).mockReturnValueOnce(null);
     render(<Footer />);
     
     const backToTopLink = screen.getByRole('link', { name: /Back to top/i });
