@@ -2,6 +2,7 @@ import Button from '../Button/Button';
 import './HeroSection.css';
 import catFootprint1 from '../../assets/images/Hero/cat-footprint-1.png';
 import catFootprint2 from '../../assets/images/Hero/cat-footprint-2.png';
+import pets from '../../assets/images/Hero/pets.svg';
 
 const HeroSection = () => {
   return (
@@ -32,7 +33,7 @@ const HeroSection = () => {
       <div>
         <img
           className="pets"
-          src="images/pets.svg"
+          src={pets}
           alt="Ілюстрація тварин для адопції"
           fetchPriority="high"
           decoding="async"
