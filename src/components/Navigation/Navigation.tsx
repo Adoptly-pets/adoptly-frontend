@@ -1,22 +1,23 @@
+import { Link } from 'react-router-dom';
 import './Navigation.css';
 const Navigation = () => {
   return (
     <nav>
       <ul className="list">
         <li className="item">
-          <a href="#home">Головна</a>
+          <Link to="/">Головна</Link>
         </li>
         <li className="item">
-          <a href="#about">Про нас</a>
+          <Link to="/about">Про нас</Link>
         </li>
         <li className="item">
-          <a href="#help">Як допомогти</a>
+          <Link to="/how-to-help">Як допомогти</Link>
         </li>
         <li className="item">
-          <a href="#shelters">Притулкам</a>
+          <Link to="/shelters">Притулкам</Link>
         </li>
         <li className="item">
-          <a href="#contacts">Контакти</a>
+          <Link to="/contacts">Контакти</Link>
         </li>
       </ul>
     </nav>
