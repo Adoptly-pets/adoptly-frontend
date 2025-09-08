@@ -13,7 +13,7 @@ const HappyStoryCard: React.FC<HappyStoryCardProps> = ({
 }) => {
   return (
     <div className="happy-story-card">
-      <img src={src} />
+      <img src={src} loading="lazy" />
       <div>
         <h3>{name}</h3>
         {description.map((paragraph, index) => (

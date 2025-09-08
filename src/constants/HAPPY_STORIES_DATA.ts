@@ -1,7 +1,7 @@
-import HappyStoryImg1 from '../assets/images/happy_stories/djeck.png';
-import HappyStoryImg2 from '../assets/images/happy_stories/Richi.png';
-import HappyStoryImg3 from '../assets/images/happy_stories/Roksi.png';
-import HappyStoryImg4 from '../assets/images/happy_stories/Chara.png';
+import HappyStoryImg1 from '../assets/images/happy_stories/djeck.webp';
+import HappyStoryImg2 from '../assets/images/happy_stories/Richi.webp';
+import HappyStoryImg3 from '../assets/images/happy_stories/Roksi.webp';
+import HappyStoryImg4 from '../assets/images/happy_stories/Chara.webp';
 
 export const HAPPY_STORIES_DATA = [
   {

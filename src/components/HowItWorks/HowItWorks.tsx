@@ -1,7 +1,7 @@
 import React from 'react';
 import { GUIDE_CARD_DATA } from '../../constants/GUIDE_CARD_DATA';
 import GuideCard from '../GuideCard/GuideCard';
-import animalTracksSrc from '../../assets/images/animal_tracks.png';
+import animalTracksSrc from '../../assets/images/animal_tracks.webp';
 
 import './HowItWorks.css';
 
