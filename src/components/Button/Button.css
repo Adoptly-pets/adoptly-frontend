@@ -27,3 +27,9 @@
   border: 2px solid #ff8c00;
   color: #111827;
 }
+
+@media (max-width: 768px) {
+  .button--secondary {
+    display: none;
+  }
+}

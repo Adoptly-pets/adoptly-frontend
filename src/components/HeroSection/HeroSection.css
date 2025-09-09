@@ -19,6 +19,7 @@
 .hero h1 {
   padding: 125px 0 12px;
   font-size: 80px;
+  font-weight: 800;
   color: var(--title-color);
 }
 
@@ -51,4 +52,41 @@
 .paw-2 {
   top: 3%;
   right: 3%;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .hero .text-and-buttons {
+    padding-left: 0;
+  }
+
+  .hero .buttons {
+    justify-content: center;
+  }
+
+  .hero h1 {
+    padding: 38px 0 12px;
+    font-size: 38px;
+    text-align: center;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .paw-1 {
+    top: 1%;
+    left: 1%;
+    max-width: 50px;
+  }
+
+  .paw-2 {
+    top: 39%;
+    right: 6%;
+    max-width: 80px;
+  }
 }
