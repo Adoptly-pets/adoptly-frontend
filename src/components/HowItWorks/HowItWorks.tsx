@@ -16,14 +16,26 @@ interface GuideCardData {
 const HowItWorks: React.FC = React.memo(() => {
   if (!GUIDE_CARD_DATA.length) {
     return (
-      <section className="how-it-works">Немає даних для відображення</section>
+      <section
+        className="how-it-works"
+        role="region"
+        aria-labelledby="how-it-works-title"
+        data-testid="how-it-works-section"
+      >
+        Немає даних для відображення
+      </section>
     );
   }
 
   return (
-    <section className="how-it-works">
+    <section
+      className="how-it-works"
+      role="region"
+      aria-labelledby="how-it-works-title"
+      data-testid="how-it-works-section"
+    >
       <div className="how-it-works-header">
-        <h2>Як це працює</h2>
+        <h2 id="how-it-works-title">Як це працює</h2>
         <p>Покрокова інструкція</p>
         <img
           src={animalTracksSrc}
