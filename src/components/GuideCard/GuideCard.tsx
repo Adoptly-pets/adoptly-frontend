@@ -21,7 +21,7 @@ const GuideCard: React.FC<GuideCardProps> = React.memo(
         <div>
           <img
             src={cardImgSrc}
-            alt={cardImgAlt ?? 'Guide card image'}
+            alt={cardImgAlt || 'Guide card image'}
             loading="lazy"
             decoding="async"
           />
