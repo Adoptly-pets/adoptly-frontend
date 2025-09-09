@@ -6,9 +6,13 @@ import pets from '../../assets/images/Hero/pets.webp';
 
 const HeroSection = () => {
   return (
-    <section className="hero">
+    <section
+      className="hero"
+      role="region"
+      aria-label="Знайди друга врятуй життя"
+    >
       <div className="text-and-buttons">
-        <h1>
+        <h1 role="heading" aria-level={1}>
           Знайди друга <br /> Врятуй життя
         </h1>
         <p>
