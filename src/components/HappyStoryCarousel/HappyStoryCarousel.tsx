@@ -36,6 +36,7 @@ const HappyStoryCarousel: React.FC<HappyStoryCarouselProps> = ({ stories }) => {
         {stories.map((_, index) => (
           <span
             key={index}
+            role='presentation'
             className={index === currentIndex ? 'dot active' : 'dot'}
           />
         ))}
