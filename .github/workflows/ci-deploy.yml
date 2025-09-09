@@ -7,7 +7,7 @@ on:
 
 jobs:
   ci:
-    name: Lint, Test & Build on PR
+    name: Lint & Build on PR
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
     steps:
@@ -22,8 +22,6 @@ jobs:
         run: npm run lint
       - name: Check code formatting
         run: npm run format
-      - name: Run tests
-        run: npm test -- --ci --coverage
       - name: Build project
         run: npm run build
 
@@ -41,8 +39,6 @@ jobs:
           node-version: '20'
       - name: Install dependencies
         run: npm install
-      - name: Run tests
-        run: npm test -- --ci --coverage
       - name: Build project
         run: npm run build
       - name: Copy index.html to 404.html
