@@ -9,7 +9,6 @@
   background-color: #ecf1ff;
   border-radius: 44px;
   font-weight: 800;
-  column-gap: 59px;
   position: relative;
   align-items: center;
   justify-items: center;
@@ -39,6 +38,10 @@
   padding-top: 36px;
 }
 
+.hero .buttons button {
+  width: 100%;
+}
+
 .hero .pets {
   display: block;
 }
@@ -57,7 +60,7 @@
   right: 3%;
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 1024px) {
   .hero h1 {
     font-size: 54px;
   }
@@ -104,6 +107,10 @@
 
   .hero p {
     font-size: 16px;
+  }
+
+  .hero .button--secondary {
+    display: none;
   }
 
   .paw-1 {

@@ -1,6 +1,6 @@
 .button {
   border-radius: 20px;
-  width: 100%;
+  width: 245.5px;
   height: 64px;
   font-size: 22px;
   display: flex;
@@ -28,8 +28,8 @@
   color: #111827;
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .button--secondary {
     display: none;
   }
-}
+} */
