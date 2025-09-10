@@ -5,19 +5,23 @@
 
 .hero {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   background-color: #ecf1ff;
   border-radius: 44px;
   font-weight: 800;
   column-gap: 59px;
   position: relative;
+  align-items: center;
+  justify-items: center;
+  padding-top: 46px;
 }
 .hero .text-and-buttons {
   padding-left: 89px;
+  padding-bottom: 61px;
 }
 
 .hero h1 {
-  padding: 125px 0 12px;
+  padding-bottom: 12px;
   font-size: 80px;
   font-weight: 800;
   color: var(--title-color);
@@ -36,7 +40,6 @@
 }
 
 .hero .pets {
-  padding-top: 46px;
   display: block;
 }
 
@@ -52,6 +55,31 @@
 .paw-2 {
   top: 3%;
   right: 3%;
+}
+
+@media (max-width: 1023px) {
+  .hero h1 {
+    font-size: 54px;
+  }
+
+  .hero p {
+    font-size: 24px;
+  }
+
+  .hero .text-and-buttons {
+    padding-top: 20px;
+    padding-left: 20px;
+  }
+
+  .paw-1 {
+    bottom: 2%;
+    left: 2%;
+    width: 68px;
+  }
+
+  .paw-2 {
+    width: 100px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -85,7 +113,7 @@
   }
 
   .paw-2 {
-    top: 39%;
+    top: 45%;
     right: 6%;
     max-width: 80px;
   }
