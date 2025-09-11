@@ -3,7 +3,7 @@ import './Navigation.css';
 const Navigation = () => {
   return (
     <nav>
-      <ul className="list">
+      <ul className="nav-list">
         <li className="item">
           <Link to="/">Головна</Link>
         </li>

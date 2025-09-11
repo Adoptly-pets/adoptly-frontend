@@ -12,6 +12,7 @@
   height: 100%;
   padding: 0 var(--container-padding);
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .list {
@@ -63,4 +64,42 @@
 .btn[aria-pressed='true'] {
   background: #dfe7ff;
   border-color: #b9c6ff;
+}
+.btn-menu {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .header {
+    height: 100px;
+    padding: 56px 0 12px 0;
+  }
+  .header_inner {
+    align-items: flex-start;
+  }
+  .btn-lang {
+    display: none;
+  }
+  .menu-box {
+    display: flex;
+    gap: 12px;
+  }
+  .btn-menu {
+    border-radius: 431px;
+    display: flex;
+    padding: 0;
+  }
+  .icon-menu {
+    display: block;
+    overflow: hidden;
+    width: 18px;
+    height: 12px;
+  }
+  .header-logo {
+    display: inline-block;
+
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: #434558;
+  }
 }
