@@ -13,10 +13,21 @@ jest.mock('./OurSkillsInNumbers', () => ({
       <section className="our-skills-in-numbers">
         <h2>Наш вплив у цифрах</h2>
         <div className="text-grid">
-          <p>Назва - платформа, де кожна людина може знайти свого вірного друга.</p>
-          <p>Тут ти можеш побачити фото, прочитати історії, відчути зв’язок і зробити важливий крок.</p>
-          <p>Ми об’єднали любов до хвостатих та сучасні технології, щоб зробити усиновлення ближчим і простішим.</p>
-          <p>Назва працює з притулками та волонтерами по всій країні, щоб допомогти тваринам знайти турботливих господарів.</p>
+          <p>
+            Назва - платформа, де кожна людина може знайти свого вірного друга.
+          </p>
+          <p>
+            Тут ти можеш побачити фото, прочитати історії, відчути зв’язок і
+            зробити важливий крок.
+          </p>
+          <p>
+            Ми об’єднали любов до хвостатих та сучасні технології, щоб зробити
+            усиновлення ближчим і простішим.
+          </p>
+          <p>
+            Назва працює з притулками та волонтерами по всій країні, щоб
+            допомогти тваринам знайти турботливих господарів.
+          </p>
         </div>
         <div className="cards">
           {mockNumberCardData.map((card, index) => (
@@ -42,9 +53,13 @@ describe('OurSkillsInNumbers', () => {
 
   it('renders all text paragraphs', () => {
     expect(screen.getAllByRole('paragraph').length).toBe(4);
-    expect(screen.getByText(/Назва - платформа, де кожна людина/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Назва - платформа, де кожна людина/)
+    ).toBeInTheDocument();
     expect(screen.getByText(/Тут ти можеш побачити фото/)).toBeInTheDocument();
-    expect(screen.getByText(/Ми об’єднали любов до хвостатих/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Ми об’єднали любов до хвостатих/)
+    ).toBeInTheDocument();
     expect(screen.getByText(/Назва працює з притулками/)).toBeInTheDocument();
   });
 
