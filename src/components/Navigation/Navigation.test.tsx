@@ -47,7 +47,7 @@ describe('Navigation Component', () => {
     expect(navElement).toBeInTheDocument();
     expect(listElement).toHaveClass('list');
     expect(listItems).toHaveLength(5);
-    listItems.forEach((item) => {
+    listItems.forEach(item => {
       expect(item).toHaveClass('item');
     });
   });
@@ -60,7 +60,13 @@ describe('Navigation Component', () => {
     );
 
     const links = screen.getAllByRole('link');
-    const expectedPaths = ['/', '/about', '/how-to-help', '/shelters', '/contacts'];
+    const expectedPaths = [
+      '/',
+      '/about',
+      '/how-to-help',
+      '/shelters',
+      '/contacts',
+    ];
 
     links.forEach((link, index) => {
       expect(link).toHaveAttribute('href', expectedPaths[index]);
