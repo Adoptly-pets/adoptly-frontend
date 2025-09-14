@@ -1,7 +1,10 @@
 import React from 'react';
+import { useMediaQuery } from 'react-responsive';
 import { GUIDE_CARD_DATA } from '../../constants/GUIDE_CARD_DATA';
 import GuideCard from '../GuideCard/GuideCard';
+import GuideCardCarousel from '../GuideCardCarousel/GuideCardCarousel';
 import animalTracksSrc from '../../assets/images/animal_tracks.webp';
+import catFootprintSrc from '../../assets/images/cat_footprint-2.webp';
 
 import './HowItWorks.css';
 
@@ -14,6 +17,8 @@ interface GuideCardData {
 }
 
 const HowItWorks: React.FC = React.memo(() => {
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+
   if (!GUIDE_CARD_DATA.length) {
     return (
       <section
@@ -43,18 +48,27 @@ const HowItWorks: React.FC = React.memo(() => {
           loading="lazy"
         />
       </div>
-      <div className="steps">
-        {GUIDE_CARD_DATA.map((item: GuideCardData, index: number) => (
-          <GuideCard
-            key={index}
-            cardImgSrc={item.cardImgSrc}
-            cardImgAlt={item.cardImgAlt}
-            cardNumber={item.cardNumber}
-            cardStep={item.cardStep}
-            cardDescription={item.cardDescription}
-          />
-        ))}
-      </div>
+      {isMobile ? (
+        <GuideCardCarousel cards={GUIDE_CARD_DATA} />
+      ) : (
+        <div className="steps">
+          {GUIDE_CARD_DATA.map((item: GuideCardData, index: number) => (
+            <GuideCard
+              key={index}
+              cardImgSrc={item.cardImgSrc}
+              cardImgAlt={item.cardImgAlt}
+              cardNumber={item.cardNumber}
+              cardStep={item.cardStep}
+              cardDescription={item.cardDescription}
+            />
+          ))}
+        </div>
+      )}
+      <img
+        className="how-it-works-mobile__catfootprint-img"
+        src={catFootprintSrc}
+        alt="cat footprint"
+      />
     </section>
   );
 });
