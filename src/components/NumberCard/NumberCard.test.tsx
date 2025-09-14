@@ -12,10 +12,10 @@ describe('NumberCard', () => {
     expect(screen.getByText('01')).toBeInTheDocument();
   });
 
-  it('displays the card number correctly', () => {
+  it('displays the card number with the correct class', () => {
     render(<NumberCard {...mockProps} />);
     const numberElement = screen.getByText('01');
-    expect(numberElement).toHaveClass('number');
+    expect(numberElement).toHaveClass('number-card__number');
   });
 
   it('splits and displays the card text correctly', () => {
@@ -24,16 +24,36 @@ describe('NumberCard', () => {
     expect(screen.getByText('World Test')).toBeInTheDocument();
   });
 
-  it('has correct container class', () => {
+  it('renders the container with the correct class', () => {
     render(<NumberCard {...mockProps} />);
-    const container = screen.getByText('01').parentElement;
+    const container = screen.getByText('01').closest('.number-card');
+    expect(container).toBeInTheDocument();
     expect(container).toHaveClass('number-card');
   });
 
   it('handles single word cardText correctly', () => {
     render(<NumberCard cardNumber="02" cardText="Single" />);
     expect(screen.getByText('Single')).toBeInTheDocument();
-    const emptyElements = screen.queryAllByText('');
-    expect(emptyElements.length).toBeGreaterThan(0);
+    // Ensure no additional empty spans are rendered
+    const textElements = screen.getAllByText('Single');
+    expect(textElements.length).toBe(1);
+  });
+
+  it('handles empty cardText gracefully', () => {
+    render(<NumberCard cardNumber="03" cardText="" />);
+    const numberElement = screen.getByText('03');
+    expect(numberElement).toBeInTheDocument();
+
+    const textContainer = numberElement.nextElementSibling;
+    expect(textContainer).toBeInTheDocument();
+    expect(textContainer).toBeEmptyDOMElement();
+  });
+
+  it('handles empty cardNumber gracefully', () => {
+    render(<NumberCard cardNumber="" cardText="Empty Number" />);
+    const placeholderElement = screen.getByText('—');
+    expect(placeholderElement).toBeInTheDocument();
+    expect(screen.getByText('Empty')).toBeInTheDocument();
+    expect(screen.getByText('Number')).toBeInTheDocument();
   });
 });
