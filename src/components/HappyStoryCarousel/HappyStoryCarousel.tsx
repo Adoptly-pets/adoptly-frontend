@@ -50,14 +50,14 @@ const HappyStoryCarousel: React.FC<HappyStoryCarouselProps> = ({ stories }) => {
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        <button onClick={handlePrev}>
+        <button className="btn-carousel" onClick={handlePrev}>
           <img src="icons/arrow_left.svg" alt="Previous" loading="lazy" />
         </button>
         <div className="slide">
           <HappyStoryCard {...stories[currentIndex]} />
         </div>
 
-        <button onClick={handleNext}>
+        <button className="btn-carousel" onClick={handleNext}>
           <img src="icons/arrow_right.svg" alt="Next" loading="lazy" />
         </button>
       </div>
