@@ -3,9 +3,12 @@ import { Icon } from '../Icon/Icon';
 import Navigation from '../Navigation/Navigation';
 import './Header.css';
 import Modal from '../Modal/Modal';
+import ModalNavigation from '../ModalNavigation/ModalNavigation';
+import NavFooter from '../NavFooter/NavFooter';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <header className="header" id="header" tabIndex={-1}>
       <div className="header_inner">
@@ -20,10 +23,50 @@ const Header = () => {
 
           <Icon id="icon-Logo" className="header-logo" size={108} height={32} />
         </div>
-        <Modal isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)}>
+        <nav className="desktop-nav">
           <Navigation />
+        </nav>
+
+        <Modal isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)}>
+          <div className="wrap-close">
+            <Icon
+              id="icon-Logo"
+              className="header-logo"
+              size={136}
+              height={40}
+            />
+            <button
+              type="button"
+              className="btn btn-menu"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <Icon
+                id="icon-close"
+                className="icon-close"
+                size={16}
+                height={14}
+              />
+            </button>
+          </div>
+          <ModalNavigation className="modal-nav-list" />
+          <div className="btn-wrap">
+            <button type="button" className="btn btn-modal" title="Favourite">
+              <Icon id="icon-heart" size={22} height={20} />
+            </button>
+            <button
+              type="button"
+              className="btn-modal-language"
+              aria-label="Switch language to Ukrainian"
+              title="Ukrainian"
+              aria-pressed="true"
+            >
+              UA/EN
+            </button>
+          </div>
+
+          <NavFooter />
         </Modal>
-        <div className="actions">
+        <div className="actions actions-modal">
           <button
             type="button"
             className="btn btn-lang"

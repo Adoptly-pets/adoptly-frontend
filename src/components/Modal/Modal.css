@@ -1,0 +1,31 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  z-index: 999;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.modal-content {
+  position: relative;
+  background: #f8f8f8;
+
+  padding: 56px 20px;
+
+  width: 360px;
+  max-height: 790px;
+
+  overflow-y: auto;
+  animation: slideUp 0.3s ease;
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+}
