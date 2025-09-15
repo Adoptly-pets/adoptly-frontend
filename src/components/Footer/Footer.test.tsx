@@ -23,6 +23,7 @@ jest.mock('../Icon/Icon', () => ({
 describe('Footer Component', () => {
   const mockScrollIntoView = jest.fn();
   beforeEach(() => {
+    jest.restoreAllMocks();
     jest.spyOn(document, 'getElementById').mockReturnValue({
       scrollIntoView: mockScrollIntoView,
     } as unknown as HTMLElement);
@@ -111,9 +112,12 @@ describe('Footer Component', () => {
 
   test('calls scrollToHeader when back to top link is clicked', () => {
     render(<Footer />);
+    
+ 
 
-    const backToTopLink = screen.getByRole('link', { name: /Back to top/i });
-    fireEvent.click(backToTopLink);
+  const backToTopLink = screen.getByRole('link', { name: /Back to top/i });
+    fireEvent.click(backToTopLink); 
+ 
 
     expect(document.getElementById).toHaveBeenCalledWith('header');
     expect(mockScrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth' });
@@ -121,10 +125,11 @@ describe('Footer Component', () => {
 
   test('does not call scrollIntoView if header element is not found', () => {
     (document.getElementById as unknown as jest.Mock).mockReturnValueOnce(null);
+  
     render(<Footer />);
-
-    const backToTopLink = screen.getByRole('link', { name: /Back to top/i });
+ const backToTopLink = screen.getByRole('link', { name: /Back to top/i });
     fireEvent.click(backToTopLink);
+
 
     expect(document.getElementById).toHaveBeenCalledWith('header');
     expect(mockScrollIntoView).not.toHaveBeenCalled();
