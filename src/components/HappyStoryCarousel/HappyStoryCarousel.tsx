@@ -53,7 +53,7 @@ const HappyStoryCarousel: React.FC<HappyStoryCarouselProps> = ({ stories }) => {
         <button className="btn-carousel" onClick={handlePrev}>
           <img src="icons/arrow_left.svg" alt="Previous" loading="lazy" />
         </button>
-        <div className="slide">
+        <div>
           <HappyStoryCard {...stories[currentIndex]} />
         </div>
 
@@ -61,7 +61,7 @@ const HappyStoryCarousel: React.FC<HappyStoryCarouselProps> = ({ stories }) => {
           <img src="icons/arrow_right.svg" alt="Next" loading="lazy" />
         </button>
       </div>
-      <div className="indicators">
+      <div className="happy-story-indicators">
         {stories.map((_, index) => (
           <span
             key={index}
