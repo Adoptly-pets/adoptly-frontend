@@ -30,6 +30,10 @@
     --button-text: #213547;
   }
 }
+html,
+body {
+  overflow-x: hidden;
+}
 
 html {
   box-sizing: border-box;
