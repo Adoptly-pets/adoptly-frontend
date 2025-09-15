@@ -20,7 +20,7 @@ const HappyStoryCarousel: React.FC<HappyStoryCarouselProps> = ({ stories }) => {
 
   return (
     <div>
-      <div className="carousel">
+      <div className="happy-story-carousel">
         <button onClick={handlePrev}>
           <img src="icons/arrow_left.svg" alt="Previous" loading="lazy" />
         </button>
