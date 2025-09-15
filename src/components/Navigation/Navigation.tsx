@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import './Navigation.css';
-const Navigation = ({ className = '' }) => {
+const Navigation = () => {
   return (
     <nav>
-      <ul className={`list ${className}`}>
+      <ul className="list">
         <li className="item">
           <Link to="/">Головна</Link>
         </li>

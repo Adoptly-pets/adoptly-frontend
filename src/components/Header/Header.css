@@ -15,16 +15,6 @@
   box-sizing: border-box;
 }
 
-.list {
-  display: flex;
-  gap: 24px;
-}
-
-.item {
-  font-weight: 700;
-  font-size: 16px;
-  color: #515151;
-}
 
 .actions {
   display: flex;
@@ -44,7 +34,7 @@
   color: #515151;
   display: flex;
   justify-content: center;
-  align-items: center;
+ align-items: center;
 }
 
 .btn:hover {
@@ -89,11 +79,9 @@
     display: flex;
     padding: 0;
   }
-  .icon-menu {
-    display: block;
-    overflow: hidden;
-    width: 18px;
-    height: 12px;
+  .menu-icon {
+    fill: #434558;
+   
   }
   .header-logo {
     display: inline-block;
@@ -112,8 +100,10 @@
     gap: 16px;
   }
   .icon-close {
-    width: 16px;
-    height: 14px;
+fill: #434558;
+   width: 15px;
+   height: 14px;
+ 
   }
   .btn-wrap {
     display: flex;
