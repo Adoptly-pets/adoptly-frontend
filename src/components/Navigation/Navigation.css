@@ -13,3 +13,9 @@
   /*   color: #000;це колір з мвкету виглядає не дуже на ховері*/
   color: #ff8c00;
 }
+
+@media (max-width: 768px) {
+  .list {
+    display: none;
+  }
+}

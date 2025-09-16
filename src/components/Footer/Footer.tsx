@@ -75,6 +75,7 @@ const Footer = () => {
             <a
               className="btnUp"
               href="#header"
+              data-testid="back-to-top"
               aria-label="Back to top"
               onClick={e => {
                 e.preventDefault();
