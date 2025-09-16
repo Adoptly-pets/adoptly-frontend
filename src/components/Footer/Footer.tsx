@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Icon } from '../Icon/Icon';
 import './Footer.css';
 
@@ -13,10 +14,17 @@ const Footer = () => {
       <div className="footer">
         <div className="footer-content">
           <div className="nav-footer">
-            <Icon id="icon-Logo" className="footer-logo" />
-
+            <Icon
+              id="icon-Logo"
+              className="footer-logo"
+              size={217}
+              height={36}
+            />
+            <Link to="/" className="platform-footer">
+              Платформа для адопції тварин
+            </Link>
             <div>
-              <ul>
+              <ul className="footer-list">
                 <li className="item-nav">
                   <a href="/find-pet">Знайти улюбленця</a>
                 </li>
@@ -38,6 +46,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
+
             <nav className="buttons">
               <a
                 className="btn-footer"
@@ -47,7 +56,12 @@ const Footer = () => {
                 href="https://www.instagram.com"
                 aria-label="Instagram"
               >
-                <Icon id="icon-instagram" size={25} />
+                <Icon
+                  id="icon-instagram"
+                  className="footer-icon"
+                  size={25}
+                  height={22}
+                />
               </a>
               <a
                 className="btn-footer"
@@ -57,7 +71,12 @@ const Footer = () => {
                 href="https://www.facebook.com"
                 aria-label="Facebook"
               >
-                <Icon id="icon-facebook" size={25} />
+                <Icon
+                  id="icon-facebook"
+                  className="footer-icon"
+                  size={25}
+                  height={22}
+                />
               </a>
               <a
                 className="btn-footer"
@@ -67,7 +86,12 @@ const Footer = () => {
                 href="https://www.tiktok.com"
                 aria-label="TikTok"
               >
-                <Icon id="icon-tiktok" size={25} />
+                <Icon
+                  id="icon-tiktok"
+                  className="footer-icon"
+                  size={25}
+                  height={22}
+                />
               </a>
             </nav>
           </div>
@@ -97,6 +121,9 @@ const Footer = () => {
               <a href="/sitemap">Sitemap</a>
             </li>
           </ul>
+          <Link to="/privacy-policy" className="cookie">
+            Cookie policy
+          </Link>
         </div>
       </div>
     </footer>

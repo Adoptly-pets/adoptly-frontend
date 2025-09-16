@@ -15,7 +15,6 @@
   box-sizing: border-box;
 }
 
-
 .actions {
   display: flex;
   gap: 8px;
@@ -34,7 +33,7 @@
   color: #515151;
   display: flex;
   justify-content: center;
- align-items: center;
+  align-items: center;
 }
 
 .btn:hover {
@@ -58,7 +57,18 @@
 .btn-menu {
   display: none;
 }
+.icon-heart {
+  fill: #091a49;
+}
 
+.icon-user {
+  fill: #091a49;
+}
+.header-logo {
+  width: 136px;
+  height: 40px;
+  fill: #091a49;
+}
 @media (max-width: 768px) {
   .header {
     height: 100px;
@@ -81,14 +91,13 @@
   }
   .menu-icon {
     fill: #434558;
-   
   }
   .header-logo {
-    display: inline-block;
-    stroke-width: 0;
-    stroke: currentColor;
-    fill: #434558;
+    width: 109px;
+    height: 32px;
+    fill: #091a49;
   }
+
   .wrap-close {
     display: flex;
     justify-content: space-between;
@@ -100,10 +109,9 @@
     gap: 16px;
   }
   .icon-close {
-fill: #434558;
-   width: 15px;
-   height: 14px;
- 
+    fill: #434558;
+    width: 15px;
+    height: 14px;
   }
   .btn-wrap {
     display: flex;

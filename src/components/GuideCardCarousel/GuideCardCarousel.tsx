@@ -61,7 +61,7 @@ const GuideCardCarousel: React.FC<GuideCardCarouselProps> = ({ cards }) => {
     >
       <div className="carousel">
         <button
-          className='how-it-works-carousel-button'
+          className="how-it-works-carousel-button"
           onClick={handlePrev}
           aria-label="Попередня картка"
           disabled={cards.length <= 1}
@@ -78,7 +78,7 @@ const GuideCardCarousel: React.FC<GuideCardCarouselProps> = ({ cards }) => {
           <GuideCard {...cards[currentIndex]} />
         </div>
         <button
-          className='how-it-works-carousel-button'
+          className="how-it-works-carousel-button"
           onClick={handleNext}
           aria-label="Наступна картка"
           disabled={cards.length <= 1}
