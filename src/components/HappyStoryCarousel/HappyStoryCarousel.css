@@ -1,17 +1,17 @@
-.carousel {
+.happy-story-carousel {
   display: flex;
   align-items: center;
   justify-content: center;
   column-gap: 32px;
 }
 
-.indicators {
+.happy-story-indicators {
   display: flex;
   justify-content: center;
   margin-top: 24px;
 }
 
-.dot {
+.happy-story-indicators .dot {
   height: 16px;
   width: 16px;
   margin: 0 6px;
@@ -19,6 +19,22 @@
   border-radius: 50%;
 }
 
-.dot.active {
+.happy-story-indicators .dot.active {
   background-color: #d1d1d1;
+}
+
+@media (max-width: 768px) {
+  .btn-carousel {
+    display: none;
+  }
+
+  .happy-story-indicators {
+    margin-top: 12px;
+  }
+
+  .happy-story-indicators .dot {
+    height: 8px;
+    width: 8px;
+    margin: 0 4px;
+  }
 }

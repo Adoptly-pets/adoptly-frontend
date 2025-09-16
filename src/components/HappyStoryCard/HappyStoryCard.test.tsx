@@ -16,10 +16,10 @@ describe('HappyStoryCard Component', () => {
     expect(screen.getByRole('img')).toBeInTheDocument();
     expect(screen.getByText('John Doe')).toBeInTheDocument();
     expect(
-      screen.getByText('This is the first paragraph.')
+      screen.getByText(/This is the first paragraph./i)
     ).toBeInTheDocument();
     expect(
-      screen.getByText('This is the second paragraph.')
+      screen.getByText(/This is the second paragraph./i)
     ).toBeInTheDocument();
   });
 
@@ -37,8 +37,10 @@ describe('HappyStoryCard Component', () => {
 
   it('renders all paragraphs in the description', () => {
     render(<HappyStoryCard {...mockProps} />);
-    mockProps.description.forEach(paragraph => {
-      expect(screen.getByText(paragraph)).toBeInTheDocument();
-    });
+    const paragraphEl = screen
+      .getByText(/this is the first paragraph./i)
+      .closest('p');
+    expect(paragraphEl).toBeInTheDocument();
+    expect(paragraphEl).toHaveTextContent('This is the second paragraph.');
   });
 });

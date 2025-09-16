@@ -12,3 +12,15 @@
   padding: 100px 0 32px;
   color: #0a0c20;
 }
+
+@media (max-width: 768px) {
+  .happy-story-section {
+    align-items: start;
+  }
+
+  .happy-story-section h2 {
+    font-size: 24px;
+    line-height: 1.2;
+    padding: 24px 0;
+  }
+}
