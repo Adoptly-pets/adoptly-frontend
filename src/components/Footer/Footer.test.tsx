@@ -39,12 +39,21 @@ describe('Footer Component', () => {
 
     expect(screen.getByRole('contentinfo')).toBeInTheDocument(); // footer
     expect(screen.getByTestId('icon-icon-Logo')).toHaveClass('footer-logo');
+    expect(screen.getByRole('link', { name: /Cookie policy/i })).toBeInTheDocument(); //add this one 
     expect(screen.getByRole('navigation')).toHaveClass('buttons');
     expect(
       screen.getByRole('link', { name: /Back to top/i })
     ).toBeInTheDocument();
     expect(screen.getByRole('separator')).toHaveClass('divider'); // hr
   });
+
+  //add this one 
+  test('renders main platform link', () => {
+  render(<Footer />);
+  const platformLink = screen.getByRole('link', { name: /Платформа для адопції тварин/i });
+  expect(platformLink).toHaveAttribute('href', '/');
+  expect(platformLink).toHaveClass('platform-footer');
+});
 
   test('renders navigation links with correct hrefs', () => {
     render(<Footer />);
