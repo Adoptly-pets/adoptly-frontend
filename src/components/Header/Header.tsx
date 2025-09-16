@@ -18,7 +18,7 @@ const Header = () => {
             className="btn btn-menu"
             onClick={() => setIsMenuOpen(true)}
           >
-            <Icon id="icon-menu" className="menu-icon"size={18} height={16}/>
+            <Icon id="icon-menu" className="menu-icon" size={18} height={16} />
           </button>
 
           <Icon id="icon-Logo" className="header-logo" size={108} height={32} />
@@ -40,15 +40,13 @@ const Header = () => {
               className="btn btn-menu"
               onClick={() => setIsMenuOpen(false)}
             >
-              <Icon
-                id="icon-close"
-              className='icon-close'
-                size={18}
-                
-              />
+              <Icon id="icon-close" className="icon-close" size={18} />
             </button>
           </div>
-          <ModalNavigation className="modal-nav-list" onLinkClick={() => setIsMenuOpen(false)}/>
+          <ModalNavigation
+            className="modal-nav-list"
+            onLinkClick={() => setIsMenuOpen(false)}
+          />
           <div className="btn-wrap">
             <button type="button" className="btn btn-modal" title="Favourite">
               <Icon id="icon-heart" size={16} />
@@ -78,10 +76,10 @@ const Header = () => {
           </button>
 
           <button type="button" className="btn" title="Favourite">
-            <Icon id="icon-heart" size={16} />
+            <Icon id="icon-heart" size={16} height={15} />
           </button>
           <button type="button" className="btn" title="Username">
-            <Icon id="icon-user" size={16} />
+            <Icon id="icon-user" size={16} height={15} />
           </button>
         </div>
       </div>

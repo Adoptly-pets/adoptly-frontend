@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import Footer from './Footer';
 
 jest.mock('../Icon/Icon', () => ({
@@ -35,10 +36,13 @@ describe('Footer Component', () => {
   });
 
   test('renders footer with correct structure and content', () => {
-    render(<Footer />);
+    render(<MemoryRouter>
+        <Footer />
+      </MemoryRouter>);
 
     expect(screen.getByRole('contentinfo')).toBeInTheDocument(); // footer
     expect(screen.getByTestId('icon-icon-Logo')).toHaveClass('footer-logo');
+    expect(screen.getByRole('link', { name: /Cookie policy/i })).toBeInTheDocument(); //add this one 
     expect(screen.getByRole('navigation')).toHaveClass('buttons');
     expect(
       screen.getByRole('link', { name: /Back to top/i })
@@ -46,8 +50,20 @@ describe('Footer Component', () => {
     expect(screen.getByRole('separator')).toHaveClass('divider'); // hr
   });
 
+  //add this one 
+  test('renders main platform link', () => {
+  render(<MemoryRouter>
+        <Footer />
+      </MemoryRouter>);
+  const platformLink = screen.getByRole('link', { name: /Платформа для адопції тварин/i });
+  expect(platformLink).toHaveAttribute('href', '/');
+  expect(platformLink).toHaveClass('platform-footer');
+});
+
   test('renders navigation links with correct hrefs', () => {
-    render(<Footer />);
+    render(<MemoryRouter>
+        <Footer />
+      </MemoryRouter>);
 
     expect(
       screen.getByRole('link', { name: /Знайти улюбленця/i })
@@ -69,7 +85,9 @@ describe('Footer Component', () => {
   });
 
   test('renders social media links with correct attributes', () => {
-    render(<Footer />);
+    render(<MemoryRouter>
+        <Footer />
+      </MemoryRouter>);
 
     const instagramLink = screen.getByRole('link', { name: /Instagram/i });
     expect(instagramLink).toHaveAttribute('href', 'https://www.instagram.com');
@@ -96,8 +114,11 @@ describe('Footer Component', () => {
     );
   });
 
+
   test('calls scrollToHeader when back to top link is clicked', () => {
-    render(<Footer />);
+    render(<MemoryRouter>
+        <Footer />
+      </MemoryRouter>);
 
     const backToTopLink = screen.getByRole('link', { name: /Back to top/i });
     fireEvent.click(backToTopLink);
@@ -108,7 +129,9 @@ describe('Footer Component', () => {
 
   test('does not call scrollIntoView if header element is not found', () => {
     jest.spyOn(document, 'getElementById').mockReturnValueOnce(null); // Мокаємо повернення null
-    render(<Footer />);
+    render(<MemoryRouter>
+        <Footer />
+      </MemoryRouter>);
 
     const backToTopLink = screen.getByRole('link', { name: /Back to top/i });
     fireEvent.click(backToTopLink);
