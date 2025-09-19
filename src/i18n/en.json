@@ -11,5 +11,32 @@
     "subtitle": "Swipe, meet, help:<br/> your swipe can change a life",
     "findPet": "Find a pet",
     "donate": "Donate"
+  },
+  "howItWorks": {
+    "title": "How it works",
+    "subtitle": "Step-by-step guide",
+    "noData": "No data",
+    "steps": {
+      "1": {
+        "title": "Choose who you are looking for",
+        "descPart1": "Set filters — ",
+        "descPart2": "select animal type, gender, age, size."
+      },
+      "2": {
+        "title": "Swipe cards",
+        "descPart1": "Browse animal",
+        "descPart2": " profiles and pick your favorite."
+      },
+      "3": {
+        "title": "Get a match",
+        "descPart1": "Proceed to filling out ",
+        "descPart2": "a short application."
+      },
+      "4": {
+        "title": "Take your pet home",
+        "descPart1": "Feel the joy",
+        "descPart2": " of a paw’s touch. Happiness and a new rhythm."
+      }
+    }
   }
 }
