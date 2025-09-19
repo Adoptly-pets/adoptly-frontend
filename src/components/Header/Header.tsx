@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Icon } from '../Icon/Icon';
 import Navigation from '../Navigation/Navigation';
 import './Header.css';
@@ -8,6 +9,11 @@ import NavFooter from '../NavFooter/NavFooter';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { i18n } = useTranslation();
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+  };
 
   return (
     <header className="header" id="header" tabIndex={-1}>
@@ -54,11 +60,12 @@ const Header = () => {
             <button
               type="button"
               className="btn-modal-language"
-              aria-label="Switch language to Ukrainian"
-              title="Ukrainian"
-              aria-pressed="true"
+              aria-label="Switch language"
+              onClick={() =>
+                changeLanguage(i18n.language === 'ua' ? 'en' : 'ua')
+              }
             >
-              UA/EN
+              {i18n.language.toUpperCase()}
             </button>
           </div>
 
@@ -68,11 +75,10 @@ const Header = () => {
           <button
             type="button"
             className="btn btn-lang"
-            aria-label="Switch language to Ukrainian"
-            title="Ukrainian"
-            aria-pressed="true"
+            aria-label="Switch language"
+            onClick={() => changeLanguage(i18n.language === 'ua' ? 'en' : 'ua')}
           >
-            UA
+            {i18n.language.toUpperCase()}
           </button>
 
           <button type="button" className="btn" title="Favourite">

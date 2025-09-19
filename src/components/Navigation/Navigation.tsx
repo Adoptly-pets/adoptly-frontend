@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navigation.css';
+import { useTranslation } from 'react-i18next';
 
 // Navigation component code
 interface NavigationProps {
@@ -14,32 +15,33 @@ const Navigation: React.FC<NavigationProps> = ({
 }) => {
   const listClass = `list ${className}`.trim();
 
+  const { t } = useTranslation();
   return (
     <nav>
       <ul className={listClass}>
         <li className="item">
           <Link to="/" onClick={onLinkClick}>
-            Головна
+            {t('nav.home')}
           </Link>
         </li>
         <li className="item">
           <Link to="/about" onClick={onLinkClick}>
-            Про нас
+            {t('nav.about')}
           </Link>
         </li>
         <li className="item">
           <Link to="/how-to-help" onClick={onLinkClick}>
-            Як допомогти
+            {t('nav.help')}
           </Link>
         </li>
         <li className="item">
           <Link to="/shelters" onClick={onLinkClick}>
-            Притулкам
+            {t('nav.shelters')}
           </Link>
         </li>
         <li className="item">
           <Link to="/contacts" onClick={onLinkClick}>
-            Контакти
+            {t('nav.contacts')}
           </Link>
         </li>
       </ul>

@@ -12,8 +12,15 @@ jest.mock('../Navigation/Navigation', () => ({
   default: () => <nav data-testid="navigation" />,
 }));
 
+// mock react-i18next used in Header
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    i18n: { language: 'en', changeLanguage: jest.fn() },
+  }),
+}));
+
 describe('Header Component', () => {
-  test('renders the header with correct structure', () => {
+  it('renders header and navigation elements correctly', () => {
     render(<Header />);
 
     const header = screen.getByRole('banner');
@@ -22,16 +29,13 @@ describe('Header Component', () => {
     const navigation = screen.getByTestId('navigation');
     expect(navigation).toBeInTheDocument();
 
-    const languageButton = screen.getByRole('button', {
-      name: /switch language to ukrainian/i,
-    });
+    const languageButton = screen.getByLabelText(/switch language/i);
     expect(languageButton).toBeInTheDocument();
-    expect(languageButton).toHaveAttribute('aria-pressed', 'true');
 
-    const favouriteButton = screen.getByRole('button', { name: /favourite/i });
+    const favouriteButton = screen.getByTitle(/favourite/i);
     expect(favouriteButton).toBeInTheDocument();
 
-    const userButton = screen.getByRole('button', { name: /username/i });
+    const userButton = screen.getByTitle(/username/i);
     expect(userButton).toBeInTheDocument();
   });
 
