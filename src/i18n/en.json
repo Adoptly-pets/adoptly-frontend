@@ -5,5 +5,11 @@
     "help": "How to Help",
     "shelters": "For Shelters",
     "contacts": "Contacts"
+  },
+  "hero": {
+    "title": "Find a Friend\nSave a Life",
+    "subtitle": "Swipe, meet, help:<br/> your swipe can change a life",
+    "findPet": "Find a pet",
+    "donate": "Donate"
   }
 }
