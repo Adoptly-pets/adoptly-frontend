@@ -3,8 +3,11 @@ import './HeroSection.css';
 import catFootprint1 from '../../assets/images/Hero/cat-footprint-1.webp';
 import catFootprint2 from '../../assets/images/Hero/cat-footprint-2.webp';
 import pets from '../../assets/images/Hero/pets.webp';
+import { Trans, useTranslation } from 'react-i18next';
 
 const HeroSection = () => {
+  const { t } = useTranslation();
+
   return (
     <section
       className="hero"
@@ -13,24 +16,23 @@ const HeroSection = () => {
     >
       <div className="text-and-buttons">
         <h1 role="heading" aria-level={1}>
-          Знайди друга <br /> Врятуй життя
+          {t('hero.title')}
         </h1>
         <p>
-          Свайпай, знайомся, допомагай: <br />
-          твій свайп може змінити життя
+          <Trans i18nKey="hero.subtitle" />
         </p>
         <div className="buttons">
           <Button
             variant="primary"
             onClick={() => alert('Кнопка "Знайти улюбленця" натиснута!')}
           >
-            Знайти улюбленця
+            {t('hero.findPet')}
           </Button>
           <Button
             variant="secondary"
             onClick={() => alert('Кнопка "Задонатити" натиснута!')}
           >
-            Задонатити
+            {t('hero.donate')}
           </Button>
         </div>
       </div>
