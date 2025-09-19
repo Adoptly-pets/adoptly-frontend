@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import footprintRight from '../../assets/images/cat_footprint-1.webp';
 import footprintBottom from '../../assets/images/cat_footprint-2.webp';
 import footprintLeft from '../../assets/images/cat_footprint-3.webp';
@@ -8,26 +9,28 @@ import SupportButton from '../SupportButton/SupportButton';
 import './TrustAndPartnershipSection.css';
 
 const TrustAndPartnershipSection = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="trust-partnership-section">
-      <h2>Любов і підтримка без усиновлення</h2>
+      <h2>{t('trust.title')}</h2>
       <div className="buttons-container">
         <SupportButton
           imgSrc={catTrackHeart}
           altText="cat track inside heart"
-          text="Задонатити"
+          text={t('trust.supportButtons.donate')}
           ariaLabel="Задонатити"
         />
         <SupportButton
           imgSrc={dogWalking}
           altText="walking dog"
-          text="Волонтерство та допомога руками"
+          text={t('trust.supportButtons.volunteering')}
           ariaLabel="Волонтерство та допомога руками"
         />
         <SupportButton
           imgSrc={catContainer}
           altText="cat container"
-          text="Допомога кормом або медикаментами"
+          text={t('trust.supportButtons.foodAndMedicine')}
           ariaLabel="Допомога кормом або медикаментами"
         />
       </div>

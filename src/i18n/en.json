@@ -38,5 +38,13 @@
         "descPart2": " of a paw’s touch. Happiness and a new rhythm."
       }
     }
+  },
+  "trust": {
+    "title": "Love and Support Without Adoption",
+    "supportButtons": {
+      "donate": "Donate",
+      "volunteering": "Volunteering and Hands-On Help",
+      "foodAndMedicine": "Help with Food or Medicine"
+    }
   }
 }
