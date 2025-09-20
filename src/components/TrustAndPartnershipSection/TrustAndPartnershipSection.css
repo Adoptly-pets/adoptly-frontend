@@ -45,3 +45,39 @@
   bottom: 1%;
   left: 22%;
 }
+
+@media (max-width: 768px) {
+  .trust-partnership-section {
+    flex-direction: column;
+    padding: 40px 0px;
+    gap: 32px;
+  }
+
+  .trust-partnership-section h2 {
+    font-size: 24px;
+    max-width: 100%;
+    text-align: left;
+  }
+
+  .trust-partnership-section .buttons-container {
+    max-width: 100%;
+  }
+
+  .footprint-right-img {
+    width: 32px;
+    right: 2%;
+    top: 20%;
+  }
+
+  .footprint-left-img {
+    width: 42px;
+    top: -3%;
+  }
+
+  .footprint-bottom-img {
+    width: 60px;
+    left: 42%;
+    bottom: -7%;
+    rotate: 315deg;
+  }
+}
