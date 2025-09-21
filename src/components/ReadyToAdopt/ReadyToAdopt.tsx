@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import catFootprint from '../../assets/images/ReadyToAdopt/cat-footprint.webp';
 import catFootprint1 from '../../assets/images/ReadyToAdopt/cat-footprint-1.webp';
 import catFootprint2 from '../../assets/images/ReadyToAdopt/cat-footprint-2.webp';
@@ -7,6 +8,22 @@ import dogimg from '../../assets/images/Dog.webp';
 import './ReadyToAdopt.css';
 
 const ReadyToAdopt = () => {
+  const [buttonText, setButtonText] = useState('Почати пошук улюбленця');
+
+  const updateButtonText = () => {
+    if (window.innerWidth < 768) {
+      setButtonText('Пошук улюбленця');
+    } else {
+      setButtonText('Почати пошук улюбленця');
+    }
+  }
+
+  useEffect(() => {
+    updateButtonText();
+    window.addEventListener('resize', updateButtonText);
+    return () => window.removeEventListener('resize', updateButtonText);
+  }, []);
+
   return (
     <section className="ready-to-adopt">
       <div className="text-box">
@@ -16,7 +33,7 @@ const ReadyToAdopt = () => {
           починай пошук друга прямо зараз.
         </p>
         <a href="#findpet" className="search-btn">
-          Почати пошук улюбленця
+          {buttonText}
         </a>
       </div>
 
