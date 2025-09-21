@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import GuideCard from '../GuideCard/GuideCard';
 import './GuideCardCarousel.css';
 
@@ -17,8 +17,7 @@ interface GuideCardCarouselProps {
 const GuideCardCarousel: React.FC<GuideCardCarouselProps> = ({ cards }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
-  const [touchEndX, setTouchEndX] = useState<number | null>(null);
-  const slideContainerRef = useRef<HTMLDivElement>(null);
+  const [touchMoveX, setTouchMoveX] = useState<number | null>(null);
 
   const handlePrev = () => {
     setCurrentIndex(index => (index === 0 ? cards.length - 1 : index - 1));
@@ -30,23 +29,40 @@ const GuideCardCarousel: React.FC<GuideCardCarouselProps> = ({ cards }) => {
 
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStartX(e.touches[0].clientX);
+    setTouchMoveX(null);
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEndX(e.touches[0].clientX);
+    setTouchMoveX(e.touches[0].clientX);
   };
 
   const handleTouchEnd = () => {
-    if (touchStartX !== null && touchEndX !== null) {
-      const deltaX = touchEndX - touchStartX;
-      if (deltaX > 50 && currentIndex > 0) {
+    if (touchStartX !== null && touchMoveX !== null) {
+      const deltaX = touchMoveX - touchStartX;
+      if (deltaX > 50) {
         handlePrev();
-      } else if (deltaX < -50 && currentIndex < cards.length - 1) {
+      } else if (deltaX < -50) {
         handleNext();
       }
     }
     setTouchStartX(null);
-    setTouchEndX(null);
+    setTouchMoveX(null);
+  };
+
+  const getSlidesStyle = () => {
+    const translateX =
+      touchStartX !== null && touchMoveX !== null
+        ? -currentIndex * 100 +
+          ((touchMoveX - touchStartX) / window.innerWidth) * 100
+        : -currentIndex * 100;
+
+    return {
+      transform: `translateX(${translateX}%)`,
+      transition:
+        touchStartX !== null && touchMoveX !== null
+          ? 'none'
+          : 'transform 0.3s ease',
+    };
   };
 
   if (!cards.length) {
@@ -69,13 +85,18 @@ const GuideCardCarousel: React.FC<GuideCardCarouselProps> = ({ cards }) => {
           <img src="icons/arrow_left.svg" alt="" loading="lazy" />
         </button>
         <div
-          className="slide"
-          ref={slideContainerRef}
+          className="slide-container"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          <GuideCard {...cards[currentIndex]} />
+          <div className="slides" style={getSlidesStyle()}>
+            {cards.map((card, index) => (
+              <div className="slide" key={index}>
+                <GuideCard {...card} />
+              </div>
+            ))}
+          </div>
         </div>
         <button
           className="how-it-works-carousel-button"

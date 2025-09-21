@@ -16,9 +16,23 @@
   display: none;
 }
 
-.slide {
+.slide-container {
   overflow: hidden;
+  width: 100%;
   touch-action: pan-y;
+}
+
+.slides {
+  display: flex;
+  width: 100%;
+  will-change: transform;
+}
+
+.slide {
+  flex: 0 0 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .indicators {
@@ -37,10 +51,4 @@
 
 .carousel-dot.active {
   background-color: var(--dot-active-bg, #c0cdef);
-}
-
-@media (min-width: 769px) {
-  .carousel {
-    max-width: 100%;
-  }
 }
