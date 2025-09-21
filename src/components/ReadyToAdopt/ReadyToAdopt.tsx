@@ -16,7 +16,7 @@ const ReadyToAdopt = () => {
     } else {
       setButtonText('Почати пошук улюбленця');
     }
-  }
+  };
 
   useEffect(() => {
     updateButtonText();

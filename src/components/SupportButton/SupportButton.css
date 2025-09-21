@@ -38,7 +38,7 @@
     border-radius: 12px;
   }
 
-  .support-btn::after{
+  .support-btn::after {
     content: url('../../assets/images/trustAndSupport/arrow_button.svg');
     margin-left: auto;
   }
@@ -46,5 +46,4 @@
   .support-btn img {
     width: 40px;
   }
-  
 }

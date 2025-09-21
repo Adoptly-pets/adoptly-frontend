@@ -131,7 +131,8 @@
   .img-dog {
     display: none;
   }
-  .footprint-1, .footprint-3 {
+  .footprint-1,
+  .footprint-3 {
     display: none;
   }
   .footprint {
