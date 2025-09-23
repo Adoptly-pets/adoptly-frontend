@@ -16,7 +16,7 @@ const HeroSection = () => {
     >
       <div className="text-and-buttons">
         <h1 role="heading" aria-level={1}>
-          {t('hero.title')}
+          <Trans i18nKey="hero.title" />
         </h1>
         <p>
           <Trans i18nKey="hero.subtitle" />
