@@ -61,11 +61,20 @@ const Header = () => {
               type="button"
               className="btn-modal-language"
               aria-label="Switch language"
-              onClick={() =>
-                changeLanguage(i18n.language === 'ua' ? 'en' : 'ua')
-              }
             >
-              {i18n.language.toUpperCase()}
+              <span
+                onClick={() => changeLanguage('ua')}
+                className={i18n.language === 'ua' ? 'active-lang' : ''}
+              >
+                UA
+              </span>
+              <span> / </span>
+              <span
+                onClick={() => changeLanguage('en')}
+                className={i18n.language === 'en' ? 'active-lang' : ''}
+              >
+                EN
+              </span>
             </button>
           </div>
 
