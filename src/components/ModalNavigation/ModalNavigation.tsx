@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import './ModalNavigation.css';
+import { useTranslation } from 'react-i18next';
 
 interface ModalNavigationProps {
   className?: string;
@@ -9,32 +10,33 @@ const ModalNavigation = ({
   className = '',
   onLinkClick,
 }: ModalNavigationProps) => {
+  const { t } = useTranslation();
   return (
     <nav>
       <ul className={`nav-list ${className}`}>
         <li className="item">
           <Link to="/find-pet" onClick={onLinkClick}>
-            Знайти улюбленця
+            {t('footer.findPet')}
           </Link>
         </li>
         <li className="item">
           <Link to="/donate" onClick={onLinkClick}>
-            Задонатити
+            {t('footer.donate')}
           </Link>
         </li>
         <li className="item">
           <Link to="/volunteer" onClick={onLinkClick}>
-            Волонтерство
+            {t('footer.volunteer')}
           </Link>
         </li>
         <li className="item">
           <Link to="/help-medical-food" onClick={onLinkClick}>
-            Допомогти ліками та кормом
+            {t('footer.helpMedicalFood')}
           </Link>
         </li>
         <li className="item">
           <Link to="/register-shelter" onClick={onLinkClick}>
-            Зареєструвати притулок
+            {t('footer.joinShelter')}
           </Link>
         </li>
       </ul>
