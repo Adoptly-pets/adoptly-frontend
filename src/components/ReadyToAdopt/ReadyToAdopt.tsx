@@ -6,6 +6,7 @@ import catFootprint3 from '../../assets/images/ReadyToAdopt/cat-footprint-3.webp
 import catImg from '../../assets/images/Cat.webp';
 import dogimg from '../../assets/images/Dog.webp';
 import './ReadyToAdopt.css';
+import { useTranslation } from 'react-i18next';
 
 const ReadyToAdopt = () => {
   const [buttonText, setButtonText] = useState('Почати пошук улюбленця');
@@ -24,16 +25,15 @@ const ReadyToAdopt = () => {
     return () => window.removeEventListener('resize', updateButtonText);
   }, []);
 
+  const { t } = useTranslation();
+
   return (
     <section className="ready-to-adopt">
       <div className="text-box">
-        <h3 className="title">Готовий зустріти нового друга?</h3>
-        <p className="description">
-          Обирай фільтри - котик чи собачка, вік, розмір та інші параметри і
-          починай пошук друга прямо зараз.
-        </p>
+        <h3 className="title">{t('readyToAdopt.title')}</h3>
+        <p className="description">{t('readyToAdopt.description')}</p>
         <a href="#findpet" className="search-btn">
-          {buttonText}
+          {t('readyToAdopt.button')}
         </a>
       </div>
 
