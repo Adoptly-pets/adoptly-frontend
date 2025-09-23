@@ -103,5 +103,12 @@
     "title": "Ready to meet your new friend?",
     "description": "Choose filters – cat or dog, age, size and other options – and start searching for your companion right now.",
     "button": "Start pet search"
+  },
+  "footer": {
+    "findPet": "Find a pet",
+    "joinShelter": "Join as a shelter",
+    "donate": "Donate",
+    "volunteer": "Volunteer",
+    "helpMedicalFood": "Help with medicine / food"
   }
 }
