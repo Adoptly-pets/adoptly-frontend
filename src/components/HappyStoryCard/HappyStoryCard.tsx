@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import './HappyStoryCard.css';
 
 export interface HappyStoryCardProps {
@@ -12,16 +13,16 @@ const HappyStoryCard: React.FC<HappyStoryCardProps> = ({
   description,
 }) => {
   const [expanded, setExpanded] = useState(false);
-
+  const { t } = useTranslation();
   return (
     <div className="happy-story-card">
       <img src={src} loading="lazy" />
       <div>
-        <h3>{name}</h3>
+        <h3>{t(name)}</h3>
         <p className={expanded ? 'mobile-clamp expanded' : 'mobile-clamp'}>
           {description.map((paragraph, index) => (
             <React.Fragment key={index}>
-              {paragraph}
+              {t(paragraph)}
               {index < description.length - 1 && (
                 <>
                   <br />
@@ -36,7 +37,9 @@ const HappyStoryCard: React.FC<HappyStoryCardProps> = ({
           onClick={() => setExpanded(prev => !prev)}
           aria-expanded={expanded}
         >
-          {expanded ? 'Згорнути' : 'Показати повністю'}
+          {expanded
+            ? t('happyStories.toggleHide')
+            : t('happyStories.toggleShow')}
         </button>
       </div>
     </div>
