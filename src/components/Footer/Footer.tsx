@@ -23,7 +23,7 @@ const Footer = () => {
               height={36}
             />
             <Link to="/" className="platform-footer">
-              Платформа для адопції тварин
+              {t('footer.platform')}
             </Link>
             <div>
               <ul className="footer-list">

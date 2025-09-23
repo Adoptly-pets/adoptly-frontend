@@ -7,7 +7,7 @@
     "contacts": "Contacts"
   },
   "hero": {
-    "title": "Find a Friend\nSave a Life",
+    "title": "Find a Friend<br/>Save a Life",
     "subtitle": "Swipe, meet, help:<br/> your swipe can change a life",
     "findPet": "Find a pet",
     "donate": "Donate"
@@ -105,6 +105,7 @@
     "button": "Start pet search"
   },
   "footer": {
+    "platform": "Platform for pet adoption",
     "findPet": "Find a pet",
     "joinShelter": "Join as a shelter",
     "donate": "Donate",

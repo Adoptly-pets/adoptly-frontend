@@ -27,7 +27,7 @@ const OurSkillsInNumbers = () => {
         ))}
       </div>
       <Button
-        children="Дізнатись більше"
+        children={t('ourNumbers.button')}
         variant="secondary"
         onClick={() => {}}
       ></Button>
