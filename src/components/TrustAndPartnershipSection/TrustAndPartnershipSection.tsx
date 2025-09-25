@@ -19,19 +19,19 @@ const TrustAndPartnershipSection = () => {
           imgSrc={catTrackHeart}
           altText="cat track inside heart"
           text={t('trust.supportButtons.donate')}
-          ariaLabel="Задонатити"
+          ariaLabel={t('trust.supportButtons.donate')}
         />
         <SupportButton
           imgSrc={dogWalking}
           altText="walking dog"
           text={t('trust.supportButtons.volunteering')}
-          ariaLabel="Волонтерство та допомога руками"
+          ariaLabel={t('trust.supportButtons.donate')}
         />
         <SupportButton
           imgSrc={catContainer}
           altText="cat container"
           text={t('trust.supportButtons.foodAndMedicine')}
-          ariaLabel="Допомога кормом або медикаментами"
+          ariaLabel={t('trust.supportButtons.donate')}
         />
       </div>
       <img
