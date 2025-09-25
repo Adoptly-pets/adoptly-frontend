@@ -57,25 +57,25 @@ const Header = () => {
             <button type="button" className="btn btn-modal" title="Favourite">
               <Icon id="icon-heart" size={16} />
             </button>
-            <button
-              type="button"
-              className="btn-modal-language"
-              aria-label="Switch language"
-            >
-              <span
+            <div className="btn-modal-language" aria-label="Switch language">
+              <button
+                type="button"
                 onClick={() => changeLanguage('ua')}
                 className={i18n.language === 'ua' ? 'active-lang' : ''}
+                aria-pressed={i18n.language === 'ua'}
               >
                 UA
-              </span>
+              </button>
               <span> / </span>
-              <span
+              <button
+                type="button"
                 onClick={() => changeLanguage('en')}
                 className={i18n.language === 'en' ? 'active-lang' : ''}
+                aria-pressed={i18n.language === 'en'}
               >
                 EN
-              </span>
-            </button>
+              </button>
+            </div>
           </div>
 
           <NavFooter />
