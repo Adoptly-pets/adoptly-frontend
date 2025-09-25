@@ -1,6 +1,7 @@
 .button {
   border-radius: 20px;
-  width: 245.5px;
+  width: 100%;
+  max-width: 245.5px;
   height: 64px;
   font-size: 22px;
   display: flex;
@@ -26,4 +27,13 @@
   background-color: transparent;
   border: 2px solid #ff8c00;
   color: #111827;
+}
+
+@media screen and (max-width: 768px) {
+  .button {
+    max-width: 220px;
+    height: 48px;
+    border-radius: 12px;
+    font-size: 16px;
+  }
 }

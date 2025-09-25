@@ -61,6 +61,9 @@
 }
 
 @media (max-width: 1024px) {
+  .hero {
+    border-radius: 20px;
+  }
   .hero h1 {
     font-size: 54px;
   }

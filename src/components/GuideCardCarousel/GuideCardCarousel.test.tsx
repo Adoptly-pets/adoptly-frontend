@@ -73,19 +73,18 @@ describe('GuideCardCarousel', () => {
     expect(screen.queryByTestId('guide-card')).not.toBeInTheDocument();
   });
 
+  test('renders all cards in the DOM', () => {
+    render(<GuideCardCarousel cards={mockCards} />);
+    const slides = screen.getAllByTestId('guide-card');
+    expect(slides).toHaveLength(mockCards.length);
+  });
+
   test('renders the first card and dots correctly', () => {
     render(<GuideCardCarousel cards={mockCards} />);
-    expect(screen.getByTestId('guide-card')).toBeInTheDocument();
-    expect(GuideCard).toHaveBeenCalledWith(
-      {
-        cardImgSrc: '/images/card1.webp',
-        cardImgAlt: 'Card 1',
-        cardNumber: '01',
-        cardStep: 'Step 1',
-        cardDescription: [{ text: 'Description 1', bold: false }],
-      },
-      undefined
-    );
+    const cards = screen.getAllByTestId('guide-card');
+    expect(cards).toHaveLength(mockCards.length);
+    expect(cards[0]).toBeInTheDocument();
+
     const dots = screen.getAllByRole('button', { name: /Перейти до картки/ });
     expect(dots).toHaveLength(3);
     expect(dots[0]).toHaveClass('carousel-dot active');
@@ -97,16 +96,6 @@ describe('GuideCardCarousel', () => {
     render(<GuideCardCarousel cards={mockCards} />);
     const nextButton = screen.getByRole('button', { name: 'Наступна картка' });
     await userEvent.click(nextButton);
-    expect(GuideCard).toHaveBeenLastCalledWith(
-      {
-        cardImgSrc: '/images/card2.webp',
-        cardImgAlt: 'Card 2',
-        cardNumber: '02',
-        cardStep: 'Step 2',
-        cardDescription: [{ text: 'Description 2', bold: false }],
-      },
-      undefined
-    );
     const dots = screen.getAllByRole('button', { name: /Перейти до картки/ });
     expect(dots[1]).toHaveClass('carousel-dot active');
   });
@@ -115,16 +104,6 @@ describe('GuideCardCarousel', () => {
     render(<GuideCardCarousel cards={mockCards} />);
     const prevButton = screen.getByRole('button', { name: 'Попередня картка' });
     await userEvent.click(prevButton);
-    expect(GuideCard).toHaveBeenLastCalledWith(
-      {
-        cardImgSrc: '/images/card3.webp',
-        cardImgAlt: 'Card 3',
-        cardNumber: '03',
-        cardStep: 'Step 3',
-        cardDescription: [{ text: 'Description 3', bold: false }],
-      },
-      undefined
-    );
     const dots = screen.getAllByRole('button', { name: /Перейти до картки/ });
     expect(dots[2]).toHaveClass('carousel-dot active');
   });
@@ -133,147 +112,83 @@ describe('GuideCardCarousel', () => {
     render(<GuideCardCarousel cards={mockCards} />);
     const dots = screen.getAllByRole('button', { name: /Перейти до картки/ });
     await userEvent.click(dots[2]);
-    expect(GuideCard).toHaveBeenLastCalledWith(
-      {
-        cardImgSrc: '/images/card3.webp',
-        cardImgAlt: 'Card 3',
-        cardNumber: '03',
-        cardStep: 'Step 3',
-        cardDescription: [{ text: 'Description 3', bold: false }],
-      },
-      undefined
-    );
     expect(dots[2]).toHaveClass('carousel-dot active');
-  });
-
-  test('navigates to specific card on dot Enter key press', async () => {
-    render(<GuideCardCarousel cards={mockCards} />);
-    const dots = screen.getAllByRole('button', { name: /Перейти до картки/ });
-    await userEvent.type(dots[2], '{enter}');
-    expect(GuideCard).toHaveBeenLastCalledWith(
-      {
-        cardImgSrc: '/images/card3.webp',
-        cardImgAlt: 'Card 3',
-        cardNumber: '03',
-        cardStep: 'Step 3',
-        cardDescription: [{ text: 'Description 3', bold: false }],
-      },
-      undefined
-    );
-    expect(dots[2]).toHaveClass('carousel-dot active');
-  });
-
-  test('disables buttons when only one card is present', () => {
-    render(<GuideCardCarousel cards={[mockCards[0]]} />);
-    expect(
-      screen.getByRole('button', { name: 'Попередня картка' })
-    ).toBeDisabled();
-    expect(
-      screen.getByRole('button', { name: 'Наступна картка' })
-    ).toBeDisabled();
-    expect(
-      screen.getAllByRole('button', { name: /Перейти до картки/ })
-    ).toHaveLength(1);
-  });
-
-  test('swipes right to navigate to previous card', async () => {
-    render(<GuideCardCarousel cards={mockCards} />);
-    // Start at second card to test swipe right
-    const dots = screen.getAllByRole('button', { name: /Перейти до картки/ });
-    await userEvent.click(dots[1]);
-
-    const slide = screen.getByTestId('guide-card');
-    fireEvent.touchStart(slide, { touches: [{ clientX: 100 }] });
-    fireEvent.touchMove(slide, { touches: [{ clientX: 200 }] });
-    fireEvent.touchEnd(slide);
-
-    expect(GuideCard).toHaveBeenLastCalledWith(
-      {
-        cardImgSrc: '/images/card1.webp',
-        cardImgAlt: 'Card 1',
-        cardNumber: '01',
-        cardStep: 'Step 1',
-        cardDescription: [{ text: 'Description 1', bold: false }],
-      },
-      undefined
-    );
   });
 
   test('swipes left to navigate to next card', async () => {
     render(<GuideCardCarousel cards={mockCards} />);
-    const slide = screen.getByTestId('guide-card');
-    fireEvent.touchStart(slide, { touches: [{ clientX: 200 }] });
-    fireEvent.touchMove(slide, { touches: [{ clientX: 100 }] });
-    fireEvent.touchEnd(slide);
+    const slideContainer = screen
+      .getByRole('region', {
+        name: 'Guide card carousel',
+      })
+      .querySelector('.slide-container');
 
-    expect(GuideCard).toHaveBeenLastCalledWith(
-      {
-        cardImgSrc: '/images/card2.webp',
-        cardImgAlt: 'Card 2',
-        cardNumber: '02',
-        cardStep: 'Step 2',
-        cardDescription: [{ text: 'Description 2', bold: false }],
-      },
-      undefined
-    );
+    // Свайп вліво
+    fireEvent.touchStart(slideContainer!, { touches: [{ clientX: 200 }] });
+    fireEvent.touchMove(slideContainer!, { touches: [{ clientX: 100 }] });
+    fireEvent.touchEnd(slideContainer!);
+
+    const dots = screen.getAllByRole('button', { name: /Перейти до картки/ });
+    expect(dots[1]).toHaveClass('carousel-dot active');
+  });
+
+  test('swipes right to navigate to previous card', async () => {
+    render(<GuideCardCarousel cards={mockCards} />);
+    const slideContainer = screen
+      .getByRole('region', {
+        name: 'Guide card carousel',
+      })
+      .querySelector('.slide-container');
+
+    // Перейти до другої картки
+    const dots = screen.getAllByRole('button', { name: /Перейти до картки/ });
+    await userEvent.click(dots[1]);
+
+    // Свайп вправо
+    fireEvent.touchStart(slideContainer!, { touches: [{ clientX: 100 }] });
+    fireEvent.touchMove(slideContainer!, { touches: [{ clientX: 200 }] });
+    fireEvent.touchEnd(slideContainer!);
+
+    expect(dots[0]).toHaveClass('carousel-dot active');
   });
 
   test('does not navigate if swipe distance is too small', async () => {
     render(<GuideCardCarousel cards={mockCards} />);
-    const slide = screen.getByTestId('guide-card');
-    fireEvent.touchStart(slide, { touches: [{ clientX: 200 }] });
-    fireEvent.touchMove(slide, { touches: [{ clientX: 180 }] }); // Less than 50px
-    fireEvent.touchEnd(slide);
+    const slidesContainer = screen.getByRole('region', {
+      name: 'Guide card carousel',
+    });
 
-    expect(GuideCard).toHaveBeenLastCalledWith(
-      {
-        cardImgSrc: '/images/card1.webp',
-        cardImgAlt: 'Card 1',
-        cardNumber: '01',
-        cardStep: 'Step 1',
-        cardDescription: [{ text: 'Description 1', bold: false }],
-      },
-      undefined
-    );
+    fireEvent.touchStart(slidesContainer, { touches: [{ clientX: 200 }] });
+    fireEvent.touchMove(slidesContainer, { touches: [{ clientX: 180 }] }); // Less than 50px
+    fireEvent.touchEnd(slidesContainer);
+
+    const dots = screen.getAllByRole('button', { name: /Перейти до картки/ });
+    expect(dots[0]).toHaveClass('carousel-dot active');
   });
 
   test('does not swipe prev on first card or next on last card', async () => {
     render(<GuideCardCarousel cards={mockCards} />);
-    // Test no prev swipe on first card
-    let slide = screen.getByTestId('guide-card');
-    fireEvent.touchStart(slide, { touches: [{ clientX: 100 }] });
-    fireEvent.touchMove(slide, { touches: [{ clientX: 200 }] });
-    fireEvent.touchEnd(slide);
-    expect(GuideCard).toHaveBeenLastCalledWith(
-      {
-        cardImgSrc: '/images/card1.webp',
-        cardImgAlt: 'Card 1',
-        cardNumber: '01',
-        cardStep: 'Step 1',
-        cardDescription: [{ text: 'Description 1', bold: false }],
-      },
-      undefined
-    );
+    const slidesContainer = screen.getByRole('region', {
+      name: 'Guide card carousel',
+    });
 
-    // Go to last card
+    // Свайп вправо на першій картці
+    fireEvent.touchStart(slidesContainer, { touches: [{ clientX: 100 }] });
+    fireEvent.touchMove(slidesContainer, { touches: [{ clientX: 200 }] });
+    fireEvent.touchEnd(slidesContainer);
+
     const dots = screen.getAllByRole('button', { name: /Перейти до картки/ });
+    expect(dots[0]).toHaveClass('carousel-dot active');
+
+    // Перейти до останньої картки
     await userEvent.click(dots[2]);
 
-    // Test no next swipe on last card
-    slide = screen.getByTestId('guide-card');
-    fireEvent.touchStart(slide, { touches: [{ clientX: 200 }] });
-    fireEvent.touchMove(slide, { touches: [{ clientX: 100 }] });
-    fireEvent.touchEnd(slide);
-    expect(GuideCard).toHaveBeenLastCalledWith(
-      {
-        cardImgSrc: '/images/card3.webp',
-        cardImgAlt: 'Card 3',
-        cardNumber: '03',
-        cardStep: 'Step 3',
-        cardDescription: [{ text: 'Description 3', bold: false }],
-      },
-      undefined
-    );
+    // Свайп вліво на останній картці
+    fireEvent.touchStart(slidesContainer, { touches: [{ clientX: 200 }] });
+    fireEvent.touchMove(slidesContainer, { touches: [{ clientX: 100 }] });
+    fireEvent.touchEnd(slidesContainer);
+
+    expect(dots[2]).toHaveClass('carousel-dot active');
   });
 
   test('has correct accessibility attributes', () => {

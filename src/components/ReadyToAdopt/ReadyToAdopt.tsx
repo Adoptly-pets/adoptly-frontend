@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import catFootprint from '../../assets/images/ReadyToAdopt/cat-footprint.webp';
 import catFootprint1 from '../../assets/images/ReadyToAdopt/cat-footprint-1.webp';
 import catFootprint2 from '../../assets/images/ReadyToAdopt/cat-footprint-2.webp';
@@ -10,13 +11,29 @@ import { useTranslation } from 'react-i18next';
 const ReadyToAdopt = () => {
   const { t } = useTranslation();
 
+  const [buttonText, setButtonText] = useState('Почати пошук улюбленця');
+
+  const updateButtonText = () => {
+    if (window.innerWidth < 768) {
+      setButtonText('Пошук улюбленця');
+    } else {
+      setButtonText('Почати пошук улюбленця');
+    }
+  };
+
+  useEffect(() => {
+    updateButtonText();
+    window.addEventListener('resize', updateButtonText);
+    return () => window.removeEventListener('resize', updateButtonText);
+  }, []);
+
   return (
     <section className="ready-to-adopt">
       <div className="text-box">
         <h3 className="title">{t('readyToAdopt.title')}</h3>
         <p className="description">{t('readyToAdopt.description')}</p>
         <a href="#findpet" className="search-btn">
-          {t('readyToAdopt.button')}
+          {buttonText}
         </a>
       </div>
 
