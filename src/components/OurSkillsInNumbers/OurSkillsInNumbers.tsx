@@ -26,11 +26,9 @@ const OurSkillsInNumbers = () => {
           />
         ))}
       </div>
-      <Button
-        children={t('ourNumbers.button')}
-        variant="secondary"
-        onClick={() => {}}
-      ></Button>
+      <Button variant="secondary" onClick={() => {}}>
+        {t('ourNumbers.button')}
+      </Button>
     </section>
   );
 };
