@@ -102,7 +102,8 @@
   "readyToAdopt": {
     "title": "Ready to meet your new friend?",
     "description": "Choose filters – cat or dog, age, size and other options – and start searching for your companion right now.",
-    "button": "Start pet search"
+    "button": "Start pet search",
+    "buttonMobile": "Pet search"
   },
   "footer": {
     "platform": "Platform for pet adoption",

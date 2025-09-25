@@ -9,15 +9,15 @@ import './ReadyToAdopt.css';
 import { useTranslation } from 'react-i18next';
 
 const ReadyToAdopt = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const [buttonText, setButtonText] = useState('Почати пошук улюбленця');
 
   const updateButtonText = () => {
     if (window.innerWidth < 768) {
-      setButtonText('Пошук улюбленця');
+      setButtonText(t('readyToAdopt.buttonMobile'));
     } else {
-      setButtonText('Почати пошук улюбленця');
+      setButtonText(t('readyToAdopt.button'));
     }
   };
 
@@ -25,7 +25,7 @@ const ReadyToAdopt = () => {
     updateButtonText();
     window.addEventListener('resize', updateButtonText);
     return () => window.removeEventListener('resize', updateButtonText);
-  }, []);
+  }, [i18n.language]);
 
   return (
     <section className="ready-to-adopt">
