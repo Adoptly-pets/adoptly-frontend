@@ -16,7 +16,7 @@ const HappyStoryCard: React.FC<HappyStoryCardProps> = ({
   const { t } = useTranslation();
   return (
     <div className="happy-story-card">
-      <img src={src} loading="lazy" />
+      <img src={src} alt={t(name)} loading="lazy" />
       <div>
         <h3>{t(name)}</h3>
         <p className={expanded ? 'mobile-clamp expanded' : 'mobile-clamp'}>
