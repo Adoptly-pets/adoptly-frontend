@@ -43,6 +43,11 @@ const HappyStoryCarousel: React.FC<HappyStoryCarouselProps> = ({ stories }) => {
     setTouchDelta(0);
   };
 
+  const handleTouchCancel = () => {
+    setTouchStartX(null);
+    setTouchDelta(0);
+  };
+
   const viewportWidth = viewportRef.current?.clientWidth ?? 0;
   const translateX = -currentIndex * viewportWidth + touchDelta;
   const isDragging = touchStartX !== null;
@@ -64,6 +69,7 @@ const HappyStoryCarousel: React.FC<HappyStoryCarouselProps> = ({ stories }) => {
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
+          onTouchCancel={handleTouchCancel}
         >
           <div
             className="happy-story-track"
