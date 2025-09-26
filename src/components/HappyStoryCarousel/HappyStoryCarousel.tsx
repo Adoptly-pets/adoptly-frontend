@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import type { HappyStoryCardProps } from '../HappyStoryCard/HappyStoryCard';
 import HappyStoryCard from '../HappyStoryCard/HappyStoryCard';
 import './HappyStoryCarousel.css';
@@ -12,6 +12,16 @@ const HappyStoryCarousel: React.FC<HappyStoryCarouselProps> = ({ stories }) => {
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const [touchDelta, setTouchDelta] = useState<number>(0);
   const viewportRef = useRef<HTMLDivElement | null>(null);
+  const [viewportWidth, setViewportWidth] = useState(0);
+
+  useEffect(() => {
+    const updateViewportWidth = () => {
+      setViewportWidth(viewportRef.current?.clientWidth ?? 0);
+    };
+    updateViewportWidth();
+    window.addEventListener('resize', updateViewportWidth);
+    return () => window.removeEventListener('resize', updateViewportWidth);
+  }, []);
 
   const handlePrev = () => {
     setCurrentIndex(index => (index === 0 ? stories.length - 1 : index - 1));
@@ -48,7 +58,6 @@ const HappyStoryCarousel: React.FC<HappyStoryCarouselProps> = ({ stories }) => {
     setTouchDelta(0);
   };
 
-  const viewportWidth = viewportRef.current?.clientWidth ?? 0;
   const translateX = -currentIndex * viewportWidth + touchDelta;
   const isDragging = touchStartX !== null;
 
