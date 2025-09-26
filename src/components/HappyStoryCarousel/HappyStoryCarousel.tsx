@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import type { HappyStoryCardProps } from '../HappyStoryCard/HappyStoryCard';
 import HappyStoryCard from '../HappyStoryCard/HappyStoryCard';
 import './HappyStoryCarousel.css';
@@ -10,7 +10,8 @@ interface HappyStoryCarouselProps {
 const HappyStoryCarousel: React.FC<HappyStoryCarouselProps> = ({ stories }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
-  const [touchEndX, setTouchEndX] = useState<number | null>(null);
+  const [touchDelta, setTouchDelta] = useState<number>(0);
+  const viewportRef = useRef<HTMLDivElement | null>(null);
 
   const handlePrev = () => {
     setCurrentIndex(index => (index === 0 ? stories.length - 1 : index - 1));
@@ -22,42 +23,64 @@ const HappyStoryCarousel: React.FC<HappyStoryCarouselProps> = ({ stories }) => {
 
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStartX(e.touches[0].clientX);
+    setTouchDelta(0);
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEndX(e.touches[0].clientX);
+    if (touchStartX === null) return;
+    const delta = e.touches[0].clientX - touchStartX;
+    setTouchDelta(delta);
   };
 
   const handleTouchEnd = () => {
-    if (touchStartX !== null && touchEndX !== null) {
-      const distance = touchStartX - touchEndX;
-      const swipeThreshold = 50;
-      if (distance > swipeThreshold) {
-        handleNext();
-      } else if (distance < -swipeThreshold) {
-        handlePrev();
-      }
+    const swipeThreshold = 50; // px
+    if (touchDelta > swipeThreshold) {
+      handlePrev();
+    } else if (touchDelta < -swipeThreshold) {
+      handleNext();
     }
     setTouchStartX(null);
-    setTouchEndX(null);
+    setTouchDelta(0);
   };
 
+  const viewportWidth = viewportRef.current?.clientWidth ?? 0;
+  const translateX = -currentIndex * viewportWidth + touchDelta;
+  const isDragging = touchStartX !== null;
+
   return (
-    <div>
-      <div
-        className="happy-story-carousel"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-      >
-        <button className="btn-carousel" onClick={handlePrev}>
+    <>
+      <div className="happy-story-carousel">
+        <button
+          className="btn-carousel"
+          onClick={handlePrev}
+          aria-label="Previous"
+        >
           <img src="icons/arrow_left.svg" alt="Previous" loading="lazy" />
         </button>
-        <div>
-          <HappyStoryCard {...stories[currentIndex]} />
+
+        <div
+          className="happy-story-viewport"
+          ref={viewportRef}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          <div
+            className="happy-story-track"
+            style={{
+              transform: `translateX(${translateX}px)`,
+              transition: isDragging ? 'none' : 'transform 300ms ease',
+            }}
+          >
+            {stories.map((story, index) => (
+              <div className="happy-story-slide" key={index}>
+                <HappyStoryCard {...story} />
+              </div>
+            ))}
+          </div>
         </div>
 
-        <button className="btn-carousel" onClick={handleNext}>
+        <button className="btn-carousel" onClick={handleNext} aria-label="Next">
           <img src="icons/arrow_right.svg" alt="Next" loading="lazy" />
         </button>
       </div>
@@ -70,7 +93,7 @@ const HappyStoryCarousel: React.FC<HappyStoryCarouselProps> = ({ stories }) => {
           />
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

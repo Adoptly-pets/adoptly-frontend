@@ -31,71 +31,161 @@ describe('HappyStoryCarousel Component', () => {
     },
   ];
 
-  test('renders the first story by default', () => {
-    render(<HappyStoryCarousel stories={mockStories} />);
+  const VIEWPORT_WIDTH = 800;
+  let originalClientWidthDescriptor: PropertyDescriptor | undefined;
 
-    const storyCard = screen.getByTestId('happy-story-card');
-    expect(storyCard).toBeInTheDocument();
-    expect(screen.getByText('Story 1')).toBeInTheDocument();
-    expect(screen.getByAltText('Story 1')).toHaveAttribute('src', 'image1.jpg');
+  beforeEach(() => {
+    originalClientWidthDescriptor = Object.getOwnPropertyDescriptor(
+      HTMLElement.prototype,
+      'clientWidth'
+    );
+    Object.defineProperty(HTMLElement.prototype, 'clientWidth', {
+      configurable: true,
+      get: () => VIEWPORT_WIDTH,
+    });
   });
 
-  test('navigates to the next story when the next button is clicked', () => {
-    render(<HappyStoryCarousel stories={mockStories} />);
-
-    const nextButton = screen.getByRole('button', { name: /Next/i });
-    fireEvent.click(nextButton);
-
-    expect(screen.getByText('Story 2')).toBeInTheDocument();
-    expect(screen.getByAltText('Story 2')).toHaveAttribute('src', 'image2.jpg');
+  afterEach(() => {
+    if (originalClientWidthDescriptor) {
+      Object.defineProperty(
+        HTMLElement.prototype,
+        'clientWidth',
+        originalClientWidthDescriptor
+      );
+    } else {
+      Object.defineProperty(HTMLElement.prototype, 'clientWidth', {
+        configurable: true,
+        get: () => undefined,
+      });
+    }
   });
 
-  test('navigates to the previous story when the previous button is clicked', () => {
-    render(<HappyStoryCarousel stories={mockStories} />);
+  test('renders the first story by default and indicators reflect active state', () => {
+    const { container } = render(<HappyStoryCarousel stories={mockStories} />);
 
-    const prevButton = screen.getByRole('button', { name: /Previous/i });
-    fireEvent.click(prevButton);
+    const cards = screen.getAllByTestId('happy-story-card');
+    expect(cards.length).toBeGreaterThan(0);
+    const firstCard = cards[0];
+    expect(firstCard).toBeInTheDocument();
+    expect(firstCard).toHaveTextContent('Story 1');
+    const img = firstCard.querySelector('img');
+    expect(img).toHaveAttribute('src', 'image1.jpg');
 
-    expect(screen.getByText('Story 3')).toBeInTheDocument();
-    expect(screen.getByAltText('Story 3')).toHaveAttribute('src', 'image3.jpg');
-  });
+    const track = container.querySelector('.happy-story-track') as HTMLElement;
+    expect(track).toBeTruthy();
+    expect(track.style.transform).toBe(`translateX(0px)`);
 
-  test('loops to the last story when previous is clicked on the first story', () => {
-    render(<HappyStoryCarousel stories={mockStories} />);
-
-    const prevButton = screen.getByRole('button', { name: /Previous/i });
-    fireEvent.click(prevButton);
-
-    expect(screen.getByText('Story 3')).toBeInTheDocument();
-    expect(screen.getByAltText('Story 3')).toHaveAttribute('src', 'image3.jpg');
-  });
-
-  test('loops to the first story when next is clicked on the last story', () => {
-    render(<HappyStoryCarousel stories={mockStories} />);
-
-    const nextButton = screen.getByRole('button', { name: /Next/i });
-    fireEvent.click(nextButton); // Move to Story 2
-    fireEvent.click(nextButton); // Move to Story 3
-    fireEvent.click(nextButton); // Loop back to Story 1
-
-    expect(screen.getByText('Story 1')).toBeInTheDocument();
-    expect(screen.getByAltText('Story 1')).toHaveAttribute('src', 'image1.jpg');
-  });
-
-  test('renders indicators with correct active state', () => {
-    render(<HappyStoryCarousel stories={mockStories} />);
-
-    const indicators = screen.getAllByRole('presentation'); // Assuming indicators are spans
+    const indicators = screen.getAllByRole('presentation');
     expect(indicators).toHaveLength(mockStories.length);
     expect(indicators[0]).toHaveClass('dot active');
     expect(indicators[1]).toHaveClass('dot');
     expect(indicators[2]).toHaveClass('dot');
+  });
+
+  test('navigates to the next story when the next button is clicked', () => {
+    const { container } = render(<HappyStoryCarousel stories={mockStories} />);
 
     const nextButton = screen.getByRole('button', { name: /Next/i });
     fireEvent.click(nextButton);
 
+    const track = container.querySelector('.happy-story-track') as HTMLElement;
+    expect(track.style.transform).toBe(`translateX(-${VIEWPORT_WIDTH}px)`);
+
+    const indicators = screen.getAllByRole('presentation');
     expect(indicators[0]).toHaveClass('dot');
     expect(indicators[1]).toHaveClass('dot active');
-    expect(indicators[2]).toHaveClass('dot');
+  });
+
+  test('navigates to the previous story when the previous button is clicked', () => {
+    const { container } = render(<HappyStoryCarousel stories={mockStories} />);
+
+    const prevButton = screen.getByRole('button', { name: /Previous/i });
+    fireEvent.click(prevButton);
+
+    const track = container.querySelector('.happy-story-track') as HTMLElement;
+    expect(track.style.transform).toBe(`translateX(-${VIEWPORT_WIDTH * 2}px)`); // index 2
+
+    const indicators = screen.getAllByRole('presentation');
+    expect(indicators[2]).toHaveClass('dot active');
+  });
+
+  test('loops to the first story when next is clicked on the last story', () => {
+    const { container } = render(<HappyStoryCarousel stories={mockStories} />);
+
+    const nextButton = screen.getByRole('button', { name: /Next/i });
+    fireEvent.click(nextButton);
+    fireEvent.click(nextButton);
+    fireEvent.click(nextButton);
+
+    const track = container.querySelector('.happy-story-track') as HTMLElement;
+    expect(track.style.transform).toBe(`translateX(0px)`);
+
+    const indicators = screen.getAllByRole('presentation');
+    expect(indicators[0]).toHaveClass('dot active');
+  });
+
+  test('swipe left (touch) navigates to next story', () => {
+    const { container } = render(<HappyStoryCarousel stories={mockStories} />);
+
+    const viewport = container.querySelector(
+      '.happy-story-viewport'
+    ) as HTMLElement;
+    expect(viewport).toBeTruthy();
+
+    fireEvent.touchStart(viewport, {
+      touches: [{ clientX: 800 }],
+    });
+    fireEvent.touchMove(viewport, {
+      touches: [{ clientX: 100 }],
+    });
+    fireEvent.touchEnd(viewport);
+
+    const track = container.querySelector('.happy-story-track') as HTMLElement;
+    expect(track.style.transform).toBe(`translateX(-${VIEWPORT_WIDTH}px)`);
+
+    const indicators = screen.getAllByRole('presentation');
+    expect(indicators[1]).toHaveClass('dot active');
+  });
+
+  test('swipe right (touch) navigates to previous story', () => {
+    const { container } = render(<HappyStoryCarousel stories={mockStories} />);
+
+    const viewport = container.querySelector(
+      '.happy-story-viewport'
+    ) as HTMLElement;
+    expect(viewport).toBeTruthy();
+
+    fireEvent.touchStart(viewport, {
+      touches: [{ clientX: 100 }],
+    });
+    fireEvent.touchMove(viewport, {
+      touches: [{ clientX: 800 }],
+    });
+    fireEvent.touchEnd(viewport);
+
+    const track = container.querySelector('.happy-story-track') as HTMLElement;
+    expect(track.style.transform).toBe(`translateX(-${VIEWPORT_WIDTH * 2}px)`);
+
+    const indicators = screen.getAllByRole('presentation');
+    expect(indicators[2]).toHaveClass('dot active');
+  });
+
+  test('transition is none while dragging and restored after touch end', () => {
+    const { container } = render(<HappyStoryCarousel stories={mockStories} />);
+
+    const viewport = container.querySelector(
+      '.happy-story-viewport'
+    ) as HTMLElement;
+    const track = container.querySelector('.happy-story-track') as HTMLElement;
+    expect(viewport).toBeTruthy();
+    expect(track).toBeTruthy();
+
+    fireEvent.touchStart(viewport, {
+      touches: [{ clientX: 100 }],
+    });
+    expect(track.style.transition).toBe('none');
+
+    fireEvent.touchEnd(viewport);
+    expect(track.style.transition).toBe('transform 300ms ease');
   });
 });

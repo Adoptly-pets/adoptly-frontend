@@ -2,13 +2,43 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  column-gap: 32px;
+  column-gap: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.happy-story-viewport {
+  width: 100%;
+  max-width: 1064px;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+
+.happy-story-track {
+  display: flex;
+  will-change: transform;
+}
+
+.happy-story-slide {
+  min-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-carousel {
+  background: transparent;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
 }
 
 .happy-story-indicators {
   display: flex;
   justify-content: center;
   margin-top: 24px;
+  align-self: center;
 }
 
 .happy-story-indicators .dot {
@@ -20,7 +50,7 @@
 }
 
 .happy-story-indicators .dot.active {
-  background-color: #d1d1d1;
+  background-color: #c2cade;
 }
 
 @media (max-width: 768px) {
