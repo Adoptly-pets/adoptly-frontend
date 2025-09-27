@@ -1,6 +1,5 @@
 import Navigation from '../Navigation/Navigation';
 import './ModalNavigation.css';
-import { useTranslation } from 'react-i18next';
 
 interface ModalNavigationProps {
   className?: string;

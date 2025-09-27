@@ -84,7 +84,12 @@ const Header = () => {
           <button
             type="button"
             className="btn btn-lang"
-            aria-label="Switch language"
+            aria-label={
+              i18n.language === 'uk'
+                ? 'Switch language to Ukrainian'
+                : 'Switch language to English'
+            }
+            aria-pressed={i18n.language === 'uk'}
             onClick={() => changeLanguage(i18n.language === 'uk' ? 'en' : 'uk')}
           >
             {i18n.language.toUpperCase()}

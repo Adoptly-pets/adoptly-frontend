@@ -12,10 +12,10 @@ jest.mock('../Navigation/Navigation', () => ({
   default: () => <nav data-testid="navigation" />,
 }));
 
-// mock react-i18next used in Header
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
-    i18n: { language: 'en', changeLanguage: jest.fn() },
+    t: (key: string) => key,
+    i18n: { language: 'uk', changeLanguage: jest.fn() },
   }),
 }));
 
