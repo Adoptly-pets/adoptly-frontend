@@ -20,6 +20,23 @@ jest.mock(
 jest.mock('../../assets/images/Cat.webp', () => 'cat.webp');
 jest.mock('../../assets/images/Dog.webp', () => 'dog.webp');
 
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => {
+      const translations: Record<string, string> = {
+        'readyToAdopt.title': 'Готовий зустріти нового друга?',
+        'readyToAdopt.description': 'Обирай фільтри - котик чи собачка',
+        'readyToAdopt.button': 'Почати пошук улюбленця',
+        'readyToAdopt.buttonMobile': 'Пошук улюбленця',
+      };
+      return translations[key] || key;
+    },
+    i18n: {
+      language: 'uk',
+    },
+  }),
+}));
+
 describe('ReadyToAdopt', () => {
   beforeEach(() => {
     render(<ReadyToAdopt />);
