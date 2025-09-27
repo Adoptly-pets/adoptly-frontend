@@ -22,6 +22,21 @@ jest.mock('react-i18next', () => ({
 // Mock the CSS import (handled by jest.config.ts moduleNameMapper)
 jest.mock('./Navigation.css', () => ({}));
 
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => {
+      const translations: Record<string, string> = {
+        'nav.home': 'Головна',
+        'nav.about': 'Про нас',
+        'nav.help': 'Як допомогти',
+        'nav.shelters': 'Притулкам',
+        'nav.contacts': 'Контакти',
+      };
+      return translations[key] || key;
+    },
+  }),
+}));
+
 describe('Navigation Component', () => {
   it('renders navigation with all links', () => {
     render(
