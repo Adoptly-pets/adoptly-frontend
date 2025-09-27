@@ -6,6 +6,8 @@
   padding: 38px;
   border-radius: 28px;
   box-shadow: 0px 5px 25px 0px #51515114;
+  background-color: #ffffff;
+  margin: 25px;
 }
 
 .happy-story-card img {
@@ -38,6 +40,7 @@
     gap: 20px;
     padding: 20px;
     box-shadow: 0px 2.85px 14.24px 0px #51515114;
+    margin: 14px;
   }
 
   .happy-story-card img {

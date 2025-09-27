@@ -1,0 +1,13 @@
+@media (max-width: 768px) {
+  .modal-nav-list.list {
+    display: flex !important;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 20px;
+  }
+
+  .modal-nav-list .item {
+    font-size: 18px;
+    color: #091a49;
+  }
+}

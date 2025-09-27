@@ -1,26 +1,47 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
-import './Navigation.css';
 import { useTranslation } from 'react-i18next';
+import './Navigation.css';
 
-const Navigation = () => {
+interface NavigationProps {
+  className?: string;
+  onLinkClick?: () => void;
+}
+
+const Navigation: React.FC<NavigationProps> = ({
+  className = '',
+  onLinkClick,
+}) => {
+  const listClass = `list ${className}`.trim();
+
   const { t } = useTranslation();
   return (
     <nav>
-      <ul className="list">
+      <ul className={listClass}>
         <li className="item">
-          <Link to="/">{t('nav.home')}</Link>
+          <Link to="/" onClick={onLinkClick}>
+            {t('nav.home')}
+          </Link>
         </li>
         <li className="item">
-          <Link to="/about">{t('nav.about')}</Link>
+          <Link to="/about" onClick={onLinkClick}>
+            {t('nav.about')}
+          </Link>
         </li>
         <li className="item">
-          <Link to="/how-to-help">{t('nav.help')}</Link>
+          <Link to="/how-to-help" onClick={onLinkClick}>
+            {t('nav.help')}
+          </Link>
         </li>
         <li className="item">
-          <Link to="/shelters">{t('nav.shelters')}</Link>
+          <Link to="/shelters" onClick={onLinkClick}>
+            {t('nav.shelters')}
+          </Link>
         </li>
         <li className="item">
-          <Link to="/contacts">{t('nav.contacts')}</Link>
+          <Link to="/contacts" onClick={onLinkClick}>
+            {t('nav.contacts')}
+          </Link>
         </li>
       </ul>
     </nav>
