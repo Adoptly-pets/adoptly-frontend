@@ -23,6 +23,8 @@ jest.mock('../Button/Button', () => ({
   }) => <button onClick={onClick}>{children}</button>,
 }));
 
+jest.mock('react-i18next');
+
 describe('HeroSection Component', () => {
   test('renders the hero section with correct structure and content', () => {
     render(<HeroSection />);
