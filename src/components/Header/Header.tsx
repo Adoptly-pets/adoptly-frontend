@@ -60,9 +60,9 @@ const Header = () => {
             <div className="btn-modal-language" aria-label="Switch language">
               <button
                 type="button"
-                onClick={() => changeLanguage('ua')}
-                className={i18n.language === 'ua' ? 'active-lang' : ''}
-                aria-pressed={i18n.language === 'ua'}
+                onClick={() => changeLanguage('uk')}
+                className={i18n.language === 'uk' ? 'active-lang' : ''}
+                aria-pressed={i18n.language === 'uk'}
               >
                 UA
               </button>
@@ -85,7 +85,7 @@ const Header = () => {
             type="button"
             className="btn btn-lang"
             aria-label="Switch language"
-            onClick={() => changeLanguage(i18n.language === 'ua' ? 'en' : 'ua')}
+            onClick={() => changeLanguage(i18n.language === 'uk' ? 'en' : 'uk')}
           >
             {i18n.language.toUpperCase()}
           </button>
