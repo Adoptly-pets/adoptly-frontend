@@ -16,6 +16,17 @@ jest.mock('../HappyStoryCarousel/HappyStoryCarousel', () => ({
   ),
 }));
 
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => {
+      const translations: Record<string, string> = {
+        'happyStories.title': 'Щасливі історії',
+      };
+      return translations[key] || key;
+    },
+  }),
+}));
+
 describe('HappyStorySection Component', () => {
   test('renders the section with correct structure and content', () => {
     render(<HappyStorySection />);
