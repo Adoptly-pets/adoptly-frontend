@@ -12,6 +12,13 @@ jest.mock('../Navigation/Navigation', () => ({
   default: () => <nav data-testid="navigation" />,
 }));
 
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+    i18n: { language: 'uk', changeLanguage: jest.fn() },
+  }),
+}));
+
 describe('Header Component', () => {
   test('renders the header with correct structure', () => {
     render(<Header />);
