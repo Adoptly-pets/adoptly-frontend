@@ -6,7 +6,8 @@ import Button from '../Button/Button';
 const OurSkillsInNumbers = () => {
   return (
     <section className="our-skills-in-numbers">
-      <h2>Наш вплив у цифрах</h2>
+      <h2 className="title-desc">Наш вплив у цифрах</h2>
+      <h2 className="title-mob">Про нас</h2>
       <div className="our-skills-in-numbers__text-grid">
         <p>
           <strong>Adoptly</strong> - платформа, де кожна людина може знайти
