@@ -1,0 +1,116 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "help": "How to Help",
+    "shelters": "For Shelters",
+    "contacts": "Contacts"
+  },
+  "hero": {
+    "title": "Find a Friend<br/>Save a Life",
+    "subtitle": "Swipe, meet, help:<br/> your swipe can change a life",
+    "findPet": "Find a pet",
+    "donate": "Donate"
+  },
+  "howItWorks": {
+    "title": "How it works",
+    "subtitle": "Step-by-step guide",
+    "noData": "No data",
+    "steps": {
+      "1": {
+        "title": "Choose who you are looking for",
+        "descPart1": "Set filters — ",
+        "descPart2": "select animal type, gender, age, size."
+      },
+      "2": {
+        "title": "Swipe cards",
+        "descPart1": "Browse animal",
+        "descPart2": " profiles and pick your favorite."
+      },
+      "3": {
+        "title": "Get a match",
+        "descPart1": "Proceed to filling out ",
+        "descPart2": "a short application."
+      },
+      "4": {
+        "title": "Take your pet home",
+        "descPart1": "Feel the joy",
+        "descPart2": " of a paw’s touch. Happiness and a new rhythm."
+      }
+    }
+  },
+  "trust": {
+    "title": "Love and Support Without Adoption",
+    "supportButtons": {
+      "donate": "Donate",
+      "volunteering": "Volunteering and Hands-On Help",
+      "foodAndMedicine": "Help with Food or Medicine"
+    }
+  },
+  "ourNumbers": {
+    "title": "Our impact in numbers",
+    "paragraph1": "<strong>Adoptly</strong> - a platform where everyone can find their loyal friend.",
+    "paragraph2": "Here you can see photos, read stories, feel the connection and take an important step.",
+    "paragraph3": "We combined love for pets and modern technologies to make adoption closer and easier. Our platform is created to connect hearts – yours and theirs.",
+    "paragraph4": "Adoptly works with shelters and volunteers across the country to help animals find caring owners. Every “match” here is a chance for a new life.",
+    "button": "Learn More",
+    "cards": {
+      "1": "Pets found a home",
+      "2": "Animals registered",
+      "3": "Shelters on the platform"
+    }
+  },
+  "happyStories": {
+    "title": "Happy Stories",
+    "toggleShow": "Show more",
+    "toggleHide": "Show less",
+    "stories": [
+      {
+        "name": "Jack",
+        "description": [
+          "Jack came to the shelter as a puppy – tender and kind, but a little shy. He always waited by the window, looking out as if searching for his person.",
+          "A 30-year-old guy named Andriy saw his photo. He didn’t plan to get a dog, but there was something special in Jack’s eyes – it was a match. The next day Andriy came to the shelter, and when Jack immediately jumped into his arms – it was clear.",
+          "Now Jack has his own home, a favorite blanket, and morning cuddles. Andriy says it’s the best decision of his life."
+        ]
+      },
+      {
+        "name": "Roxy",
+        "description": [
+          "Roxy used to have a home but ended up in the shelter after her previous owners moved. At first, she didn’t trust anyone and hid in a small house.",
+          "A family with two kids — Marko and Sofiika — came to the shelter. They wanted a gentle cat who would befriend the children. Marko quietly slid a bowl of food toward Roxy, and she carefully came out to rub against his hand.",
+          "Now Roxy sleeps at the children’s feet, chases toys, and loves watching birds from the window. The family’s mother says their home feels warmer and happier with her around."
+        ]
+      },
+      {
+        "name": "Richie",
+        "description": [
+          "Richie ended up in the shelter after being abandoned by his former owners. He was energetic but very obedient and grateful for any attention.",
+          "One day, a family visited the shelter with a 5-year-old boy named Artem. The boy was a little afraid of dogs, but Richie just sat next to him and gently placed his head on Artem’s knees. The fear disappeared in minutes.",
+          "Now Artem and Richie are inseparable: they play in the yard, walk to school together (Richie waits at the gate), and even fall asleep together on the couch after evening cartoons."
+        ]
+      },
+      {
+        "name": "Chara",
+        "description": [
+          "Chara was found on the street in winter – skinny, frozen, with an injured paw. The shelter took care of her, but she still hid from people.",
+          "Iryna, who had recently moved into a new apartment, felt she lacked warmth. She decided to give a chance to the pet that was least likely to be chosen. When she first held Chara, the cat trembled, but at home she started purring quietly.",
+          "Today Chara sleeps on a pillow next to Iryna, and their apartment is filled with the smell of freshly brewed tea and true coziness."
+        ]
+      }
+    ]
+  },
+  "readyToAdopt": {
+    "title": "Ready to meet your new friend?",
+    "description": "Choose filters – cat or dog, age, size and other options – and start searching for your companion right now.",
+    "button": "Start pet search",
+    "buttonMobile": "Pet search"
+  },
+  "footer": {
+    "platform": "Platform for pet adoption",
+    "findPet": "Find a pet",
+    "joinShelter": "Join as a shelter",
+    "donate": "Donate",
+    "volunteer": "Volunteer",
+    "helpMedicalFood": "Help with medicine / food"
+  }
+}

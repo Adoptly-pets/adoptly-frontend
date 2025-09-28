@@ -21,6 +21,22 @@ jest.mock('../Icon/Icon', () => ({
   ),
 }));
 
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => {
+      const translations: Record<string, string> = {
+        'footer.platform': 'Платформа для адопції тварин',
+        'footer.findPet': 'Знайти улюбленця',
+        'footer.joinShelter': 'Доєднатись як притулок',
+        'footer.donate': 'Задонатити',
+        'footer.volunteer': 'Волонтерство',
+        'footer.helpMedicalFood': 'Допомогти ліками / кормом',
+      };
+      return translations[key] || key;
+    },
+  }),
+}));
+
 describe('Footer Component', () => {
   const mockScrollIntoView = jest.fn();
 

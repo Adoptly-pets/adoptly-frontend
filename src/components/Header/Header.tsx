@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Icon } from '../Icon/Icon';
 import Navigation from '../Navigation/Navigation';
 import './Header.css';
@@ -8,6 +9,11 @@ import NavFooter from '../NavFooter/NavFooter';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { i18n } = useTranslation();
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+  };
 
   return (
     <header className="header" id="header" tabIndex={-1}>
@@ -51,15 +57,25 @@ const Header = () => {
             <button type="button" className="btn btn-modal" title="Favourite">
               <Icon id="icon-heart" size={16} />
             </button>
-            <button
-              type="button"
-              className="btn-modal-language"
-              aria-label="Switch language to Ukrainian"
-              title="Ukrainian"
-              aria-pressed="true"
-            >
-              UA/EN
-            </button>
+            <div className="btn-modal-language" aria-label="Switch language">
+              <button
+                type="button"
+                onClick={() => changeLanguage('uk')}
+                className={i18n.language === 'uk' ? 'active-lang' : ''}
+                aria-pressed={i18n.language === 'uk'}
+              >
+                UA
+              </button>
+              <span> / </span>
+              <button
+                type="button"
+                onClick={() => changeLanguage('en')}
+                className={i18n.language === 'en' ? 'active-lang' : ''}
+                aria-pressed={i18n.language === 'en'}
+              >
+                EN
+              </button>
+            </div>
           </div>
 
           <NavFooter />
@@ -68,11 +84,15 @@ const Header = () => {
           <button
             type="button"
             className="btn btn-lang"
-            aria-label="Switch language to Ukrainian"
-            title="Ukrainian"
-            aria-pressed="true"
+            aria-label={
+              i18n.language === 'uk'
+                ? 'Switch language to Ukrainian'
+                : 'Switch language to English'
+            }
+            aria-pressed={i18n.language === 'uk'}
+            onClick={() => changeLanguage(i18n.language === 'uk' ? 'en' : 'uk')}
           >
-            UA
+            {i18n.language.toUpperCase()}
           </button>
 
           <button type="button" className="btn" title="Favourite">

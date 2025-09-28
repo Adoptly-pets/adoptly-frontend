@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import { Icon } from '../Icon/Icon';
 import './Footer.css';
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
+  const { t } = useTranslation();
   const scrollToHeader = () => {
     const headerElement = document.getElementById('header');
     if (headerElement) {
@@ -21,28 +23,28 @@ const Footer = () => {
               height={36}
             />
             <Link to="/" className="platform-footer">
-              Платформа для адопції тварин
+              {t('footer.platform')}
             </Link>
             <div>
               <ul className="footer-list">
                 <li className="item-nav">
-                  <a href="/find-pet">Знайти улюбленця</a>
+                  <a href="/find-pet">{t('footer.findPet')}</a>
                 </li>
                 <li className="item-nav">
-                  <a href="/join-shelter">Доєднатись як притулок</a>
+                  <a href="/join-shelter">{t('footer.joinShelter')}</a>
                 </li>
               </ul>
             </div>
             <div>
               <ul className="footer-list">
                 <li className="item-nav">
-                  <a href="/donate">Задонатити</a>
+                  <a href="/donate">{t('footer.donate')}</a>
                 </li>
                 <li className="item-nav">
-                  <a href="/volunteer">Волонтерство</a>
+                  <a href="/volunteer">{t('footer.volunteer')}</a>
                 </li>
                 <li className="item-nav">
-                  <a href="/help-medical-food">Допомогти ліками / кормом</a>
+                  <a href="/help-medical-food">{t('footer.helpMedicalFood')}</a>
                 </li>
               </ul>
             </div>

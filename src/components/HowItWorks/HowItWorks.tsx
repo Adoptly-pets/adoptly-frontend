@@ -5,6 +5,7 @@ import GuideCard from '../GuideCard/GuideCard';
 import GuideCardCarousel from '../GuideCardCarousel/GuideCardCarousel';
 import animalTracksSrc from '../../assets/images/animal_tracks.webp';
 import catFootprintSrc from '../../assets/images/cat_footprint-2.webp';
+import { useTranslation } from 'react-i18next';
 
 import './HowItWorks.css';
 
@@ -18,6 +19,16 @@ interface GuideCardData {
 
 const HowItWorks: React.FC = React.memo(() => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+  const { t } = useTranslation();
+
+  const translatedCards = GUIDE_CARD_DATA.map((item: GuideCardData) => ({
+    ...item,
+    cardStep: t(item.cardStep),
+    cardDescription: item.cardDescription.map(desc => ({
+      text: t(desc.text),
+      bold: desc.bold,
+    })),
+  }));
 
   if (!GUIDE_CARD_DATA.length) {
     return (
@@ -27,7 +38,7 @@ const HowItWorks: React.FC = React.memo(() => {
         aria-labelledby="how-it-works-title"
         data-testid="how-it-works-section"
       >
-        Немає даних для відображення
+        {t('howItWorks.noData')}
       </section>
     );
   }
@@ -40,8 +51,8 @@ const HowItWorks: React.FC = React.memo(() => {
       data-testid="how-it-works-section"
     >
       <div className="how-it-works-header">
-        <h2 id="how-it-works-title">Як це працює</h2>
-        <p>Покрокова інструкція</p>
+        <h2 id="how-it-works-title">{t('howItWorks.title')}</h2>
+        <p>{t('howItWorks.subtitle')}</p>
         <img
           src={animalTracksSrc}
           alt="Animal tracks illustration for step-by-step guide"
@@ -49,10 +60,10 @@ const HowItWorks: React.FC = React.memo(() => {
         />
       </div>
       {isMobile ? (
-        <GuideCardCarousel cards={GUIDE_CARD_DATA} />
+        <GuideCardCarousel cards={translatedCards} />
       ) : (
         <div className="steps">
-          {GUIDE_CARD_DATA.map((item: GuideCardData, index: number) => (
+          {translatedCards.map((item: GuideCardData, index: number) => (
             <GuideCard
               key={index}
               cardImgSrc={item.cardImgSrc}

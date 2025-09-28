@@ -142,4 +142,12 @@
     justify-content: center;
     align-items: center;
   }
+
+  .btn-modal-language .active-lang {
+    color: #ff8c00;
+  }
+
+  .btn-modal-language span {
+    margin: 0 2px;
+  }
 }
