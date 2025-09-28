@@ -33,7 +33,7 @@ const ReadyToAdopt = () => {
         <h3 className="title">{t('readyToAdopt.title')}</h3>
         <p className="description">{t('readyToAdopt.description')}</p>
         <a href="#findpet" className="search-btn">
-          {t('readyToAdopt.button')}
+          {buttonText}
         </a>
       </div>
 

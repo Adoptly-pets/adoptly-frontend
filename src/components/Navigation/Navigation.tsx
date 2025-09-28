@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './Navigation.css';
-import { useTranslation } from 'react-i18next';
 
 interface NavigationProps {
   className?: string;
