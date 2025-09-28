@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import Header from './Header';
+import { MemoryRouter } from 'react-router-dom';
 
 jest.mock('../Icon/Icon', () => ({
   Icon: ({ id, size }: { id: string; size?: number }) => (
@@ -14,7 +15,11 @@ jest.mock('../Navigation/Navigation', () => ({
 
 describe('Header Component', () => {
   test('renders the header with correct structure', () => {
-    render(<Header />);
+    render(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>
+    );
 
     const header = screen.getByRole('banner');
     expect(header).toBeInTheDocument();
@@ -36,7 +41,17 @@ describe('Header Component', () => {
   });
 
   test('renders icons with correct attributes', () => {
-    render(<Header />);
+    render(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>
+    );
+
+    const logoIcon = screen.getByTestId('icon-icon-Logo');
+    expect(logoIcon).toBeInTheDocument();
+
+    const logoLink = logoIcon.closest('a');
+    expect(logoLink).toHaveAttribute('href', '/');
 
     const heartIcon = screen.getByTestId('icon-icon-heart');
     expect(heartIcon).toBeInTheDocument();

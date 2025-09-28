@@ -14,12 +14,14 @@ const Footer = () => {
       <div className="footer">
         <div className="footer-content">
           <div className="nav-footer">
-            <Icon
-              id="icon-Logo"
-              className="footer-logo"
-              size={217}
-              height={36}
-            />
+            <Link to="/">
+              <Icon
+                id="icon-Logo"
+                className="footer-logo"
+                size={217}
+                height={36}
+              />
+            </Link>
             <Link to="/" className="platform-footer">
               Платформа для адопції тварин
             </Link>
