@@ -1,0 +1,74 @@
+.card {
+  position: relative;
+  border-radius: 24px;
+  padding: 12px 14.5px;
+  width: 325px;
+  height: 468px;
+  background-color: #fff;
+  box-shadow: 2px 4px 12px 0 rgba(81, 81, 81, 0.25);
+}
+.animal-img {
+  border-radius: 16px;
+  width: 296px;
+  height: 312px;
+  margin-bottom: 10px;
+}
+
+.btn-favourite {
+  position: absolute;
+  top: 24px;
+  right: 26.5px;
+  border-radius: 50%;
+  background-color: #fff;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+.favorite {
+  stroke-width: 1px;
+  stroke: #3f3f3f;
+  fill: #fff;
+}
+
+.wrap {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.wrap-block {
+  display: flex;
+  gap: 4px;
+}
+
+.block {
+  border-radius: 12px;
+  padding: 8px;
+  width: 73px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.block-age {
+  background: #e3caff;
+  padding-right: 4px;
+}
+.block-gender {
+  width: 63px;
+  background: #a5bdff;
+}
+.animal-name {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 24px;
+  color: #091a49;
+}
+.animal-description {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+}
