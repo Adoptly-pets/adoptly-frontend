@@ -2,8 +2,40 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import Navigation from './Navigation';
 
+// Mock i18n translation function to return expected text
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => {
+      const translations: Record<string, string> = {
+        'nav.home': 'Головна',
+        'nav.about': 'Про нас',
+        'nav.help': 'Як допомогти',
+        'nav.howToHelp': 'Як допомогти',
+        'nav.shelters': 'Притулкам',
+        'nav.contacts': 'Контакти',
+      };
+      return translations[key] || key;
+    },
+  }),
+}));
+
 // Mock the CSS import (handled by jest.config.ts moduleNameMapper)
 jest.mock('./Navigation.css', () => ({}));
+
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => {
+      const translations: Record<string, string> = {
+        'nav.home': 'Головна',
+        'nav.about': 'Про нас',
+        'nav.help': 'Як допомогти',
+        'nav.shelters': 'Притулкам',
+        'nav.contacts': 'Контакти',
+      };
+      return translations[key] || key;
+    },
+  }),
+}));
 
 describe('Navigation Component', () => {
   it('renders navigation with all links', () => {

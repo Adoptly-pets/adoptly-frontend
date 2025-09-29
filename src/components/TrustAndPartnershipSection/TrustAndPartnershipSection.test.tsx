@@ -21,6 +21,24 @@ jest.mock('../../assets/images/dog_walking.webp', () => 'dog-walking.webp');
 jest.mock('../../assets/images/cat_container.webp', () => 'cat-container.webp');
 jest.mock('./TrustAndPartnershipSection.css', () => ({}));
 
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => {
+      const translations: Record<string, string> = {
+        'trust.supportButtons.donate': 'Задонатити',
+        'trust.supportButtons.volunteering': 'Волонтерство та допомога руками',
+        'trust.title': 'Любов і підтримка без усиновлення',
+        'trust.supportButtons.foodAndMedicine':
+          'Допомога кормом або медикаментами',
+      };
+      return translations[key] || key;
+    },
+    i18n: {
+      language: 'uk',
+    },
+  }),
+}));
+
 describe('TrustAndPartnershipSection', () => {
   beforeEach(() => {
     render(<TrustAndPartnershipSection />);

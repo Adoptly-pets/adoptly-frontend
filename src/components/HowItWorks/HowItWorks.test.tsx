@@ -61,6 +61,19 @@ jest.mock(
   { virtual: true }
 );
 
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => {
+      const translations: Record<string, string> = {
+        'howItWorks.title': 'Як це працює',
+        'howItWorks.subtitle': 'Покрокова інструкція',
+        'howItWorks.noData': 'Немає даних для відображення',
+      };
+      return translations[key] || key;
+    },
+  }),
+}));
+
 describe('HowItWorks Component', () => {
   const mockGuideCardData = [
     {
