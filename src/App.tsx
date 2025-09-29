@@ -7,6 +7,7 @@ import ContactPage from './pages/ContactPage/ContactPage';
 import NotFound from './pages/NotFound/NotFound';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import PetsPage from './pages/PetsPage/PetsPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/how-to-help" element={<HowToHelpPage />} />
           <Route path="/shelters" element={<SheltersPage />} />
           <Route path="/contacts" element={<ContactPage />} />
+          <Route path="/pets" element={<PetsPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
