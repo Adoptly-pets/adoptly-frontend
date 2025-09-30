@@ -6,6 +6,7 @@ import './Header.css';
 import Modal from '../Modal/Modal';
 import ModalNavigation from '../ModalNavigation/ModalNavigation';
 import NavFooter from '../NavFooter/NavFooter';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,8 +27,14 @@ const Header = () => {
           >
             <Icon id="icon-menu" className="menu-icon" size={18} height={16} />
           </button>
-
-          <Icon id="icon-Logo" className="header-logo" size={108} height={32} />
+          <Link to="/">
+            <Icon
+              id="icon-Logo"
+              className="header-logo"
+              size={108}
+              height={32}
+            />
+          </Link>
         </div>
         <nav className="desktop-nav">
           <Navigation />
