@@ -31,7 +31,7 @@ describe('AnimalCard Component', () => {
     expect(screen.getByText(/playful and cheerful dog/i)).toBeInTheDocument();
   });
 
-  it('has a favourite button witt correct aria-label', () => {
+  it('has a favourite button with correct aria-label', () => {
     render(<AnimalCard animal={mockAnimal} />);
 
     const favBtn = screen.getByRole('button', {
@@ -40,7 +40,7 @@ describe('AnimalCard Component', () => {
     expect(favBtn).toBeInTheDocument();
   });
 
-  it('render the genger icon', () => {
+  it('render the gender icon', () => {
     render(<AnimalCard animal={mockAnimal} />);
     expect(screen.getByTestId('icon-gender')).toBeInTheDocument();
   });
