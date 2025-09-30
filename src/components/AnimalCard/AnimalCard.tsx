@@ -1,7 +1,6 @@
 import React from 'react';
 import { Icon } from '../Icon/Icon';
 import './AnimalCard.css';
-/* import animal from '../../assets/images/Animal.webp'; */
 
 interface Animal {
   id: number;
@@ -18,9 +17,13 @@ interface AnimalCardProps {
 const AnimalCard: React.FC<AnimalCardProps> = ({ animal }) => {
   return (
     <div className="card">
-      <img className="animal-img" src={animal.image} alt="animal" />
-      <button className="btn-favourite " type="button">
-        <Icon id="icon-favourite" className="favorite" size={20} height={18} />
+      <img className="animal-img" src={animal.image} alt={animal.name} />
+      <button
+        className="btn-favourite "
+        type="button"
+        aria-label={`Favourite ${animal.name}`}
+      >
+        <Icon id="icon-favourite" className="favourite" size={20} height={18} />
       </button>
       <div className="wrap">
         <h3 className="animal-name">{animal.name}</h3>
