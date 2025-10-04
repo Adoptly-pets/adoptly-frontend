@@ -1,6 +1,6 @@
 .donation-section {
   background-color: #95b1ff;
-  padding-bottom: 64px;
+  padding: 64.5px 0;
   border-radius: 44px;
 }
 
@@ -9,7 +9,7 @@
   line-height: 1.2;
   font-weight: 800;
   text-align: center;
-  padding: 65px 0 64px;
+  padding: 0 15px;
 }
 
 .donation-section h2 span {
@@ -29,9 +29,16 @@
 }
 
 .donation-section ul {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
   width: 100%;
+  margin: 64px 0;
+}
+
+.donation-input {
+  grid-column: 1/4;
 }
 
 .donation-form li button {
@@ -45,10 +52,40 @@
   padding: 24px 48px;
   width: 100%;
   border: none;
-  margin: 24px 0 64px;
   outline: none;
 }
 
 .donation-form input::placeholder {
   color: #091a49;
+}
+
+@media (max-width: 768px) {
+  .donation-section h2 {
+    font-size: 22px;
+  }
+
+  .donation-section ul {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 32px 0;
+  }
+
+  .donation-input {
+    grid-column: 2/3;
+  }
+
+  .donation-form {
+    font-size: 16px;
+    max-width: 284px;
+  }
+
+  .donation-form li button {
+    padding: 13.5px 38px;
+    border-radius: 12px;
+  }
+
+  .donation-form input {
+    border-radius: 12px;
+    padding: 10.5px 29px;
+  }
 }

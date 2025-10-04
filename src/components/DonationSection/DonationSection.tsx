@@ -1,10 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../Button/Button';
 import './DonationSection.css';
 
 const DonationSection = () => {
   const [amount, setAmount] = useState<number | ''>('');
+  const [placeholderText, setPlaceholderText] = useState('Вказати іншу суму');
   const presetAmounts = [100, 250, 500];
+
+  const updatePlaceholderText = () => {
+    if (window.innerWidth < 768) {
+      setPlaceholderText('Інша сума');
+    } else {
+      setPlaceholderText('Вказати іншу суму');
+    }
+  };
+
+  useEffect(() => {
+    updatePlaceholderText();
+    window.addEventListener('resize', updatePlaceholderText);
+    return () => window.removeEventListener('resize', updatePlaceholderText);
+  }, []);
 
   const handleSelect = (value: number) => {
     setAmount(value);
@@ -30,14 +45,14 @@ const DonationSection = () => {
               </button>
             </li>
           ))}
+          <input
+            type="number"
+            min="1"
+            placeholder={placeholderText}
+            onChange={e => setAmount(Number(e.target.value))}
+            className="donation-input"
+          />
         </ul>
-        <input
-          type="number"
-          min="1"
-          placeholder="Вказати іншу сумму"
-          onChange={e => setAmount(Number(e.target.value))}
-          className="donation-input"
-        />
         <Button variant="primary">Задонатити</Button>
       </form>
     </section>
