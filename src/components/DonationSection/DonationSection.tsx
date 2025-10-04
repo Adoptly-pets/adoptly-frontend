@@ -53,7 +53,9 @@ const DonationSection = () => {
             className="donation-input"
           />
         </ul>
-        <Button variant="primary">Задонатити</Button>
+        <Button variant="primary" maxWidth={396}>
+          Задонатити
+        </Button>
       </form>
     </section>
   );

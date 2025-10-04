@@ -30,6 +30,7 @@ const HeroSection = () => {
           </Button>
           <Button
             variant="secondary"
+            maxWidth={248.5}
             onClick={() => alert('Кнопка "Задонатити" натиснута!')}
           >
             {t('hero.donate')}
