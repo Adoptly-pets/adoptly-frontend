@@ -53,7 +53,7 @@ const DonationSection = () => {
             className="donation-input"
           />
         </ul>
-        <Button variant="primary" maxWidth={396}>
+        <Button variant="primary" maxWidth={396} maxWidthMobile={220}>
           Задонатити
         </Button>
       </form>

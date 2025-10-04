@@ -1,36 +1,45 @@
+:root {
+  --color-primary: #ff7300;
+  --color-primary-hover: #ff8c00;
+  --color-text-dark: #595c6e;
+}
+
 .button {
   border-radius: 20px;
   width: 100%;
+  max-width: var(--btn-max-width);
   height: 64px;
   font-size: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
-.button:hover {
-  background-color: #ffffff;
-  color: #0a0c20;
+.button--primary:hover {
+  background-color: var(--color-primary-hover);
   border: none;
 }
 
-.button:active {
-  background-color: #ff7b00;
+.button--secondary:hover {
+  box-shadow: 0px 1px 8px 0px var(--color-primary);
 }
 
 .button--primary {
-  background-color: #ff8c00;
+  background-color: var(--color-primary);
   color: white;
 }
 .button--secondary {
   background-color: transparent;
-  border: 2px solid #ff8c00;
-  color: #111827;
+  border: 2px solid var(--color-primary);
+  color: var(--color-text-dark);
 }
 
 @media screen and (max-width: 768px) {
   .button {
-    max-width: 220px;
+    max-width: var(--btn-max-width-mobile, var(--btn-max-width));
     height: 48px;
     border-radius: 12px;
     font-size: 16px;
