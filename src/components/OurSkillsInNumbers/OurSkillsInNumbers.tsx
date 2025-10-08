@@ -5,20 +5,25 @@ import './OurSkillsInNumbers.css';
 import { NUMBER_CARD_DATA } from '../../constants/NUMBER_CARD_DATA';
 import Button from '../Button/Button';
 
+const MOBILE_BREAKPOINT = 768;
+
 const OurSkillsInNumbers = () => {
   const { t, i18n } = useTranslation();
-  const [titleText, setTitleText] = useState(t('ourNumbers.title_desktop'));
-
-  const updateTitleText = () =>
-    window.innerWidth < 768
-      ? setTitleText(t('ourNumbers.title_mobile'))
-      : setTitleText(t('ourNumbers.title_desktop'));
+  const [titleText, setTitleText] = useState('');
 
   useEffect(() => {
+    const updateTitleText = () => {
+      const width = window.innerWidth;
+      setTitleText(
+        width < MOBILE_BREAKPOINT
+          ? t('ourNumbers.title_mobile')
+          : t('ourNumbers.title_desktop')
+      );
+    }
     updateTitleText();
     window.addEventListener('resize', updateTitleText);
     return () => window.removeEventListener('resize', updateTitleText);
-  }, [i18n.language]);
+  }, [i18n.language, t]);
 
   return (
     <section className="our-skills-in-numbers">
@@ -40,7 +45,7 @@ const OurSkillsInNumbers = () => {
           />
         ))}
       </div>
-      <Button variant="secondary" onClick={() => {}}>
+      <Button variant="secondary" onClick={() => { }}>
         {t('ourNumbers.button')}
       </Button>
     </section>
