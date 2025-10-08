@@ -3,6 +3,23 @@
   padding: 64.5px 0;
   border-radius: 44px;
   margin: 54px 40px;
+
+  background-image:
+    url('../../assets/images/Donation/paw-top-left.webp'),
+    url('../../assets/images/Donation/paw-bottom-left.webp'),
+    url('../../assets/images/Donation/paw-top-right.webp'),
+    url('../../assets/images/Donation/paw-bottom-right.webp');
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-position:
+    24px 36px,
+    212px 412px,
+    calc(100% - 240px) 190px,
+    calc(100% - 23px) calc(100% - 35px);
+  background-size:
+    84px 84px,
+    85px 85px,
+    85px 85px,
+    84px 84px;
 }
 
 .donation-section h2 {
