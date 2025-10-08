@@ -18,17 +18,11 @@
 }
 
 .our-skills-in-numbers h2 {
+  text-align: center;
   font-weight: 800;
   font-size: var(--font-size-title);
   line-height: 1.2;
   color: var(--title-color);
-}
-.title-desc {
-  text-align: center;
-}
-
-.title-mob {
-  display: none;
 }
 
 .our-skills-in-numbers__text-grid {
@@ -74,15 +68,8 @@
   }
 
   .our-skills-in-numbers h2 {
+    text-align: left;
     font-size: var(--font-size-mobile-title);
-  }
-  .title-desc {
-    display: none;
-  }
-
-  .title-mob {
-    display: block;
-    padding-left: 20px;
   }
 
   .our-skills-in-numbers__text-grid {
