@@ -80,6 +80,20 @@
 @media (max-width: 768px) {
   .donation-section {
     margin: 10px 20px;
+
+    background-image:
+      url('../../assets/images/Donation/paw-top-left.webp'),
+      url('../../assets/images/Donation/paw-top-right.webp'),
+      url('../../assets/images/Donation/paw-bottom-right.webp');
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+    background-position:
+      10px 22px,
+      280px 145px,
+      calc(100% - 125px) calc(100% - 10px);
+    background-size:
+      45px 45px,
+      25px 25px,
+      50px 50px;
   }
 
   .donation-section h2 {
