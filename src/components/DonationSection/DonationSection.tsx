@@ -49,7 +49,10 @@ const DonationSection = () => {
             type="number"
             min="1"
             placeholder={placeholderText}
-            onChange={e => setAmount(Number(e.target.value))}
+            value={amount}
+            onChange={e =>
+              setAmount(e.target.value === '' ? '' : Number(e.target.value))
+            }
             className="donation-input"
           />
         </ul>
