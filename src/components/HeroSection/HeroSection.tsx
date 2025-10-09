@@ -24,12 +24,16 @@ const HeroSection = () => {
         <div className="buttons">
           <Button
             variant="primary"
+            maxWidth={248.5}
+            maxWidthMobile={220}
             onClick={() => alert('Кнопка "Знайти улюбленця" натиснута!')}
           >
             {t('hero.findPet')}
           </Button>
           <Button
             variant="secondary"
+            maxWidth={248.5}
+            maxWidthMobile={220}
             onClick={() => alert('Кнопка "Задонатити" натиснута!')}
           >
             {t('hero.donate')}
