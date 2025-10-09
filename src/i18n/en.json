@@ -48,7 +48,8 @@
     }
   },
   "ourNumbers": {
-    "title": "Our impact in numbers",
+    "title_desktop": "Our impact in numbers",
+    "title_mobile": "About us",
     "paragraph1": "<strong>Adoptly</strong> - a platform where everyone can find their loyal friend.",
     "paragraph2": "Here you can see photos, read stories, feel the connection and take an important step.",
     "paragraph3": "We combined love for pets and modern technologies to make adoption closer and easier. Our platform is created to connect hearts – yours and theirs.",
