@@ -14,6 +14,7 @@ i18n
       uk: { translation: uk },
     },
     fallbackLng: 'en',
+    supportedLngs: ['en', 'uk'],
     interpolation: {
       escapeValue: false,
     },
