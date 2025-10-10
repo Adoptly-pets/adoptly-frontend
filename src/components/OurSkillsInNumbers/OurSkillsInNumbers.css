@@ -40,12 +40,12 @@
   font-weight: 500;
 }
 
-.our-skills-in-numbers__cards {
+/* .our-skills-in-numbers__cards {
   display: flex;
   gap: var(--spacing-small);
   justify-content: center;
   padding: 27.5px 0;
-}
+} */
 
 .our-skills-in-numbers .button--secondary {
   display: none;
@@ -80,14 +80,14 @@
     gap: 26px;
   }
 
-  .our-skills-in-numbers__cards {
+  /* .our-skills-in-numbers__cards {
     order: 2;
     flex-direction: column;
     padding: var(--spacing-small) 0 0;
     width: 100%;
     min-width: 360px;
     gap: 1px;
-  }
+  } */
 
   .our-skills-in-numbers p {
     font-size: var(--font-size-mobile-body);

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
-import NumberCard from '../NumberCard/NumberCard';
 import './OurSkillsInNumbers.css';
 import { NUMBER_CARD_DATA } from '../../constants/NUMBER_CARD_DATA';
 import Button from '../Button/Button';
+import StatisticCardsSection from '../StatisticCardsSection/StatisticCardsSection';
 
 const MOBILE_BREAKPOINT = 768;
 
@@ -19,7 +19,7 @@ const OurSkillsInNumbers = () => {
           ? t('ourNumbers.title_mobile')
           : t('ourNumbers.title_desktop')
       );
-    }
+    };
     updateTitleText();
     window.addEventListener('resize', updateTitleText);
     return () => window.removeEventListener('resize', updateTitleText);
@@ -36,16 +36,8 @@ const OurSkillsInNumbers = () => {
         <p>{t('ourNumbers.paragraph3')}</p>
         <p>{t('ourNumbers.paragraph4')}</p>
       </div>
-      <div className="our-skills-in-numbers__cards">
-        {NUMBER_CARD_DATA.map(card => (
-          <NumberCard
-            key={card.id}
-            cardNumber={card.cardNumber}
-            cardText={t(card.cardText)}
-          />
-        ))}
-      </div>
-      <Button variant="secondary" onClick={() => { }}>
+      <StatisticCardsSection cards={NUMBER_CARD_DATA} />
+      <Button variant="secondary" onClick={() => {}}>
         {t('ourNumbers.button')}
       </Button>
     </section>
