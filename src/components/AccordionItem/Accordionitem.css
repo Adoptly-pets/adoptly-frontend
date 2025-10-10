@@ -1,0 +1,27 @@
+.accordion-item {
+  background-color: #fff;
+  border-radius: 24px;
+  color: #091a49;
+}
+
+.accordion-item.open {
+  background-color: #ecf1ff;
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 40px;
+
+  h3 {
+    font-size: 24px;
+    line-height: 1.2;
+  }
+}
+
+.accordion-content {
+  font-size: 20px;
+  line-height: 1.5;
+  font-weight: 500;
+  padding: 0 40px 16px;
+}
