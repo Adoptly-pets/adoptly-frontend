@@ -1,0 +1,21 @@
+:root {
+  --spacing-small: 20px;
+}
+
+.statistic-section-cards {
+  display: flex;
+  gap: var(--spacing-small);
+  justify-content: center;
+  padding: 27.5px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .statistic-section-cards {
+    order: 2;
+    flex-direction: column;
+    padding: var(--spacing-small) 0 0;
+    width: 100%;
+    min-width: 360px;
+    gap: 1px;
+  }
+}
