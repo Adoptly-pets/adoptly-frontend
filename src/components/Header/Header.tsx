@@ -99,7 +99,7 @@ const Header = () => {
             aria-pressed={i18n.language === 'uk'}
             onClick={() => changeLanguage(i18n.language === 'uk' ? 'en' : 'uk')}
           >
-            {i18n.language.toUpperCase()}
+            {i18n.language === 'uk' ? 'UA' : 'EN'}
           </button>
 
           <button type="button" className="btn" title="Favourite">
