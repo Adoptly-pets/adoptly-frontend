@@ -1,11 +1,11 @@
 .container {
   max-width: 1440px;
-  margin: 24px auto 96px;
+  margin: 32px auto 64px;
   overflow: hidden;
 }
 
 @media screen and (max-width: 768px) {
   .container {
-    margin: 24px auto 0;
+    margin: 24px auto 48px;
   }
 }
