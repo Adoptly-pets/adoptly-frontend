@@ -1,8 +1,13 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './Accordionitem.css';
 import { Icon } from '../Icon/Icon';
 
-const Accordionitem = () => {
+interface AccordionItemProps {
+  question: string;
+  answer: string;
+}
+
+const Accordionitem: React.FC<AccordionItemProps> = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleAccordion = () => {
@@ -12,7 +17,7 @@ const Accordionitem = () => {
   return (
     <div className={`accordion-item ${isOpen ? 'open' : ''}`}>
       <div className="accordion-header" onClick={toggleAccordion}>
-        <h3>Question</h3>
+        <h3>{question}</h3>
         <span>
           {isOpen ? (
             <Icon id="icon-down-arrow" size={42} height={42} />
@@ -21,7 +26,7 @@ const Accordionitem = () => {
           )}
         </span>
       </div>
-      {isOpen && <div className="accordion-content">Answer</div>}
+      {isOpen && <div className="accordion-content">{answer}</div>}
     </div>
   );
 };

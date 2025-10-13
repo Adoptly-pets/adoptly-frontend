@@ -2,6 +2,7 @@
   background-color: #fff;
   border-radius: 24px;
   color: #091a49;
+  margin-bottom: 12px;
 }
 
 .accordion-item.open {
@@ -11,6 +12,7 @@
 .accordion-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 16px 40px;
 
   h3 {
