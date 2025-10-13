@@ -14,11 +14,11 @@
   justify-content: space-between;
   align-items: center;
   padding: 16px 40px;
+}
 
-  h3 {
-    font-size: 24px;
-    line-height: 1.2;
-  }
+.accordion-header h3 {
+  font-size: 24px;
+  line-height: 1.2;
 }
 
 .accordion-content {
@@ -26,4 +26,25 @@
   line-height: 1.5;
   font-weight: 500;
   padding: 0 40px 16px;
+}
+
+@media screen and (max-width: 768px) {
+  .accordion-header {
+    padding: 16px 16px;
+    gap: 24px;
+  }
+
+  .accordion-header h3 {
+    font-size: 16px;
+  }
+
+  .icon-mobile {
+    height: 27px;
+    width: 27px;
+  }
+
+  .accordion-content {
+    font-size: 12px;
+    padding: 0 16px 16px;
+  }
 }

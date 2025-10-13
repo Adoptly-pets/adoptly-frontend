@@ -20,9 +20,19 @@ const Accordionitem: React.FC<AccordionItemProps> = ({ question, answer }) => {
         <h3>{question}</h3>
         <span>
           {isOpen ? (
-            <Icon id="icon-down-arrow" size={42} height={42} />
+            <Icon
+              id="icon-down-arrow"
+              size={42}
+              height={42}
+              className="icon-mobile"
+            />
           ) : (
-            <Icon id="icon-up-arrow" size={43} height={42} />
+            <Icon
+              id="icon-up-arrow"
+              size={43}
+              height={42}
+              className="icon-mobile"
+            />
           )}
         </span>
       </div>
