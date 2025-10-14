@@ -2,9 +2,9 @@ import { useTranslation } from 'react-i18next';
 import footprintRight from '../../assets/images/cat_footprint-1.webp';
 import footprintBottom from '../../assets/images/cat_footprint-2.webp';
 import footprintLeft from '../../assets/images/cat_footprint-3.webp';
-import catTrackHeart from '../../assets/images/cat_track_heart.webp';
-import dogWalking from '../../assets/images/dog_walking.webp';
-import catContainer from '../../assets/images/cat_container.webp';
+import catTrackHeart from '../../assets/images/trustAndSupport/Heart_with_dog_paw.svg';
+import dogWalking from '../../assets/images/trustAndSupport/Dog_Walking.svg';
+import catContainer from '../../assets/images/trustAndSupport/Pet_Bowl.svg';
 import SupportButton from '../SupportButton/SupportButton';
 import './TrustAndPartnershipSection.css';
 
