@@ -7,7 +7,7 @@
   padding: 24px 16px;
   background-color: #ecf1ff;
   max-width: 670px;
-  width: 50%;
+  width: 100%;
 }
 
 .our-mission-title {
@@ -46,6 +46,7 @@
     border-radius: 44px;
     padding: 50px 40px;
     max-height: 528px;
+    width: 50%;
   }
 
   .our-mission-title {
