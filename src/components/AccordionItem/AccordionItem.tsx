@@ -18,25 +18,14 @@ const Accordionitem: React.FC<AccordionItemProps> = ({ question, answer }) => {
     <div className={`accordion-item ${isOpen ? 'open' : ''}`}>
       <div className="accordion-header" onClick={toggleAccordion}>
         <h3>{question}</h3>
-        <span>
-          {isOpen ? (
-            <Icon
-              id="icon-down-arrow"
-              size={42}
-              height={42}
-              className="icon-mobile"
-            />
-          ) : (
-            <Icon
-              id="icon-up-arrow"
-              size={43}
-              height={42}
-              className="icon-mobile"
-            />
-          )}
-        </span>
+        <Icon
+          id="icon-up-arrow"
+          size={42}
+          height={42}
+          className="icon-mobile"
+        />
       </div>
-      {isOpen && <div className="accordion-content">{answer}</div>}
+      <div className="accordion-content">{answer}</div>
     </div>
   );
 };
