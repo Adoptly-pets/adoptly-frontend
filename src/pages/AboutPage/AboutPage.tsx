@@ -1,4 +1,3 @@
-
 import OurMission from '../../components/OurMission/OurMission';
 import FAQAccordionSection from '../../components/FAQAccordionSection/FAQAccordionSection';
 
@@ -12,7 +11,6 @@ const AboutPage = () => {
 
       <OurMission />
       <FAQAccordionSection />
-
     </div>
   );
 };

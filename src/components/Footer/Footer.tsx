@@ -30,23 +30,25 @@ const Footer = () => {
             <div>
               <ul className="footer-list">
                 <li className="item-nav">
-                  <a href="/find-pet">{t('footer.findPet')}</a>
+                  <Link to="/find-pet">{t('footer.findPet')}</Link>
                 </li>
                 <li className="item-nav">
-                  <a href="/join-shelter">{t('footer.joinShelter')}</a>
+                  <Link to="/join-shelter">{t('footer.joinShelter')}</Link>
                 </li>
               </ul>
             </div>
             <div>
               <ul className="footer-list">
                 <li className="item-nav">
-                  <a href="/donate">{t('footer.donate')}</a>
+                  <Link to="/donate">{t('footer.donate')}</Link>
                 </li>
                 <li className="item-nav">
-                  <a href="/volunteer">{t('footer.volunteer')}</a>
+                  <Link to="/volunteer">{t('footer.volunteer')}</Link>
                 </li>
                 <li className="item-nav">
-                  <a href="/help-medical-food">{t('footer.helpMedicalFood')}</a>
+                  <Link to="/help-medical-food">
+                    {t('footer.helpMedicalFood')}
+                  </Link>
                 </li>
               </ul>
             </div>
