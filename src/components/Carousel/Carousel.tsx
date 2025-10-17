@@ -8,6 +8,7 @@ import djeck from '../../assets/images/happy_stories/djeck.webp';
 import Roksi from '../../assets/images/happy_stories/Roksi.webp';
 import Chara from '../../assets/images/happy_stories/Chara.webp';
 import Richi from '../../assets/images/happy_stories/Richi.webp';
+import { Icon } from '../Icon/Icon';
 
 const Carousel = () => {
   const swiperRef = useRef<SwiperType | null>(null);
@@ -29,7 +30,7 @@ const Carousel = () => {
         onClick={handlePrevSlide}
         aria-label="Попередній слайд"
       >
-        <img src="/icons/arrow_left.svg" alt="Стрілка ліворуч" />
+        <Icon id="icon-left" size={43} height={43}/>
       </button>
 
       <Swiper
@@ -61,7 +62,7 @@ const Carousel = () => {
         onClick={handleNextSlide}
         aria-label="Наступний слайд"
       >
-        <img src="/icons/arrow_right.svg" alt="Стрілка праворуч" />
+        <Icon id="icon-right" size={43} height={43}/>
       </button>
 
     </div>
