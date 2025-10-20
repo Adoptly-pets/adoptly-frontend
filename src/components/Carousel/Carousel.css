@@ -4,21 +4,35 @@
   align-items: center;
   gap: 20px;
   width: 100%;
-  max-width: 800px;
   margin: 0 auto;
+  padding: 32px 105.5px;
 }
 
-.carousel-nav-btn {
+
+.carousel-nav-btn--disabled  {
+  opacity: 0.4;
+  cursor: default;
+}
+
+
+.carousel-container .swiper-pagination {
+  position: static !important;
   display: flex;
-  align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
-  border: none;
-  border-radius: 50%;
-  background-color: #f5f5f5;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.carousel-container .swiper-pagination-bullet {
+  width: 16px;
+  height: 16px;
+  background: #F0F0F0;
   cursor: pointer;
   transition: all 0.3s ease;
-  flex-shrink: 0;
-  z-index: 10;
+  opacity: 1;
 }
+
+.carousel-container .swiper-pagination-bullet-active {
+  background: #C2CADE;
+}
+
