@@ -5,7 +5,11 @@
   gap: 20px;
   width: 100%;
   margin: 0 auto;
-  padding: 32px 105.5px;
+  padding: 32px 65.5px;
+}
+
+.carousel-slider {
+  max-width: 800px
 }
 
 
@@ -36,3 +40,9 @@
   background: #C2CADE;
 }
 
+@media screen and (max-width: 768px) {
+  .carousel-container {
+    padding: 24px 20px;
+    max-width: 517px;
+  }
+}

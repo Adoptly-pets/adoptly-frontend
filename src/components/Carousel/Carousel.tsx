@@ -15,7 +15,9 @@ const Carousel = () => {
   const swiperRef = useRef<SwiperType | null>(null);
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
+  const isMobile = window.innerWidth <= 768;
 
+  console.log(isMobile);
 
   const handlePrevSlide = () => {
     swiperRef.current?.slidePrev();
@@ -34,13 +36,13 @@ const Carousel = () => {
   return (
     <div className="carousel-container">
 
-      <button
+      {!isMobile&& (<button
         onClick={handlePrevSlide}
         aria-label="Попередній слайд"
       >
         <Icon id="icon-left" size={43} height={43} className={isBeginning ? 'carousel-nav-btn--disabled' : ''}/>
       </button>
-
+        )}
       <Swiper
         modules={[Navigation, Pagination]}
         onSwiper={(swiper) => {
@@ -49,13 +51,13 @@ const Carousel = () => {
           setIsEnd(swiper.isEnd);
         }}
         onSlideChange={handleSlideChange}
-        slidesPerView={2}
-        slidesPerGroup={2}
-        spaceBetween={30}
+        slidesPerView={isMobile ? 1 : 2}
+        slidesPerGroup={isMobile ? 1 : 2}
+        spaceBetween={isMobile ? 0 : 30}
         pagination={{
           clickable: true,
         }}
-
+        className="carousel-slider"
       >
         <SwiperSlide>
           <img src={djeck} alt="Djeck" />
@@ -71,13 +73,14 @@ const Carousel = () => {
         </SwiperSlide>
       </Swiper>
 
-      <button
+      {!isMobile && (<button
         className={isEnd ? 'carousel-nav-btn--disabled' : ''}
         onClick={handleNextSlide}
         aria-label="Наступний слайд"
       >
         <Icon id="icon-right" size={43} height={43}/>
       </button>
+        )}
     </div>
   );
 };
