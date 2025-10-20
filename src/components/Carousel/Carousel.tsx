@@ -5,10 +5,8 @@ import {Swiper as SwiperType} from 'swiper';
 import 'swiper/css/bundle';
 import 'swiper/css/pagination';
 import './Carousel.css';
-import djeck from '../../assets/images/happy_stories/djeck.webp';
-import Roksi from '../../assets/images/happy_stories/Roksi.webp';
-import Chara from '../../assets/images/happy_stories/Chara.webp';
-import Richi from '../../assets/images/happy_stories/Richi.webp';
+import ElderyPeopleWithCat from '../../assets/images/Adopters/adopter-01.webp';
+import CapleWithDog from '../../assets/images/Adopters/adopter-02.webp';
 import { Icon } from '../Icon/Icon';
 
 const Carousel = () => {
@@ -34,6 +32,8 @@ const Carousel = () => {
 
 
   return (
+    <section className="carousel-section">
+      <h2>Фото щасливих усиновлювачів</h2>
     <div className="carousel-container">
 
       {!isMobile&& (<button
@@ -60,16 +60,16 @@ const Carousel = () => {
         className="carousel-slider"
       >
         <SwiperSlide>
-          <img src={djeck} alt="Djeck" />
+          <img src={ElderyPeopleWithCat} alt="eldery people with a cat" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={Chara} alt="Chara" />
+          <img src={CapleWithDog} alt="cuple with a cute dog" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={Richi} alt="Richi" />
+          <img src={CapleWithDog} alt="cuple with a cute dog" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={Roksi} alt="Roksi" />
+          <img src={ElderyPeopleWithCat} alt="eldery people with a cat" />
         </SwiperSlide>
       </Swiper>
 
@@ -82,6 +82,7 @@ const Carousel = () => {
       </button>
         )}
     </div>
+    </section>
   );
 };
 export default Carousel;
