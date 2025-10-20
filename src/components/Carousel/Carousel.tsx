@@ -8,14 +8,13 @@ import './Carousel.css';
 import ElderyPeopleWithCat from '../../assets/images/Adopters/adopter-01.webp';
 import CapleWithDog from '../../assets/images/Adopters/adopter-02.webp';
 import { Icon } from '../Icon/Icon';
+import { useMediaQuery } from 'react-responsive';
 
 const Carousel = () => {
   const swiperRef = useRef<SwiperType | null>(null);
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
-  const isMobile = window.innerWidth <= 768;
-
-  console.log(isMobile);
+  const isMobile = useMediaQuery({ maxWidth: 768 });
 
   const handlePrevSlide = () => {
     swiperRef.current?.slidePrev();
