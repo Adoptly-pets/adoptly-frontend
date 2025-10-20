@@ -60,16 +60,16 @@ const Carousel = () => {
         className="carousel-slider"
       >
         <SwiperSlide>
-          <img src={ElderyPeopleWithCat} alt="eldery people with a cat" />
+          <img src={ElderyPeopleWithCat} loading="lazy" alt="eldery people with a cat" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={CapleWithDog} alt="cuple with a cute dog" />
+          <img src={CapleWithDog} loading="lazy" alt="cuple with a cute dog" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={CapleWithDog} alt="cuple with a cute dog" />
+          <img src={CapleWithDog} loading="lazy" alt="cuple with a cute dog" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={ElderyPeopleWithCat} alt="eldery people with a cat" />
+          <img src={ElderyPeopleWithCat} loading="lazy" alt="eldery people with a cat" />
         </SwiperSlide>
       </Swiper>
 
