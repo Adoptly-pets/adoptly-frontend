@@ -1,5 +1,4 @@
-
-.carousel-section h2{
+.carousel-section h2 {
   margin-top: 32px;
   font-size: 32px;
   line-height: 1.2;
@@ -20,12 +19,10 @@
   max-width: 1067px;
 }
 
-
-.carousel-nav-btn--disabled  {
+.carousel-nav-btn--disabled {
   opacity: 0.4;
   cursor: default;
 }
-
 
 .carousel-container .swiper-pagination {
   position: static !important;
@@ -38,14 +35,14 @@
 .carousel-container .swiper-pagination-bullet {
   width: 16px;
   height: 16px;
-  background: #F0F0F0;
+  background: #f0f0f0;
   cursor: pointer;
   transition: all 0.3s ease;
   opacity: 1;
 }
 
 .carousel-container .swiper-pagination-bullet-active {
-  background: #C2CADE;
+  background: #c2cade;
 }
 
 @media screen and (max-width: 768px) {
