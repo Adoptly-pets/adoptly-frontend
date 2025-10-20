@@ -1,6 +1,6 @@
 .hero-background {
   position: relative;
-  background-image: url('/src/assets/images/About-hero/Hero-Section-mob.webp');
+  background-image: url('/src/assets/images/AboutUs/Hero-Section-mob.webp');
   border-radius: 20px;
   width: 320px;
   height: 602px;
@@ -57,7 +57,7 @@
 
 @media (min-width: 768px) {
   .hero-background {
-    background-image: url('/src/assets/images/About-hero/Hero-Section.webp');
+    background-image: url('/src/assets/images/AboutUs/Hero-Section.webp');
     width: 100%;
     max-width: 1360px;
     height: 630px;
