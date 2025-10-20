@@ -10,11 +10,9 @@ const AboutPage = () => {
   return (
     <div className="container">
       <HeroAboutUs />
-      <Carousel />
-
       <OurMission />
+      <Carousel />
       <FAQAccordionSection />
-
     </div>
   );
 };

@@ -64,28 +64,28 @@ const Carousel = () => {
             <img
               src={ElderyPeopleWithCat}
               loading="lazy"
-              alt="eldery people with a cat"
+              alt="elderly people with a cat"
             />
           </SwiperSlide>
           <SwiperSlide>
             <img
               src={CapleWithDog}
               loading="lazy"
-              alt="cuple with a cute dog"
+              alt="couple with a cute dog"
             />
           </SwiperSlide>
           <SwiperSlide>
             <img
               src={CapleWithDog}
               loading="lazy"
-              alt="cuple with a cute dog"
+              alt="couple with a cute dog"
             />
           </SwiperSlide>
           <SwiperSlide>
             <img
               src={ElderyPeopleWithCat}
               loading="lazy"
-              alt="eldery people with a cat"
+              alt="elderly people with a cat"
             />
           </SwiperSlide>
         </Swiper>
