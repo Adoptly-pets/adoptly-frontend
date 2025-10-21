@@ -1,0 +1,59 @@
+.carousel-section h2 {
+  margin-top: 32px;
+  font-size: 32px;
+  line-height: 1.2;
+  font-weight: 800;
+  color: #091a49;
+}
+
+.carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 32px 65.5px;
+}
+
+.carousel-slider {
+  max-width: 1067px;
+}
+
+.carousel-nav-btn--disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.carousel-container .swiper-pagination {
+  position: static !important;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.carousel-container .swiper-pagination-bullet {
+  width: 16px;
+  height: 16px;
+  background: #f0f0f0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 1;
+}
+
+.carousel-container .swiper-pagination-bullet-active {
+  background: #c2cade;
+}
+
+@media screen and (max-width: 768px) {
+  .carousel-section h2 {
+    font-size: 24px;
+    margin-top: 48px;
+  }
+
+  .carousel-container {
+    padding: 24px 0;
+    max-width: 517px;
+  }
+}
