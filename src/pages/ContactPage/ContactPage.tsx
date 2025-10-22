@@ -1,3 +1,4 @@
+import ContactForm from '../../components/ContacsSection/ContactForm/ContactForm';
 import ContactInfo from '../../components/ContacsSection/ContactInfo/ContactInfo';
 
 const ContactPage = () => {
@@ -6,6 +7,7 @@ const ContactPage = () => {
       <h2>Контакти</h2>
       <section>
         <ContactInfo />
+        <ContactForm />
       </section>
     </div>
   );
