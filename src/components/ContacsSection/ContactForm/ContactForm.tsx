@@ -16,31 +16,37 @@ const ContactForm = () => {
 
   const onSubmit = (data: FormData) => console.log(data);
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="contacts-form">
-      <div className="input-with-error">
-        <input
-          placeholder="Ваше ім'я*"
-          {...register('name', { required: "Це поле обов'язкове" })}
-          className="input-field"
-        />
-        {errors.name && <span>{errors.name.message}</span>}
+    <div className="contacts-request">
+      <div>
+        <h4>Зв'яжіться з нами</h4>
+        <p>Залиште свої дані і ми перетелефонуємо найближчим часом</p>
       </div>
-      <div className="input-with-error">
-        <input
-          placeholder="Номер телефону*"
-          {...register('phoneNumber', { required: "Це поле обов'язкове" })}
-          className="input-field"
-        />
-        {errors.phoneNumber && <span>{errors.phoneNumber.message}</span>}
-      </div>
+      <form onSubmit={handleSubmit(onSubmit)} className="contacts-form">
+        <div className="input-with-error">
+          <input
+            placeholder="Ваше ім'я*"
+            {...register('name', { required: "Це поле обов'язкове" })}
+            className="input-field"
+          />
+          {errors.name && <span>{errors.name.message}</span>}
+        </div>
+        <div className="input-with-error">
+          <input
+            placeholder="Номер телефону*"
+            {...register('phoneNumber', { required: "Це поле обов'язкове" })}
+            className="input-field"
+          />
+          {errors.phoneNumber && <span>{errors.phoneNumber.message}</span>}
+        </div>
 
-      <textarea
-        placeholder="Текстове повідомлення"
-        {...register('message')}
-        className="input-area"
-      />
-      <input type="submit" />
-    </form>
+        <textarea
+          placeholder="Текстове повідомлення"
+          {...register('message')}
+          className="input-area"
+        />
+        <input type="submit" />
+      </form>
+    </div>
   );
 };
 export default ContactForm;
