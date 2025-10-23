@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import './ContactForm.css';
 
 interface FormData {
   name: string;
@@ -15,18 +16,29 @@ const ContactForm = () => {
 
   const onSubmit = (data: FormData) => console.log(data);
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input
-        placeholder="Ваше ім'я*"
-        {...register('name', { required: "Це поле обов'язкове" })}
+    <form onSubmit={handleSubmit(onSubmit)} className="contacts-form">
+      <div className="input-with-error">
+        <input
+          placeholder="Ваше ім'я*"
+          {...register('name', { required: "Це поле обов'язкове" })}
+          className="input-field"
+        />
+        {errors.name && <span>{errors.name.message}</span>}
+      </div>
+      <div className="input-with-error">
+        <input
+          placeholder="Номер телефону*"
+          {...register('phoneNumber', { required: "Це поле обов'язкове" })}
+          className="input-field"
+        />
+        {errors.phoneNumber && <span>{errors.phoneNumber.message}</span>}
+      </div>
+
+      <textarea
+        placeholder="Текстове повідомлення"
+        {...register('message')}
+        className="input-area"
       />
-      {errors.name && <span>{errors.name.message}</span>}
-      <input
-        placeholder="Номер телефону*"
-        {...register('phoneNumber', { required: "Це поле обов'язкове" })}
-      />
-      {errors.phoneNumber && <span>{errors.phoneNumber.message}</span>}
-      <textarea {...register('message')} />
       <input type="submit" />
     </form>
   );

@@ -1,0 +1,35 @@
+.contacts-form {
+  background-color: #95b1ff;
+  border-radius: 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 64px 40px;
+}
+
+.contacts-form .input-field,
+.contacts-form .input-area {
+  padding: 24px;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0px 2px 12px 0px #5151512e;
+}
+
+.contacts-form .input-field:focus,
+.contacts-form .input-area:focus {
+  outline: none;
+}
+
+.contacts-form .input-area {
+  min-height: 142px;
+}
+
+.contacts-form .input-with-error {
+  display: flex;
+  flex-direction: column;
+}
+
+.contacts-form .input-with-error span {
+  color: red;
+  padding-left: 10px;
+}
