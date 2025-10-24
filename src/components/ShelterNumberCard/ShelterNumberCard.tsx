@@ -1,5 +1,5 @@
 import React from 'react';
-import './SchelterNumberCard.css';
+import './ShelterNumberCard.css';
 
 interface ShelterNumberCardProps {
   cardNumber: string;
@@ -17,7 +17,7 @@ const ShelterNumberCard: React.FC<ShelterNumberCardProps> = ({
   return (
     <div className="shelter-number-card">
       {cardNumber ? (
-        <h3 className="schelter-number-card__number">{cardNumber}</h3>
+        <h3 className="shelter-number-card__number">{cardNumber}</h3>
       ) : (
         <h3 className="shelter-number-card__number">—</h3>
       )}

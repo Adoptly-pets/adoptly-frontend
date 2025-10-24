@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import { ShelterNumberCardData } from '../../constants/SHELTERS_NUMBER_CARD_DATA';
-import './ShelterStatisticCard.css';
 import React from 'react';
 import ShelterNumberCard from '../ShelterNumberCard/ShelterNumberCard';
 

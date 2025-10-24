@@ -3,7 +3,7 @@ import heroMob from '../../assets/images/Shelters/Hero-mobile.webp';
 import heroDesk from '../../assets/images/Shelters/Hero-desktop.webp';
 import { SHELTERS_NUMBER_CARD_DATA } from '../../constants/SHELTERS_NUMBER_CARD_DATA';
 import './SheltersHero.css';
-import ShelterStatisticCards from '../ShelterStatisticCard/SchelterStatisticCard';
+import ShelterStatisticCards from '../ShelterStatisticCard/ShelterStatisticCard';
 import { useEffect, useState } from 'react';
 
 const SheltersHero = () => {
@@ -34,8 +34,8 @@ const SheltersHero = () => {
         </div>
 
         <picture className="image-block">
-          <source srcSet={heroMob} media="(max-width:767)" />
-          <source srcSet={heroDesk} media="(min-width: 768)" />
+          <source srcSet={heroMob} media="(max-width:767px)" />
+          <source srcSet={heroDesk} media="(min-width: 768px)" />
           <img src={heroDesk} alt="pets" loading="lazy" />
         </picture>
       </div>
