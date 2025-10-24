@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import './ContactForm.css';
+import Button from '../../Button/Button';
 
 interface FormData {
   name: string;
@@ -44,7 +45,9 @@ const ContactForm = () => {
           {...register('message')}
           className="input-area"
         />
-        <input type="submit" />
+        <Button type="submit" variant="primary" maxWidth={248.5}>
+          Надіслати
+        </Button>
       </form>
     </div>
   );

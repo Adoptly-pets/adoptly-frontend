@@ -12,6 +12,7 @@ interface ButtonProps {
   maxWidth?: string | number;
   maxWidthMobile?: string | number;
   style?: React.CSSProperties;
+  type?: 'button' | 'submit';
 }
 
 const toPx = (v?: number | string) => (typeof v === 'number' ? `${v}px` : v);
@@ -23,6 +24,7 @@ const Button: React.FC<ButtonProps> = ({
   maxWidth,
   maxWidthMobile,
   style,
+  type = 'button',
 }) => {
   const cssVars = {
     '--btn-max-width': toPx(maxWidth) ?? undefined,
@@ -31,6 +33,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
+      type={type}
       onClick={onClick}
       className={`button button--${variant}`}
       style={{ ...cssVars, ...style }}
