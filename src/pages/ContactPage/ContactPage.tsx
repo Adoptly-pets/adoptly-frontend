@@ -1,11 +1,12 @@
 import ContactForm from '../../components/ContacsSection/ContactForm/ContactForm';
 import ContactInfo from '../../components/ContacsSection/ContactInfo/ContactInfo';
+import './ContactPage.css';
 
 const ContactPage = () => {
   return (
-    <div className="contacts">
-      <h2>Контакти</h2>
-      <section>
+    <div className="container">
+      <h3>Контакти</h3>
+      <section className="contacs-section">
         <ContactInfo />
         <ContactForm />
       </section>
