@@ -45,7 +45,13 @@ const ContactForm = () => {
           {...register('message')}
           className="input-area"
         />
-        <Button type="submit" variant="primary" maxWidth={248.5}>
+        <Button
+          type="submit"
+          variant="primary"
+          maxWidth={248.5}
+          maxWidthMobile={220}
+          style={{ margin: '0 auto' }}
+        >
           Надіслати
         </Button>
       </form>

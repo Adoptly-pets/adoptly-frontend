@@ -30,3 +30,27 @@
   gap: 12px;
   padding-top: 12px;
 }
+
+@media screen and (max-width: 768px) {
+  .info-box {
+    padding: 32px 16px;
+    gap: 24px;
+  }
+
+  .info-box > div:last-child {
+    display: none;
+  }
+
+  .info-box strong {
+    font-size: 16px;
+  }
+
+  .info-box span {
+    font-size: 16px;
+    padding-top: 8px;
+  }
+
+  .info-box .social-icons {
+    display: none;
+  }
+}
