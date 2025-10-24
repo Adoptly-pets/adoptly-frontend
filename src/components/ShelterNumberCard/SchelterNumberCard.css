@@ -1,0 +1,39 @@
+.shelter-number-card {
+  border-bottom: 1px solid #e6e7e9;
+  padding: 10px 20px 15px;
+  width: 100%;
+  height: auto;
+  background: #fff;
+}
+.shelter-number-card:first-child {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.shelter-number-card:last-child {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.schelter-number-card__number {
+  font-family: var(--font-family);
+  font-weight: 800;
+  font-size: 38px;
+  line-height: 1.3;
+  color: #ff7300;
+}
+.shelter-number-card__text {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 130%;
+  color: #091a49;
+}
+@media (min-width: 768px) {
+  .schelter-number-card__number {
+    font-size: 42px;
+  }
+  .shelter-number-card__text {
+    tab-size: 24px;
+    color: rgba(9, 26, 73, 0.75);
+  }
+}

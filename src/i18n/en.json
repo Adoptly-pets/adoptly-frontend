@@ -106,6 +106,7 @@
     "button": "Start pet search",
     "buttonMobile": "Pet search"
   },
+
   "footer": {
     "platform": "Platform for pet adoption",
     "findPet": "Find a pet",

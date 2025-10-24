@@ -1,0 +1,58 @@
+.shelters-hero-content {
+  background: #ecf1ff;
+  overflow: hidden;
+  position: relative;
+  justify-content: center;
+  border-radius: 20px;
+  text-align: center;
+  padding-top: 68px;
+  margin-bottom: 23px;
+  display: flex;
+  flex-direction: column;
+}
+.shelter-hero-Logo {
+  fill: #091a49;
+  width: 278px;
+  height: 46px;
+  margin-bottom: 16px;
+}
+.shelter-hero-text {
+  font-family: var(--font-family);
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #091a49;
+  margin-bottom: 27px;
+}
+
+.image-block {
+  padding-top: 42px;
+  display: flex;
+  justify-content: flex-end;
+}
+@media (min-width: 768px) {
+  .shelters-hero-content {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    text-align: start;
+    padding-top: 0;
+    padding-right: 45px;
+    gap: 112px;
+  }
+  .shelter-hero-Logo {
+    width: 342px;
+    height: 54px;
+    margin: 0 0 24px 0;
+  }
+
+  .shelter-hero-text {
+    font-size: 32px;
+    margin-bottom: 32px;
+  }
+
+  .schelters-hero-text-block {
+    padding-top: 51px;
+    padding-bottom: 51px;
+  }
+}

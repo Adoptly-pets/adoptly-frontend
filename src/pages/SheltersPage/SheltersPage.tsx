@@ -1,2 +1,10 @@
-const SheltersPage = () => <h1>Shelters Page</h1>;
+import SheltersHero from '../../components/SheltersHero/SheltersHero';
+
+const SheltersPage = () => {
+  return (
+    <div className="container">
+      <SheltersHero />
+    </div>
+  );
+};
 export default SheltersPage;
