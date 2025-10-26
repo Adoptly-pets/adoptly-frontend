@@ -108,6 +108,7 @@
   },
   "sheltersHero": {
     "paragraph": "We care about those who care for animals",
+    "imageAlt": "pets",
     "cards": {
       "1": "Adoption requests per month",
       "2": "Volunteers joined through the platform",

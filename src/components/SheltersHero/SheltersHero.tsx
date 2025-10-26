@@ -3,29 +3,31 @@ import heroMob from '../../assets/images/Shelters/Hero-mobile.webp';
 import heroDesk from '../../assets/images/Shelters/Hero-desktop.webp';
 import { SHELTERS_NUMBER_CARD_DATA } from '../../constants/SHELTERS_NUMBER_CARD_DATA';
 import './SheltersHero.css';
-import ShelterStatisticCards from '../ShelterStatisticCard/ShelterStatisticCard';
-import { useEffect, useState } from 'react';
+import ShelterStatisticCards from '../ShelterStatisticCard/ShelterStatisticCards';
+import { FC, useEffect, useState } from 'react';
+import { t } from 'i18next';
 
-const SheltersHero = () => {
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
+const SheltersHero: FC = () => {
+  const [isDesktop, setIsDesktop] = useState<boolean>(window.innerWidth >= 768);
+
   useEffect(() => {
-    const handleResize = () => setIsDesktop(window.innerWidth >= 768);
+    const handleResize = (): void => {
+      setIsDesktop(window.innerWidth >= 768);
+    };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
   return (
     <section>
       <div className="shelters-hero-content">
-        <div className="schelters-hero-text-block">
+        <div className="shelters-hero-text-block">
           <Icon
             id="icon-Logo"
-            className="shelter-hero-Logo"
+            className="shelter-hero-logo"
             size={278}
             height={46}
           />
-          <p className="shelter-hero-text">
-            Піклуємось про тих, хто піклується про тварин
-          </p>
+          <p className="shelter-hero-text">{t('sheltersHero.paragraph')}</p>
           {isDesktop && (
             <div className="shelter-static-block">
               <ShelterStatisticCards cards={SHELTERS_NUMBER_CARD_DATA} />

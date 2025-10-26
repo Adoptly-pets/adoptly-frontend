@@ -2,7 +2,7 @@ import React from 'react';
 import './ShelterNumberCard.css';
 
 interface ShelterNumberCardProps {
-  cardNumber: string;
+  cardNumber?: string;
   cardText: string;
 }
 
