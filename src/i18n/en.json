@@ -113,5 +113,14 @@
     "donate": "Donate",
     "volunteer": "Volunteer",
     "helpMedicalFood": "Help with medicine / food"
+  },
+  "contact": {
+    "address_label": "Address",
+    "address_value": "00000, Regional Region, City, Street 1, Building 1, Office 2",
+    "phone_label": "Phone Number",
+    "phone_value": "+38 (093) 123 45 67",
+    "email_label": "Email",
+    "email_value": "adoptly@gmail.com",
+    "socials": "Adoptly Social Media"
   }
 }

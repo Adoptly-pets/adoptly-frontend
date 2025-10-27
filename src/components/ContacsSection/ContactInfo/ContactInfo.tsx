@@ -1,14 +1,23 @@
 import './ContactInfo.css';
 import { Icon } from '../../Icon/Icon';
+import { useTranslation } from 'react-i18next';
 
 const ContactInfo = () => {
+  const { t } = useTranslation();
+
   const contactList = [
     {
-      label: 'Адреса',
-      value: '00000, Обласна обл., м. Місто, вул. Вулична, буд. 1, оф. 2',
+      label: t('contact.address_label'),
+      value: t('contact.address_value'),
     },
-    { label: 'Номер телефону', value: '+38 (093) 123 45 67' },
-    { label: 'Електронна пошта', value: 'adoptly@gmail.com' },
+    {
+      label: t('contact.phone_label'),
+      value: t('contact.phone_value'),
+    },
+    {
+      label: t('contact.email_label'),
+      value: t('contact.email_value'),
+    },
   ];
   return (
     <div className="info-box">
@@ -21,7 +30,7 @@ const ContactInfo = () => {
       ))}
       <div>
         <p>
-          <strong>Соціальні мережі Adoptly</strong>
+          <strong>{t('contact.socials')}</strong>
         </p>
         <div className="social-icons">
           <a

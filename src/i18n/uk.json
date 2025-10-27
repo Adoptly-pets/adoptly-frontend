@@ -114,5 +114,14 @@
     "donate": "Задонатити",
     "volunteer": "Волонтерство",
     "helpMedicalFood": "Допомогти ліками / кормом"
+  },
+  "contact": {
+    "address_label": "Адреса",
+    "address_value": "00000, Обласна обл., м. Місто, вул. Вулична, буд. 1, оф. 2",
+    "phone_label": "Номер телефону",
+    "phone_value": "+38 (093) 123 45 67",
+    "email_label": "Електронна пошта",
+    "email_value": "adoptly@gmail.com",
+    "socials": "Соціальні мережі Adoptly"
   }
 }
