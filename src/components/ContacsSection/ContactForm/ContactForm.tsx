@@ -15,7 +15,8 @@ const ContactForm = () => {
     formState: { errors },
   } = useForm<FormData>();
 
-  const onSubmit = (data: FormData) => console.log(data);
+  const onSubmit = (data: FormData) =>
+    alert(`Надіслано повідомлення: ` + data.message);
   return (
     <div className="contacts-request">
       <div>
