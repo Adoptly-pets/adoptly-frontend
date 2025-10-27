@@ -26,9 +26,9 @@ const ContactInfo = () => {
         <div className="social-icons">
           <a
             className="btn-footer"
-            type="button"
             title="Instagram"
             target="_blank"
+            rel="noopener noreferrer"
             href="https://www.instagram.com"
             aria-label="Instagram"
           >
@@ -41,9 +41,9 @@ const ContactInfo = () => {
           </a>
           <a
             className="btn-footer"
-            type="button"
             title="Facebook"
             target="_blank"
+            rel="noopener noreferrer"
             href="https://www.facebook.com"
             aria-label="Facebook"
           >
@@ -56,9 +56,9 @@ const ContactInfo = () => {
           </a>
           <a
             className="btn-footer"
-            type="button"
             title="TikTok"
             target="_blank"
+            rel="noopener noreferrer"
             href="https://www.tiktok.com"
             aria-label="TikTok"
           >
