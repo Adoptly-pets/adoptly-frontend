@@ -79,6 +79,7 @@ const HowItWorks: React.FC = React.memo(() => {
         className="how-it-works-mobile__catfootprint-img"
         src={catFootprintSrc}
         alt="cat footprint"
+        loading="lazy"
       />
     </section>
   );
