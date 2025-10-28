@@ -106,6 +106,15 @@
     "button": "Start pet search",
     "buttonMobile": "Pet search"
   },
+  "sheltersHero": {
+    "paragraph": "We care about those who care for animals",
+    "imageAlt": "pets",
+    "cards": {
+      "1": "Adoption requests per month",
+      "2": "Volunteers joined through the platform",
+      "3": "Aid provided to shelters"
+    }
+  },
   "footer": {
     "platform": "Platform for pet adoption",
     "findPet": "Find a pet",
