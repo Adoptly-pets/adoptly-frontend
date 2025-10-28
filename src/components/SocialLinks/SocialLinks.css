@@ -31,4 +31,14 @@
   .menu .social-link {
     background: #f0f0f0;
   }
+
+  .social-link {
+    width: 34px;
+    height: 34px;
+  }
+
+  .social-icon {
+    width: 17px;
+    height: 17px;
+  }
 }
