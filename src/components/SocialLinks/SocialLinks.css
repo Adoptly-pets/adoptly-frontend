@@ -1,0 +1,23 @@
+.social-nav {
+  display: flex;
+  gap: 12px;
+}
+
+.nav-btn-footer {
+  border-radius: 40px;
+  border: 1px solid transparent;
+  width: 48px;
+  height: 48px;
+  background: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav-btn-footer:hover {
+  background: #e8e8e8;
+  transform: translateY(-1px);
+}
+
+.nav-btn-footer:active {
+  transform: translateY(0);
+}

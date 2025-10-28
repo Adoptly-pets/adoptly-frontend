@@ -24,10 +24,8 @@
   display: block;
 }
 
-.info-box .social-icons {
-  display: flex;
-  gap: 12px;
-  padding-top: 12px;
+.info-box .social-media p {
+  padding-bottom: 12px;
 }
 
 @media screen and (max-width: 768px) {
