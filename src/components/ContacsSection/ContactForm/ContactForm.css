@@ -42,6 +42,7 @@
 
 .contacts-form .input-area {
   min-height: 142px;
+  margin-bottom: 12px;
 }
 
 .contacts-form .input-with-error {
@@ -58,7 +59,7 @@
 .contacts-form textarea::placeholder,
 .contacts-form input,
 .contacts-form textarea {
-  color: #091a49;
+  color: #091a49cc;
   font-size: 18px;
   font-weight: 500;
 }
@@ -86,5 +87,12 @@
 
   .contacts-form .input-area {
     min-height: 120px;
+  }
+
+  .contacts-form input::placeholder,
+  .contacts-form textarea::placeholder,
+  .contacts-form input,
+  .contacts-form textarea {
+    font-size: 16px;
   }
 }
