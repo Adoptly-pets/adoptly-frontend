@@ -17,7 +17,12 @@ interface AnimalCardProps {
 const AnimalCard: React.FC<AnimalCardProps> = ({ animal }) => {
   return (
     <div className="card">
-      <img className="animal-img" src={animal.image} alt={animal.name} />
+      <img
+        className="animal-img"
+        src={animal.image}
+        alt={animal.name}
+        loading="lazy"
+      />
       <button
         className="btn-favourite "
         type="button"

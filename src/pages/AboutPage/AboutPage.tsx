@@ -1,5 +1,3 @@
-
-
 import Carousel from '../../components/Carousel/Carousel';
 import OurMission from '../../components/OurMission/OurMission';
 import FAQAccordionSection from '../../components/FAQAccordionSection/FAQAccordionSection';

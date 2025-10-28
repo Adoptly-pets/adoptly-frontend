@@ -13,19 +13,19 @@ const ReadyToAdopt = () => {
 
   const [buttonText, setButtonText] = useState('Почати пошук улюбленця');
 
-  const updateButtonText = () => {
-    if (window.innerWidth < 768) {
-      setButtonText(t('readyToAdopt.buttonMobile'));
-    } else {
-      setButtonText(t('readyToAdopt.button'));
-    }
-  };
-
   useEffect(() => {
+    const updateButtonText = () => {
+      if (window.innerWidth < 768) {
+        setButtonText(t('readyToAdopt.buttonMobile'));
+      } else {
+        setButtonText(t('readyToAdopt.button'));
+      }
+    };
+
     updateButtonText();
     window.addEventListener('resize', updateButtonText);
     return () => window.removeEventListener('resize', updateButtonText);
-  }, [i18n.language]);
+  }, [i18n.language, t]);
 
   return (
     <section className="ready-to-adopt">
