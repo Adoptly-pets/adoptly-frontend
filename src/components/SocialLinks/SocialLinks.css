@@ -3,21 +3,32 @@
   gap: 12px;
 }
 
-.nav-btn-footer {
+.social-link {
   border-radius: 40px;
   border: 1px solid transparent;
   width: 48px;
   height: 48px;
-  background: #f0f0f0;
+  background: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.nav-btn-footer:hover {
+
+.social-link:hover {
   background: #e8e8e8;
   transform: translateY(-1px);
 }
 
-.nav-btn-footer:active {
+.social-link:active {
   transform: translateY(0);
+}
+
+@media screen and (max-width: 768px) {
+  .social-nav {
+    justify-content: center;
+  }
+
+  .menu .social-link {
+    background: #f0f0f0;
+  }
 }
