@@ -54,6 +54,15 @@
   padding-left: 10px;
 }
 
+.contacts-form input::placeholder,
+.contacts-form textarea::placeholder,
+.contacts-form input,
+.contacts-form textarea {
+  color: #091a49;
+  font-size: 18px;
+  font-weight: 500;
+}
+
 @media screen and (max-width: 768px) {
   .contacts-request {
     padding: 32px 16px;

@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import './ContactForm.css';
 import Button from '../../Button/Button';
+import { useTranslation } from 'react-i18next';
 
 interface FormData {
   name: string;
@@ -9,6 +10,7 @@ interface FormData {
 }
 
 const ContactForm = () => {
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -20,29 +22,40 @@ const ContactForm = () => {
   return (
     <div className="contacts-request">
       <div>
-        <h4>Зв'яжіться з нами</h4>
-        <p>Залиште свої дані і ми перетелефонуємо найближчим часом</p>
+        <h4>{t('contact.contact_us')}</h4>
+        <p>{t('contact.contact_description')}</p>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="contacts-form">
         <div className="input-with-error">
           <input
-            placeholder="Ваше ім'я*"
-            {...register('name', { required: "Це поле обов'язкове" })}
+            placeholder={t('contact.name_placeholder')}
+            {...register('name', {
+              required: {
+                value: true,
+                message: t('errors.required'),
+              },
+            })}
             className="input-field"
           />
           {errors.name && <span>{errors.name.message}</span>}
         </div>
         <div className="input-with-error">
           <input
-            placeholder="Номер телефону*"
-            {...register('phoneNumber', { required: "Це поле обов'язкове" })}
+            type="tel"
+            placeholder={t('contact.phone_placeholder')}
+            {...register('phoneNumber', {
+              required: {
+                value: true,
+                message: t('errors.required'),
+              },
+            })}
             className="input-field"
           />
           {errors.phoneNumber && <span>{errors.phoneNumber.message}</span>}
         </div>
 
         <textarea
-          placeholder="Текстове повідомлення"
+          placeholder={t('contact.message_placeholder')}
           {...register('message')}
           className="input-area"
         />
@@ -53,7 +66,7 @@ const ContactForm = () => {
           maxWidthMobile={220}
           style={{ margin: '0 auto' }}
         >
-          Надіслати
+          {t('contact.submit_button')}
         </Button>
       </form>
     </div>

@@ -115,12 +115,22 @@
     "helpMedicalFood": "Help with medicine / food"
   },
   "contact": {
+    "title": "Contacts",
     "address_label": "Address",
     "address_value": "00000, Regional Region, City, Street 1, Building 1, Office 2",
     "phone_label": "Phone Number",
     "phone_value": "+38 (093) 123 45 67",
     "email_label": "Email",
     "email_value": "adoptly@gmail.com",
-    "socials": "Adoptly Social Media"
+    "socials": "Adoptly Social Media",
+    "contact_us": "Contact Us",
+    "contact_description": "Leave your details and we will call you back as soon as possible",
+    "name_placeholder": "Your Name*",
+    "phone_placeholder": "Phone Number*",
+    "message_placeholder": "Your Message",
+    "submit_button": "Submit"
+  },
+  "errors": {
+    "required": "This field is required"
   }
 }
