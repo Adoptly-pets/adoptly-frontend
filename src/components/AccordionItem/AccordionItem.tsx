@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 import './Accordionitem.css';
 import { Icon } from '../Icon/Icon';
 
+export type AnswerItem =
+  | { type: 'list'; content: string[] }
+  | { type: 'text'; content: string };
+
 interface AccordionItemProps {
   question: string;
-  answer: string;
+  answer: string | AnswerItem[];
 }
 
 const Accordionitem: React.FC<AccordionItemProps> = ({ question, answer }) => {
@@ -12,6 +16,22 @@ const Accordionitem: React.FC<AccordionItemProps> = ({ question, answer }) => {
 
   const toggleAccordion = () => {
     setIsOpen(prev => !prev);
+  };
+
+  const renderAnswer = () => {
+    if (typeof answer === 'string') return <p>{answer}</p>;
+
+    return answer.map((item, idx) =>
+      item.type === 'list' ? (
+        <ul key={idx}>
+          {item.content.map((li, i) => (
+            <li key={i}>{li}</li>
+          ))}
+        </ul>
+      ) : (
+        <p key={idx}>{item.content}</p>
+      )
+    );
   };
 
   return (
@@ -25,7 +45,7 @@ const Accordionitem: React.FC<AccordionItemProps> = ({ question, answer }) => {
           className="icon-mobile"
         />
       </div>
-      <div className="accordion-content">{answer}</div>
+      {isOpen && <div className="accordion-content">{renderAnswer()}</div>}
     </div>
   );
 };
