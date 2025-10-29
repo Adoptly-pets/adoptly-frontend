@@ -27,13 +27,17 @@ const Footer = () => {
             <Link to="/" className="platform-footer">
               {t('footer.platform')}
             </Link>
+
             <div>
               <ul className="footer-list">
                 <li className="item-nav">
-                  <Link to="/find-pet">{t('footer.findPet')}</Link>
+                  <Link to="/">{t('nav.home')}</Link>
                 </li>
                 <li className="item-nav">
-                  <Link to="/join-shelter">{t('footer.joinShelter')}</Link>
+                  <Link to="/about">{t('nav.about')}</Link>
+                </li>
+                <li className="item-nav">
+                  <Link to="/contacts">{t('nav.contacts')}</Link>
                 </li>
               </ul>
             </div>
@@ -49,6 +53,17 @@ const Footer = () => {
                   <Link to="/help-medical-food">
                     {t('footer.helpMedicalFood')}
                   </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <ul className="footer-list">
+                <li className="item-nav">
+                  <Link to="/find-pet">{t('footer.findPet')}</Link>
+                </li>
+                <li className="item-nav">
+                  <Link to="/join-shelter">{t('footer.joinShelter')}</Link>
                 </li>
               </ul>
             </div>

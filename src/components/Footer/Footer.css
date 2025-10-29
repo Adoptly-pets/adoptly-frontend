@@ -62,6 +62,9 @@
 .btn-footer:active {
   transform: translateY(0);
 }
+.footer-icon {
+  fill: #091a49;
+}
 
 .btnUp {
   width: 64px;

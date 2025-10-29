@@ -62,7 +62,7 @@ const Header = () => {
           />
           <div className="btn-wrap">
             <button type="button" className="btn btn-modal" title="Favourite">
-              <Icon id="icon-heart" size={16} />
+              <Icon id="icon-heart" className="icon-heart" size={16} />
             </button>
             <div className="btn-modal-language" aria-label="Switch language">
               <button
@@ -103,10 +103,15 @@ const Header = () => {
           </button>
 
           <button type="button" className="btn" title="Favourite">
-            <Icon id="icon-heart" size={16} height={15} />
+            <Icon
+              id="icon-heart"
+              className="icon-heart"
+              size={16}
+              height={15}
+            />
           </button>
           <button type="button" className="btn" title="Username">
-            <Icon id="icon-user" size={16} height={15} />
+            <Icon id="icon-user" className="icon-user" size={16} height={15} />
           </button>
         </div>
       </div>
