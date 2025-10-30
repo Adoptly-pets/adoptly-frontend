@@ -1,0 +1,44 @@
+.social-nav {
+  display: flex;
+  gap: 12px;
+}
+
+.social-link {
+  border-radius: 40px;
+  border: 1px solid transparent;
+  width: 48px;
+  height: 48px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-link:hover {
+  background: #e8e8e8;
+  transform: translateY(-1px);
+}
+
+.social-link:active {
+  transform: translateY(0);
+}
+
+@media screen and (max-width: 768px) {
+  .social-nav {
+    justify-content: center;
+  }
+
+  .menu .social-link {
+    background: #f0f0f0;
+  }
+
+  .social-link {
+    width: 34px;
+    height: 34px;
+  }
+
+  .social-icon {
+    width: 17px;
+    height: 17px;
+  }
+}

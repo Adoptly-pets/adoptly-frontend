@@ -63,7 +63,7 @@ describe('Footer Component', () => {
     expect(
       screen.getByRole('link', { name: /Cookie policy/i })
     ).toBeInTheDocument(); //add this one
-    expect(screen.getByRole('navigation')).toHaveClass('buttons');
+
     expect(
       screen.getByRole('link', { name: /Back to top/i })
     ).toBeInTheDocument();

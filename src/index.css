@@ -7,6 +7,7 @@
   --font-special: 'Baloo Chettan', sans-serif;
 
   --text-color: rgba(255, 255, 255, 0.87);
+  --title-color-dark: #091a49;
   --background-color: #242424;
   --button-bg: #1a1a1a;
   --button-text: #ffffff;
@@ -68,6 +69,13 @@ body {
 h1 {
   font-size: 3.2rem;
   line-height: 1.1;
+}
+
+h3 {
+  font-size: 2rem;
+  line-height: 1.2;
+  color: var(--title-color);
+  font-weight: 800;
 }
 
 .container {
