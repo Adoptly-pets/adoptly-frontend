@@ -58,7 +58,6 @@ const Footer = () => {
               </ul>
             </div>
 
-
             <div>
               <ul className="footer-list">
                 <li className="item-nav">
@@ -70,53 +69,6 @@ const Footer = () => {
               </ul>
             </div>
 
-            <nav className="buttons">
-              <a
-                className="btn-footer"
-                type="button"
-                title="Instagram"
-                target="_blank"
-                href="https://www.instagram.com"
-                aria-label="Instagram"
-              >
-                <Icon
-                  id="icon-instagram"
-                  className="footer-icon"
-                  size={25}
-                  height={22}
-                />
-              </a>
-              <a
-                className="btn-footer"
-                type="button"
-                title="Facebook"
-                target="_blank"
-                href="https://www.facebook.com"
-                aria-label="Facebook"
-              >
-                <Icon
-                  id="icon-facebook"
-                  className="footer-icon"
-                  size={25}
-                  height={22}
-                />
-              </a>
-              <a
-                className="btn-footer"
-                type="button"
-                title="TikTok"
-                target="_blank"
-                href="https://www.tiktok.com"
-                aria-label="TikTok"
-              >
-                <Icon
-                  id="icon-tiktok"
-                  className="footer-icon"
-                  size={25}
-                  height={22}
-                />
-              </a>
-            </nav>
             <SocialLinks />
           </div>
           <div className="containerBtn">
