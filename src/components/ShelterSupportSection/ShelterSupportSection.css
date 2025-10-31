@@ -3,10 +3,11 @@
   background-image: url('/src/assets/images/Shelters/supportSection.jpg');
   border-radius: 44px;
   height: 630px;
-  background-size: 100%; /* Зображення буде розтягуватися по всій площі */
+  background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
   overflow: hidden;
+  margin-top: 32px;
 }
 
 .shelter-suport-section::before {
@@ -21,4 +22,16 @@
     rgba(255, 255, 255, 0.5) 31.46%,
     rgba(255, 255, 255, 0) 50%
   );
+}
+
+.shelter-suport-section .content-container {
+  position: relative;
+  z-index: 2;
+  margin-left: 40px;
+}
+
+.shelter-suport-section h3 {
+  max-width: 635px;
+  margin-top: 52px;
+  margin-bottom: 42px;
 }
