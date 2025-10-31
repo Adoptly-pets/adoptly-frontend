@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './AccordionItem.css';
+import './Accordionitem.css';
 import { Icon } from '../Icon/Icon';
 
 export type AnswerItem =
