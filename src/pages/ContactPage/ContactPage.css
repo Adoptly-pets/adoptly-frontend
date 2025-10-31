@@ -1,0 +1,11 @@
+.container .contacs-section {
+  display: flex;
+  gap: 20px;
+  padding-top: 37px;
+}
+
+@media screen and (max-width: 768px) {
+  .container .contacs-section {
+    flex-direction: column-reverse;
+  }
+}

@@ -1,0 +1,98 @@
+.contacts-request {
+  background-color: #95b1ff;
+  border-radius: 44px;
+  padding: 64px 40px;
+  width: 100%;
+}
+
+.contacts-request h4 {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #091a49;
+}
+
+.contacts-request p {
+  font-size: 18px;
+  line-height: 1;
+  font-weight: 500;
+  color: #091a49;
+  padding-bottom: 32px;
+  padding-top: 12px;
+}
+
+.contacts-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.contacts-form .input-field,
+.contacts-form .input-area {
+  padding: 24px;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0px 2px 12px 0px #5151512e;
+}
+
+.contacts-form .input-field:focus,
+.contacts-form .input-area:focus {
+  outline: none;
+}
+
+.contacts-form .input-area {
+  min-height: 142px;
+  margin-bottom: 12px;
+}
+
+.contacts-form .input-with-error {
+  display: flex;
+  flex-direction: column;
+}
+
+.contacts-form .input-with-error span {
+  color: red;
+  padding-left: 10px;
+}
+
+.contacts-form input::placeholder,
+.contacts-form textarea::placeholder,
+.contacts-form input,
+.contacts-form textarea {
+  color: #091a49cc;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+  .contacts-request {
+    padding: 32px 16px;
+  }
+
+  .contacts-request p {
+    font-size: 16px;
+    line-height: 22px;
+    padding-bottom: 24px;
+  }
+
+  .contacts-form {
+    gap: 12px;
+  }
+
+  .contacts-form .input-field,
+  .contacts-form .input-area {
+    padding: 12px 16px;
+    border-radius: 12px;
+  }
+
+  .contacts-form .input-area {
+    min-height: 120px;
+  }
+
+  .contacts-form input::placeholder,
+  .contacts-form textarea::placeholder,
+  .contacts-form input,
+  .contacts-form textarea {
+    font-size: 16px;
+  }
+}

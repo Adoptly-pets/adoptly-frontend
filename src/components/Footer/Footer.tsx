@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Icon } from '../Icon/Icon';
 import './Footer.css';
 import { useTranslation } from 'react-i18next';
+import SocialLinks from '../SocialLinks/SocialLinks';
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -56,6 +57,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
+
 
             <div>
               <ul className="footer-list">
@@ -115,6 +117,7 @@ const Footer = () => {
                 />
               </a>
             </nav>
+            <SocialLinks />
           </div>
           <div className="containerBtn">
             <a
