@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Accordionitem.css';
+import './AccordionItem.css';
 import { Icon } from '../Icon/Icon';
 
 export type AnswerItem =
@@ -11,7 +11,7 @@ interface AccordionItemProps {
   answer: string | AnswerItem[];
 }
 
-const Accordionitem: React.FC<AccordionItemProps> = ({ question, answer }) => {
+const AccordionItem: React.FC<AccordionItemProps> = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleAccordion = () => {
@@ -50,4 +50,4 @@ const Accordionitem: React.FC<AccordionItemProps> = ({ question, answer }) => {
   );
 };
 
-export default Accordionitem;
+export default AccordionItem;
