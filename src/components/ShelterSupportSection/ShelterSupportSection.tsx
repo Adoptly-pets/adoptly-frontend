@@ -3,7 +3,7 @@ import './ShelterSupportSection.css';
 
 const ShelterSupportSection = () => {
   return (
-    <section className="shelter-suport-section">
+    <section className="shelter-support-section">
       <div className="content-container">
         <h3>
           Додавайте тварин у каталог та отримуйте донати, корм та ліки від

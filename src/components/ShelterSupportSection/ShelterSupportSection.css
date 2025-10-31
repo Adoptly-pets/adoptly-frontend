@@ -1,4 +1,4 @@
-.shelter-suport-section {
+.shelter-support-section {
   position: relative;
   background-image: url('/src/assets/images/Shelters/supportSection.webp');
   border-radius: 44px;
@@ -10,7 +10,7 @@
   margin-top: 32px;
 }
 
-.shelter-suport-section::before {
+.shelter-support-section::before {
   content: '';
   position: absolute;
   top: 0;
@@ -24,35 +24,35 @@
   );
 }
 
-.shelter-suport-section .content-container {
+.shelter-support-section .content-container {
   position: relative;
   z-index: 2;
   margin-left: 40px;
 }
 
-.shelter-suport-section h3 {
+.shelter-support-section h3 {
   max-width: 635px;
   margin-top: 52px;
   margin-bottom: 42px;
 }
 
 @media screen and (max-width: 768px) {
-  .shelter-suport-section {
+  .shelter-support-section {
     height: 602px;
     border-radius: 20px;
   }
-  .shelter-suport-section::before {
+  .shelter-support-section::before {
     background: linear-gradient(
       -25.25deg,
       rgba(0, 0, 0, 0) 56%,
       rgba(254, 254, 254, 0.5) 81.14%
     );
   }
-  .shelter-suport-section .content-container {
+  .shelter-support-section .content-container {
     margin-left: 17px;
   }
 
-  .shelter-suport-section h3 {
+  .shelter-support-section h3 {
     font-size: 18px;
     margin-top: 43px;
     margin-bottom: 18px;
