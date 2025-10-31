@@ -1,4 +1,24 @@
 .shelter-suport-section {
-  height: 200px;
-  background-color: red;
+  position: relative;
+  background-image: url('/src/assets/images/Shelters/supportSection.jpg');
+  border-radius: 44px;
+  height: 630px;
+  background-size: 100%; /* Зображення буде розтягуватися по всій площі */
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+}
+
+.shelter-suport-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    116.07deg,
+    rgba(255, 255, 255, 0.5) 31.46%,
+    rgba(255, 255, 255, 0) 50%
+  );
 }
