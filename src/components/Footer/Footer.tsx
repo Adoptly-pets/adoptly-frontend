@@ -65,7 +65,7 @@ const Footer = () => {
                   <Link to="/find-pet">{t('footer.findPet')}</Link>
                 </li>
                 <li className="item-nav">
-                  <Link to="/shelter">{t('footer.joinShelter')}</Link>
+                  <Link to="/shelters">{t('footer.joinShelter')}</Link>
                 </li>
               </ul>
             </div>
