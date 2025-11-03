@@ -10,25 +10,29 @@ const NotFound404 = () => {
   return (
     <section className="section-404">
       <picture>
-        <source src={footprint1mob} media="(max-width:767px)" />
-        <source src={footprint1} media="(min-width:768px)" />
+        <source srcSet={footprint1mob} media="(max-width:767px)" />
+        <source srcSet={footprint1} media="(min-width:768px)" />
         <img
           src={footprint1}
-          alt="footprint"
+          alt=""
           loading="lazy"
+          decoding="async"
           className="footprint1"
+          aria-hidden="true"
         />
       </picture>
 
       <div className="box-404">
         <picture>
-          <source src={mobile} media="(max-width:767px)" />
-          <source src={desktop} media="(min-width:768px)" />
+          <source srcSet={mobile} media="(max-width:767px)" />
+          <source srcSet={desktop} media="(min-width:768px)" />
           <img
             src={desktop}
-            alt="pets"
+            alt=""
             loading="lazy"
+            decoding="async"
             className="notFound-img"
+            aria-hidden="true"
           />
         </picture>
         <p className="text-404">
@@ -40,13 +44,15 @@ const NotFound404 = () => {
         </div>
       </div>
       <picture>
-        <source src={footprint2mob} media="(max-width:767px)" />
-        <source src={footprint2} media="(min-width:768px)" />
+        <source srcSet={footprint2mob} media="(max-width:767px)" />
+        <source srcSet={footprint2} media="(min-width:768px)" />
         <img
           src={footprint2}
-          alt="footprint"
+          alt=""
           loading="lazy"
+          decoding="async"
           className="footprint2"
+          aria-hidden="true"
         />
       </picture>
     </section>
