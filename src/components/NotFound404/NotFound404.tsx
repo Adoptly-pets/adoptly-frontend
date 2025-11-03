@@ -5,6 +5,7 @@ import footprint1mob from '../../assets/images/NotFound/footprint1-mob.webp';
 import footprint2mob from '../../assets/images/NotFound/footprint2-mob.webp';
 import footprint1 from '../../assets/images/NotFound/footprint1.webp';
 import footprint2 from '../../assets/images/NotFound/footprint2.webp';
+import { Link } from 'react-router-dom';
 
 const NotFound404 = () => {
   return (
@@ -40,7 +41,7 @@ const NotFound404 = () => {
           Упс! Такої сторінки не існує або наша команда ще працює над нею.
         </p>
         <div className="btn-404">
-          <a href="/">Повернутись на головну</a>
+          <Link to="/">Повернутись на головну</Link>
         </div>
       </div>
       <picture>
