@@ -1,12 +1,11 @@
 import AccordionItem from '../../components/AccordionItem/AccordionItem';
-import { FAQ_DATA } from '../../constants/FAQ_DATA';
-import './FAQAccordionSection.css';
+import { SHELTERS_FAQ_DATA } from '../../constants/SHELTERS_FAQ-DATA';
 
-const FAQAccordionSection = () => {
+const SheltersFAQ = () => {
   return (
     <div className="faq-section">
       <h2>Часті запитання</h2>
-      {FAQ_DATA.map(item => (
+      {SHELTERS_FAQ_DATA.map(item => (
         <AccordionItem
           key={item.id}
           question={item.question}
@@ -17,4 +16,4 @@ const FAQAccordionSection = () => {
   );
 };
 
-export default FAQAccordionSection;
+export default SheltersFAQ;

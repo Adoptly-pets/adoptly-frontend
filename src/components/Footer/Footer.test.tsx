@@ -96,7 +96,7 @@ describe('Footer Component', () => {
     ).toHaveAttribute('href', '/find-pet');
     expect(
       screen.getByRole('link', { name: /Доєднатись як притулок/i })
-    ).toHaveAttribute('href', '/join-shelter');
+    ).toHaveAttribute('href', '/shelters');
     expect(screen.getByRole('link', { name: /Задонатити/i })).toHaveAttribute(
       'href',
       '/donate'
