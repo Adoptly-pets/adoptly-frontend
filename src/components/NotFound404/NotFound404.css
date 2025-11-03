@@ -1,0 +1,91 @@
+.section-404 {
+  position: relative;
+  min-height: 602px;
+  overflow: hidden;
+}
+.footprint1 {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 0.5%;
+  left: 1.25%;
+}
+.box-404 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-width: 439px;
+  margin: 0 auto;
+  margin-top: 107px;
+}
+
+.text-404 {
+  font-family: var(--font-family);
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 130%;
+  letter-spacing: -0.02em;
+  color: #091a49;
+  margin-bottom: 18px;
+}
+.btn-404 {
+  position: relative;
+  border-radius: 12px;
+  padding: 10px;
+  width: 220px;
+  height: 47px;
+  background: #ff7300;
+  font-family: var(--font-family);
+  font-weight: 800;
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+}
+
+.footprint2 {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  bottom: 1.1%;
+  right: 4%;
+}
+
+@media (min-width: 768px) {
+  .section-404 {
+    height: 669px;
+  }
+  .footprint1 {
+    width: 68px;
+    height: 68px;
+    top: 84.4%;
+    left: 4.7%;
+  }
+  .box-404 {
+    margin-top: 0;
+    padding: 39px 0;
+  }
+  .notFound-img {
+    width: 438px;
+    height: 444px;
+  }
+  .text-404 {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+  .btn-404 {
+    width: 314px;
+    height: 64px;
+    font-size: 22px;
+    border-radius: 20px;
+    padding: 14px;
+  }
+  .footprint2 {
+    width: 100px;
+    height: 100px;
+    bottom: 78%;
+    right: 4.7%;
+  }
+}
