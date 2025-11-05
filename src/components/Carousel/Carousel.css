@@ -29,7 +29,7 @@
   position: static !important;
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 12px;
   margin-top: 20px;
 }
 
@@ -46,6 +46,12 @@
   background: #c2cade;
 }
 
+.swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
+.swiper-pagination-horizontal.swiper-pagination-bullets
+  .swiper-pagination-bullet {
+  margin: 0;
+}
+
 @media screen and (max-width: 768px) {
   .carousel-section h2 {
     font-size: 24px;
@@ -55,5 +61,14 @@
   .carousel-container {
     padding: 24px 0;
     max-width: 517px;
+  }
+
+  .carousel-container .swiper-pagination {
+    gap: 8px;
+  }
+
+  .carousel-container .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
   }
 }

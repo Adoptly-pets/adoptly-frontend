@@ -1,4 +1,3 @@
-
 import SheltersFAQ from '../../components/SheltersFAQ/SheltersFAQ';
 
 import ShelterSupportSection from '../../components/ShelterSupportSection/ShelterSupportSection';
@@ -12,7 +11,6 @@ const SheltersPage = () => {
       <SheltersFAQ />
 
       <ShelterSupportSection />
-
     </div>
   );
 };
