@@ -5,9 +5,18 @@ import footprint1mob from '../../assets/images/NotFound/footprint1-mob.webp';
 import footprint2mob from '../../assets/images/NotFound/footprint2-mob.webp';
 import footprint1 from '../../assets/images/NotFound/footprint1.webp';
 import footprint2 from '../../assets/images/NotFound/footprint2.webp';
-import { Link } from 'react-router-dom';
+import Button from '../../components/Button/Button';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const NotFound404 = () => {
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+
+  const backHome = () => {
+    navigate('/');
+  };
+
   return (
     <section className="section-404">
       <picture>
@@ -36,13 +45,16 @@ const NotFound404 = () => {
             aria-hidden="true"
           />
         </picture>
-        <p className="text-404">
-          {' '}
-          Упс! Такої сторінки не існує або наша команда ще працює над нею.
-        </p>
-        <div className="btn-404">
-          <Link to="/">Повернутись на головну</Link>
-        </div>
+        <p className="text-404">{t('notFoundPage.text')}</p>
+
+        <Button
+          variant="primary"
+          maxWidth={314}
+          maxWidthMobile={220}
+          onClick={backHome}
+        >
+          {t('notFoundPage.button')}
+        </Button>
       </div>
       <picture>
         <source srcSet={footprint2mob} media="(max-width:767px)" />

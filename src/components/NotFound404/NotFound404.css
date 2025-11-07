@@ -31,19 +31,6 @@
   color: #091a49;
   margin-bottom: 18px;
 }
-.btn-404 {
-  position: relative;
-  border-radius: 12px;
-  padding: 10px;
-  width: 220px;
-  height: 47px;
-  background: #ff7300;
-  font-family: var(--font-family);
-  font-weight: 800;
-  font-size: 16px;
-  color: #fff;
-  text-align: center;
-}
 
 .footprint2 {
   position: absolute;
@@ -74,13 +61,6 @@
   .text-404 {
     font-size: 24px;
     margin-bottom: 24px;
-  }
-  .btn-404 {
-    width: 314px;
-    height: 64px;
-    font-size: 22px;
-    border-radius: 20px;
-    padding: 14px;
   }
   .footprint2 {
     width: 100px;
