@@ -3,7 +3,7 @@
   overflow: hidden;
   position: relative;
   justify-content: center;
-  border-radius: 20px;
+  border-radius: 44px;
   text-align: center;
   padding-top: 68px;
   margin-bottom: 23px;
@@ -27,9 +27,15 @@
 }
 
 .image-block {
-  padding-top: 42px;
   display: flex;
+  flex-direction: column;
   justify-content: flex-end;
+}
+
+.image-block img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 @media (min-width: 768px) {
   .shelters-hero-content {

@@ -6,12 +6,12 @@
   background: #fff;
 }
 .shelter-number-card:first-child {
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-top-left-radius: 24.4px;
+  border-top-right-radius: 24.4px;
 }
 .shelter-number-card:last-child {
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 24.4px;
+  border-bottom-right-radius: 24.4px;
 }
 
 .shelter-number-card__number {
