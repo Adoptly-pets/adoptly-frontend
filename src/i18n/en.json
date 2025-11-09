@@ -141,5 +141,9 @@
   },
   "errors": {
     "required": "This field is required"
+  },
+  "notFoundPage": {
+    "button": "Return to Home",
+    "text": "Oops! This page does not exist or our team is still working on it."
   }
 }
