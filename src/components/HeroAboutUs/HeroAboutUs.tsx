@@ -1,7 +1,7 @@
 import './HeroAboutUs.css';
 const HeroAboutUs = () => {
   return (
-    <section className="hero-background">
+    <section className="hero-background" role="region">
       <div>
         <h1 className="hero-title">Adoptly</h1>
         <p className="hero-text">

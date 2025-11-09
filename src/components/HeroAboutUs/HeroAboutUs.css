@@ -1,8 +1,10 @@
 .hero-background {
   position: relative;
   background-image: url('/src/assets/images/AboutUs/Hero-Section-mob.webp');
+  background-size: cover;
+  background-position: center;
   border-radius: 20px;
-  width: 320px;
+  width: 100%;
   height: 602px;
   display: flex;
   flex-direction: column;
@@ -65,12 +67,13 @@
     flex-direction: column;
     justify-content: center;
     padding: 0 609px 0 42px;
+    border-radius: 44px;
   }
   .hero-title {
     font-size: 91px;
   }
   .hero-text {
-    font-size: 30px;
+    font-size: 32px;
     margin-bottom: 42px;
   }
   .btn-mob {
