@@ -1,0 +1,26 @@
+.benefit-block {
+  padding: 24px 40px;
+  max-width: 440px;
+  border-radius: 44px;
+  background-color: #ffffff;
+}
+
+.benefit-block img {
+  display: block;
+  margin: 0 auto;
+}
+
+.benefit-block h4 {
+  font-size: 24px;
+  color: #ff8c00;
+  font-weight: 800;
+  line-height: 1.2;
+  padding: 24px 0 12px;
+}
+
+.benefit-block p {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #091a49bf;
+}
