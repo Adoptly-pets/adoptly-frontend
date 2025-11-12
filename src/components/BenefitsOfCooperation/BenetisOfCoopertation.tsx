@@ -1,15 +1,13 @@
 import './BenefitsOfCooperation.css';
 import BenefitBlock from '../BenefitBlock/BenefitBlock';
-import GuideCardImg from '../../assets/images/guideCardImg1.webp';
+import { BENEFITS_DATA } from '../../constants/BENEFITS_DATA';
 
 const BenefitsOfCooperation = () => {
   return (
     <div className="benefits">
-      <BenefitBlock
-        image={GuideCardImg}
-        title="Заявки на усиновлення"
-        text="Отримуйте запити від людей, які хочуть забрати тварину додому"
-      />
+      {BENEFITS_DATA.map(item => (
+        <BenefitBlock image={item.image} title={item.title} text={item.text} />
+      ))}
     </div>
   );
 };
