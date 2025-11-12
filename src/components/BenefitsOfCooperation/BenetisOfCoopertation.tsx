@@ -1,15 +1,35 @@
+import 'swiper/css/pagination';
 import './BenefitsOfCooperation.css';
 import BenefitBlock from '../BenefitBlock/BenefitBlock';
 import { BENEFITS_DATA } from '../../constants/BENEFITS_DATA';
-import CuteDog from '../../assets/images/Benefits/cute-dog.webp';
+// import CuteDog from '../../assets/images/Benefits/cute-dog.webp';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
 
 const BenefitsOfCooperation = () => {
   return (
     <div className="benefits">
-      {BENEFITS_DATA.map(item => (
+      <Swiper
+        modules={[Pagination]}
+        pagination={{ clickable: true }}
+        slidesPerView={1}
+        spaceBetween={12}
+        className="swiper"
+      >
+        {BENEFITS_DATA.map(item => (
+          <SwiperSlide key={item.title}>
+            <BenefitBlock
+              image={item.image}
+              title={item.title}
+              text={item.text}
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+      {/* {BENEFITS_DATA.map(item => (
         <BenefitBlock image={item.image} title={item.title} text={item.text} />
       ))}
-      <img src={CuteDog} alt="cute dog" />
+      <img src={CuteDog} alt="cute dog" /> */}
     </div>
   );
 };

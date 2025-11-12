@@ -1,4 +1,4 @@
-.benefits {
+/* .benefits {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto auto;
@@ -8,4 +8,24 @@
 .benefits img:last-child {
   grid-column: 3;
   grid-row: 1 / 3;
+} */
+
+.benefits .swiper .swiper-pagination {
+  position: static !important;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.benefits .swiper .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: #d9d9d9;
+  transition: all 0.3s ease;
+  opacity: 1;
+}
+
+.benefits .swiper .swiper-pagination-bullet-active {
+  background: #6d82bd;
 }
