@@ -21,6 +21,7 @@ const BenefitsOfCooperation = () => {
           {BENEFITS_DATA.map(item => (
             <SwiperSlide key={item.title}>
               <BenefitBlock
+                key={item.title}
                 image={item.image}
                 title={item.title}
                 text={item.text}
@@ -28,7 +29,13 @@ const BenefitsOfCooperation = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-        <img src={CuteDog} alt="cute dog" />
+        <img
+          src={CuteDog}
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
       <div className="benefits-desktop">
         {BENEFITS_DATA.map(item => (
@@ -38,7 +45,13 @@ const BenefitsOfCooperation = () => {
             text={item.text}
           />
         ))}
-        <img src={CuteDog} alt="cute dog" />
+        <img
+          src={CuteDog}
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
     </div>
   );
