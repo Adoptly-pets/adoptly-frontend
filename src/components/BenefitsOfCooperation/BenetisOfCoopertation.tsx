@@ -9,6 +9,7 @@ import { Pagination } from 'swiper/modules';
 const BenefitsOfCooperation = () => {
   return (
     <div className="benefits">
+      <h3>Переваги співпраці</h3>
       <div className="benefits-mobile">
         <Swiper
           modules={[Pagination]}

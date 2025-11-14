@@ -1,3 +1,6 @@
+.benefits h3 {
+  padding-bottom: 37px;
+}
 .benefits-desktop {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -15,6 +18,11 @@
 }
 
 @media screen and (max-width: 768px) {
+  .benefits h3 {
+    font-size: 24px;
+    padding: 24px 0;
+  }
+
   .benefits-desktop {
     display: none;
   }
