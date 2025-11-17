@@ -6,7 +6,7 @@ const CookiesConsent = () => {
 
   useEffect(() => {
     const accepted = localStorage.getItem('cookiesAccepted');
-    if (accepted) {
+    if (!accepted) {
       setIsCookieOpen(true);
     }
   }, []);
