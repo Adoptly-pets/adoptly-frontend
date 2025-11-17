@@ -3,6 +3,7 @@ import './BenefitsOfCooperation.css';
 import BenefitBlock from '../BenefitBlock/BenefitBlock';
 import { BENEFITS_DATA } from '../../constants/BENEFITS_DATA';
 import CuteDog from '../../assets/images/Benefits/cute-dog.webp';
+import CuteDogMobile from '../../assets/images/Benefits/cute-dog-mobile.webp';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 
@@ -30,7 +31,7 @@ const BenefitsOfCooperation = () => {
           ))}
         </Swiper>
         <img
-          src={CuteDog}
+          src={CuteDogMobile}
           alt=""
           aria-hidden="true"
           loading="lazy"
