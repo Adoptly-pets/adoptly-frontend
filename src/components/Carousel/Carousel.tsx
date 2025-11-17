@@ -53,7 +53,7 @@ const Carousel = () => {
           onSlideChange={handleSlideChange}
           slidesPerView={isMobile ? 1 : 2}
           slidesPerGroup={isMobile ? 1 : 2}
-          spaceBetween={isMobile ? 0 : 30}
+          spaceBetween={30}
           pagination={{
             clickable: true,
           }}
