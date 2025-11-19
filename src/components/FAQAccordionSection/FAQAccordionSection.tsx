@@ -4,7 +4,7 @@ import './FAQAccordionSection.css';
 
 const FAQAccordionSection = () => {
   return (
-    <div className="faq-section">
+    <section className="faq-section">
       <h2>Часті запитання</h2>
       {FAQ_DATA.map(item => (
         <AccordionItem
@@ -13,7 +13,7 @@ const FAQAccordionSection = () => {
           answer={item.answer}
         />
       ))}
-    </div>
+    </section>
   );
 };
 
