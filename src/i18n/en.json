@@ -145,5 +145,10 @@
   "notFoundPage": {
     "button": "Return to Home",
     "text": "Oops! This page does not exist or our team is still working on it."
+  },
+  "cookies": {
+    "text": "We use cookies to improve your browsing experience. Please accept them or adjust the settings as you prefer.",
+    "accept": "Accept",
+    "more": "Read more"
   }
 }
