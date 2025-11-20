@@ -46,12 +46,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ question, answer }) => {
         />
       </div>
 
-      <div
-        className="accordion-content"
-        style={{ display: isOpen ? 'block' : 'none' }}
-      >
-        {renderAnswer()}
-      </div>
+      <div className="accordion-content">{renderAnswer()}</div>
     </div>
   );
 };
