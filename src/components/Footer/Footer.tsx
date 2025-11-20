@@ -5,19 +5,22 @@ import { useTranslation } from 'react-i18next';
 import SocialLinks from '../SocialLinks/SocialLinks';
 
 const Footer = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const scrollToHeader = () => {
     const headerElement = document.getElementById('header');
     if (headerElement) {
       headerElement.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  const langLink = (path: string) => `/${i18n.language}${path}`;
+
   return (
     <footer>
       <div className="footer">
         <div className="footer-content">
           <div className="nav-footer">
-            <Link to="/">
+            <Link to={langLink('/')}>
               <Icon
                 id="icon-Logo"
                 className="footer-logo"
@@ -25,33 +28,35 @@ const Footer = () => {
                 height={36}
               />
             </Link>
-            <Link to="/" className="platform-footer">
+            <Link to={langLink('/')} className="platform-footer">
               {t('footer.platform')}
             </Link>
 
             <div>
               <ul className="footer-list">
                 <li className="item-nav">
-                  <Link to="/">{t('nav.home')}</Link>
+                  <Link to={langLink('/')}>{t('nav.home')}</Link>
                 </li>
                 <li className="item-nav">
-                  <Link to="/about">{t('nav.about')}</Link>
+                  <Link to={langLink('/about')}>{t('nav.about')}</Link>
                 </li>
                 <li className="item-nav">
-                  <Link to="/contacts">{t('nav.contacts')}</Link>
+                  <Link to={langLink('/contacts')}>{t('nav.contacts')}</Link>
                 </li>
               </ul>
             </div>
             <div>
               <ul className="footer-list">
                 <li className="item-nav">
-                  <Link to="/donate">{t('footer.donate')}</Link>
+                  <Link to={langLink('/donate')}>{t('footer.donate')}</Link>
                 </li>
                 <li className="item-nav">
-                  <Link to="/volunteer">{t('footer.volunteer')}</Link>
+                  <Link to={langLink('/volunteer')}>
+                    {t('footer.volunteer')}
+                  </Link>
                 </li>
                 <li className="item-nav">
-                  <Link to="/help-medical-food">
+                  <Link to={langLink('/help-medical-food')}>
                     {t('footer.helpMedicalFood')}
                   </Link>
                 </li>
@@ -61,10 +66,12 @@ const Footer = () => {
             <div>
               <ul className="footer-list">
                 <li className="item-nav">
-                  <Link to="/find-pet">{t('footer.findPet')}</Link>
+                  <Link to={langLink('/find-pet')}>{t('footer.findPet')}</Link>
                 </li>
                 <li className="item-nav">
-                  <Link to="/shelters">{t('footer.joinShelter')}</Link>
+                  <Link to={langLink('/shelters')}>
+                    {t('footer.joinShelter')}
+                  </Link>
                 </li>
               </ul>
             </div>

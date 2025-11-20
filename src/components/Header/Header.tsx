@@ -5,17 +5,23 @@ import Navigation from '../Navigation/Navigation';
 import './Header.css';
 import Modal from '../Modal/Modal';
 import ModalNavigation from '../ModalNavigation/ModalNavigation';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SocialLinks from '../SocialLinks/SocialLinks';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { i18n } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
-  };
 
+    const pathParts = location.pathname.split('/');
+    const currentPath = pathParts.slice(2).join('/');
+
+    navigate(`/${lng}/${currentPath}`);
+  };
   return (
     <header className="header" id="header" tabIndex={-1}>
       <div className="header_inner">

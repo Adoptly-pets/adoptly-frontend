@@ -16,12 +16,12 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/how-to-help" element={<HowToHelpPage />} />
-          <Route path="/shelters" element={<SheltersPage />} />
-          <Route path="/contacts" element={<ContactPage />} />
-          <Route path="/pets" element={<PetsPage />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/:lng/about" element={<AboutPage />} />
+          <Route path="/:lng/how-to-help" element={<HowToHelpPage />} />
+          <Route path="/:lng/shelters" element={<SheltersPage />} />
+          <Route path="/:lng/contacts" element={<ContactPage />} />
+          <Route path="/:lng/pets" element={<PetsPage />} />
+          <Route path="/:lng*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />
