@@ -45,7 +45,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ question, answer }) => {
           className="icon-mobile"
         />
       </div>
-      <div className="accordion-content">{renderAnswer()}</div>
+      {isOpen && <div className="accordion-content">{renderAnswer()}</div>}
     </div>
   );
 };
