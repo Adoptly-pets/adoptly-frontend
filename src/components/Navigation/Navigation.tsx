@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './Navigation.css';
+import { langLink } from '../../utils/routing';
 
 interface NavigationProps {
   className?: string;
@@ -14,8 +15,8 @@ const Navigation: React.FC<NavigationProps> = ({
 }) => {
   const listClass = `list ${className}`.trim();
 
-  const { t, i18n } = useTranslation();
-  const langLink = (path: string) => `/${i18n.language}${path}`;
+  const { t } = useTranslation();
+
   return (
     <nav>
       <ul className={listClass}>

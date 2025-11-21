@@ -3,17 +3,16 @@ import { Icon } from '../Icon/Icon';
 import './Footer.css';
 import { useTranslation } from 'react-i18next';
 import SocialLinks from '../SocialLinks/SocialLinks';
+import { langLink } from '../../utils/routing';
 
 const Footer = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const scrollToHeader = () => {
     const headerElement = document.getElementById('header');
     if (headerElement) {
       headerElement.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-  const langLink = (path: string) => `/${i18n.language}${path}`;
 
   return (
     <footer>

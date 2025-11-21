@@ -7,6 +7,7 @@ import Modal from '../Modal/Modal';
 import ModalNavigation from '../ModalNavigation/ModalNavigation';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SocialLinks from '../SocialLinks/SocialLinks';
+import { langLink } from '../../utils/routing';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,7 +19,11 @@ const Header = () => {
     i18n.changeLanguage(lng);
 
     const pathParts = location.pathname.split('/');
-    const currentPath = pathParts.slice(2).join('/');
+    const hasLanguagePrefix =
+      pathParts.length > 1 && /^(uk|en)$/.test(pathParts[1]);
+    const currentPath = hasLanguagePrefix
+      ? pathParts.slice(2).join('/')
+      : pathParts.slice(1).join('/');
 
     navigate(`/${lng}/${currentPath}`);
   };
@@ -33,7 +38,7 @@ const Header = () => {
           >
             <Icon id="icon-menu" className="menu-icon" size={18} height={16} />
           </button>
-          <Link to="/">
+          <Link to={langLink('/')}>
             <Icon
               id="icon-Logo"
               className="header-logo"
