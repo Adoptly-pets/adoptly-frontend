@@ -85,7 +85,6 @@
       url('../../assets/images/Donation/paw-top-left.webp'),
       url('../../assets/images/Donation/paw-top-right.webp'),
       url('../../assets/images/Donation/paw-bottom-right.webp');
-    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
     background-position:
       10px 22px,
       280px 145px,
@@ -94,6 +93,7 @@
       45px 45px,
       25px 25px,
       50px 50px;
+    border-radius: 20px;
   }
 
   .donation-section h2 {
