@@ -5,7 +5,7 @@
   display: flex;
   z-index: 999;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 }
 .cookies-popUp {
   min-width: 360px;
@@ -50,6 +50,9 @@
 }
 
 @media (min-width: 768px) {
+  .cookies-overlay {
+    align-items: center;
+  }
   .cookies-popUp {
     border-radius: 24px;
     max-width: 620px;
