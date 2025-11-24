@@ -34,7 +34,7 @@
   display: none;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   .our-mission {
     display: flex;
     gap: 20px;

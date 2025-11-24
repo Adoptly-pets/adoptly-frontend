@@ -1,3 +1,7 @@
+:root {
+  --shelter-support-section-title: #091a49;
+}
+
 .shelter-support-section {
   position: relative;
   background-image: url('/src/assets/images/Shelters/supportSection.webp');
@@ -34,6 +38,8 @@
   max-width: 635px;
   margin-top: 52px;
   margin-bottom: 42px;
+  font-weight: 800;
+  color: var(--shelter-support-section-title);
 }
 
 @media screen and (max-width: 768px) {
