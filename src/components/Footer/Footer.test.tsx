@@ -36,6 +36,9 @@ jest.mock('react-i18next', () => ({
     },
   }),
 }));
+jest.mock('../../utils/routing.ts', () => ({
+  langLink: (path: string) => path,
+}));
 
 describe('Footer Component', () => {
   const mockScrollIntoView = jest.fn();

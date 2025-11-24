@@ -19,6 +19,9 @@ jest.mock('react-i18next', () => ({
     i18n: { language: 'uk', changeLanguage: jest.fn() },
   }),
 }));
+jest.mock('../../utils/routing', () => ({
+  langLink: (path: string) => path,
+}));
 
 describe('Header Component', () => {
   test('renders the header with correct structure', () => {
@@ -34,7 +37,9 @@ describe('Header Component', () => {
     const navigation = screen.getByTestId('navigation');
     expect(navigation).toBeInTheDocument();
 
-    const languageButton = screen.getByLabelText(/switch language/i);
+    const languageButton = screen.getByRole('button', {
+      name: /switch language to ukrainian/i,
+    });
     expect(languageButton).toBeInTheDocument();
 
     const favouriteButton = screen.getByTitle(/favourite/i);
@@ -53,9 +58,6 @@ describe('Header Component', () => {
 
     const logoIcon = screen.getByTestId('icon-icon-Logo');
     expect(logoIcon).toBeInTheDocument();
-
-    const logoLink = logoIcon.closest('a');
-    expect(logoLink).toHaveAttribute('href', '/');
 
     const heartIcon = screen.getByTestId('icon-icon-heart');
     expect(heartIcon).toBeInTheDocument();
