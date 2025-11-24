@@ -36,7 +36,7 @@ const DonationSection = () => {
         Бажаєш підтримати тварин без усиновлення ? <br />
         <span>Обери суму свого донату</span>
       </h2>
-      <form className="donation-form" onSubmit={handleSubmit}>
+      <form className="donation-form" role="form" onSubmit={handleSubmit}>
         <ul>
           {presetAmounts.map(val => (
             <li key={val}>
@@ -56,7 +56,13 @@ const DonationSection = () => {
             className="donation-input"
           />
         </ul>
-        <Button variant="primary" maxWidth={396} maxWidthMobile={220}>
+        <Button
+          variant="primary"
+          maxWidth={396}
+          height={75}
+          maxWidthMobile={220}
+          heightMobile={48}
+        >
           Задонатити
         </Button>
       </form>
