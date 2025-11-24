@@ -98,6 +98,21 @@
   align-items: center;
   gap: 4px;
 }
+
+.police-list li {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--title-color-dark);
+}
+
+.police-list li a::after {
+  content: ' |';
+}
+
+.police-list li:last-child a::after {
+  content: '';
+}
+
 .cookie {
   display: none;
 }
@@ -127,9 +142,7 @@
   .footer-list {
     display: none;
   }
-  .police-list {
-    display: none;
-  }
+
   .cookie {
     display: flex;
     justify-content: center;
