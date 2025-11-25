@@ -9,6 +9,7 @@ export const useTranslation = () => ({
     return translations[key] || key;
   },
   i18n: {
+    language: 'uk',
     changeLanguage: () => new Promise(() => {}),
   },
 });
