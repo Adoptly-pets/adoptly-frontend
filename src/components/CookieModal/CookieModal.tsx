@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { Icon } from '../../components/Icon/Icon';
 import Button from '../../components/Button/Button';
 
@@ -17,11 +16,15 @@ const CookieModal: React.FC<CookieModalProps> = ({
   onAccept,
   onClose,
 }) => {
-  const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
-  const cookies = () => {
-    navigate('/cookies');
+  const openWikipediaCookies = () => {
+    const lang = i18n.language;
+    const wikiUrl =
+      lang === 'uk'
+        ? 'https://uk.wikipedia.org/wiki/HTTP_cookie'
+        : 'https://en.wikipedia.org/wiki/HTTP_cookie';
+    window.open(wikiUrl, '_blank');
   };
   if (!isOpen) return null;
   return (
@@ -45,7 +48,7 @@ const CookieModal: React.FC<CookieModalProps> = ({
           <Button variant="primary" onClick={onAccept}>
             {t('cookies.accept')}
           </Button>
-          <Button variant="secondary" onClick={cookies}>
+          <Button variant="secondary" onClick={openWikipediaCookies}>
             {t('cookies.more')}
           </Button>
         </div>
