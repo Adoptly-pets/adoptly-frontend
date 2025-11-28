@@ -51,6 +51,7 @@ const NotFound404 = () => {
           variant="primary"
           maxWidth={314}
           maxWidthMobile={220}
+          height={64}
           onClick={backHome}
         >
           {t('notFoundPage.button')}

@@ -26,6 +26,7 @@ const HeroSection = () => {
             variant="primary"
             maxWidth={248.5}
             maxWidthMobile={220}
+            height={64}
             onClick={() => alert('Кнопка "Знайти улюбленця" натиснута!')}
           >
             {t('hero.findPet')}
@@ -34,6 +35,7 @@ const HeroSection = () => {
             variant="secondary"
             maxWidth={248.5}
             maxWidthMobile={220}
+            height={64}
             onClick={() => alert('Кнопка "Задонатити" натиснута!')}
           >
             {t('hero.donate')}
