@@ -22,7 +22,7 @@ function App() {
           <Route path="/shelters" element={<SheltersPage />} />
           <Route path="/contacts" element={<ContactPage />} />
           <Route path="/pets" element={<PetsPage />} />
-          <Route path="privacy-policy" element={<PolicyPage />} />
+          <Route path="/privacy-policy" element={<PolicyPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
