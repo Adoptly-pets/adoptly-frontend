@@ -9,7 +9,12 @@ const ShelterSupportSection = () => {
           Додавайте тварин у каталог та отримуйте донати, корм та ліки від
           небайдужих людей
         </h3>
-        <Button variant="primary" maxWidth={396} maxWidthMobile={240}>
+        <Button
+          variant="primary"
+          maxWidth={396}
+          maxWidthMobile={240}
+          height={64}
+        >
           Зареєструвати притулок
         </Button>
       </div>

@@ -36,6 +36,9 @@ jest.mock('react-i18next', () => ({
     },
   }),
 }));
+jest.mock('../../utils/routing', () => ({
+  langLink: (path: string) => path,
+}));
 
 describe('Navigation Component', () => {
   it('renders navigation with all links', () => {

@@ -5,16 +5,20 @@ import OurSkillsInNumbers from '../../components/OurSkillsInNumbers/OurSkillsInN
 import HappyStorySection from '../../components/HappyStorySection/HappyStorySection';
 import TrustAndPartnershipSection from '../../components/TrustAndPartnershipSection/TrustAndPartnershipSection';
 import ReadyToAdopt from '../../components/ReadyToAdopt/ReadyToAdopt';
+import CookiesConsent from '../../components/CookiesConsent/CookiesConsent';
 
 const HomePage = () => {
   return (
-    <div className="container">
-      <HeroSection />
-      <HowItWorks />
-      <TrustAndPartnershipSection />
-      <OurSkillsInNumbers />
-      <HappyStorySection />
-      <ReadyToAdopt />
+    <div>
+      <CookiesConsent />
+      <div className="container">
+        <HeroSection />
+        <HowItWorks />
+        <TrustAndPartnershipSection />
+        <OurSkillsInNumbers />
+        <HappyStorySection />
+        <ReadyToAdopt />
+      </div>
     </div>
   );
 };

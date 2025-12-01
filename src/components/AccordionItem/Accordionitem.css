@@ -13,7 +13,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 40px;
+  padding: 16px 40px 0;
   cursor: pointer;
 }
 
@@ -34,6 +34,11 @@
     max-height 500ms ease,
     opacity 500ms ease;
 }
+
+.open .accordion-content {
+  padding-top: 6px;
+}
+
 .accordion-content ul {
   list-style: disc;
   padding-left: 30px;

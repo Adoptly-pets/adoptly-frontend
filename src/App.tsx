@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage';
 import AboutPage from './pages/AboutPage/AboutPage';
 import HowToHelpPage from './pages/HowToHelpPage/HowToHelpPage';
@@ -16,14 +21,17 @@ function App() {
       <Header />
       <main>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/how-to-help" element={<HowToHelpPage />} />
-          <Route path="/shelters" element={<SheltersPage />} />
-          <Route path="/contacts" element={<ContactPage />} />
-          <Route path="/pets" element={<PetsPage />} />
-          <Route path="/privacy-policy" element={<PolicyPage />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/" element={<Navigate to="/uk" replace />} />
+          <Route path="/:lng">
+            <Route index element={<HomePage />} />
+            <Route path="about" element={<AboutPage />} />
+            <Route path="how-to-help" element={<HowToHelpPage />} />
+            <Route path="shelters" element={<SheltersPage />} />
+            <Route path="contacts" element={<ContactPage />} />
+            <Route path="pets" element={<PetsPage />} />
+            <Route path="privacy-policy" element={<PolicyPage />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
         </Routes>
       </main>
       <Footer />
