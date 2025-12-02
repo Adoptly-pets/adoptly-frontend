@@ -29,6 +29,8 @@
   .benefit-block {
     padding: 24px 20px;
     margin: 0 auto;
+    border-radius: 20px;
+    max-width: 280px;
   }
 
   .benefit-block img {
