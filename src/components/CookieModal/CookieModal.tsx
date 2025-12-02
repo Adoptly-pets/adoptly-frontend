@@ -45,10 +45,14 @@ const CookieModal: React.FC<CookieModalProps> = ({
           <p className="cookies-text">{t('cookies.text')}</p>
         </div>
         <div className="cookies-btnBox">
-          <Button variant="primary" onClick={onAccept}>
+          <Button variant="primary" height={64} onClick={onAccept}>
             {t('cookies.accept')}
           </Button>
-          <Button variant="secondary" onClick={openWikipediaCookies}>
+          <Button
+            variant="secondary"
+            height={64}
+            onClick={openWikipediaCookies}
+          >
             {t('cookies.more')}
           </Button>
         </div>
