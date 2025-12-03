@@ -25,7 +25,17 @@
   color: #091a49bf;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
+  .benefit-block h4 {
+    font-size: 22px;
+  }
+
+  .benefit-block p {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
   .benefit-block {
     padding: 24px 20px;
     margin: 0 auto;
