@@ -1,0 +1,13 @@
+.privacy-policy h1 {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #091a49;
+  padding: 5px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .privacy-policy h1 {
+    font-size: 24px;
+  }
+}
