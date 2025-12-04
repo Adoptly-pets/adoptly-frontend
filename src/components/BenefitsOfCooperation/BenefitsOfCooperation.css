@@ -22,6 +22,12 @@
   display: none;
 }
 
+@media screen and (max-width: 1400px) {
+  .benefits-desktop img:last-child {
+    grid-column: 2;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .benefits {
     padding-top: 48px;
