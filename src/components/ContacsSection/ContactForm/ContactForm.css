@@ -67,6 +67,7 @@
 @media screen and (max-width: 768px) {
   .contacts-request {
     padding: 32px 16px;
+    border-radius: 20px;
   }
 
   .contacts-request p {
@@ -94,5 +95,9 @@
   .contacts-form input,
   .contacts-form textarea {
     font-size: 16px;
+  }
+
+  .contacts-form button {
+    margin: 0 auto;
   }
 }

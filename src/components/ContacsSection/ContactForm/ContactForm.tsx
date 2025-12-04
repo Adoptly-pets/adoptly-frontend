@@ -65,7 +65,6 @@ const ContactForm = () => {
           maxWidth={248.5}
           maxWidthMobile={220}
           height={64}
-          style={{ margin: '0 auto' }}
         >
           {t('contact.submit_button')}
         </Button>
