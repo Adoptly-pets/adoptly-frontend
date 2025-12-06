@@ -36,7 +36,17 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ question, answer }) => {
 
   return (
     <div className={`accordion-item ${isOpen ? 'open' : ''}`}>
-      <div className="accordion-header" onClick={toggleAccordion}>
+      <div
+        className="accordion-header"
+        onClick={toggleAccordion}
+        role="button"
+        aria-expanded={isOpen}
+        aria-controls={`accordion-content-${question}`}
+        tabIndex={0}
+        onKeyDown={e => {
+          if (e.key === 'Enter' || e.key === ' ') toggleAccordion();
+        }}
+      >
         <h3>{question}</h3>
         <Icon
           id="icon-up-arrow"
@@ -45,7 +55,15 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ question, answer }) => {
           className="icon-mobile"
         />
       </div>
-      <div className="accordion-content">{renderAnswer()}</div>
+      {isOpen && (
+        <div
+          id={`accordion-content-${question}`}
+          className="accordion-content"
+          aria-hidden={!isOpen}
+        >
+          {renderAnswer()}
+        </div>
+      )}
     </div>
   );
 };
