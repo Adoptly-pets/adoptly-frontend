@@ -21,7 +21,7 @@ function App() {
       <Header />
       <main>
         <Routes>
-          <Route path="/" element={<Navigate to="/uk" replace />} />
+          <Route path="/" element={<Navigate to="/uk/" replace />} />
           <Route path="/:lng">
             <Route index element={<HomePage />} />
             <Route path="about" element={<AboutPage />} />
