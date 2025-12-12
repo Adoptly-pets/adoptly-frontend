@@ -41,6 +41,7 @@ const BenefitsOfCooperation = () => {
       <div className="benefits-desktop">
         {BENEFITS_DATA.map(item => (
           <BenefitBlock
+            key={item.title}
             image={item.image}
             title={item.title}
             text={item.text}
