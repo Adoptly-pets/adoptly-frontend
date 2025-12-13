@@ -8,7 +8,7 @@ jest.mock('react-i18next', () => ({
         'heroAboutUs.paragraph':
           'Cервіс, де кожен охочий може знайти свого улюбленця з усіх притулків України.',
         'heroAboutUs.button': 'Почати пошук улюбленця',
-        'heroAboutUs.mobileButton': 'Пошук',
+        'heroAboutUs.mobileButton': 'Почати пошук',
       };
       return translations[key] || key;
     },
@@ -27,7 +27,7 @@ describe('HeroAboutUs', () => {
   it('renders the description text', () => {
     render(<HeroAboutUs />);
     expect(
-      screen.getByText(/кожен охочий може знайти свого улюбленця/i)
+      screen.getByText(/Cервіс, де кожен охочий може знайти свого улюбленця/i)
     ).toBeInTheDocument();
   });
 

@@ -36,11 +36,6 @@
   color: #fff;
   background: #ff7300;
   font-weight: 800;
-  padding: 12px 63px;
-  text-align: center;
-  height: 47px;
-  width: 240px;
-  font-size: 16px;
 }
 
 .hero-btn:hover {
@@ -50,6 +45,17 @@
 
 .hero-btn:active {
   transform: translateY(0);
+}
+
+.btn-mob {
+  padding: 12px 63px;
+  height: 47px;
+  width: 240px;
+  font-size: 16px;
+  text-align: center;
+}
+.btn-desc {
+  display: none;
 }
 
 @media (min-width: 769px) {
@@ -71,8 +77,12 @@
     font-size: 32px;
     margin-bottom: 42px;
   }
+  .btn-mob {
+    display: none;
+  }
 
-  .hero-btn {
+  .btn-desc {
+    display: block;
     border-radius: 20px;
     padding: 24px 0;
     width: 396px;
