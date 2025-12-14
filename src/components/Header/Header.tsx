@@ -16,7 +16,7 @@ const Header = () => {
   const location = useLocation();
 
   const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
+    /* i18n.changeLanguage(lng); */
 
     const pathParts = location.pathname.split('/');
     const hasLanguagePrefix =
