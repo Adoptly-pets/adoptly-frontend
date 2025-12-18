@@ -106,6 +106,16 @@
     "button": "Start pet search",
     "buttonMobile": "Pet search"
   },
+  "heroAboutUs": {
+    "paragraph": "A service that lets anyone find their pet from shelters all across Ukraine",
+    "button": "Start pet search",
+    "mobileButton": "Pet search"
+  },
+  "ourMission": {
+    "title": "Our mission",
+    "paragraph1": "We have created a <strong>single platform that unites all shelters in Ukraine,</strong> so that no animal is left without a chance for a happy life. Here, every dog and cat can find their home, and people can meet their new friend who will change their life forever. <strong>We aim to make adoption simple, convenient, and transparent,</strong> so that every step brings joy and trust.",
+    "paragraph2": "<strong>Adoptly</strong> inspires sharing love, tells stories of successful adoptions, and gives everyone the opportunity to do a good deed that changes lives for the better."
+  },
   "sheltersHero": {
     "paragraph": "We care about those who care for animals",
     "imageAlt": "pets",

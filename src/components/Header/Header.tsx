@@ -16,8 +16,6 @@ const Header = () => {
   const location = useLocation();
 
   const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
-
     const pathParts = location.pathname.split('/');
     const hasLanguagePrefix =
       pathParts.length > 1 && /^(uk|en)$/.test(pathParts[1]);

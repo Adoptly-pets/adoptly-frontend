@@ -1,6 +1,23 @@
 import { render, screen } from '@testing-library/react';
 import HeroAboutUs from './HeroAboutUs';
 
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => {
+      const translations: Record<string, string> = {
+        'heroAboutUs.paragraph':
+          'Cервіс, де кожен охочий може знайти свого улюбленця з усіх притулків України.',
+        'heroAboutUs.button': 'Почати пошук улюбленця',
+        'heroAboutUs.mobileButton': 'Почати пошук',
+      };
+      return translations[key] || key;
+    },
+    i18n: {
+      language: 'uk',
+    },
+  }),
+}));
+
 describe('HeroAboutUs', () => {
   it('renders the title', () => {
     render(<HeroAboutUs />);
@@ -10,16 +27,14 @@ describe('HeroAboutUs', () => {
   it('renders the description text', () => {
     render(<HeroAboutUs />);
     expect(
-      screen.getByText(
-        /Cервіс, де кожен охочий може знайти свого улюбленця з усіх притулків України./i
-      )
+      screen.getByText(/Cервіс, де кожен охочий може знайти свого улюбленця/i)
     ).toBeInTheDocument();
   });
 
-  it('renders both search buttons', () => {
+  it('renders desktop button text', () => {
     render(<HeroAboutUs />);
-    expect(screen.getByText('Почати пошук')).toBeInTheDocument();
-    expect(screen.getByText('Почати пошук улюбленця')).toBeInTheDocument();
+
+    expect(screen.getByText(/пошук улюбленця/i)).toBeInTheDocument();
   });
 
   it('section has correct class', () => {

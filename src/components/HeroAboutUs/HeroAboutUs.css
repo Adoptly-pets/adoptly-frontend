@@ -52,6 +52,7 @@
   height: 47px;
   width: 240px;
   font-size: 16px;
+  text-align: center;
 }
 .btn-desc {
   display: none;

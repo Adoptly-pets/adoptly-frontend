@@ -13,8 +13,13 @@ i18n
       en: { translation: en },
       uk: { translation: uk },
     },
-    fallbackLng: 'en',
+    fallbackLng: 'uk',
     supportedLngs: ['en', 'uk'],
+    detection: {
+      order: ['path'],
+      lookupFromPathIndex: 1,
+      caches: [],
+    },
     interpolation: {
       escapeValue: false,
     },

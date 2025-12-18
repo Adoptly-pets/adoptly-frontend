@@ -14,6 +14,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import PetsPage from './pages/PetsPage/PetsPage';
 import PolicyPage from './pages/PolicyPage/PolicyPage';
+import LanguageLayout from './components/LanguageLayout/LanguageLayout';
 
 function App() {
   return (
@@ -21,8 +22,8 @@ function App() {
       <Header />
       <main>
         <Routes>
-          <Route path="/" element={<Navigate to="/uk" replace />} />
-          <Route path="/:lng">
+          <Route path="/" element={<Navigate to="/uk/" replace />} />
+          <Route path="/:lng" element={<LanguageLayout />}>
             <Route index element={<HomePage />} />
             <Route path="about" element={<AboutPage />} />
             <Route path="how-to-help" element={<HowToHelpPage />} />
