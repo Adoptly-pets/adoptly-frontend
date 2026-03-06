@@ -8,9 +8,19 @@ import ModalNavigation from '../ModalNavigation/ModalNavigation';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SocialLinks from '../SocialLinks/SocialLinks';
 import { langLink } from '../../utils/routing';
+import RegistrationModal from '../RegistrationModal/RegistrationModal';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsRegistrationModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsRegistrationModalOpen(false);
+  };
   const { i18n } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
@@ -118,9 +128,18 @@ const Header = () => {
               height={15}
             />
           </button>
-          <button type="button" className="btn" title="Username">
+          <button
+            type="button"
+            className="btn"
+            title="Username"
+            onClick={handleOpenModal}
+          >
             <Icon id="icon-user" className="icon-user" size={16} height={15} />
           </button>
+          <RegistrationModal
+            isOpen={isRegistrationModalOpen}
+            onClose={handleCloseModal}
+          />
         </div>
       </div>
     </header>
