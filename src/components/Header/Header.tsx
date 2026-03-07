@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Icon } from '../Icon/Icon';
 import Navigation from '../Navigation/Navigation';
 import './Header.css';
-import Modal from '../Modal/Modal';
+import Modal from '../Drawer/Drawer';
 import ModalNavigation from '../ModalNavigation/ModalNavigation';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SocialLinks from '../SocialLinks/SocialLinks';

@@ -1,21 +1,21 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import Modal from './Modal';
+import Drawer from './Drawer';
 
-describe('Modal', () => {
+describe('Drawer', () => {
   it('does not render when isOpen is false', () => {
     render(
-      <Modal isOpen={false} onClose={jest.fn()}>
+      <Drawer isOpen={false} onClose={jest.fn()}>
         <div>Test Content</div>
-      </Modal>
+      </Drawer>
     );
     expect(screen.queryByText('Test Content')).not.toBeInTheDocument();
   });
 
   it('renders children when isOpen is true', () => {
     render(
-      <Modal isOpen={true} onClose={jest.fn()}>
+      <Drawer isOpen={true} onClose={jest.fn()}>
         <div>Test Content</div>
-      </Modal>
+      </Drawer>
     );
     expect(screen.getByText('Test Content')).toBeInTheDocument();
   });
@@ -23,9 +23,9 @@ describe('Modal', () => {
   it('calls onClose when overlay is clicked', () => {
     const onClose = jest.fn();
     render(
-      <Modal isOpen={true} onClose={onClose}>
+      <Drawer isOpen={true} onClose={onClose}>
         <div>Test Content</div>
-      </Modal>
+      </Drawer>
     );
     fireEvent.click(document.querySelector('.modal-overlay')!);
     expect(onClose).toHaveBeenCalled();
@@ -34,9 +34,9 @@ describe('Modal', () => {
   it('does not call onClose when modal content is clicked', () => {
     const onClose = jest.fn();
     render(
-      <Modal isOpen={true} onClose={onClose}>
+      <Drawer isOpen={true} onClose={onClose}>
         <div>Test Content</div>
-      </Modal>
+      </Drawer>
     );
     fireEvent.click(screen.getByText('Test Content'));
     expect(onClose).not.toHaveBeenCalled();
@@ -44,15 +44,15 @@ describe('Modal', () => {
 
   it('sets body overflow to hidden when open and restores on close', () => {
     const { rerender } = render(
-      <Modal isOpen={true} onClose={jest.fn()}>
+      <Drawer isOpen={true} onClose={jest.fn()}>
         <div>Test Content</div>
-      </Modal>
+      </Drawer>
     );
     expect(document.body.style.overflow).toBe('hidden');
     rerender(
-      <Modal isOpen={false} onClose={jest.fn()}>
+      <Drawer isOpen={false} onClose={jest.fn()}>
         <div>Test Content</div>
-      </Modal>
+      </Drawer>
     );
     expect(document.body.style.overflow).toBe('');
   });

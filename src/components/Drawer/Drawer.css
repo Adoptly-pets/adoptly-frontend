@@ -1,4 +1,4 @@
-.modal-overlay {
+.drawer-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
@@ -7,7 +7,7 @@
   animation: fadeIn 0.2s ease-in-out;
 }
 
-.modal-content {
+.drawer-content {
   position: relative;
   background: #f8f8f8;
 
@@ -20,7 +20,7 @@
   animation: slideUp 0.3s ease;
 }
 
-.modal-close {
+.drawer-close {
   position: absolute;
   top: 12px;
   right: 12px;
