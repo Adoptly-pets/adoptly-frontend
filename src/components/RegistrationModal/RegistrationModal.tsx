@@ -49,7 +49,7 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
       onClose={onClose}
       ariaLabel={t('registration.title')}
     >
-      <form className="reg-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+      <form className="reg-form" onSubmit={handleSubmit(onSubmit)}>
         <h2 className="reg-form-title">{t('registration.title')}</h2>
 
         <div className="reg-form-field">
@@ -58,7 +58,9 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
               <input
                 type="radio"
                 value="adopter"
-                {...register('role', { required: t('registration.role_required') })}
+                {...register('role', {
+                  required: t('registration.role_required'),
+                })}
               />
               <span className="reg-form-radio-custom" />
               <span className="reg-form-radio-label">
@@ -70,7 +72,9 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
               <input
                 type="radio"
                 value="shelter"
-                {...register('role', { required: t('registration.role_required') })}
+                {...register('role', {
+                  required: t('registration.role_required'),
+                })}
               />
               <span className="reg-form-radio-custom" />
               <span className="reg-form-radio-label">
@@ -115,7 +119,9 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
               type={showPassword ? 'text' : 'password'}
               className="reg-form-input"
               placeholder={t('registration.password_placeholder')}
-              {...register('password', { required: t('registration.password_required') })}
+              {...register('password', {
+                required: t('registration.password_required'),
+              })}
             />
             <button
               type="button"
