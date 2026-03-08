@@ -1,0 +1,141 @@
+.reg-form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.reg-form-title {
+  font-family: var(--font-secondary);
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--title-color-dark);
+}
+
+.reg-form-radio-group {
+  display: flex;
+  gap: 64px;
+}
+
+.reg-form-radio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.reg-form-radio input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.reg-form-radio-custom {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--title-color-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.reg-form-radio input:checked + .reg-form-radio-custom {
+  border-color: var(--title-color-dark);
+}
+
+.reg-form-radio input:checked + .reg-form-radio-custom::after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--title-color-dark);
+}
+
+.reg-form-radio-label {
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--title-color-dark);
+}
+
+.reg-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.reg-form-label {
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--title-color-dark);
+}
+
+.reg-form-input {
+  width: 100%;
+  height: 48px;
+  padding: 18px;
+  border: none;
+  border-radius: 8px;
+  background-color: #ecf1ff99;
+  font-family: var(--font-primary);
+  font-size: 16px;
+  color: var(--title-color-dark);
+}
+
+.reg-form-password-wrapper {
+  position: relative;
+}
+
+.reg-form-toggle-password {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reg-form-eye-icon {
+  width: 24px;
+  height: 24px;
+  fill: var(--title-color-dark);
+}
+
+.reg-form .button {
+  border-radius: 6px;
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  font-weight: 800;
+  background-color: #0054d6;
+
+  color: #ffffff;
+}
+
+.reg-form .button:hover {
+  background-color: #153da8;
+}
+
+.reg-form-login-text {
+  text-align: center;
+  font-family: var(--font-primary);
+  font-size: 16px;
+  color: var(--title-color-dark);
+  padding-top: 12px;
+}
+
+.reg-form-login-link {
+  color: #1b4cd1;
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: underline;
+}
+
+.reg-form-login-link:hover {
+  text-decoration: none;
+}
