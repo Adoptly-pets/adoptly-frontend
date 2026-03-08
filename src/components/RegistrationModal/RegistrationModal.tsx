@@ -24,11 +24,11 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
   const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
 
-  const { register, handleSubmit } = useForm<RegistrationFormData>({
-    defaultValues: {
-      role: 'adopter',
-    },
-  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegistrationFormData>();
 
   const onSubmit = (data: RegistrationFormData) => {
     console.log(data);
@@ -43,22 +43,35 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
       <form className="reg-form" onSubmit={handleSubmit(onSubmit)}>
         <h2 className="reg-form-title">{t('registration.title')}</h2>
 
-        <div className="reg-form-radio-group">
-          <label className="reg-form-radio">
-            <input type="radio" value="adopter" {...register('role')} />
-            <span className="reg-form-radio-custom" />
-            <span className="reg-form-radio-label">
-              {t('registration.role_adopter')}
-            </span>
-          </label>
+        <div className="reg-form-field">
+          <div className="reg-form-radio-group">
+            <label className="reg-form-radio">
+              <input
+                type="radio"
+                value="adopter"
+                {...register('role', { required: t('registration.role_required') })}
+              />
+              <span className="reg-form-radio-custom" />
+              <span className="reg-form-radio-label">
+                {t('registration.role_adopter')}
+              </span>
+            </label>
 
-          <label className="reg-form-radio">
-            <input type="radio" value="shelter" {...register('role')} />
-            <span className="reg-form-radio-custom" />
-            <span className="reg-form-radio-label">
-              {t('registration.role_shelter')}
-            </span>
-          </label>
+            <label className="reg-form-radio">
+              <input
+                type="radio"
+                value="shelter"
+                {...register('role', { required: t('registration.role_required') })}
+              />
+              <span className="reg-form-radio-custom" />
+              <span className="reg-form-radio-label">
+                {t('registration.role_shelter')}
+              </span>
+            </label>
+          </div>
+          {errors.role && (
+            <span className="reg-form-error">{errors.role.message}</span>
+          )}
         </div>
 
         <div className="reg-form-field">

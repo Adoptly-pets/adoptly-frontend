@@ -171,6 +171,7 @@
     "email_placeholder": "Enter your email address",
     "password_label": "Password",
     "password_placeholder": "Enter password",
+    "role_required": "Please select an account type",
     "submit": "Register",
     "has_account": "Already have an account?",
     "login_link": "Log in"

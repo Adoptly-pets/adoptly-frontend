@@ -173,6 +173,7 @@
     "email_placeholder": "Введіть адресу електронної пошти",
     "password_label": "Пароль",
     "password_placeholder": "Введіть пароль",
+    "role_required": "Оберіть тип облікового запису",
     "submit": "Зареєструватися",
     "has_account": "Вже є обліковий запис?",
     "login_link": "Увійти"
