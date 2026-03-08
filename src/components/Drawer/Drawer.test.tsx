@@ -27,7 +27,7 @@ describe('Drawer', () => {
         <div>Test Content</div>
       </Drawer>
     );
-    fireEvent.click(document.querySelector('.modal-overlay')!);
+    fireEvent.click(document.querySelector('.drawer-overlay')!);
     expect(onClose).toHaveBeenCalled();
   });
 
