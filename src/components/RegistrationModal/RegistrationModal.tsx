@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import Modal from '../Modal/Modal';
@@ -27,11 +27,20 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<RegistrationFormData>();
 
+  useEffect(() => {
+    if (isOpen) {
+      reset();
+      setShowPassword(false);
+    }
+  }, [isOpen, reset]);
+
   const onSubmit = (data: RegistrationFormData) => {
     console.log(data);
+    onClose();
   };
 
   return (
@@ -40,7 +49,7 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
       onClose={onClose}
       ariaLabel={t('registration.title')}
     >
-      <form className="reg-form" onSubmit={handleSubmit(onSubmit)}>
+      <form className="reg-form" onSubmit={handleSubmit(onSubmit)} noValidate>
         <h2 className="reg-form-title">{t('registration.title')}</h2>
 
         <div className="reg-form-field">
@@ -83,7 +92,13 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
             type="email"
             className="reg-form-input"
             placeholder={t('registration.email_placeholder')}
-            {...register('email', { required: t('registration.email_required') })}
+            {...register('email', {
+              required: t('registration.email_required'),
+              pattern: {
+                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                message: t('registration.email_invalid'),
+              },
+            })}
           />
           {errors.email && (
             <span className="reg-form-error">{errors.email.message}</span>
