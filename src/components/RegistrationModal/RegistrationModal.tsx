@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from '../Drawer/Drawer';
+import Modal from '../Modal/Modal';
 
 type RegistrationModalProps = {
   isOpen: boolean;
