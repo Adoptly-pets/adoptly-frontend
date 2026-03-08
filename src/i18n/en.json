@@ -163,5 +163,16 @@
     "text": "We use cookies to improve your browsing experience. Please accept them or adjust the settings as you prefer.",
     "accept": "Accept",
     "more": "Read more"
+  },
+  "registration": {
+    "title": "Personal Account Registration",
+    "role_adopter": "Adopter",
+    "role_shelter": "Shelter",
+    "email_placeholder": "Enter your email address",
+    "password_label": "Password",
+    "password_placeholder": "Enter password",
+    "submit": "Register",
+    "has_account": "Already have an account?",
+    "login_link": "Log in"
   }
 }
