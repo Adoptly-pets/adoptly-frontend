@@ -83,8 +83,11 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
             type="email"
             className="reg-form-input"
             placeholder={t('registration.email_placeholder')}
-            {...register('email')}
+            {...register('email', { required: t('registration.email_required') })}
           />
+          {errors.email && (
+            <span className="reg-form-error">{errors.email.message}</span>
+          )}
         </div>
 
         <div className="reg-form-field">
@@ -97,7 +100,7 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
               type={showPassword ? 'text' : 'password'}
               className="reg-form-input"
               placeholder={t('registration.password_placeholder')}
-              {...register('password')}
+              {...register('password', { required: t('registration.password_required') })}
             />
             <button
               type="button"
@@ -111,6 +114,9 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
               />
             </button>
           </div>
+          {errors.password && (
+            <span className="reg-form-error">{errors.password.message}</span>
+          )}
         </div>
 
         <Button type="submit" variant="primary" maxWidth="100%" height={56}>
