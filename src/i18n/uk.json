@@ -180,5 +180,19 @@
     "submit": "Зареєструватися",
     "has_account": "Вже є обліковий запис?",
     "login_link": "Увійти"
+  },
+  "login": {
+    "title": "Вхід до особистого кабінету",
+    "email_placeholder": "Введіть адресу електронної пошти",
+    "email_required": "Введіть адресу електронної пошти",
+    "email_invalid": "Введіть коректну адресу електронної пошти",
+    "password_label": "Пароль",
+    "password_placeholder": "Введіть пароль",
+    "password_required": "Введіть пароль",
+    "remember_me": "Запам'ятати мене",
+    "forgot_password": "Забули пароль?",
+    "submit": "Увійти",
+    "no_account": "Немає акаунту?",
+    "register_link": "Реєстрація"
   }
 }

@@ -178,5 +178,19 @@
     "submit": "Register",
     "has_account": "Already have an account?",
     "login_link": "Log in"
+  },
+  "login": {
+    "title": "Log in to personal account",
+    "email_placeholder": "Enter your email address",
+    "email_required": "Please enter your email address",
+    "email_invalid": "Please enter a valid email address",
+    "password_label": "Password",
+    "password_placeholder": "Enter password",
+    "password_required": "Please enter a password",
+    "remember_me": "Remember me",
+    "forgot_password": "Forgot password?",
+    "submit": "Log in",
+    "no_account": "Don't have an account?",
+    "register_link": "Register"
   }
 }
