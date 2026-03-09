@@ -15,7 +15,12 @@ const OurMission = () => {
         </p>
       </div>
       <div className="photo-block">
-        <img loading="lazy" src={photo} alt="pet and couple" />
+        <img
+          loading="lazy"
+          className={photo}
+          src={photo}
+          alt="pet and couple"
+        />
       </div>
     </section>
   );
