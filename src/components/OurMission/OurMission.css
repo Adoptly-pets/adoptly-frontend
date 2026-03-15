@@ -6,7 +6,6 @@
   border-radius: 20px;
   padding: 24px 16px;
   background-color: #ecf1ff;
-  max-width: 670px;
   width: 100%;
 }
 
@@ -37,16 +36,17 @@
 @media (min-width: 769px) {
   .our-mission {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 20px;
     padding: 64px 0 32px;
-    align-items: stretch;
   }
 
   .text-block {
     border-radius: 44px;
     padding: 50px 40px;
     max-height: 528px;
-    width: 50%;
   }
 
   .our-mission-title {
@@ -63,13 +63,28 @@
     display: block;
     border-radius: 44px;
     max-width: 670px;
-    width: 50%;
   }
 }
 
-@media (min-width: 1300px) {
+@media (min-width: 1250px) {
+  .our-mission {
+    flex-direction: row;
+    align-items: stretch;
+  }
   .text-block {
-    padding: 64px 40px;
+    padding: 40px 30px;
+    width: 50%;
+  }
+  .our-mission-text {
+    font-size: 19px;
+  }
+  .photo-block {
+    width: 50%;
+  }
+}
+@media (min-width: 1320px) {
+  .text-block {
+    padding: 60px 40px;
   }
   .our-mission-text {
     font-size: 20px;
