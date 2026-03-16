@@ -46,11 +46,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
   };
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      ariaLabel={t('login.title')}
-    >
+    <Modal isOpen={isOpen} onClose={onClose} ariaLabel={t('login.title')}>
       <form className="login-form" onSubmit={handleSubmit(onSubmit)} noValidate>
         <h2 className="login-form-title">{t('login.title')}</h2>
 
@@ -105,19 +101,18 @@ const LoginModal: React.FC<LoginModalProps> = ({
           {errors.password && (
             <span className="login-form-error">{errors.password.message}</span>
           )}
-        </div>
-
-        <div className="login-form-options">
-          <label className="login-form-checkbox">
-            <input type="checkbox" {...register('rememberMe')} />
-            <span className="login-form-checkbox-custom" />
-            <span className="login-form-checkbox-label">
-              {t('login.remember_me')}
-            </span>
-          </label>
-          <button type="button" className="login-form-forgot">
-            {t('login.forgot_password')}
-          </button>
+          <div className="login-form-options">
+            <label className="login-form-checkbox">
+              <input type="checkbox" {...register('rememberMe')} />
+              <span className="login-form-checkbox-custom" />
+              <span className="login-form-checkbox-label">
+                {t('login.remember_me')}
+              </span>
+            </label>
+            <button type="button" className="login-form-forgot">
+              {t('login.forgot_password')}
+            </button>
+          </div>
         </div>
 
         <Button type="submit" variant="primary" maxWidth="100%" height={56}>
