@@ -15,11 +15,13 @@ type RegistrationFormData = {
 type RegistrationModalProps = {
   isOpen: boolean;
   onClose: () => void;
+  onSwitchToLogin: () => void;
 };
 
 const RegistrationModal: React.FC<RegistrationModalProps> = ({
   isOpen,
   onClose,
+  onSwitchToLogin,
 }) => {
   const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
@@ -146,7 +148,11 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
       </form>
       <p className="reg-form-login-text">
         {t('registration.has_account')}{' '}
-        <button type="button" className="reg-form-login-link">
+        <button
+          type="button"
+          className="reg-form-login-link"
+          onClick={onSwitchToLogin}
+        >
           {t('registration.login_link')}
         </button>
       </p>

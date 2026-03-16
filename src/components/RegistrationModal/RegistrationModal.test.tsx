@@ -9,18 +9,20 @@ jest.mock('../Icon/Icon', () => ({
 
 describe('RegistrationModal', () => {
   const onClose = jest.fn();
+  const onSwitchToLogin = jest.fn();
 
   beforeEach(() => {
     onClose.mockClear();
+    onSwitchToLogin.mockClear();
   });
 
   test('renders nothing when closed', () => {
-    render(<RegistrationModal isOpen={false} onClose={onClose} />);
+    render(<RegistrationModal isOpen={false} onClose={onClose} onSwitchToLogin={onSwitchToLogin} />);
     expect(screen.queryByText('registration.title')).not.toBeInTheDocument();
   });
 
   test('shows validation errors when submitting empty form', async () => {
-    render(<RegistrationModal isOpen={true} onClose={onClose} />);
+    render(<RegistrationModal isOpen={true} onClose={onClose} onSwitchToLogin={onSwitchToLogin} />);
     fireEvent.click(screen.getByText('registration.submit'));
 
     await waitFor(() => {
@@ -33,7 +35,7 @@ describe('RegistrationModal', () => {
   });
 
   test('shows email validation error for invalid email', async () => {
-    render(<RegistrationModal isOpen={true} onClose={onClose} />);
+    render(<RegistrationModal isOpen={true} onClose={onClose} onSwitchToLogin={onSwitchToLogin} />);
 
     const emailInput = screen.getByPlaceholderText('registration.email_placeholder');
     const passwordInput = screen.getByPlaceholderText('registration.password_placeholder');
@@ -51,7 +53,7 @@ describe('RegistrationModal', () => {
   });
 
   test('submits form and closes modal with valid data', async () => {
-    render(<RegistrationModal isOpen={true} onClose={onClose} />);
+    render(<RegistrationModal isOpen={true} onClose={onClose} onSwitchToLogin={onSwitchToLogin} />);
 
     fireEvent.click(screen.getByText('registration.role_adopter'));
     fireEvent.change(screen.getByPlaceholderText('registration.email_placeholder'), {
@@ -68,7 +70,7 @@ describe('RegistrationModal', () => {
   });
 
   test('toggles password visibility', () => {
-    render(<RegistrationModal isOpen={true} onClose={onClose} />);
+    render(<RegistrationModal isOpen={true} onClose={onClose} onSwitchToLogin={onSwitchToLogin} />);
 
     const passwordInput = screen.getByPlaceholderText('registration.password_placeholder');
     const toggleButton = screen.getByLabelText('Show password');

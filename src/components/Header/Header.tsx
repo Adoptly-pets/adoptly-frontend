@@ -9,17 +9,16 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SocialLinks from '../SocialLinks/SocialLinks';
 import { langLink } from '../../utils/routing';
 import RegistrationModal from '../RegistrationModal/RegistrationModal';
+import LoginModal from '../LoginModal/LoginModal';
+
+type AuthModal = 'registration' | 'login' | null;
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
-
-  const handleOpenModal = () => {
-    setIsRegistrationModalOpen(true);
-  };
+  const [authModal, setAuthModal] = useState<AuthModal>(null);
 
   const handleCloseModal = () => {
-    setIsRegistrationModalOpen(false);
+    setAuthModal(null);
   };
   const { i18n } = useTranslation();
   const navigate = useNavigate();
@@ -132,13 +131,19 @@ const Header = () => {
             type="button"
             className="btn"
             title="Username"
-            onClick={handleOpenModal}
+            onClick={() => setAuthModal('login')}
           >
             <Icon id="icon-user" className="icon-user" size={16} height={15} />
           </button>
           <RegistrationModal
-            isOpen={isRegistrationModalOpen}
+            isOpen={authModal === 'registration'}
             onClose={handleCloseModal}
+            onSwitchToLogin={() => setAuthModal('login')}
+          />
+          <LoginModal
+            isOpen={authModal === 'login'}
+            onClose={handleCloseModal}
+            onSwitchToRegister={() => setAuthModal('registration')}
           />
         </div>
       </div>
