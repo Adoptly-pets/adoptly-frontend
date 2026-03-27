@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import Modal from '../Modal/Modal';
 import { Icon } from '../Icon/Icon';
 import Button from '../Button/Button';
+import PasswordStrengthBar from '../PasswordStrengthBar/PasswordStrengthBar';
 import './RegistrationModal.css';
 
 type RegistrationFormData = {
@@ -30,8 +31,11 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm<RegistrationFormData>();
+
+  const password = watch('password', '');
 
   useEffect(() => {
     if (isOpen) {
@@ -123,6 +127,10 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
               placeholder={t('registration.password_placeholder')}
               {...register('password', {
                 required: t('registration.password_required'),
+                minLength: {
+                  value: 8,
+                  message: t('registration.password_min_length'),
+                },
               })}
             />
             <button
@@ -140,6 +148,7 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
           {errors.password && (
             <span className="reg-form-error">{errors.password.message}</span>
           )}
+          <PasswordStrengthBar password={password} />
         </div>
 
         <Button type="submit" variant="primary" maxWidth="100%" height={56}>

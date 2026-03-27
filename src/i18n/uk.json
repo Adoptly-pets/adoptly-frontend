@@ -181,6 +181,11 @@
     "has_account": "Вже є обліковий запис?",
     "login_link": "Увійти"
   },
+  "passwordStrength": {
+    "weak": "Слабкий",
+    "medium": "Середній",
+    "strong": "Сильний"
+  },
   "login": {
     "title": "Вхід до особистого кабінету",
     "email_placeholder": "Введіть адресу електронної пошти",

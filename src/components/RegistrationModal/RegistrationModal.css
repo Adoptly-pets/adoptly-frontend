@@ -128,6 +128,16 @@
   background-color: #153da8;
 }
 
+.reg-form-hint {
+  font-family: var(--font-primary);
+  font-size: 14px;
+  color: #8e92a4;
+}
+
+.reg-form-hint--valid {
+  color: #2e7d32;
+}
+
 .reg-form-login-text {
   text-align: center;
   font-family: var(--font-primary);

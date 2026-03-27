@@ -179,6 +179,11 @@
     "has_account": "Already have an account?",
     "login_link": "Log in"
   },
+  "passwordStrength": {
+    "weak": "Weak",
+    "medium": "Medium",
+    "strong": "Strong"
+  },
   "login": {
     "title": "Log in to personal account",
     "email_placeholder": "Enter your email address",
