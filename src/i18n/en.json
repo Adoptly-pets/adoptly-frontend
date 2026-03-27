@@ -177,7 +177,8 @@
     "password_required": "Please enter a password",
     "submit": "Register",
     "has_account": "Already have an account?",
-    "login_link": "Log in"
+    "login_link": "Log in",
+    "password_min_length": "Password must be at least 8 characters long"
   },
   "passwordStrength": {
     "weak": "Weak",

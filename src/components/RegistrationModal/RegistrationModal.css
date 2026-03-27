@@ -129,9 +129,19 @@
 }
 
 .reg-form-hint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   font-family: var(--font-primary);
   font-size: 14px;
   color: #8e92a4;
+}
+
+.reg-form-hint-icon {
+  width: 12px;
+  height: 13px;
+  fill: currentColor;
+  flex-shrink: 0;
 }
 
 .reg-form-hint--valid {

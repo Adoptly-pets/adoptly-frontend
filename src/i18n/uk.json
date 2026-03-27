@@ -179,7 +179,8 @@
     "password_required": "Введіть пароль",
     "submit": "Зареєструватися",
     "has_account": "Вже є обліковий запис?",
-    "login_link": "Увійти"
+    "login_link": "Увійти",
+    "password_min_length": "Пароль повинен бути довжиною не менше 8 символів"
   },
   "passwordStrength": {
     "weak": "Слабкий",
