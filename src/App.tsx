@@ -19,7 +19,7 @@ import ShelterDashboardPage from './pages/ShelterDashboardPage/ShelterDashboardP
 
 function App() {
   return (
-    <Router basename="/adoptly-frontend">
+    <Router basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
       <Header />
       <main>
         <Routes>
