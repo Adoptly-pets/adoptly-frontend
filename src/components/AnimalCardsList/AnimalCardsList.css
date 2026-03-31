@@ -1,0 +1,177 @@
+.animals-list {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 32px 40px 40px;
+}
+
+.animals-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.animals-list-title {
+  font-family: var(--font-secondary);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--title-color-dark);
+}
+
+.animals-list-filters {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.animals-filter-btn {
+  padding: 8px 20px;
+  border-radius: 20px;
+  border: 1px solid #e8eaf0;
+  background: none;
+  font-family: var(--font-primary);
+  font-size: 14px;
+  color: var(--title-color-dark);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.animals-filter-btn:hover {
+  border-color: #ff7300;
+  color: #ff7300;
+}
+
+.animals-filter-btn--active {
+  background-color: #ff7300;
+  border-color: #ff7300;
+  color: #ffffff;
+}
+
+.animals-table-wrapper {
+  overflow-x: auto;
+}
+
+.animals-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.animals-table th {
+  text-align: left;
+  padding: 12px 8px;
+  font-family: var(--font-primary);
+  font-size: 13px;
+  font-weight: 600;
+  color: #8e92a4;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #e8eaf0;
+}
+
+.animals-table td {
+  padding: 14px 8px;
+  font-family: var(--font-primary);
+  font-size: 15px;
+  color: var(--title-color-dark);
+  border-bottom: 1px solid #f0f2f5;
+  vertical-align: middle;
+}
+
+.animals-table tbody tr:hover {
+  background-color: #fafbfc;
+}
+
+.animals-table-photo {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background-color: #ecf1ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.animals-table-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.animals-table-name {
+  font-weight: 600;
+}
+
+.animals-status {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.status--active {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status--reserved {
+  background-color: #fff3e0;
+  color: #e65100;
+}
+
+.status--adopted {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+.status--unavailable {
+  background-color: #f5f5f5;
+  color: #757575;
+}
+
+.animals-health {
+  display: flex;
+  gap: 4px;
+}
+
+.animals-health-badge {
+  padding: 2px 8px;
+  border-radius: 8px;
+  background-color: #ecf1ff;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--title-color-dark);
+  white-space: nowrap;
+}
+
+.animals-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.animals-action-btn {
+  background: none;
+  border: none;
+  font-family: var(--font-primary);
+  font-size: 14px;
+  color: #0054d6;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.animals-action-btn:hover {
+  color: #ff7300;
+}
+
+@media (max-width: 768px) {
+  .animals-list {
+    padding: 24px 20px;
+  }
+
+  .animals-list-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+}

@@ -1,0 +1,41 @@
+.shelter-dashboard {
+  min-height: 100vh;
+  background-color: #f0f2f5;
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+.shelter-dashboard .container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.shelter-dashboard-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.shelter-dashboard-content {
+  min-width: 0;
+}
+
+@media (max-width: 1024px) {
+  .shelter-dashboard-layout {
+    grid-template-columns: 240px 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .shelter-dashboard {
+    padding-top: 24px;
+    padding-bottom: 40px;
+  }
+
+  .shelter-dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+}

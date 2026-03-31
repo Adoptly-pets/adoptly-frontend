@@ -1,0 +1,295 @@
+.add-animal {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 32px 40px 40px;
+}
+
+.add-animal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.add-animal-title {
+  font-family: var(--font-secondary);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--title-color-dark);
+}
+
+.add-animal-back {
+  background: none;
+  border: none;
+  font-family: var(--font-primary);
+  font-size: 15px;
+  color: var(--title-color-dark);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.add-animal-back:hover {
+  color: #ff7300;
+}
+
+.add-animal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.add-animal-section {
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.add-animal-section-title {
+  font-family: var(--font-secondary);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--title-color-dark);
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e8eaf0;
+}
+
+.add-animal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.add-animal-label {
+  font-family: var(--font-primary);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--title-color-dark);
+}
+
+.add-animal-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 18px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background-color: #ecf1ff99;
+  font-family: var(--font-primary);
+  font-size: 16px;
+  color: var(--title-color-dark);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.add-animal-input:focus {
+  border-color: #0054d6;
+}
+
+.add-animal-input::placeholder {
+  color: #8e92a4;
+}
+
+.add-animal-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23091A49' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+.add-animal-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.add-animal-radio-group {
+  display: flex;
+  gap: 24px;
+  height: 48px;
+  align-items: center;
+}
+
+.add-animal-radio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-family: var(--font-primary);
+  font-size: 16px;
+  color: var(--title-color-dark);
+}
+
+.add-animal-radio input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.add-animal-radio-custom {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid #8e92a4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: border-color 0.2s;
+}
+
+.add-animal-radio input:checked + .add-animal-radio-custom {
+  border-color: var(--title-color-dark);
+}
+
+.add-animal-radio input:checked + .add-animal-radio-custom::after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--title-color-dark);
+}
+
+.add-animal-age-group {
+  display: flex;
+  gap: 8px;
+}
+
+.add-animal-age-input {
+  flex: 1;
+}
+
+.add-animal-age-select {
+  width: 140px;
+  flex-shrink: 0;
+}
+
+.add-animal-textarea {
+  height: auto;
+  padding: 14px 18px;
+  resize: vertical;
+  min-height: 120px;
+}
+
+.add-animal-photo-upload {
+  margin-top: 4px;
+}
+
+.add-animal-photo-dropzone {
+  border: 2px dashed #d0d5e0;
+  border-radius: 12px;
+  padding: 32px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.add-animal-photo-dropzone:hover {
+  border-color: #ff7300;
+  background-color: #fff8f2;
+}
+
+.add-animal-photo-text {
+  font-family: var(--font-primary);
+  font-size: 15px;
+  color: var(--title-color-dark);
+  margin-bottom: 4px;
+}
+
+.add-animal-photo-hint {
+  font-family: var(--font-primary);
+  font-size: 13px;
+  color: #8e92a4;
+}
+
+.add-animal-toggles {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.add-animal-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-family: var(--font-primary);
+  font-size: 16px;
+  color: var(--title-color-dark);
+}
+
+.add-animal-toggle input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.add-animal-toggle-switch {
+  width: 44px;
+  height: 24px;
+  border-radius: 12px;
+  background-color: #d0d5e0;
+  position: relative;
+  flex-shrink: 0;
+  transition: background-color 0.2s;
+}
+
+.add-animal-toggle-switch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  transition: transform 0.2s;
+}
+
+.add-animal-toggle input:checked + .add-animal-toggle-switch {
+  background-color: #2e7d32;
+}
+
+.add-animal-toggle input:checked + .add-animal-toggle-switch::after {
+  transform: translateX(20px);
+}
+
+.add-animal-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding-top: 8px;
+}
+
+.add-animal-cancel {
+  background: none;
+  border: none;
+  font-family: var(--font-primary);
+  font-size: 16px;
+  color: var(--title-color-dark);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.add-animal-cancel:hover {
+  color: #ff7300;
+}
+
+@media (max-width: 768px) {
+  .add-animal {
+    padding: 24px 20px;
+  }
+
+  .add-animal-row {
+    grid-template-columns: 1fr;
+  }
+
+  .add-animal-actions {
+    flex-direction: column;
+  }
+}
