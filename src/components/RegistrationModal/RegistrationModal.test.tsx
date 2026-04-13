@@ -7,6 +7,14 @@ jest.mock('../Icon/Icon', () => ({
   ),
 }));
 
+jest.mock('../PasswordStrengthBar/PasswordStrengthBar', () => {
+  const MockPasswordStrengthBar = ({ password }: { password: string }) => (
+    <div data-testid="password-strength-bar" data-password={password} />
+  );
+  MockPasswordStrengthBar.displayName = 'MockPasswordStrengthBar';
+  return { __esModule: true, default: MockPasswordStrengthBar };
+});
+
 describe('RegistrationModal', () => {
   const onClose = jest.fn();
   const onSwitchToLogin = jest.fn();
@@ -67,6 +75,47 @@ describe('RegistrationModal', () => {
     await waitFor(() => {
       expect(onClose).toHaveBeenCalledTimes(1);
     });
+  });
+
+  test('shows password min length hint', () => {
+    render(<RegistrationModal isOpen={true} onClose={onClose} onSwitchToLogin={onSwitchToLogin} />);
+    expect(screen.getByText('registration.password_min_length')).toBeInTheDocument();
+  });
+
+  test('min length hint turns valid when password is 8+ characters', () => {
+    render(<RegistrationModal isOpen={true} onClose={onClose} onSwitchToLogin={onSwitchToLogin} />);
+
+    const passwordInput = screen.getByPlaceholderText('registration.password_placeholder');
+    fireEvent.change(passwordInput, { target: { value: '12345678' } });
+
+    const hint = screen.getByText('registration.password_min_length').closest('.reg-form-hint');
+    expect(hint).toHaveClass('reg-form-hint--valid');
+  });
+
+  test('shows minLength validation error for short password on submit', async () => {
+    render(<RegistrationModal isOpen={true} onClose={onClose} onSwitchToLogin={onSwitchToLogin} />);
+
+    fireEvent.click(screen.getByText('registration.role_adopter'));
+    fireEvent.change(screen.getByPlaceholderText('registration.email_placeholder'), {
+      target: { value: 'test@example.com' },
+    });
+    fireEvent.change(screen.getByPlaceholderText('registration.password_placeholder'), {
+      target: { value: '1234567' },
+    });
+    fireEvent.click(screen.getByText('registration.submit'));
+
+    await waitFor(() => {
+      const errorElement = document.querySelector('.reg-form-error');
+      expect(errorElement).toBeInTheDocument();
+      expect(errorElement).toHaveTextContent('registration.password_min_length');
+    });
+
+    expect(onClose).not.toHaveBeenCalled();
+  });
+
+  test('renders password strength bar', () => {
+    render(<RegistrationModal isOpen={true} onClose={onClose} onSwitchToLogin={onSwitchToLogin} />);
+    expect(screen.getByTestId('password-strength-bar')).toBeInTheDocument();
   });
 
   test('toggles password visibility', () => {

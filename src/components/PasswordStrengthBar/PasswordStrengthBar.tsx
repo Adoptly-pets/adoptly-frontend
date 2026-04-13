@@ -58,7 +58,7 @@ const PasswordStrengthBar: React.FC<PasswordStrengthBarProps> = ({
         {Array.from({ length: 3 }, (_, i) => (
           <div
             key={i}
-            className={`password-strength-segment ${i < filledSegments ? className : ''}`}
+            className={`password-strength-segment${i < filledSegments ? ` ${className}` : ''}`}
           />
         ))}
       </div>
