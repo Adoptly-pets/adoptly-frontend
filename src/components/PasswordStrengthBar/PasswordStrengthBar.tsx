@@ -1,7 +1,15 @@
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { zxcvbn } from '@zxcvbn-ts/core';
+import { zxcvbn, zxcvbnOptions } from '@zxcvbn-ts/core';
+import * as zxcvbnCommonPackage from '@zxcvbn-ts/language-common';
 import './PasswordStrengthBar.css';
+
+zxcvbnOptions.setOptions({
+  dictionary: {
+    ...zxcvbnCommonPackage.dictionary,
+  },
+  graphs: zxcvbnCommonPackage.adjacencyGraphs,
+});
 
 interface PasswordStrengthBarProps {
   password: string;
@@ -25,13 +33,7 @@ const PasswordStrengthBar: React.FC<PasswordStrengthBarProps> = ({
   const { label, className } = strengthConfig[result.score];
   const segmentCount = 3;
   const filledSegments =
-    result.score === 0
-      ? 0
-      : result.score <= 1
-        ? 1
-        : result.score <= 2
-          ? 2
-          : 3;
+    result.score === 0 ? 0 : result.score <= 1 ? 1 : result.score <= 2 ? 2 : 3;
 
   if (!password) return null;
 
