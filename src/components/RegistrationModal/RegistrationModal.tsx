@@ -148,7 +148,9 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
           {errors.password && (
             <span className="reg-form-error">{errors.password.message}</span>
           )}
-          <span className={`reg-form-hint ${password.length >= 8 ? 'reg-form-hint--valid' : ''}`}>
+          <span
+            className={`reg-form-hint ${password.length >= 8 ? 'reg-form-hint--valid' : ''}`}
+          >
             <Icon id="icon-checkmark" className="reg-form-hint-icon" />
             {t('registration.password_min_length')}
           </span>

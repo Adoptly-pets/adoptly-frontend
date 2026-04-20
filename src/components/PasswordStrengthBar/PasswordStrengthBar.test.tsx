@@ -18,12 +18,8 @@ describe('PasswordStrengthBar', () => {
   });
 
   test('renders 3 segments', () => {
-    const { container } = render(
-      <PasswordStrengthBar password="test1234" />
-    );
-    const segments = container.querySelectorAll(
-      '.password-strength-segment'
-    );
+    const { container } = render(<PasswordStrengthBar password="test1234" />);
+    const segments = container.querySelectorAll('.password-strength-segment');
     expect(segments).toHaveLength(3);
   });
 
@@ -37,9 +33,7 @@ describe('PasswordStrengthBar', () => {
   });
 
   test('no segments filled for score 0 password', () => {
-    const { container } = render(
-      <PasswordStrengthBar password="password" />
-    );
+    const { container } = render(<PasswordStrengthBar password="password" />);
     const filledSegments = container.querySelectorAll(
       '.password-strength-segment.strength-weak'
     );
@@ -47,9 +41,7 @@ describe('PasswordStrengthBar', () => {
   });
 
   test('one segment filled for score 1 password', () => {
-    const { container } = render(
-      <PasswordStrengthBar password="monkey12" />
-    );
+    const { container } = render(<PasswordStrengthBar password="monkey12" />);
     const filledSegments = container.querySelectorAll(
       '.password-strength-segment[class*="strength-"]'
     );
