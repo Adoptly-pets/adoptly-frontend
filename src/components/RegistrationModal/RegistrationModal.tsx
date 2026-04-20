@@ -47,8 +47,8 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
     }
   }, [isOpen, reset]);
 
-  const onSubmit = (data: RegistrationFormData) => {
-    console.log(data);
+  const onSubmit = (_data: RegistrationFormData) => {
+    // TODO: integrate with backend API
     onClose();
   };
 
