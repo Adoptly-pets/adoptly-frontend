@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import Modal from '../Modal/Modal';
 import { Icon } from '../Icon/Icon';
 import Button from '../Button/Button';
-import PasswordStrengthBar from '../PasswordStrengthBar/PasswordStrengthBar';
 import './RegistrationModal.css';
+
+const PasswordStrengthBar = lazy(
+  () => import('../PasswordStrengthBar/PasswordStrengthBar')
+);
 
 type RegistrationFormData = {
   role: 'adopter' | 'shelter';
@@ -154,7 +157,9 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
             <Icon id="icon-checkmark" className="reg-form-hint-icon" />
             {t('registration.password_min_length')}
           </span>
-          <PasswordStrengthBar password={password} />
+          <Suspense fallback={null}>
+            <PasswordStrengthBar password={password} />
+          </Suspense>
         </div>
 
         <Button type="submit" variant="primary" maxWidth="100%" height={56}>
