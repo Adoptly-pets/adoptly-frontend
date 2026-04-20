@@ -131,9 +131,10 @@
 .reg-form-hint {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   font-family: var(--font-primary);
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 600;
   color: #8e92a4;
 }
 
