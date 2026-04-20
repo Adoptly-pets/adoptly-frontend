@@ -17,6 +17,8 @@ const initZxcvbn = () => {
   isInitialized = true;
 };
 
+const SEGMENTS_BY_SCORE = [0, 1, 2, 3, 3];
+
 interface PasswordStrengthBarProps {
   password: string;
 }
@@ -31,18 +33,21 @@ const PasswordStrengthBar: React.FC<PasswordStrengthBarProps> = ({
     return zxcvbn(password);
   }, [password]);
 
+  const strengthConfig = useMemo(
+    () => [
+      { label: t('passwordStrength.weak'), className: 'strength-weak' },
+      { label: t('passwordStrength.weak'), className: 'strength-weak' },
+      { label: t('passwordStrength.medium'), className: 'strength-medium' },
+      { label: t('passwordStrength.strong'), className: 'strength-strong' },
+      { label: t('passwordStrength.strong'), className: 'strength-strong' },
+    ],
+    [t]
+  );
+
   if (!result) return null;
 
-  const strengthConfig = [
-    { label: t('passwordStrength.weak'), className: 'strength-weak' },
-    { label: t('passwordStrength.weak'), className: 'strength-weak' },
-    { label: t('passwordStrength.medium'), className: 'strength-medium' },
-    { label: t('passwordStrength.strong'), className: 'strength-strong' },
-    { label: t('passwordStrength.strong'), className: 'strength-strong' },
-  ];
-
   const { label, className } = strengthConfig[result.score];
-  const filledSegments = [0, 1, 2, 3, 3][result.score];
+  const filledSegments = SEGMENTS_BY_SCORE[result.score];
 
   return (
     <div
