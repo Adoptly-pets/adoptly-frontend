@@ -5,12 +5,13 @@ import Modal from '../Modal/Modal';
 import { Icon } from '../Icon/Icon';
 import Button from '../Button/Button';
 import './RegistrationModal.css';
+import GoogleAuthButton from '../GoogleAuthButton/GoogleAuthButton';
 
 type RegistrationFormData = {
   role: 'adopter' | 'shelter';
   email: string;
   password: string;
-};
+};  
 
 type RegistrationModalProps = {
   isOpen: boolean;
@@ -156,6 +157,7 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
           {t('registration.login_link')}
         </button>
       </p>
+      <GoogleAuthButton onClick={() => console.log('Google auth')} />
     </Modal>
   );
 };

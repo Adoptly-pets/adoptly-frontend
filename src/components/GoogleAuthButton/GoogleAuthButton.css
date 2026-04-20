@@ -1,0 +1,32 @@
+.google-auth-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 8px;
+  background-color: #ecf1ff;
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--title-color-dark);
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s;
+}
+
+.google-auth-button:hover:not(:disabled) {
+  background-color: #dde5f5;
+}
+
+.google-auth-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.google-auth-button-icon {
+  flex-shrink: 0;
+}
