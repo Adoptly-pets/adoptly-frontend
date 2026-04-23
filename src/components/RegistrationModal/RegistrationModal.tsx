@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import Modal from '../Modal/Modal';
 import { Icon } from '../Icon/Icon';
 import Button from '../Button/Button';
 import './RegistrationModal.css';
+
+const PasswordStrengthBar = lazy(
+  () => import('../PasswordStrengthBar/PasswordStrengthBar')
+);
 
 type RegistrationFormData = {
   role: 'adopter' | 'shelter';
@@ -30,8 +34,11 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm<RegistrationFormData>();
+
+  const password = watch('password', '');
 
   useEffect(() => {
     if (isOpen) {
@@ -40,8 +47,8 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
     }
   }, [isOpen, reset]);
 
-  const onSubmit = (data: RegistrationFormData) => {
-    console.log(data);
+  const onSubmit = (_data: RegistrationFormData) => {
+    // TODO: integrate with backend API
     onClose();
   };
 
@@ -123,6 +130,10 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
               placeholder={t('registration.password_placeholder')}
               {...register('password', {
                 required: t('registration.password_required'),
+                minLength: {
+                  value: 8,
+                  message: t('registration.password_min_length'),
+                },
               })}
             />
             <button
@@ -140,6 +151,15 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
           {errors.password && (
             <span className="reg-form-error">{errors.password.message}</span>
           )}
+          <span
+            className={`reg-form-hint ${password.length >= 8 ? 'reg-form-hint--valid' : ''}`}
+          >
+            <Icon id="icon-checkmark" className="reg-form-hint-icon" />
+            {t('registration.password_min_length')}
+          </span>
+          <Suspense fallback={null}>
+            <PasswordStrengthBar password={password} />
+          </Suspense>
         </div>
 
         <Button type="submit" variant="primary" maxWidth="100%" height={56}>
