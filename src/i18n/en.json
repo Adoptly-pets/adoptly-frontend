@@ -177,7 +177,8 @@
     "password_required": "Please enter a password",
     "submit": "Register",
     "has_account": "Already have an account?",
-    "login_link": "Log in"
+    "login_link": "Log in",
+    "signUpWith": "Sign up with"
   },
   "login": {
     "title": "Log in to personal account",

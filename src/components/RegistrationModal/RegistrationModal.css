@@ -147,3 +147,25 @@
 .reg-form-login-link:hover {
   text-decoration: none;
 }
+
+.reg-form-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 32px 0 12px;
+}
+
+.reg-form-divider::before,
+.reg-form-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background-color: var(--title-color-dark);
+}
+
+.reg-form-divider-text {
+  font-family: var(--font-primary);
+  font-size: 16px;
+  color: var(--title-color-dark);
+  white-space: nowrap;
+}

@@ -157,6 +157,11 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
           {t('registration.login_link')}
         </button>
       </p>
+      <div className="reg-form-divider">
+        <span className="reg-form-divider-text">
+          {t('registration.signUpWith')}
+        </span>
+      </div>
       <GoogleAuthButton onClick={() => console.log('Google auth')} />
     </Modal>
   );
