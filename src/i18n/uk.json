@@ -194,6 +194,7 @@
     "forgot_password": "Забули пароль?",
     "submit": "Увійти",
     "no_account": "Немає акаунту?",
-    "register_link": "Реєстрація"
+    "register_link": "Реєстрація",
+    "signInWith": "Увійти через"
   }
 }

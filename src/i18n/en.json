@@ -192,6 +192,7 @@
     "forgot_password": "Forgot password?",
     "submit": "Log in",
     "no_account": "Don't have an account?",
-    "register_link": "Register"
+    "register_link": "Register",
+    "signInWith": "Sign in with"
   }
 }

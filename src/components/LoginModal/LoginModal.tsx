@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import Modal from '../Modal/Modal';
 import { Icon } from '../Icon/Icon';
 import Button from '../Button/Button';
+import GoogleAuthButton from '../GoogleAuthButton/GoogleAuthButton';
 import './LoginModal.css';
 
 type LoginFormData = {
@@ -129,6 +130,12 @@ const LoginModal: React.FC<LoginModalProps> = ({
           {t('login.register_link')}
         </button>
       </p>
+      <div className="login-form-divider">
+        <span className="login-form-divider-text">
+          {t('login.signInWith')}
+        </span>
+      </div>
+      <GoogleAuthButton onClick={() => console.log('Google auth')} />
     </Modal>
   );
 };
