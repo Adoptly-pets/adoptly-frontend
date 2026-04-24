@@ -15,14 +15,23 @@ describe('GoogleAuthButton', () => {
   });
 
   test('renders Google icon', () => {
-    render(<GoogleAuthButton onClick={onClick} />);
+    render(<GoogleAuthButton onClick={onClick} ariaLabel="Sign in with Google" />);
     expect(screen.getByTestId('icon-google')).toBeInTheDocument();
   });
 
   test('calls onClick when clicked', () => {
-    render(<GoogleAuthButton onClick={onClick} />);
+    render(<GoogleAuthButton onClick={onClick} ariaLabel="Sign in with Google" />);
     fireEvent.click(screen.getByRole('button'));
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
+  test('has correct aria-label', () => {
+    render(<GoogleAuthButton onClick={onClick} ariaLabel="Sign in with Google" />);
+    expect(screen.getByLabelText('Sign in with Google')).toBeInTheDocument();
+  });
+
+  test('has type="button" to prevent form submission', () => {
+    render(<GoogleAuthButton onClick={onClick} ariaLabel="Sign in with Google" />);
+    expect(screen.getByRole('button')).toHaveAttribute('type', 'button');
+  });
 });

@@ -4,14 +4,19 @@ import './GoogleAuthButton.css';
 
 interface GoogleAuthButtonProps {
   onClick: () => void;
+  ariaLabel: string;
 }
 
-const GoogleAuthButton: React.FC<GoogleAuthButtonProps> = ({ onClick }) => {
+const GoogleAuthButton: React.FC<GoogleAuthButtonProps> = ({
+  onClick,
+  ariaLabel,
+}) => {
   return (
     <button
       type="button"
       className="google-auth-button"
       onClick={onClick}
+      aria-label={ariaLabel}
     >
       <Icon
         id="icon-google"

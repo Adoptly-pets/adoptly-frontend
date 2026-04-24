@@ -4,14 +4,15 @@ import { useTranslation } from 'react-i18next';
 import Modal from '../Modal/Modal';
 import { Icon } from '../Icon/Icon';
 import Button from '../Button/Button';
-import './RegistrationModal.css';
 import GoogleAuthButton from '../GoogleAuthButton/GoogleAuthButton';
+import FormDivider from '../FormDivider/FormDivider';
+import './RegistrationModal.css';
 
 type RegistrationFormData = {
   role: 'adopter' | 'shelter';
   email: string;
   password: string;
-};  
+};
 
 type RegistrationModalProps = {
   isOpen: boolean;
@@ -41,6 +42,7 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
   const handleGoogleClick = async () => {
     const isRoleValid = await trigger('role');
     if (!isRoleValid) return;
+    // TODO(OSTC-189): wire up real Google OAuth
     console.log('Google auth', selectedRole);
   };
 
@@ -167,12 +169,11 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
           {t('registration.login_link')}
         </button>
       </p>
-      <div className="reg-form-divider">
-        <span className="reg-form-divider-text">
-          {t('registration.signUpWith')}
-        </span>
-      </div>
-      <GoogleAuthButton onClick={handleGoogleClick} />
+      <FormDivider text={t('registration.signUpWith')} />
+      <GoogleAuthButton
+        onClick={handleGoogleClick}
+        ariaLabel={`${t('registration.signUpWith')} Google`}
+      />
     </Modal>
   );
 };
