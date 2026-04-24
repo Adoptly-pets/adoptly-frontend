@@ -18,13 +18,8 @@
     border-color 0.2s;
 }
 
-.google-auth-button:hover:not(:disabled) {
+.google-auth-button:hover {
   background-color: #dde5f5;
-}
-
-.google-auth-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
 }
 
 .google-auth-button-icon {

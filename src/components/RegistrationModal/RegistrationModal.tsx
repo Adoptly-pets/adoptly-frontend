@@ -31,8 +31,18 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
     register,
     handleSubmit,
     reset,
+    watch,
+    trigger,
     formState: { errors },
   } = useForm<RegistrationFormData>();
+
+  const selectedRole = watch('role');
+
+  const handleGoogleClick = async () => {
+    const isRoleValid = await trigger('role');
+    if (!isRoleValid) return;
+    console.log('Google auth', selectedRole);
+  };
 
   useEffect(() => {
     if (isOpen) {
@@ -162,7 +172,7 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
           {t('registration.signUpWith')}
         </span>
       </div>
-      <GoogleAuthButton onClick={() => console.log('Google auth')} />
+      <GoogleAuthButton onClick={handleGoogleClick} />
     </Modal>
   );
 };

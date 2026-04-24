@@ -4,19 +4,14 @@ import './GoogleAuthButton.css';
 
 interface GoogleAuthButtonProps {
   onClick: () => void;
-  disabled?: boolean;
 }
 
-const GoogleAuthButton: React.FC<GoogleAuthButtonProps> = ({
-  onClick,
-  disabled = false,
-}) => {
+const GoogleAuthButton: React.FC<GoogleAuthButtonProps> = ({ onClick }) => {
   return (
     <button
       type="button"
       className="google-auth-button"
       onClick={onClick}
-      disabled={disabled}
     >
       <Icon
         id="icon-google"

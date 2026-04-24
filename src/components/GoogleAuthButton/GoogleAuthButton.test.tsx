@@ -25,14 +25,4 @@ describe('GoogleAuthButton', () => {
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
-  test('does not call onClick when disabled', () => {
-    render(<GoogleAuthButton onClick={onClick} disabled />);
-    fireEvent.click(screen.getByRole('button'));
-    expect(onClick).not.toHaveBeenCalled();
-  });
-
-  test('has disabled attribute when disabled prop is true', () => {
-    render(<GoogleAuthButton onClick={onClick} disabled />);
-    expect(screen.getByRole('button')).toBeDisabled();
-  });
 });
