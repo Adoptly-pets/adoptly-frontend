@@ -38,12 +38,8 @@ describe('LoginModal', () => {
     fireEvent.click(screen.getByText('login.submit'));
 
     await waitFor(() => {
-      expect(
-        screen.getByText('login.email_required')
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText('login.password_required')
-      ).toBeInTheDocument();
+      expect(screen.getByText('login.email_required')).toBeInTheDocument();
+      expect(screen.getByText('login.password_required')).toBeInTheDocument();
     });
 
     expect(onClose).not.toHaveBeenCalled();
@@ -58,9 +54,7 @@ describe('LoginModal', () => {
       />
     );
 
-    const emailInput = screen.getByPlaceholderText(
-      'login.email_placeholder'
-    );
+    const emailInput = screen.getByPlaceholderText('login.email_placeholder');
     const passwordInput = screen.getByPlaceholderText(
       'login.password_placeholder'
     );
@@ -70,9 +64,7 @@ describe('LoginModal', () => {
     fireEvent.submit(screen.getByText('login.submit'));
 
     await waitFor(() => {
-      expect(
-        screen.getByText('login.email_invalid')
-      ).toBeInTheDocument();
+      expect(screen.getByText('login.email_invalid')).toBeInTheDocument();
     });
 
     expect(onClose).not.toHaveBeenCalled();
@@ -87,10 +79,9 @@ describe('LoginModal', () => {
       />
     );
 
-    fireEvent.change(
-      screen.getByPlaceholderText('login.email_placeholder'),
-      { target: { value: 'test@example.com' } }
-    );
+    fireEvent.change(screen.getByPlaceholderText('login.email_placeholder'), {
+      target: { value: 'test@example.com' },
+    });
     fireEvent.change(
       screen.getByPlaceholderText('login.password_placeholder'),
       { target: { value: 'password123' } }
