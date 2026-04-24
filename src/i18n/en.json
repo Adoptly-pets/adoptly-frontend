@@ -178,6 +178,7 @@
     "submit": "Register",
     "has_account": "Already have an account?",
     "login_link": "Log in",
+    "signUpWith": "Sign up with",
     "password_min_length": "Password must be at least 8 characters long"
   },
   "passwordStrength": {
@@ -197,6 +198,7 @@
     "forgot_password": "Forgot password?",
     "submit": "Log in",
     "no_account": "Don't have an account?",
-    "register_link": "Register"
+    "register_link": "Register",
+    "signInWith": "Sign in with"
   }
 }
