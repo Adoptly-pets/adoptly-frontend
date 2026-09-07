@@ -187,7 +187,12 @@
     "serverError": "Server error. Please try again later.",
     "confirmEmail": {
       "title": "Confirm your email",
-      "message": "We have sent a confirmation email to {{email}}. Please click the link in the email to complete your registration."
+      "message": "We have sent a confirmation email to <bold>{{email}}</bold>. Please click the link in the email to complete your registration.",
+      "didntReceive": "Didn't receive the email?",
+      "resend": "Resend",
+      "resent": "Email resent",
+      "failed": "Failed to send",
+      "resendWithTimer": "Resend {{time}}"
     }
   },
   "passwordStrength": {
