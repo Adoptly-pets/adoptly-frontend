@@ -25,7 +25,7 @@ const EmailConfirmModal: React.FC<EmailConfirmModalProps> = ({
 }) => {
   const { t } = useTranslation();
   const [status, setStatus] = useState<Status>('ready');
-  const TIMER_SECONDS = 120;
+  const TIMER_SECONDS = 120; // Mirrors backend rate limit (2 min from registration, then after each resend)
   const [secondsLeft, setSecondsLeft] = useState(0);
 
   useEffect(() => {
