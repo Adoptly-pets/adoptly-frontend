@@ -12,6 +12,12 @@ interface EmailConfirmModalProps {
 
 type Status = 'ready' | 'resending' | 'resent' | 'failed';
 
+const formatTime = (totalSeconds: number): string => {
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+};
+
 const EmailConfirmModal: React.FC<EmailConfirmModalProps> = ({
   isOpen,
   email,
@@ -19,18 +25,36 @@ const EmailConfirmModal: React.FC<EmailConfirmModalProps> = ({
 }) => {
   const { t } = useTranslation();
   const [status, setStatus] = useState<Status>('ready');
+  const TIMER_SECONDS = 60;
+  const [secondsLeft, setSecondsLeft] = useState(0);
 
   useEffect(() => {
     if (isOpen) {
       setStatus('ready');
+      setSecondsLeft(0);
     }
   }, [isOpen]);
+
+  useEffect(() => {
+    if (secondsLeft <= 0) return;
+    const timer = setInterval(() => {
+      setSecondsLeft(prev => {
+        if (prev <= 1) {
+          setStatus('ready');
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [secondsLeft]);
 
   const handleResend = async () => {
     setStatus('resending');
     try {
       await resendActivationEmail(email);
       setStatus('resent');
+      setSecondsLeft(TIMER_SECONDS);
     } catch (error) {
       setStatus('failed');
       console.error('Failed to resend activation email:', error);
@@ -60,9 +84,15 @@ const EmailConfirmModal: React.FC<EmailConfirmModalProps> = ({
             type="button"
             className="email-confirm-resend-btn"
             onClick={handleResend}
-            disabled={status === 'resending' || status === 'resent'}
+            disabled={
+              status === 'resending' || status === 'resent' || secondsLeft > 0
+            }
           >
-            {t('registration.confirmEmail.resend')}
+            {status === 'resent' && secondsLeft > 0
+              ? t('registration.confirmEmail.resendWithTimer', {
+                  time: formatTime(secondsLeft),
+                })
+              : t('registration.confirmEmail.resend')}
           </button>
         </p>
         {status === 'resent' && (
