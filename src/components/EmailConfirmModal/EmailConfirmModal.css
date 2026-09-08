@@ -18,3 +18,55 @@
   text-align: center;
   margin: 32px 0;
 }
+
+.email-confirm-message strong {
+  white-space: nowrap;
+}
+
+.email-confirm-resend {
+  margin-top: 16px;
+  font-size: 18px;
+  color: var(--title-color-dark);
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.email-confirm-resend-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--btn-action-bg);
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.email-confirm-resend-btn:disabled {
+  color: #9ca3af;
+  cursor: not-allowed;
+  text-decoration: none;
+}
+
+.email-confirm-resend-btn:hover:not(:disabled) {
+  color: var(--btn-action-bg-hover);
+}
+
+.email-confirm-status-container {
+  min-height: 1.5em;
+  margin-top: 12px;
+}
+
+.email-confirm-status {
+  font-size: 14px;
+  text-align: center;
+}
+
+.email-confirm-status--success {
+  color: #16a34a;
+}
+
+.email-confirm-status--error {
+  color: #ef4444;
+}

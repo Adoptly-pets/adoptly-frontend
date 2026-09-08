@@ -33,6 +33,10 @@ export const registerWithEmail = async (data: {
   return response;
 };
 
+export const resendActivationEmail = async (email: string): Promise<void> => {
+  await apiClient.post('/auth/resend-activation', { email });
+};
+
 export const loginWithEmail = async (data: {
   email: string;
   password: string;
