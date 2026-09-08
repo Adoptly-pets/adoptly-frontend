@@ -25,13 +25,13 @@ const EmailConfirmModal: React.FC<EmailConfirmModalProps> = ({
 }) => {
   const { t } = useTranslation();
   const [status, setStatus] = useState<Status>('ready');
-  const TIMER_SECONDS = 60;
+  const TIMER_SECONDS = 120;
   const [secondsLeft, setSecondsLeft] = useState(0);
 
   useEffect(() => {
     if (isOpen) {
       setStatus('ready');
-      setSecondsLeft(0);
+      setSecondsLeft(TIMER_SECONDS);
     }
   }, [isOpen]);
 
@@ -88,30 +88,32 @@ const EmailConfirmModal: React.FC<EmailConfirmModalProps> = ({
               status === 'resending' || status === 'resent' || secondsLeft > 0
             }
           >
-            {status === 'resent' && secondsLeft > 0
+            {secondsLeft > 0
               ? t('registration.confirmEmail.resendWithTimer', {
                   time: formatTime(secondsLeft),
                 })
               : t('registration.confirmEmail.resend')}
           </button>
         </p>
-        {status === 'resent' && (
-          <p
-            className="email-confirm-status email-confirm-status--success"
-            role="status"
-          >
-            {t('registration.confirmEmail.resent')}
-          </p>
-        )}
+        <div className="email-confirm-status-container">
+          {status === 'resent' && (
+            <p
+              className="email-confirm-status email-confirm-status--success"
+              role="status"
+            >
+              {t('registration.confirmEmail.resent')}
+            </p>
+          )}
 
-        {status === 'failed' && (
-          <p
-            className="email-confirm-status email-confirm-status--error"
-            role="alert"
-          >
-            {t('registration.confirmEmail.failed')}
-          </p>
-        )}
+          {status === 'failed' && (
+            <p
+              className="email-confirm-status email-confirm-status--error"
+              role="alert"
+            >
+              {t('registration.confirmEmail.failed')}
+            </p>
+          )}
+        </div>
       </div>
     </Modal>
   );

@@ -19,12 +19,18 @@
   margin: 32px 0;
 }
 
+.email-confirm-message strong {
+  white-space: nowrap;
+}
+
 .email-confirm-resend {
   margin-top: 16px;
   font-size: 18px;
-  color: var(--primary-color);
-  font-weight: 700;
+  color: var(--title-color-dark);
   text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .email-confirm-resend-btn {
@@ -47,8 +53,12 @@
   color: var(--btn-action-bg-hover);
 }
 
-.email-confirm-status {
+.email-confirm-status-container {
+  min-height: 1.5em;
   margin-top: 12px;
+}
+
+.email-confirm-status {
   font-size: 14px;
   text-align: center;
 }
