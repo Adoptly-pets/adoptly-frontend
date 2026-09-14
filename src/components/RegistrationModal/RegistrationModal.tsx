@@ -222,6 +222,8 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
       <EmailConfirmModal
         isOpen={confirmEmail !== null}
         email={confirmEmail ?? ''}
+        messageKey="emailConfirm.registeredMessage"
+        hasActiveRateLimit
         onClose={handleConfirmClose}
       />
     </>

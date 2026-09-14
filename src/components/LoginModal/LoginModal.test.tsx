@@ -4,6 +4,7 @@ import { loginWithEmail } from '../../services/auth';
 
 jest.mock('../../services/auth', () => ({
   loginWithEmail: jest.fn(),
+  resendActivationEmail: jest.fn(),
 }));
 
 const mockedLoginUser = loginWithEmail as jest.MockedFunction<
@@ -189,7 +190,7 @@ describe('LoginModal', () => {
     expect(onClose).not.toHaveBeenCalled();
   });
 
-  test('shows account disabled error on 403', async () => {
+  test('opens EmailConfirmModal and closes login modal on 403', async () => {
     mockedLoginUser.mockRejectedValueOnce({
       type: 'client',
       status: 403,
@@ -214,10 +215,13 @@ describe('LoginModal', () => {
     fireEvent.click(screen.getByText('login.submit'));
 
     await waitFor(() => {
-      expect(screen.getByText('login.accountDisabled')).toBeInTheDocument();
+      expect(onClose).toHaveBeenCalledTimes(1);
     });
 
-    expect(onClose).not.toHaveBeenCalled();
+    expect(
+      screen.getByRole('heading', { name: 'emailConfirm.title' })
+    ).toBeInTheDocument();
+    expect(screen.queryByText('login.accountDisabled')).not.toBeInTheDocument();
   });
   test('shows network error message on network error', async () => {
     mockedLoginUser.mockRejectedValueOnce({

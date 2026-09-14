@@ -61,30 +61,48 @@ describe('EmailConfirmModal', () => {
 
   test('renders nothing when closed', () => {
     render(
-      <EmailConfirmModal isOpen={false} email={email} onClose={onClose} />
+      <EmailConfirmModal
+        isOpen={false}
+        email={email}
+        messageKey="emailConfirm.registeredMessage"
+        hasActiveRateLimit
+        onClose={onClose}
+      />
     );
-    expect(
-      screen.queryByText('registration.confirmEmail.title')
-    ).not.toBeInTheDocument();
+    expect(screen.queryByText('emailConfirm.title')).not.toBeInTheDocument();
   });
 
   test('shows title, email, and disabled resend button with 2:00 countdown on open', () => {
-    render(<EmailConfirmModal isOpen={true} email={email} onClose={onClose} />);
+    render(
+      <EmailConfirmModal
+        isOpen={true}
+        email={email}
+        messageKey="emailConfirm.registeredMessage"
+        hasActiveRateLimit
+        onClose={onClose}
+      />
+    );
 
-    expect(
-      screen.getByText('registration.confirmEmail.title')
-    ).toBeInTheDocument();
+    expect(screen.getByText('emailConfirm.title')).toBeInTheDocument();
     expect(screen.getByText(new RegExp(email))).toBeInTheDocument();
 
     const button = screen.getByRole('button', {
-      name: /registration\.confirmEmail\.resendWithTimer/,
+      name: /emailConfirm\.resendWithTimer/,
     });
     expect(button).toBeDisabled();
     expect(button).toHaveTextContent('2:00');
   });
 
   test('countdown ticks down over time', () => {
-    render(<EmailConfirmModal isOpen={true} email={email} onClose={onClose} />);
+    render(
+      <EmailConfirmModal
+        isOpen={true}
+        email={email}
+        messageKey="emailConfirm.registeredMessage"
+        hasActiveRateLimit
+        onClose={onClose}
+      />
+    );
 
     advanceSeconds(1);
     expect(screen.getByRole('button', { name: /resend/i })).toHaveTextContent(
@@ -98,12 +116,20 @@ describe('EmailConfirmModal', () => {
   });
 
   test('after countdown expires, button becomes enabled with plain resend text', () => {
-    render(<EmailConfirmModal isOpen={true} email={email} onClose={onClose} />);
+    render(
+      <EmailConfirmModal
+        isOpen={true}
+        email={email}
+        messageKey="emailConfirm.registeredMessage"
+        hasActiveRateLimit
+        onClose={onClose}
+      />
+    );
 
     advanceSeconds(TIMER_SECONDS);
 
     const button = screen.getByRole('button', {
-      name: 'registration.confirmEmail.resend',
+      name: 'emailConfirm.resend',
     });
     expect(button).toBeEnabled();
     expect(button).not.toHaveTextContent(':');
@@ -112,7 +138,15 @@ describe('EmailConfirmModal', () => {
   test('clicking resend calls service with email and shows success + restarts countdown', async () => {
     mockedResend.mockResolvedValue(undefined);
     const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
-    render(<EmailConfirmModal isOpen={true} email={email} onClose={onClose} />);
+    render(
+      <EmailConfirmModal
+        isOpen={true}
+        email={email}
+        messageKey="emailConfirm.registeredMessage"
+        hasActiveRateLimit
+        onClose={onClose}
+      />
+    );
 
     advanceSeconds(TIMER_SECONDS);
     await user.click(screen.getByRole('button', { name: /resend/i }));
@@ -120,7 +154,7 @@ describe('EmailConfirmModal', () => {
     expect(mockedResend).toHaveBeenCalledWith(email);
     await waitFor(() => {
       expect(screen.getByRole('status')).toHaveTextContent(
-        'registration.confirmEmail.resent'
+        'emailConfirm.resent'
       );
     });
 
@@ -129,25 +163,91 @@ describe('EmailConfirmModal', () => {
     expect(button).toHaveTextContent('2:00');
   });
 
+  test('resend button is enabled immediately when hasActiveRateLimit is false', () => {
+    render(
+      <EmailConfirmModal
+        isOpen={true}
+        email={email}
+        messageKey="emailConfirm.notActivatedMessage"
+        hasActiveRateLimit={false}
+        onClose={onClose}
+      />
+    );
+
+    const button = screen.getByRole('button', {
+      name: 'emailConfirm.resend',
+    });
+    expect(button).toBeEnabled();
+    expect(button).not.toHaveTextContent(':');
+  });
+
+  test('successful resend starts 2:00 cooldown even when hasActiveRateLimit is false', async () => {
+    mockedResend.mockResolvedValue(undefined);
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+    render(
+      <EmailConfirmModal
+        isOpen={true}
+        email={email}
+        messageKey="emailConfirm.notActivatedMessage"
+        hasActiveRateLimit={false}
+        onClose={onClose}
+      />
+    );
+
+    await user.click(screen.getByRole('button', { name: /resend/i }));
+
+    await waitFor(() => {
+      expect(screen.getByRole('status')).toBeInTheDocument();
+    });
+
+    const button = screen.getByRole('button', { name: /resend/i });
+    expect(button).toBeDisabled();
+    expect(button).toHaveTextContent('2:00');
+  });
+
+  test('renders the message from the messageKey prop', () => {
+    render(
+      <EmailConfirmModal
+        isOpen={true}
+        email={email}
+        messageKey="emailConfirm.notActivatedMessage"
+        hasActiveRateLimit={false}
+        onClose={onClose}
+      />
+    );
+
+    expect(
+      screen.getByText(new RegExp('emailConfirm.notActivatedMessage'))
+    ).toBeInTheDocument();
+  });
+
   test('on failure, shows error message and does not restart countdown', async () => {
     const consoleErrorSpy = jest
       .spyOn(console, 'error')
       .mockImplementation(() => {});
     mockedResend.mockRejectedValue(new Error('Network error'));
     const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
-    render(<EmailConfirmModal isOpen={true} email={email} onClose={onClose} />);
+    render(
+      <EmailConfirmModal
+        isOpen={true}
+        email={email}
+        messageKey="emailConfirm.registeredMessage"
+        hasActiveRateLimit
+        onClose={onClose}
+      />
+    );
 
     advanceSeconds(TIMER_SECONDS);
     await user.click(screen.getByRole('button', { name: /resend/i }));
 
     await waitFor(() => {
       expect(screen.getByRole('alert')).toHaveTextContent(
-        'registration.confirmEmail.failed'
+        'emailConfirm.failed'
       );
     });
 
     const button = screen.getByRole('button', {
-      name: 'registration.confirmEmail.resend',
+      name: 'emailConfirm.resend',
     });
     expect(button).toBeEnabled();
     expect(screen.queryByRole('status')).not.toBeInTheDocument();
