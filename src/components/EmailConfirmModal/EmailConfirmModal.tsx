@@ -65,21 +65,21 @@ const EmailConfirmModal: React.FC<EmailConfirmModalProps> = ({
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      ariaLabel={t('registration.confirmEmail.title')}
+      ariaLabel={t('emailConfirm.title')}
     >
       <div className="email-confirm">
         <h2 className="email-confirm-title">
-          {t('registration.confirmEmail.title')}
+          {t('emailConfirm.title')}
         </h2>
         <p className="email-confirm-message">
           <Trans
-            i18nKey="registration.confirmEmail.message"
+            i18nKey="emailConfirm.registeredMessage"
             values={{ email }}
             components={{ bold: <strong /> }}
           />
         </p>
         <p className="email-confirm-resend">
-          <span>{t('registration.confirmEmail.didntReceive')}</span>{' '}
+          <span>{t('emailConfirm.didntReceive')}</span>{' '}
           <button
             type="button"
             className="email-confirm-resend-btn"
@@ -89,10 +89,10 @@ const EmailConfirmModal: React.FC<EmailConfirmModalProps> = ({
             }
           >
             {secondsLeft > 0
-              ? t('registration.confirmEmail.resendWithTimer', {
+              ? t('emailConfirm.resendWithTimer', {
                   time: formatTime(secondsLeft),
                 })
-              : t('registration.confirmEmail.resend')}
+              : t('emailConfirm.resend')}
           </button>
         </p>
         <div className="email-confirm-status-container">
@@ -101,7 +101,7 @@ const EmailConfirmModal: React.FC<EmailConfirmModalProps> = ({
               className="email-confirm-status email-confirm-status--success"
               role="status"
             >
-              {t('registration.confirmEmail.resent')}
+              {t('emailConfirm.resent')}
             </p>
           )}
 
@@ -110,7 +110,7 @@ const EmailConfirmModal: React.FC<EmailConfirmModalProps> = ({
               className="email-confirm-status email-confirm-status--error"
               role="alert"
             >
-              {t('registration.confirmEmail.failed')}
+              {t('emailConfirm.failed')}
             </p>
           )}
         </div>

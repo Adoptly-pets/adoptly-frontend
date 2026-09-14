@@ -64,7 +64,7 @@ describe('EmailConfirmModal', () => {
       <EmailConfirmModal isOpen={false} email={email} onClose={onClose} />
     );
     expect(
-      screen.queryByText('registration.confirmEmail.title')
+      screen.queryByText('emailConfirm.title')
     ).not.toBeInTheDocument();
   });
 
@@ -72,12 +72,12 @@ describe('EmailConfirmModal', () => {
     render(<EmailConfirmModal isOpen={true} email={email} onClose={onClose} />);
 
     expect(
-      screen.getByText('registration.confirmEmail.title')
+      screen.getByText('emailConfirm.title')
     ).toBeInTheDocument();
     expect(screen.getByText(new RegExp(email))).toBeInTheDocument();
 
     const button = screen.getByRole('button', {
-      name: /registration\.confirmEmail\.resendWithTimer/,
+      name: /emailConfirm\.resendWithTimer/,
     });
     expect(button).toBeDisabled();
     expect(button).toHaveTextContent('2:00');
@@ -103,7 +103,7 @@ describe('EmailConfirmModal', () => {
     advanceSeconds(TIMER_SECONDS);
 
     const button = screen.getByRole('button', {
-      name: 'registration.confirmEmail.resend',
+      name: 'emailConfirm.resend',
     });
     expect(button).toBeEnabled();
     expect(button).not.toHaveTextContent(':');
@@ -120,7 +120,7 @@ describe('EmailConfirmModal', () => {
     expect(mockedResend).toHaveBeenCalledWith(email);
     await waitFor(() => {
       expect(screen.getByRole('status')).toHaveTextContent(
-        'registration.confirmEmail.resent'
+        'emailConfirm.resent'
       );
     });
 
@@ -142,12 +142,12 @@ describe('EmailConfirmModal', () => {
 
     await waitFor(() => {
       expect(screen.getByRole('alert')).toHaveTextContent(
-        'registration.confirmEmail.failed'
+        'emailConfirm.failed'
       );
     });
 
     const button = screen.getByRole('button', {
-      name: 'registration.confirmEmail.resend',
+      name: 'emailConfirm.resend',
     });
     expect(button).toBeEnabled();
     expect(screen.queryByRole('status')).not.toBeInTheDocument();

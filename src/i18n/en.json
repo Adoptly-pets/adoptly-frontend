@@ -184,16 +184,17 @@
     "signUpWith": "Sign up with",
     "password_min_length": "Password must be at least 8 characters long",
     "emailInUse": "This email is already in use. Please use a different email or log in.",
-    "serverError": "Server error. Please try again later.",
-    "confirmEmail": {
-      "title": "Confirm your email",
-      "message": "We have sent a confirmation email to <bold>{{email}}</bold>. Please click the link in the email to complete your registration.",
-      "didntReceive": "Didn't receive the email?",
-      "resend": "Resend",
-      "resent": "Email resent",
-      "failed": "Failed to send",
-      "resendWithTimer": "Resend {{time}}"
-    }
+    "serverError": "Server error. Please try again later."
+  },
+  "emailConfirm": {
+    "title": "Confirm your email",
+    "registeredMessage": "We have sent a confirmation email to <bold>{{email}}</bold>. Please click the link in the email to complete your registration.",
+    "notActivatedMessage": "Your account is not yet activated. Please check your email <bold>{{email}}</bold> and click the activation link.",
+    "didntReceive": "Didn't receive the email?",
+    "resend": "Resend",
+    "resent": "Email resent",
+    "failed": "Failed to send",
+    "resendWithTimer": "Resend {{time}}"
   },
   "passwordStrength": {
     "weak": "Weak",
