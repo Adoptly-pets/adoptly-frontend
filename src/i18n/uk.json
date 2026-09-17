@@ -234,6 +234,13 @@
     "successTitle": "Відновлення паролю",
     "successDescription": "Посилання для скидання паролю надіслано на Ваш email"
   },
+  "resetPassword": {
+    "title": "Відновлення паролю",
+    "description": "Введіть ваш новий пароль нижче:",
+    "passwordLabel": "Новий пароль",
+    "confirmPasswordLabel": "Підтвердіть новий пароль",
+    "submitButton": "Змінити пароль"
+  },
   "petDetail": {
     "shelter": "Притулок",
     "location": "Місто",
