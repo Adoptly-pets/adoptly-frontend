@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { Icon } from '../../components/Icon/Icon';
 import styles from './ResetPasswordPage.module.css';
+import { resetPassword } from '../../services/auth';
 
 type FormData = {
   newPassword: string;
@@ -21,9 +23,17 @@ const ResetPasswordPage = () => {
   const newPassword = watch('newPassword', '');
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get('token');
 
-  const onSubmit = (data: FormData) => {
-    console.log('Reset password data:', data);
+  const onSubmit = async (data: FormData) => {
+    if (!token) return;
+    try {
+      await resetPassword({ token, newPassword: data.newPassword });
+      console.log('Password reset succeeded');
+    } catch (error) {
+      console.error('Reset password error: ', error);
+    }
   };
 
   return (
