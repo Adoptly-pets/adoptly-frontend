@@ -9,7 +9,14 @@ type FormData = {
 
 const ResetPasswordPage = () => {
   const { t } = useTranslation();
-  const { register, handleSubmit } = useForm<FormData>();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<FormData>();
+
+  const newPassword = watch('newPassword', '');
 
   const onSubmit = (data: FormData) => {
     console.log('Reset password data:', data);
@@ -30,8 +37,17 @@ const ResetPasswordPage = () => {
             <input
               type="password"
               id="newPassword"
-              {...register('newPassword', { required: true })}
+              {...register('newPassword', {
+                required: t('resetPassword.passwordRequired'),
+                minLength: {
+                  value: 8,
+                  message: t('resetPassword.passwordMinLength'),
+                },
+              })}
             />
+            {errors.newPassword && (
+              <span className={styles.error}>{errors.newPassword.message}</span>
+            )}
           </div>
           <div className={styles.formGroup}>
             <label htmlFor="confirmPassword">
@@ -40,8 +56,18 @@ const ResetPasswordPage = () => {
             <input
               type="password"
               id="confirmPassword"
-              {...register('confirmPassword', { required: true })}
+              {...register('confirmPassword', {
+                required: t('resetPassword.confirmPasswordRequired'),
+                validate: value =>
+                  value === newPassword ||
+                  t('resetPassword.passwordsMustMatch'),
+              })}
             />
+            {errors.confirmPassword && (
+              <span className={styles.error}>
+                {errors.confirmPassword.message}
+              </span>
+            )}
           </div>
           <button type="submit">{t('resetPassword.submitButton')}</button>
         </form>

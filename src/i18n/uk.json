@@ -239,7 +239,11 @@
     "description": "Введіть ваш новий пароль нижче:",
     "passwordLabel": "Новий пароль",
     "confirmPasswordLabel": "Підтвердіть новий пароль",
-    "submitButton": "Змінити пароль"
+    "submitButton": "Змінити пароль",
+    "passwordRequired": "Введіть новий пароль",
+    "passwordMinLength": "Пароль повинен містити принаймні 8 символів",
+    "confirmPasswordRequired": "Підтвердіть новий пароль",
+    "passwordsMustMatch": "Паролі не збігаються"
   },
   "petDetail": {
     "shelter": "Притулок",

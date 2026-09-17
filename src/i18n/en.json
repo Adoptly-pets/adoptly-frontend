@@ -239,7 +239,11 @@
     "description": "Enter your new password below:",
     "passwordLabel": "New Password",
     "confirmPasswordLabel": "Confirm New Password",
-    "submitButton": "Change Password"
+    "submitButton": "Change Password",
+    "passwordRequired": "Please enter a new password",
+    "passwordMinLength": "Password must be at least 8 characters long",
+    "confirmPasswordRequired": "Please confirm your new password",
+    "confirmPasswordMatch": "Passwords do not match"
   },
   "petDetail": {
     "shelter": "Shelter",
