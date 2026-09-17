@@ -1,8 +1,20 @@
 import { useTranslation } from 'react-i18next';
+import { useForm } from 'react-hook-form';
 import styles from './ResetPasswordPage.module.css';
+
+type FormData = {
+  newPassword: string;
+  confirmPassword: string;
+};
 
 const ResetPasswordPage = () => {
   const { t } = useTranslation();
+  const { register, handleSubmit } = useForm<FormData>();
+
+  const onSubmit = (data: FormData) => {
+    console.log('Reset password data:', data);
+  };
+
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.card}>
@@ -10,7 +22,7 @@ const ResetPasswordPage = () => {
           <h2>{t('resetPassword.title')}</h2>
           <p>{t('resetPassword.description')}</p>
         </div>
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.formGroup}>
             <label htmlFor="newPassword">
               {t('resetPassword.passwordLabel')}*
@@ -18,8 +30,7 @@ const ResetPasswordPage = () => {
             <input
               type="password"
               id="newPassword"
-              name="newPassword"
-              required
+              {...register('newPassword', { required: true })}
             />
           </div>
           <div className={styles.formGroup}>
@@ -29,8 +40,7 @@ const ResetPasswordPage = () => {
             <input
               type="password"
               id="confirmPassword"
-              name="confirmPassword"
-              required
+              {...register('confirmPassword', { required: true })}
             />
           </div>
           <button type="submit">{t('resetPassword.submitButton')}</button>
