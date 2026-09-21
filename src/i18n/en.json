@@ -243,7 +243,9 @@
     "passwordRequired": "Please enter a new password",
     "passwordMinLength": "Password must be at least 8 characters long",
     "confirmPasswordRequired": "Please confirm your new password",
-    "confirmPasswordMatch": "Passwords do not match"
+    "confirmPasswordMatch": "Passwords do not match",
+    "successMessage": "Password successfully changed",
+    "backToLogin": "Back to login"
   },
   "petDetail": {
     "shelter": "Shelter",

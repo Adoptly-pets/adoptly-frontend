@@ -243,7 +243,9 @@
     "passwordRequired": "Введіть новий пароль",
     "passwordMinLength": "Пароль повинен містити принаймні 8 символів",
     "confirmPasswordRequired": "Підтвердіть новий пароль",
-    "passwordsMustMatch": "Паролі не збігаються"
+    "passwordsMustMatch": "Паролі не збігаються",
+    "successMessage": "Пароль успішно змінено",
+    "backToLogin": "Повернутися до входу"
   },
   "petDetail": {
     "shelter": "Притулок",

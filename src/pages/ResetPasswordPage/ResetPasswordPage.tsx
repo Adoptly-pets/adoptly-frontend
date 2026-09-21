@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { Icon } from '../../components/Icon/Icon';
@@ -16,7 +16,7 @@ type FormData = {
 type Status = 'form' | 'success' | 'tokenError';
 
 const ResetPasswordPage = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -136,7 +136,10 @@ const ResetPasswordPage = () => {
         {status === 'success' && (
           <div>
             <h2>{t('resetPassword.title')}</h2>
-            <p>Пароль успішно змінено</p>
+            <p>{t('resetPassword.successMessage')}</p>
+            <Link to={`/${i18n.language}/`} className={styles.backLink}>
+              {t('resetPassword.backToLogin')}
+            </Link>
           </div>
         )}
 
