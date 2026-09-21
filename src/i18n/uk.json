@@ -245,7 +245,9 @@
     "confirmPasswordRequired": "Підтвердіть новий пароль",
     "passwordsMustMatch": "Паролі не збігаються",
     "successMessage": "Пароль успішно змінено",
-    "backToLogin": "Повернутися до входу"
+    "backToLogin": "Повернутися до входу",
+    "tokenErrorMessage": "Посилання не дійсне або застаріло. Запросіть нове.",
+    "requestNewLink": "Отримати нове посилання"
   },
   "petDetail": {
     "shelter": "Притулок",

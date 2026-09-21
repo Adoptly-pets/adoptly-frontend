@@ -146,7 +146,13 @@ const ResetPasswordPage = () => {
         {status === 'tokenError' && (
           <div>
             <h2>{t('resetPassword.title')}</h2>
-            <p>Недійсний або вже використаний токен скидання пароля</p>
+            <p>{t('resetPassword.tokenErrorMessage')}</p>
+            <Link
+              to={`/${i18n.language}/forgot-password`}
+              className={styles.requestNewLink}
+            >
+              {t('resetPassword.requestNewLink')}
+            </Link>
           </div>
         )}
       </div>

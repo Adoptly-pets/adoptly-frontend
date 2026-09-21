@@ -245,7 +245,9 @@
     "confirmPasswordRequired": "Please confirm your new password",
     "confirmPasswordMatch": "Passwords do not match",
     "successMessage": "Password successfully changed",
-    "backToLogin": "Back to login"
+    "backToLogin": "Back to login",
+    "tokenErrorMessage": "This link is invalid or has expired. Please request a new one.",
+    "requestNewLink": "Get a new link"
   },
   "petDetail": {
     "shelter": "Shelter",
