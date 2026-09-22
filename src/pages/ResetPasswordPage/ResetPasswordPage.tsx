@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
@@ -14,6 +14,10 @@ type FormData = {
 };
 
 type Status = 'form' | 'success' | 'tokenError';
+
+const PasswordStrengthBar = lazy(
+  () => import('../../components/PasswordStrengthBar/PasswordStrengthBar')
+);
 
 const ResetPasswordPage = () => {
   const { t, i18n } = useTranslation();
@@ -94,6 +98,15 @@ const ResetPasswordPage = () => {
                     {errors.newPassword.message}
                   </span>
                 )}
+                <span
+                  className={`${styles.hint} ${newPassword.length >= 8 ? styles.hintValid : ''}`}
+                >
+                  <Icon id="icon-checkmark" className={styles.hintIcon} />
+                  {t('resetPassword.passwordMinLength')}
+                </span>
+                <Suspense fallback={null}>
+                  <PasswordStrengthBar password={newPassword} />
+                </Suspense>
               </div>
               <div className={styles.formGroup}>
                 <label htmlFor="confirmPassword">
