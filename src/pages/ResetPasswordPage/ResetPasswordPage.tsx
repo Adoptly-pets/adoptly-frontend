@@ -30,18 +30,20 @@ const ResetPasswordPage = () => {
   const [searchParams] = useSearchParams();
   const token = searchParams.get('token');
   const [status, setStatus] = useState<Status>(token ? 'form' : 'tokenError');
+  const [serverError, setServerError] = useState<string | null>(null);
 
   const onSubmit = async (data: FormData) => {
     if (!token) return;
+    setServerError(null);
     try {
       await resetPassword({ token, newPassword: data.newPassword });
-      console.log('Password reset succeeded');
       setStatus('success');
     } catch (error) {
       if (isApiError(error) && error.status === HTTP_STATUS.UNAUTHORIZED) {
         setStatus('tokenError');
         return;
       }
+      setServerError(t('errors.serverError'));
       console.error('Reset password error: ', error);
     }
   };
@@ -129,6 +131,11 @@ const ResetPasswordPage = () => {
                   </span>
                 )}
               </div>
+              {serverError && (
+                <span className={styles.error} role="alert">
+                  {serverError}
+                </span>
+              )}
               <button type="submit">{t('resetPassword.submitButton')}</button>
             </form>
           </>

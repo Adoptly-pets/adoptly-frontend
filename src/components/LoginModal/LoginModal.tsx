@@ -74,7 +74,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
           return;
         }
       }
-      setServerError(t('login.serverError'));
+      setServerError(t('errors.serverError'));
       console.error('Login error:', error);
     }
   };

@@ -152,7 +152,8 @@
   "errors": {
     "required": "This field is required",
     "somethingWentWrong": "Something went wrong",
-    "reload": "Reload"
+    "reload": "Reload",
+    "serverError": "Server error. Please try again later."
   },
   "notFoundPage": {
     "button": "Return to Home",
@@ -183,8 +184,7 @@
     "login_link": "Log in",
     "signUpWith": "Sign up with",
     "password_min_length": "Password must be at least 8 characters long",
-    "emailInUse": "This email is already in use. Please use a different email or log in.",
-    "serverError": "Server error. Please try again later."
+    "emailInUse": "This email is already in use. Please use a different email or log in."
   },
   "emailConfirm": {
     "title": "Confirm your email",
@@ -216,7 +216,6 @@
     "register_link": "Register",
     "signInWith": "Sign in with",
     "invalidCredentials": "Invalid email or password",
-    "serverError": "Server error. Please try again later.",
     "networkError": "Network error. Please check your internet connection and try again.",
     "googleError": "Failed to log in with Google.",
     "submitting": "Logging in..."
