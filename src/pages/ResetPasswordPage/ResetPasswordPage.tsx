@@ -74,6 +74,7 @@ const ResetPasswordPage = () => {
                     type={showNewPassword ? 'text' : 'password'}
                     id="newPassword"
                     className={styles.input}
+                    placeholder={t('resetPassword.passwordPlaceholder')}
                     {...register('newPassword', {
                       required: t('resetPassword.passwordRequired'),
                       minLength: {
@@ -111,6 +112,7 @@ const ResetPasswordPage = () => {
                     type={showConfirmPassword ? 'text' : 'password'}
                     id="confirmPassword"
                     className={styles.input}
+                    placeholder={t('resetPassword.passwordPlaceholder')}
                     {...register('confirmPassword', {
                       required: t('resetPassword.confirmPasswordRequired'),
                       validate: value =>

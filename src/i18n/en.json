@@ -237,6 +237,7 @@
     "title": "Reset Password",
     "description": "Enter your new password below:",
     "passwordLabel": "New Password",
+    "passwordPlaceholder": "Enter password",
     "confirmPasswordLabel": "Confirm New Password",
     "submitButton": "Change Password",
     "passwordRequired": "Please enter a new password",

@@ -237,6 +237,7 @@
     "title": "Відновлення паролю",
     "description": "Введіть ваш новий пароль нижче:",
     "passwordLabel": "Новий пароль",
+    "passwordPlaceholder": "Введіть пароль",
     "confirmPasswordLabel": "Підтвердіть новий пароль",
     "submitButton": "Змінити пароль",
     "passwordRequired": "Введіть новий пароль",
