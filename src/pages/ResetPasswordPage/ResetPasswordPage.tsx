@@ -7,6 +7,7 @@ import styles from './ResetPasswordPage.module.css';
 import { resetPassword } from '../../services/auth';
 import { HTTP_STATUS } from '../../constants/HTTP_STATUS';
 import { isApiError } from '../../services/api';
+import Button from '../../components/Button/Button';
 
 type FormData = {
   newPassword: string;
@@ -25,7 +26,7 @@ const ResetPasswordPage = () => {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<FormData>();
 
   const newPassword = watch('newPassword', '');
@@ -149,7 +150,17 @@ const ResetPasswordPage = () => {
                   {serverError}
                 </span>
               )}
-              <button type="submit">{t('resetPassword.submitButton')}</button>
+              <Button
+                type="submit"
+                variant="action"
+                maxWidth="100%"
+                height={56}
+                disabled={isSubmitting}
+              >
+                {isSubmitting
+                  ? t('resetPassword.submitting')
+                  : t('resetPassword.submitButton')}
+              </Button>
             </form>
           </>
         )}

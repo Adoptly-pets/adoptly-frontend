@@ -246,7 +246,8 @@
     "successMessage": "Password successfully changed",
     "backToLogin": "Back to login",
     "tokenErrorMessage": "This link is invalid or has expired. Please request a new one.",
-    "requestNewLink": "Get a new link"
+    "requestNewLink": "Get a new link",
+    "submitting": "Saving..."
   },
   "petDetail": {
     "shelter": "Shelter",

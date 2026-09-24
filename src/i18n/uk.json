@@ -246,7 +246,8 @@
     "successMessage": "Пароль успішно змінено",
     "backToLogin": "Повернутися до входу",
     "tokenErrorMessage": "Посилання не дійсне або застаріло. Запросіть нове.",
-    "requestNewLink": "Отримати нове посилання"
+    "requestNewLink": "Отримати нове посилання",
+    "submitting": "Збереження..."
   },
   "petDetail": {
     "shelter": "Притулок",
