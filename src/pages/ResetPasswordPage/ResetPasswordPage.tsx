@@ -59,12 +59,14 @@ const ResetPasswordPage = () => {
         {status === 'form' && (
           <>
             <div>
-              <h2>{t('resetPassword.title')}</h2>
-              <p>{t('resetPassword.description')}</p>
+              <h2 className={styles.title}>{t('resetPassword.title')}</h2>
+              <p className={styles.description}>
+                {t('resetPassword.description')}
+              </p>
             </div>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
               <div className={styles.formGroup}>
-                <label htmlFor="newPassword">
+                <label htmlFor="newPassword" className={styles.label}>
                   {t('resetPassword.passwordLabel')}*
                 </label>
                 <div className={styles.passwordWrapper}>
@@ -99,18 +101,9 @@ const ResetPasswordPage = () => {
                     {errors.newPassword.message}
                   </span>
                 )}
-                <span
-                  className={`${styles.hint} ${newPassword.length >= 8 ? styles.hintValid : ''}`}
-                >
-                  <Icon id="icon-checkmark" className={styles.hintIcon} />
-                  {t('resetPassword.passwordMinLength')}
-                </span>
-                <Suspense fallback={null}>
-                  <PasswordStrengthBar password={newPassword} />
-                </Suspense>
               </div>
               <div className={styles.formGroup}>
-                <label htmlFor="confirmPassword">
+                <label htmlFor="confirmPassword" className={styles.label}>
                   {t('resetPassword.confirmPasswordLabel')}*
                 </label>
                 <div className={styles.passwordWrapper}>
@@ -150,6 +143,17 @@ const ResetPasswordPage = () => {
                   {serverError}
                 </span>
               )}
+              <div>
+                <span
+                  className={`${styles.hint} ${newPassword.length >= 8 ? styles.hintValid : ''}`}
+                >
+                  <Icon id="icon-checkmark" className={styles.hintIcon} />
+                  {t('resetPassword.passwordMinLength')}
+                </span>
+                <Suspense fallback={null}>
+                  <PasswordStrengthBar password={newPassword} />
+                </Suspense>
+              </div>
               <Button
                 type="submit"
                 variant="action"
@@ -166,8 +170,10 @@ const ResetPasswordPage = () => {
         )}
         {status === 'success' && (
           <div>
-            <h2>{t('resetPassword.title')}</h2>
-            <p>{t('resetPassword.successMessage')}</p>
+            <h2 className={styles.title}>{t('resetPassword.title')}</h2>
+            <p className={styles.description}>
+              {t('resetPassword.successMessage')}
+            </p>
             <Link to={`/${i18n.language}/`} className={styles.backLink}>
               {t('resetPassword.backToLogin')}
             </Link>
@@ -176,8 +182,10 @@ const ResetPasswordPage = () => {
 
         {status === 'tokenError' && (
           <div>
-            <h2>{t('resetPassword.title')}</h2>
-            <p>{t('resetPassword.tokenErrorMessage')}</p>
+            <h2 className={styles.title}>{t('resetPassword.title')}</h2>
+            <p className={styles.description}>
+              {t('resetPassword.tokenErrorMessage')}
+            </p>
             <Link
               to={`/${i18n.language}/forgot-password`}
               className={styles.requestNewLink}
