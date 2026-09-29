@@ -37,6 +37,16 @@ export const resendActivationEmail = async (email: string): Promise<void> => {
   await apiClient.post('/auth/resend-activation', { email });
 };
 
+export const resetPassword = async (data: {
+  token: string;
+  newPassword: string;
+}): Promise<void> => {
+  await apiClient.post('/auth/reset-password', {
+    token: data.token,
+    password: data.newPassword,
+  });
+};
+
 export const loginWithEmail = async (data: {
   email: string;
   password: string;

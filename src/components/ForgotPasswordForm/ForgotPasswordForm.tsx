@@ -30,7 +30,7 @@ const ForgotPasswordForm: React.FC = () => {
       setSubmittedEmail(data.email);
       setIsSent(true);
     } catch (error) {
-      setServerError(t('login.serverError'));
+      setServerError(t('errors.serverError'));
       console.error('Reset password error:', error);
     }
   };

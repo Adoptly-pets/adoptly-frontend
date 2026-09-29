@@ -12,6 +12,7 @@ import LanguageLayout from '../components/LanguageLayout/LanguageLayout';
 import ShelterLayout from '../components/ShelterLayout/ShelterLayout';
 import PetDetailPage from '../pages/PetDetailPage/PetDetailPage';
 import ForgotPasswordForm from '../components/ForgotPasswordForm/ForgotPasswordForm';
+import ResetPasswordPage from '../pages/ResetPasswordPage/ResetPasswordPage';
 
 const ShelterProfilePage = lazy(
   () => import('../pages/shelter/ShelterProfilePage/ShelterProfilePage')
@@ -44,6 +45,7 @@ function AppRoutes() {
         <Route path="privacy-policy" element={<PolicyPage />} />
         <Route path="pets/:id" element={<PetDetailPage />} />
         <Route path="forgot-password" element={<ForgotPasswordForm />} />
+        <Route path="reset-password" element={<ResetPasswordPage />} />
 
         <Route path="shelter" element={<ShelterLayout />}>
           <Route index element={<Navigate to="profile" replace />} />

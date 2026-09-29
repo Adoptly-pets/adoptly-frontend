@@ -72,7 +72,7 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
         });
         return;
       }
-      setServerError(t('registration.serverError'));
+      setServerError(t('errors.serverError'));
       console.error('Registration failed:', error);
     }
   };
