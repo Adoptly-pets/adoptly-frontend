@@ -111,10 +111,20 @@ describe('ResetPasswordPage', () => {
         newPassword: 'validPass123',
       });
     });
+  });
+
+  test('shows success state and back-to-login link after successful submit', async () => {
+    mockedReset.mockResolvedValue(undefined);
+    renderPage('?token=abc');
+    await fillForm('validPass123');
 
     expect(
-      screen.getByText('resetPassword.successMessage')
+      await screen.findByText('resetPassword.successMessage')
     ).toBeInTheDocument();
+    const backLink = screen.getByRole('link', {
+      name: 'resetPassword.backToLogin',
+    });
+    expect(backLink).toHaveAttribute('href', '/en/');
   });
 
   test('switches to tokenError state on 401 response', async () => {
