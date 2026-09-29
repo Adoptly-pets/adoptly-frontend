@@ -268,7 +268,9 @@
   "common": {
     "yes": "Yes",
     "no": "No",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password"
   },
   "shelter": {
     "menu": {

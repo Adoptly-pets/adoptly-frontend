@@ -88,7 +88,9 @@ const ResetPasswordPage = () => {
                     onClick={() => setShowNewPassword(prev => !prev)}
                     className={styles.toggleButton}
                     aria-label={
-                      showNewPassword ? 'Hide password' : 'Show password'
+                      showNewPassword
+                        ? t('common.hidePassword')
+                        : t('common.showPassword')
                     }
                   >
                     <Icon
@@ -125,7 +127,9 @@ const ResetPasswordPage = () => {
                     className={styles.toggleButton}
                     onClick={() => setShowConfirmPassword(prev => !prev)}
                     aria-label={
-                      showConfirmPassword ? 'Hide password' : 'Show password'
+                      showConfirmPassword
+                        ? t('common.hidePassword')
+                        : t('common.showPassword')
                     }
                   >
                     <Icon

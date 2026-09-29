@@ -270,7 +270,9 @@
   "common": {
     "yes": "Так",
     "no": "Ні",
-    "loading": "Завантаження..."
+    "loading": "Завантаження...",
+    "showPassword": "Показати пароль",
+    "hidePassword": "Приховати пароль"
   },
   "shelter": {
     "menu": {
