@@ -32,7 +32,7 @@ const Header = () => {
       ? pathParts.slice(2).join('/')
       : pathParts.slice(1).join('/');
 
-    navigate(`/${lng}/${currentPath}`);
+    navigate(`/${lng}/${currentPath}${location.search}`);
   };
   return (
     <header className="header" id="header" tabIndex={-1}>
