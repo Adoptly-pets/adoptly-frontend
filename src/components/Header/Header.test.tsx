@@ -4,7 +4,9 @@ import { MemoryRouter, useLocation } from 'react-router-dom';
 
 const LocationDisplay = () => {
   const location = useLocation();
-  return <div data-testid="location">{location.pathname + location.search}</div>;
+  return (
+    <div data-testid="location">{location.pathname + location.search}</div>
+  );
 };
 
 jest.mock('../Icon/Icon', () => ({
