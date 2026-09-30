@@ -11,6 +11,7 @@ import { isApiError } from '../../services/api';
 import { HTTP_STATUS } from '../../constants/HTTP_STATUS';
 import GoogleAuthContainer from '../GoogleAuthContainer/GoogleAuthContainer';
 import EmailConfirmModal from '../EmailConfirmModal/EmailConfirmModal';
+import { Link } from 'react-router-dom';
 
 type LoginFormData = {
   email: string;
@@ -29,7 +30,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
   onClose,
   onSwitchToRegister,
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
   const [confirmEmail, setConfirmEmail] = useState<string | null>(null);
@@ -150,9 +151,13 @@ const LoginModal: React.FC<LoginModalProps> = ({
                   {t('login.remember_me')}
                 </span>
               </label>
-              <button type="button" className="login-form-forgot">
+              <Link
+                to={`/${i18n.language}/forgot-password`}
+                className="login-form-forgot"
+                onClick={onClose}
+              >
                 {t('login.forgot_password')}
-              </button>
+              </Link>
             </div>
           </div>
           {serverError && (

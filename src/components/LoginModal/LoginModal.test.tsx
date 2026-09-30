@@ -1,4 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import LoginModal from './LoginModal';
 import { loginWithEmail } from '../../services/auth';
 
@@ -52,7 +53,8 @@ describe('LoginModal', () => {
         isOpen={false}
         onClose={onClose}
         onSwitchToRegister={onSwitchToRegister}
-      />
+      />,
+      { wrapper: MemoryRouter }
     );
     expect(screen.queryByText('login.title')).not.toBeInTheDocument();
   });
@@ -63,7 +65,8 @@ describe('LoginModal', () => {
         isOpen={true}
         onClose={onClose}
         onSwitchToRegister={onSwitchToRegister}
-      />
+      />,
+      { wrapper: MemoryRouter }
     );
     fireEvent.click(screen.getByText('login.submit'));
 
@@ -81,7 +84,8 @@ describe('LoginModal', () => {
         isOpen={true}
         onClose={onClose}
         onSwitchToRegister={onSwitchToRegister}
-      />
+      />,
+      { wrapper: MemoryRouter }
     );
 
     const emailInput = screen.getByPlaceholderText('login.email_placeholder');
@@ -106,7 +110,8 @@ describe('LoginModal', () => {
         isOpen={true}
         onClose={onClose}
         onSwitchToRegister={onSwitchToRegister}
-      />
+      />,
+      { wrapper: MemoryRouter }
     );
 
     fireEvent.change(screen.getByPlaceholderText('login.email_placeholder'), {
@@ -129,7 +134,8 @@ describe('LoginModal', () => {
         isOpen={true}
         onClose={onClose}
         onSwitchToRegister={onSwitchToRegister}
-      />
+      />,
+      { wrapper: MemoryRouter }
     );
 
     const passwordInput = screen.getByPlaceholderText(
@@ -146,13 +152,31 @@ describe('LoginModal', () => {
     expect(passwordInput).toHaveAttribute('type', 'password');
   });
 
+  test('Forgot password link points to forgot-password page and closes modal', () => {
+    render(
+      <LoginModal
+        isOpen={true}
+        onClose={onClose}
+        onSwitchToRegister={onSwitchToRegister}
+      />,
+      { wrapper: MemoryRouter }
+    );
+
+    const link = screen.getByRole('link', { name: 'login.forgot_password' });
+    expect(link.getAttribute('href')).toMatch(/\/forgot-password$/);
+
+    fireEvent.click(link);
+    expect(onClose).toHaveBeenCalledTimes(1);
+  });
+
   test('calls onSwitchToRegister when register link clicked', () => {
     render(
       <LoginModal
         isOpen={true}
         onClose={onClose}
         onSwitchToRegister={onSwitchToRegister}
-      />
+      />,
+      { wrapper: MemoryRouter }
     );
 
     fireEvent.click(screen.getByText('login.register_link'));
@@ -171,7 +195,8 @@ describe('LoginModal', () => {
         isOpen={true}
         onClose={onClose}
         onSwitchToRegister={onSwitchToRegister}
-      />
+      />,
+      { wrapper: MemoryRouter }
     );
 
     fireEvent.change(screen.getByPlaceholderText('login.email_placeholder'), {
@@ -202,7 +227,8 @@ describe('LoginModal', () => {
         isOpen={true}
         onClose={onClose}
         onSwitchToRegister={onSwitchToRegister}
-      />
+      />,
+      { wrapper: MemoryRouter }
     );
 
     fireEvent.change(screen.getByPlaceholderText('login.email_placeholder'), {
@@ -234,7 +260,8 @@ describe('LoginModal', () => {
         isOpen={true}
         onClose={onClose}
         onSwitchToRegister={onSwitchToRegister}
-      />
+      />,
+      { wrapper: MemoryRouter }
     );
 
     fireEvent.change(screen.getByPlaceholderText('login.email_placeholder'), {
