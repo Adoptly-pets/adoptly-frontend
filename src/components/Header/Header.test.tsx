@@ -5,7 +5,9 @@ import { MemoryRouter, useLocation } from 'react-router-dom';
 const LocationDisplay = () => {
   const location = useLocation();
   return (
-    <div data-testid="location">{location.pathname + location.search}</div>
+    <div data-testid="location">
+      {location.pathname + location.search + location.hash}
+    </div>
   );
 };
 
@@ -50,7 +52,7 @@ describe('Header Component', () => {
     expect(navigation).toBeInTheDocument();
 
     const languageButton = screen.getByRole('button', {
-      name: /switch language to ukrainian/i,
+      name: /switch language to english/i,
     });
     expect(languageButton).toBeInTheDocument();
 
@@ -61,20 +63,20 @@ describe('Header Component', () => {
     expect(userButton).toBeInTheDocument();
   });
 
-  test('preserves query string when switching language', () => {
+  test('preserves query string and hash when switching language', () => {
     render(
-      <MemoryRouter initialEntries={['/uk/reset-password?token=abc']}>
+      <MemoryRouter initialEntries={['/uk/reset-password?token=abc#section']}>
         <Header />
         <LocationDisplay />
       </MemoryRouter>
     );
 
     fireEvent.click(
-      screen.getByRole('button', { name: /switch language to ukrainian/i })
+      screen.getByRole('button', { name: /switch language to english/i })
     );
 
     expect(screen.getByTestId('location')).toHaveTextContent(
-      '/en/reset-password?token=abc'
+      '/en/reset-password?token=abc#section'
     );
   });
 
