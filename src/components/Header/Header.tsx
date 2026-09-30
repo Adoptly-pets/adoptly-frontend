@@ -32,7 +32,7 @@ const Header = () => {
       ? pathParts.slice(2).join('/')
       : pathParts.slice(1).join('/');
 
-    navigate(`/${lng}/${currentPath}`);
+    navigate(`/${lng}/${currentPath}${location.search}${location.hash}`);
   };
   return (
     <header className="header" id="header" tabIndex={-1}>
@@ -110,8 +110,8 @@ const Header = () => {
             className="btn btn-lang"
             aria-label={
               i18n.language === 'uk'
-                ? 'Switch language to Ukrainian'
-                : 'Switch language to English'
+                ? 'Switch language to English'
+                : 'Switch language to Ukrainian'
             }
             aria-pressed={i18n.language === 'uk'}
             onClick={() => changeLanguage(i18n.language === 'uk' ? 'en' : 'uk')}
