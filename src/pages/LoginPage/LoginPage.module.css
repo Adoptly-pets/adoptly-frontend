@@ -1,0 +1,22 @@
+.pageWrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.card {
+  max-width: 560px;
+  width: 100%;
+  background-color: #fff;
+  padding: 48px 56px;
+  border-radius: 16px;
+  box-shadow: 0px 5px 28px 0px rgba(9, 26, 73, 0.2);
+}
+
+@media (max-width: 767px) {
+  .card {
+    padding: 32px 12px;
+  }
+}
