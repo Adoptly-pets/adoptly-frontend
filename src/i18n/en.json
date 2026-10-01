@@ -214,7 +214,7 @@
     "submit": "Log in",
     "no_account": "Don't have an account?",
     "register_link": "Register",
-    "signInWith": "Sign in with",
+    "divider": "or",
     "invalidCredentials": "Invalid email or password",
     "networkError": "Network error. Please check your internet connection and try again.",
     "googleError": "Failed to log in with Google.",

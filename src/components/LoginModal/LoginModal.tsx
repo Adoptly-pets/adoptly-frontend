@@ -185,7 +185,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
             {t('login.register_link')}
           </button>
         </p>
-        <FormDivider text={t('login.signInWith')} />
+        <FormDivider text={t('login.divider')} />
         <div className="login-form-google-auth">
           <GoogleAuthContainer
             onSuccess={onClose}

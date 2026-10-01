@@ -161,7 +161,7 @@ const LoginPage = () => {
             </Button>
           </form>
 
-          <FormDivider text={t('login.signInWith')} />
+          <FormDivider text={t('login.divider')} />
           <div className={styles.googleAuth}>
             <GoogleAuthContainer
               onSuccess={() => navigate(`/${i18n.language}/`)}
