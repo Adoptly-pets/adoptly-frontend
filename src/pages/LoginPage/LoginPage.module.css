@@ -15,6 +15,81 @@
   box-shadow: 0px 5px 28px 0px rgba(9, 26, 73, 0.2);
 }
 
+.title {
+  color: #091a49;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  color: #091a49;
+  padding-bottom: 12px;
+}
+
+.input {
+  background: #ecf1ff99;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  line-height: 1;
+  padding: 16px 18px;
+  width: 100%;
+}
+
+.input:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 1px #0054d6;
+}
+
+.input::placeholder {
+  color: #091a4980;
+}
+
+.inputError {
+  box-shadow: 0 0 0 1px #ef4444;
+}
+
+.error {
+  font-size: 12px;
+  color: #ef4444;
+  margin-top: 4px;
+}
+
+.passwordWrapper {
+  position: relative;
+}
+
+.toggleButton {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.eyeIcon {
+  width: 21px;
+  height: 21px;
+  display: block;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #091a49;
+  cursor: pointer;
+}
+
 @media (max-width: 767px) {
   .card {
     padding: 32px 12px;
