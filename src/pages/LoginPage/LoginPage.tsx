@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Icon } from '../../components/Icon/Icon';
 import Button from '../../components/Button/Button';
+import FormDivider from '../../components/FormDivider/FormDivider';
+import GoogleAuthContainer from '../../components/GoogleAuthContainer/GoogleAuthContainer';
 import EmailConfirmModal from '../../components/EmailConfirmModal/EmailConfirmModal';
 import { loginWithEmail } from '../../services/auth';
 import { isApiError } from '../../services/api';
@@ -26,8 +28,11 @@ const LoginPage = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<LoginFormData>();
+
+  const rememberMeValue = watch('rememberMe');
 
   const onSubmit = async (data: LoginFormData) => {
     setServerError(null);
@@ -123,10 +128,21 @@ const LoginPage = () => {
               )}
             </div>
 
-            <label className={styles.checkbox}>
-              <input type="checkbox" {...register('rememberMe')} />
-              <span>{t('login.remember_me')}</span>
-            </label>
+            <div className={styles.options}>
+              <label className={styles.checkbox}>
+                <input type="checkbox" {...register('rememberMe')} />
+                <span className={styles.checkboxCustom} />
+                <span className={styles.checkboxLabel}>
+                  {t('login.remember_me')}
+                </span>
+              </label>
+              <Link
+                to={`/${i18n.language}/forgot-password`}
+                className={styles.forgotLink}
+              >
+                {t('login.forgot_password')}
+              </Link>
+            </div>
 
             {serverError && (
               <span className={styles.error} role="alert">
@@ -144,6 +160,15 @@ const LoginPage = () => {
               {isSubmitting ? t('login.submitting') : t('login.submit')}
             </Button>
           </form>
+
+          <FormDivider text={t('login.signInWith')} />
+          <div className={styles.googleAuth}>
+            <GoogleAuthContainer
+              onSuccess={() => navigate(`/${i18n.language}/`)}
+              onError={() => setServerError(t('login.googleError'))}
+              rememberMe={rememberMeValue}
+            />
+          </div>
         </div>
       </div>
 
