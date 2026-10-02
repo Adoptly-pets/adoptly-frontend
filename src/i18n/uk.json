@@ -214,7 +214,7 @@
     "submit": "Увійти",
     "no_account": "Немає акаунту?",
     "register_link": "Реєстрація",
-    "signInWith": "Увійти через",
+    "divider": "або",
     "invalidCredentials": "Невірний email або пароль",
     "networkError": "Перевірте підключення до інтернету та спробуйте знову.",
     "googleError": "Не вдалося увійти через Google.",

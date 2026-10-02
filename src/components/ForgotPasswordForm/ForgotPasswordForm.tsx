@@ -36,7 +36,7 @@ const ForgotPasswordForm: React.FC = () => {
   };
 
   const handleBackToLogin = () => {
-    navigate(`/${i18n.language}/`);
+    navigate(`/${i18n.language}/login`);
   };
 
   return (

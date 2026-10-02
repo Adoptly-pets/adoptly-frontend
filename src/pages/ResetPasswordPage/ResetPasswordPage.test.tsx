@@ -124,7 +124,7 @@ describe('ResetPasswordPage', () => {
     const backLink = screen.getByRole('link', {
       name: 'resetPassword.backToLogin',
     });
-    expect(backLink).toHaveAttribute('href', '/en/');
+    expect(backLink).toHaveAttribute('href', '/en/login');
   });
 
   test('switches to tokenError state on 401 response', async () => {

@@ -180,7 +180,7 @@ const ResetPasswordPage = () => {
             <p className={styles.description}>
               {t('resetPassword.successMessage')}
             </p>
-            <Link to={`/${i18n.language}/`} className={styles.backLink}>
+            <Link to={`/${i18n.language}/login`} className={styles.backLink}>
               {t('resetPassword.backToLogin')}
             </Link>
           </div>
