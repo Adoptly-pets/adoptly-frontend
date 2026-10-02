@@ -156,6 +156,27 @@
   justify-content: center;
 }
 
+.registerText {
+  text-align: center;
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1;
+  color: var(--title-color-dark);
+  padding-top: 12px;
+}
+
+.registerLink {
+  color: #1b4cd1;
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: underline;
+}
+
+.registerLink:hover {
+  text-decoration: none;
+}
+
 @media (max-width: 767px) {
   .card {
     padding: 32px 12px;
