@@ -7,6 +7,7 @@ interface GoogleAuthContainerProps {
   onSuccess: () => void;
   onError: () => void;
   rememberMe?: boolean;
+  text?: 'signin_with' | 'signup_with';
 }
 
 const MAX_WIDTH = 400;
@@ -23,6 +24,7 @@ const GoogleAuthContainer: React.FC<GoogleAuthContainerProps> = ({
   onSuccess,
   onError,
   rememberMe = false,
+  text = 'signin_with',
 }) => {
   const { i18n } = useTranslation();
   const [width, setWidth] = useState(computeWidth);
@@ -55,7 +57,7 @@ const GoogleAuthContainer: React.FC<GoogleAuthContainerProps> = ({
         theme="outline"
         size="large"
         shape="rectangular"
-        text="signin_with"
+        text={text}
         logo_alignment="center"
         width={width}
       />

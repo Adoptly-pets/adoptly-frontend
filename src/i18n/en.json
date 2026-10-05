@@ -182,7 +182,6 @@
     "submitting": "Registering...",
     "has_account": "Already have an account?",
     "login_link": "Log in",
-    "signUpWith": "Sign up with",
     "password_min_length": "Password must be at least 8 characters long",
     "emailInUse": "This email is already in use. Please use a different email or log in."
   },

@@ -157,6 +157,11 @@
   color: #2e7d32;
 }
 
+.googleAuth {
+  display: flex;
+  justify-content: center;
+}
+
 .loginText {
   text-align: center;
   font-family: var(--font-primary);
