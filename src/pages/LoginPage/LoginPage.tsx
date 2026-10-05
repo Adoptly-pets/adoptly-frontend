@@ -161,6 +161,16 @@ const LoginPage = () => {
             </Button>
           </form>
 
+          <p className={styles.registerText}>
+            {t('login.no_account')}{' '}
+            <Link
+              to={`/${i18n.language}/register`}
+              className={styles.registerLink}
+            >
+              {t('login.register_link')}
+            </Link>
+          </p>
+
           <FormDivider text={t('login.divider')} />
           <div className={styles.googleAuth}>
             <GoogleAuthContainer

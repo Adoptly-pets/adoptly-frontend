@@ -14,6 +14,7 @@ import PetDetailPage from '../pages/PetDetailPage/PetDetailPage';
 import ForgotPasswordForm from '../components/ForgotPasswordForm/ForgotPasswordForm';
 import ResetPasswordPage from '../pages/ResetPasswordPage/ResetPasswordPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
+import RegisterPage from '../pages/RegisterPage/RegisterPage';
 
 const ShelterProfilePage = lazy(
   () => import('../pages/shelter/ShelterProfilePage/ShelterProfilePage')
@@ -48,6 +49,7 @@ function AppRoutes() {
         <Route path="forgot-password" element={<ForgotPasswordForm />} />
         <Route path="reset-password" element={<ResetPasswordPage />} />
         <Route path="login" element={<LoginPage />} />
+        <Route path="register" element={<RegisterPage />} />
 
         <Route path="shelter" element={<ShelterLayout />}>
           <Route index element={<Navigate to="profile" replace />} />
