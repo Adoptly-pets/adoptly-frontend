@@ -33,9 +33,7 @@ describe('useCities', () => {
 
     rerender({ slug: 'sevastopol' });
 
-    await waitFor(() =>
-      expect(result.current.cities).toEqual(['Севастополь'])
-    );
+    await waitFor(() => expect(result.current.cities).toEqual(['Севастополь']));
   });
 
   test('clears state when regionSlug becomes null', async () => {

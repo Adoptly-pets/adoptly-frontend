@@ -171,7 +171,11 @@ for (const [slug, items] of Object.entries(citiesByRegion)) {
   labels.sort((a, b) => collator.compare(a, b));
 
   const filePath = resolve(CITIES_DIR, `${slug}.json`);
-  writeFileSync(filePath, JSON.stringify(labels, null, 2) + '\n');
+  // Match Prettier's printWidth=80: single line if it fits, else multiline.
+  const compact = JSON.stringify(labels);
+  const content =
+    compact.length <= 80 ? compact : JSON.stringify(labels, null, 2);
+  writeFileSync(filePath, content + '\n');
 
   perRegionCounts[slug] = labels.length;
   totalWritten += labels.length;
