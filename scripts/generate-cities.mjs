@@ -12,11 +12,23 @@
  */
 
 import XLSX from 'xlsx';
+import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const XLSX_PATH = resolve(__dirname, 'data/kodifikator.xlsx');
+const REGIONS_PATH = resolve(__dirname, '../src/constants/regions.json');
+
+const regions = JSON.parse(readFileSync(REGIONS_PATH, 'utf8'));
+
+// regions.json uses the short name "АР Крим"; KATOTTG uses the full form.
+const KATOTTG_TO_REGION_UK = {
+  'Автономна Республіка Крим': 'АР Крим',
+};
+
+const regionSlug = r => r.en.toLowerCase().replace(/\s+/g, '-');
+const regionByUk = Object.fromEntries(regions.map(r => [r.uk, r]));
 
 const workbook = XLSX.readFile(XLSX_PATH);
 const sheetName = workbook.SheetNames[0];
@@ -31,24 +43,59 @@ const rows = XLSX.utils.sheet_to_json(sheet, {
   defval: null,
 });
 
-// Inspect structure
-console.log('Sheet:', sheetName);
-console.log('Total data rows:', rows.length);
-
-// Category distribution helps design the settlement filter in the next step
-const catCounts = {};
+// Map oblast code → region slug from O + K rows.
+const codeToSlug = {};
 for (const row of rows) {
-  const key = row.category || '(none)';
-  catCounts[key] = (catCounts[key] || 0) + 1;
+  if (row.category !== 'O' && row.category !== 'K') continue;
+  const ukName = KATOTTG_TO_REGION_UK[row.name] || row.name;
+  const region = regionByUk[ukName];
+  if (!region) {
+    throw new Error(`No region.json entry for KATOTTG name "${row.name}"`);
+  }
+  codeToSlug[row.level1] = regionSlug(region);
 }
-console.log('\nCategory distribution:');
-console.table(catCounts);
 
-console.log(
-  '\nSample oblast row:',
-  rows.find(r => r.category === 'O')
+// K regions (Kyiv, Sevastopol) are shown as themselves only — don't include any
+// M/X/C rows that live under them.
+const specialCityCodes = new Set(
+  rows.filter(r => r.category === 'K').map(r => r.level1)
+);
+
+const SETTLEMENT_CATEGORIES = new Set(['M', 'X', 'C']);
+
+// Group settlements by region slug.
+const citiesByRegion = {};
+for (const row of rows) {
+  const slug = codeToSlug[row.level1];
+  if (!slug) continue;
+
+  if (row.category === 'K') {
+    if (!citiesByRegion[slug]) {
+      citiesByRegion[slug] = [];
+    }
+    citiesByRegion[slug].push({ uk: row.name });
+    continue;
+  }
+
+  if (!SETTLEMENT_CATEGORIES.has(row.category)) continue;
+  if (specialCityCodes.has(row.level1)) continue;
+
+  if (!citiesByRegion[slug]) {
+    citiesByRegion[slug] = [];
+  }
+  citiesByRegion[slug].push({
+    uk: row.name,
+    districtCode: row.level2,
+  });
+}
+
+console.log('Cities per region:');
+console.table(
+  Object.fromEntries(
+    Object.entries(citiesByRegion).map(([slug, items]) => [slug, items.length])
+  )
 );
 console.log(
-  'Sample settlement (level 4):',
-  rows.find(r => r.level4)
+  '\nTotal settlements:',
+  Object.values(citiesByRegion).reduce((sum, arr) => sum + arr.length, 0)
 );
