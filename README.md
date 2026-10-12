@@ -81,6 +81,17 @@ To connect to a backend (e.g., Gitea), configure the `VITE_API_URL` in the `.env
 VITE_API_URL=http://backend-api.com
 ```
 
+## Location data
+
+Region and settlement data for Ukrainian location pickers are generated from
+the State Codifier of Administrative-Territorial Units and Territories of
+Territorial Hromadas (KATOTTG), published by the Ministry for Development of
+Communities, Territories and Infrastructure of Ukraine.
+
+- Source: https://mininfra.gov.ua/diialnist/rozvytok-mistsevoho-samovriaduvannia/kodyfikator-administratyvno-terytorialnykh-odynyts-ta-terytorii-terytorialnykh-hromad
+- KATOTTG edition: 2026-07-07
+- Regenerate: place the XLSX at `scripts/data/kodifikator.xlsx`, then run `npm run generate:cities`.
+
 ## Available Scripts
 
 - `npm run dev` — Starts the development server.
@@ -88,6 +99,7 @@ VITE_API_URL=http://backend-api.com
 - `npm run preview` — Previews the built project.
 - `npm run lint` — Runs ESLint to check code quality.
 - `npm run format` — Formats code using Prettier.
+- `npm run generate:cities` — Regenerates `src/constants/cities/*.json` from the KATOTTG XLSX.
 
 ## Code Style
 
