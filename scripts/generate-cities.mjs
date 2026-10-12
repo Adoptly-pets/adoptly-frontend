@@ -12,13 +12,14 @@
  */
 
 import XLSX from 'xlsx';
-import { readFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const XLSX_PATH = resolve(__dirname, 'data/kodifikator.xlsx');
 const REGIONS_PATH = resolve(__dirname, '../src/constants/regions.json');
+const CITIES_DIR = resolve(__dirname, '../src/constants/cities');
 
 const regions = JSON.parse(readFileSync(REGIONS_PATH, 'utf8'));
 
@@ -86,16 +87,97 @@ for (const row of rows) {
   citiesByRegion[slug].push({
     uk: row.name,
     districtCode: row.level2,
+    hromadaCode: row.level3,
   });
 }
 
+// District/hromada codes → display names. KATOTTG stores hromada as adjective
+// only (sometimes with trailing space, e.g. "Табачненська "); append "громада".
+const districtNameByCode = {};
+const hromadaNameByCode = {};
+for (const row of rows) {
+  if (row.category === 'P') {
+    districtNameByCode[row.level2] = row.name;
+  } else if (row.category === 'H') {
+    hromadaNameByCode[row.level3] = `${row.name.trim()} громада`;
+  }
+}
+
+const dropped = [];
+for (const [slug, items] of Object.entries(citiesByRegion)) {
+  const seen = new Set();
+  const unique = [];
+  for (const item of items) {
+    const key = `${item.uk}|${item.hromadaCode}`;
+    if (seen.has(key)) {
+      dropped.push({ region: slug, name: item.uk });
+      continue;
+    }
+    seen.add(key);
+    unique.push(item);
+  }
+  citiesByRegion[slug] = unique;
+}
+
+if (dropped.length > 0) {
+  const byRegion = {};
+  for (const d of dropped) {
+    byRegion[d.region] = (byRegion[d.region] || 0) + 1;
+  }
+  console.warn(
+    `\nDropped ${dropped.length} same-name settlements within one hromada:`
+  );
+  console.table(byRegion);
+}
+
+// Ukrainian collator ensures "и" ≠ "і" and "ґ" ≠ "г" sort correctly.
+const collator = new Intl.Collator('uk');
+
+mkdirSync(CITIES_DIR, { recursive: true });
+
+let totalWritten = 0;
+const perRegionCounts = {};
+
+for (const [slug, items] of Object.entries(citiesByRegion)) {
+  // Group items by uk name — all duplicates need suffixes.
+  const groups = {};
+  for (const item of items) {
+    (groups[item.uk] ||= []).push(item);
+  }
+
+  const labels = [];
+  for (const [name, group] of Object.entries(groups)) {
+    if (group.length === 1) {
+      labels.push(name);
+      continue;
+    }
+
+    // Try hromada name only; escalate to hromada + district if display names clash.
+    const hromadaLabels = group.map(
+      item => `${name} (${hromadaNameByCode[item.hromadaCode]})`
+    );
+    if (new Set(hromadaLabels).size === group.length) {
+      labels.push(...hromadaLabels);
+      continue;
+    }
+
+    const fullLabels = group.map(
+      item =>
+        `${name} (${hromadaNameByCode[item.hromadaCode]}, ${districtNameByCode[item.districtCode]} р-н)`
+    );
+    labels.push(...fullLabels);
+  }
+
+  labels.sort((a, b) => collator.compare(a, b));
+
+  const filePath = resolve(CITIES_DIR, `${slug}.json`);
+  writeFileSync(filePath, JSON.stringify(labels, null, 2) + '\n');
+
+  perRegionCounts[slug] = labels.length;
+  totalWritten += labels.length;
+}
+
 console.log('Cities per region:');
-console.table(
-  Object.fromEntries(
-    Object.entries(citiesByRegion).map(([slug, items]) => [slug, items.length])
-  )
-);
-console.log(
-  '\nTotal settlements:',
-  Object.values(citiesByRegion).reduce((sum, arr) => sum + arr.length, 0)
-);
+console.table(perRegionCounts);
+console.log('\nTotal settlements written:', totalWritten);
+console.log('Files written to:', CITIES_DIR);
