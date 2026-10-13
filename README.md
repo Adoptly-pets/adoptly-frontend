@@ -1,13 +1,13 @@
 # React Project
 
-This project is a React-based frontend application designed to provide a user-friendly interface for interacting with a Gitea backend. It is built with modern web development tools and follows best practices for scalability and maintainability.
+This project is a React-based frontend application for Adoptly, a pet adoption platform. It is built with modern web development tools and follows best practices for scalability and maintainability.
 
 ## Tech Stack
 
 - **Frontend**: React, Vite
 - **Styling**: CSS Modules, TailwindCSS (if applicable)
 - **State Management**: Context API, Redux (if applicable)
-- **Backend Integration**: REST API (Gitea backend)
+- **Backend Integration**: REST API (Adoptly backend)
 - **Build Tool**: Vite
 - **Linting and Formatting**: ESLint, Prettier
 - **CI/CD**: GitHub Actions
@@ -17,9 +17,9 @@ This project is a React-based frontend application designed to provide a user-fr
 - **src/**
   - **components/** — Reusable UI components (e.g., Button).
   - **pages/** — Components representing application pages (e.g., HomePage).
-  - **services/** — Logic for API interactions (e.g., requests to a Gitea backend).
-  - **App.jsx** — Main application component.
-  - **main.jsx** — Entry point for rendering React.
+  - **services/** — Logic for API interactions (e.g., requests to the Adoptly backend).
+  - **App.tsx** — Main application component.
+  - **main.tsx** — Entry point for rendering React.
   - **index.css** — Global styles.
 - **public/** — Static files (e.g., favicon, images).
 - **.env.example** — Template for environment variables (e.g., VITE_API_URL).
@@ -32,7 +32,7 @@ This project is a React-based frontend application designed to provide a user-fr
 ### Prerequisites
 
 - **Node.js**: v20 or higher
-- **npm**: v8 or higher
+- **npm**: v10 or higher
 
 ## Installation and Setup
 
@@ -42,7 +42,7 @@ This project is a React-based frontend application designed to provide a user-fr
    git clone <repository_url>
    ```
 
-2. Clone the repository:
+2. Navigate to the project directory:
 
    ```bash
    cd <project_directory>
@@ -75,11 +75,22 @@ This project is a React-based frontend application designed to provide a user-fr
 
 ## API Configuration
 
-To connect to a backend (e.g., Gitea), configure the `VITE_API_URL` in the `.env` file. Example:
+To connect to the Adoptly backend, configure the `VITE_API_URL` in the `.env` file. Example:
 
 ```
 VITE_API_URL=http://backend-api.com
 ```
+
+## Location data
+
+Region and settlement data for Ukrainian location pickers are generated from
+the State Codifier of Administrative-Territorial Units and Territories of
+Territorial Hromadas (KATOTTG), published by the Ministry for Development of
+Communities, Territories and Infrastructure of Ukraine.
+
+- Source: https://mininfra.gov.ua/diialnist/rozvytok-mistsevoho-samovriaduvannia/kodyfikator-administratyvno-terytorialnykh-odynyts-ta-terytorii-terytorialnykh-hromad
+- KATOTTG edition: 2026-07-07
+- Regenerate: place the XLSX at `scripts/data/kodifikator.xlsx`, then run `npm run generate:cities`.
 
 ## Available Scripts
 
@@ -88,6 +99,7 @@ VITE_API_URL=http://backend-api.com
 - `npm run preview` — Previews the built project.
 - `npm run lint` — Runs ESLint to check code quality.
 - `npm run format` — Formats code using Prettier.
+- `npm run generate:cities` — Regenerates `src/constants/cities/*.json` from the KATOTTG XLSX.
 
 ## Code Style
 
@@ -125,20 +137,14 @@ For guidelines on how to contribute, please see `CONTRIBUTING.md`.
 - Keep components modular and reusable in `src/components/`.
 - Add new pages to `src/pages/`.
 - Place API-related logic in `src/services/`.
-- Use PascalCase for component and file names (e.g., `HomePage.jsx`).
+- Use PascalCase for component and file names (e.g., `HomePage.tsx`).
 - Avoid global styles; prefer CSS Modules or other isolated styling approaches.
 
 ## Environment Requirements
 
 - **Node.js**: v20 or higher
-- **npm**: v8 or higher
+- **npm**: v10 or higher
 
 ## License
 
 This project is licensed under the MIT License.
-
----
-
-### **Conclusion**
-
-The current README is a solid foundation, but adding the suggested sections and refinements will make it more comprehensive and developer-friendly. This ensures the README serves as a single source of truth, reducing onboarding time for new contributors.
