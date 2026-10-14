@@ -291,13 +291,22 @@
           "name": "Shelter / volunteer initiative name",
           "edrpou": "EDRPOU",
           "address": "Address",
-          "description": "Description"
+          "description": "Description",
+          "website": "Website",
+          "facebook": "Facebook",
+          "instagram": "Instagram",
+          "otherLink": "Other link"
         },
+        "publicPagesIntro": "Enter at least one active page — we use it to verify your shelter's activity. These links will be shown on your profile.",
         "placeholders": {
           "name": "Enter the name",
           "edrpou": "8 digits",
           "address": "Enter the street name and building number",
-          "description": "Tell us in your own words: who you are (a team, volunteers, a shelter), where your animals live and how many you care for, what you do and for how long. For example: “We are a team of two volunteers, a home shelter in Dnipro, 20 cats — we rescue, treat and find them homes for three years already.”"
+          "description": "Tell us in your own words: who you are (a team, volunteers, a shelter), where your animals live and how many you care for, what you do and for how long. For example: “We are a team of two volunteers, a home shelter in Dnipro, 20 cats — we rescue, treat and find them homes for three years already.”",
+          "website": "https://your-site.ua",
+          "facebook": "https://www.facebook.com/XXXXXXX",
+          "instagram": "https://www.instagram.com/XXXXXXX",
+          "otherLink": "https:// — Telegram, TikTok…"
         },
         "helpers": {
           "edrpou": "For legal entities — speeds up verification via the state registry. Not published.",
@@ -308,7 +317,9 @@
           "nameRequired": "Enter the shelter name",
           "edrpouInvalid": "EDRPOU must be exactly 8 digits",
           "addressRequired": "Enter the address",
-          "descriptionRequired": "Describe your shelter"
+          "descriptionRequired": "Describe your shelter",
+          "urlInvalid": "Invalid URL",
+          "publicPagesRequired": "Enter at least one link"
         },
         "submit": "Save profile",
         "submitting": "Saving…",

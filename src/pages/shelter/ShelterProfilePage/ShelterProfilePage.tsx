@@ -10,9 +10,15 @@ type ShelterProfileFormData = {
   edrpou: string;
   address: string;
   description: string;
+  website?: string;
+  facebook?: string;
+  instagram?: string;
+  otherLink?: string;
 };
 
 const DESCRIPTION_MAX = 1500;
+const URL_PATTERN =
+  /^(https?:\/\/)?([\w-]+(\.[\w-]+)+)([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/;
 
 const ShelterProfilePage = () => {
   const { t } = useTranslation();
@@ -21,8 +27,21 @@ const ShelterProfilePage = () => {
     register,
     handleSubmit,
     watch,
+    getValues,
     formState: { errors },
   } = useForm<ShelterProfileFormData>();
+
+  const atLeastOnePublicPage = () => {
+    const { website, facebook, instagram, otherLink } = getValues();
+    return (
+      !!(
+        website?.trim() ||
+        facebook?.trim() ||
+        instagram?.trim() ||
+        otherLink?.trim()
+      ) || t('shelter.pages.profile.errors.publicPagesRequired')
+    );
+  };
 
   const description = watch('description', '');
 
@@ -138,6 +157,87 @@ const ShelterProfilePage = () => {
       </section>
       <section className={styles.section}>
         <h2>{t('shelter.pages.profile.sections.publicPages')}</h2>
+        <p className={styles.helper}>
+          {t('shelter.pages.profile.publicPagesIntro')}
+        </p>
+        {errors.website?.type === 'atLeastOne' && (
+          <span className={styles.error}>{errors.website.message}</span>
+        )}
+
+        <div className={styles.field}>
+          <label htmlFor="website">
+            {t('shelter.pages.profile.fields.website')}
+          </label>
+          <input
+            id="website"
+            type="url"
+            placeholder={t('shelter.pages.profile.placeholders.website')}
+            {...register('website', {
+              pattern: URL_PATTERN,
+              validate: { atLeastOne: atLeastOnePublicPage },
+            })}
+            disabled={status === 'submitting'}
+          />
+          {errors.website?.type === 'pattern' && (
+            <span className={styles.error}>
+              {t('shelter.pages.profile.errors.urlInvalid')}
+            </span>
+          )}
+        </div>
+
+        <div className={styles.field}>
+          <label htmlFor="facebook">
+            {t('shelter.pages.profile.fields.facebook')}
+          </label>
+          <input
+            id="facebook"
+            type="url"
+            placeholder={t('shelter.pages.profile.placeholders.facebook')}
+            {...register('facebook', { pattern: URL_PATTERN })}
+            disabled={status === 'submitting'}
+          />
+          {errors.facebook && (
+            <span className={styles.error}>
+              {t('shelter.pages.profile.errors.urlInvalid')}
+            </span>
+          )}
+        </div>
+
+        <div className={styles.field}>
+          <label htmlFor="instagram">
+            {t('shelter.pages.profile.fields.instagram')}
+          </label>
+          <input
+            id="instagram"
+            type="url"
+            placeholder={t('shelter.pages.profile.placeholders.instagram')}
+            {...register('instagram', { pattern: URL_PATTERN })}
+            disabled={status === 'submitting'}
+          />
+          {errors.instagram && (
+            <span className={styles.error}>
+              {t('shelter.pages.profile.errors.urlInvalid')}
+            </span>
+          )}
+        </div>
+
+        <div className={styles.field}>
+          <label htmlFor="otherLink">
+            {t('shelter.pages.profile.fields.otherLink')}
+          </label>
+          <input
+            id="otherLink"
+            type="url"
+            placeholder={t('shelter.pages.profile.placeholders.otherLink')}
+            {...register('otherLink', { pattern: URL_PATTERN })}
+            disabled={status === 'submitting'}
+          />
+          {errors.otherLink && (
+            <span className={styles.error}>
+              {t('shelter.pages.profile.errors.urlInvalid')}
+            </span>
+          )}
+        </div>
       </section>
       <section className={styles.section}>
         <h2>{t('shelter.pages.profile.sections.contact')}</h2>
