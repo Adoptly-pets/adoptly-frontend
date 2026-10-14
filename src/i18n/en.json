@@ -281,7 +281,16 @@
     },
     "pages": {
       "profile": {
-        "title": "Shelter Profile"
+        "title": "Shelter Profile",
+        "sections": {
+          "main": "Main information",
+          "publicPages": "Public pages",
+          "contact": "Contact person"
+        },
+        "submit": "Save profile",
+        "submitting": "Saving…",
+        "submitHint": "After saving, the Adoptly team will review your profile.",
+        "sentMessage": "Your profile has been sent to the Adoptly team for review."
       },
       "pets": {
         "title": "Animal Cards"
