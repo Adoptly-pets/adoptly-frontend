@@ -287,6 +287,29 @@
           "publicPages": "Public pages",
           "contact": "Contact person"
         },
+        "fields": {
+          "name": "Shelter / volunteer initiative name",
+          "edrpou": "EDRPOU",
+          "address": "Address",
+          "description": "Description"
+        },
+        "placeholders": {
+          "name": "Enter the name",
+          "edrpou": "8 digits",
+          "address": "Enter the street name and building number",
+          "description": "Tell us in your own words: who you are (a team, volunteers, a shelter), where your animals live and how many you care for, what you do and for how long. For example: “We are a team of two volunteers, a home shelter in Dnipro, 20 cats — we rescue, treat and find them homes for three years already.”"
+        },
+        "helpers": {
+          "edrpou": "For legal entities — speeds up verification via the state registry. Not published.",
+          "address": "The address is not shown publicly — only the Adoptly team sees it."
+        },
+        "counter": "Characters left: {{count}}",
+        "errors": {
+          "nameRequired": "Enter the shelter name",
+          "edrpouInvalid": "EDRPOU must be exactly 8 digits",
+          "addressRequired": "Enter the address",
+          "descriptionRequired": "Describe your shelter"
+        },
         "submit": "Save profile",
         "submitting": "Saving…",
         "submitHint": "After saving, the Adoptly team will review your profile.",

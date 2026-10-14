@@ -1,0 +1,142 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  padding: 20px;
+}
+
+.form h1 {
+  font-family: var(--font-secondary);
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--title-color-dark);
+  margin: 0;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.section h2 {
+  font-family: var(--font-secondary);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--title-color-dark);
+  margin: 0 0 4px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field label {
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--title-color-dark);
+}
+
+.required {
+  color: #d32f2f;
+  margin-left: 4px;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 18px;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  background-color: #ecf1ff99;
+  font-family: var(--font-primary);
+  font-size: 16px;
+  color: var(--title-color-dark);
+}
+
+.field input {
+  height: 48px;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 140px;
+  line-height: 1.5;
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible {
+  box-shadow: 0 0 0 1px #0054d6;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #091a4980;
+}
+
+.field input:disabled,
+.field textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.helper {
+  font-family: var(--font-primary);
+  font-size: 14px;
+  color: #091a4999;
+  line-height: 1.4;
+}
+
+.error {
+  font-family: var(--font-primary);
+  font-size: 14px;
+  color: #d32f2f;
+}
+
+.counter {
+  align-self: flex-end;
+  font-family: var(--font-primary);
+  font-size: 14px;
+  color: #091a4999;
+  white-space: nowrap;
+}
+
+.reviewBanner {
+  padding: 16px 20px;
+  border-radius: 8px;
+  background-color: #e8f5e9;
+  color: #1b5e20;
+  font-family: var(--font-primary);
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.disclaimer {
+  text-align: center;
+  font-family: var(--font-primary);
+  font-size: 14px;
+  color: #091a4999;
+  margin: 8px 0 0;
+}
+
+@media (max-width: 767px) {
+  .form {
+    padding: 20px 12px;
+    gap: 24px;
+  }
+
+  .form h1 {
+    font-size: 24px;
+  }
+
+  .section h2 {
+    font-size: 18px;
+  }
+}
