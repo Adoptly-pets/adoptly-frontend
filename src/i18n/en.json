@@ -295,9 +295,13 @@
           "website": "Website",
           "facebook": "Facebook",
           "instagram": "Instagram",
-          "otherLink": "Other link"
+          "otherLink": "Other link",
+          "firstName": "First name",
+          "lastName": "Last name",
+          "phone": "Phone"
         },
         "publicPagesIntro": "Enter at least one active page — we use it to verify your shelter's activity. These links will be shown on your profile.",
+        "contactIntro": "For the Adoptly team to reach you during profile review. Not published.",
         "placeholders": {
           "name": "Enter the name",
           "edrpou": "8 digits",
@@ -306,20 +310,28 @@
           "website": "https://your-site.ua",
           "facebook": "https://www.facebook.com/XXXXXXX",
           "instagram": "https://www.instagram.com/XXXXXXX",
-          "otherLink": "https:// — Telegram, TikTok…"
+          "otherLink": "https:// — Telegram, TikTok…",
+          "firstName": "",
+          "lastName": "",
+          "phone": "+38 (067) 123 45 67"
         },
         "helpers": {
           "edrpou": "For legal entities — speeds up verification via the state registry. Not published.",
           "address": "The address is not shown publicly — only the Adoptly team sees it."
         },
         "counter": "Characters left: {{count}}",
+        "consent": "I agree to the processing of personal data (<policyLink>Privacy Policy</policyLink>)",
         "errors": {
           "nameRequired": "Enter the shelter name",
           "edrpouInvalid": "EDRPOU must be exactly 8 digits",
           "addressRequired": "Enter the address",
           "descriptionRequired": "Describe your shelter",
           "urlInvalid": "Invalid URL",
-          "publicPagesRequired": "Enter at least one link"
+          "publicPagesRequired": "Enter at least one link",
+          "firstNameRequired": "Enter your first name",
+          "phoneRequired": "Enter your phone number",
+          "phoneInvalid": "Invalid phone number",
+          "consentRequired": "Consent to data processing is required"
         },
         "submit": "Save profile",
         "submitting": "Saving…",

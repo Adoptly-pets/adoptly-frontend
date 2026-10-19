@@ -297,9 +297,13 @@
           "website": "Вебсайт",
           "facebook": "Facebook",
           "instagram": "Instagram",
-          "otherLink": "Інше посилання"
+          "otherLink": "Інше посилання",
+          "firstName": "Ім'я",
+          "lastName": "Прізвище",
+          "phone": "Телефон"
         },
         "publicPagesIntro": "Вкажіть щонайменше одну активну сторінку — за нею ми підтверджуємо діяльність притулку. Посилання будуть видимі в вашому профілі.",
+        "contactIntro": "Для зв'язку команди Adoptly під час перевірки профілю. Не публікується.",
         "placeholders": {
           "name": "Вкажіть назву",
           "edrpou": "8 цифр",
@@ -308,20 +312,28 @@
           "website": "https://ваш-сайт.ua",
           "facebook": "https://www.facebook.com/XXXXXXX",
           "instagram": "https://www.instagram.com/XXXXXXX",
-          "otherLink": "https:// — Telegram, TikTok…"
+          "otherLink": "https:// — Telegram, TikTok…",
+          "firstName": "",
+          "lastName": "",
+          "phone": "+38 (067) 123 45 67"
         },
         "helpers": {
           "edrpou": "Для юридичних осіб — пришвидшить перевірку через державний реєстр. Не публікується.",
           "address": "Адреса не буде розміщена у вільному доступі — її бачить лише команда Adoptly."
         },
         "counter": "Залишилось символів: {{count}}",
+        "consent": "Погоджуюсь з обробкою персональних даних (<policyLink>Політика конфіденційності</policyLink>)",
         "errors": {
           "nameRequired": "Вкажіть назву притулку",
           "edrpouInvalid": "ЄДРПОУ має містити рівно 8 цифр",
           "addressRequired": "Вкажіть адресу",
           "descriptionRequired": "Опишіть ваш притулок",
           "urlInvalid": "Некоректне посилання",
-          "publicPagesRequired": "Вкажіть щонайменше одне посилання"
+          "publicPagesRequired": "Вкажіть щонайменше одне посилання",
+          "firstNameRequired": "Вкажіть ім'я",
+          "phoneRequired": "Вкажіть телефон",
+          "phoneInvalid": "Некоректний номер телефону",
+          "consentRequired": "Потрібна згода на обробку даних"
         },
         "submit": "Зберегти профіль",
         "submitting": "Збереження…",

@@ -1,8 +1,10 @@
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import styles from './ShelterProfilePage.module.css';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Button from '../../../components/Button/Button';
 import { useForm } from 'react-hook-form';
+import { langLink } from '../../../utils/routing';
 
 type Status = 'form' | 'submitting' | 'sent';
 type ShelterProfileFormData = {
@@ -14,11 +16,16 @@ type ShelterProfileFormData = {
   facebook?: string;
   instagram?: string;
   otherLink?: string;
+  firstName: string;
+  lastName?: string;
+  phone: string;
+  consent: boolean;
 };
 
 const DESCRIPTION_MAX = 1500;
 const URL_PATTERN =
   /^(https?:\/\/)?([\w-]+(\.[\w-]+)+)([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/;
+const PHONE_PATTERN = /^(\+?38)?0\d{9}$/;
 
 const ShelterProfilePage = () => {
   const { t } = useTranslation();
@@ -42,6 +49,10 @@ const ShelterProfilePage = () => {
       ) || t('shelter.pages.profile.errors.publicPagesRequired')
     );
   };
+
+  const validatePhone = (value: string) =>
+    PHONE_PATTERN.test(value.replace(/[\s()-]/g, '')) ||
+    t('shelter.pages.profile.errors.phoneInvalid');
 
   const description = watch('description', '');
 
@@ -241,7 +252,93 @@ const ShelterProfilePage = () => {
       </section>
       <section className={styles.section}>
         <h2>{t('shelter.pages.profile.sections.contact')}</h2>
+        <p className={styles.helper}>
+          {t('shelter.pages.profile.contactIntro')}
+        </p>
+        <div className={styles.twoColumn}>
+          <div className={styles.field}>
+            <label htmlFor="firstName">
+              {t('shelter.pages.profile.fields.firstName')}
+              <span className={styles.required}>*</span>
+            </label>
+            <input
+              id="firstName"
+              type="text"
+              placeholder={t('shelter.pages.profile.placeholders.firstName')}
+              {...register('firstName', { required: true })}
+              disabled={status === 'submitting'}
+            />
+            {errors.firstName && (
+              <span className={styles.error}>
+                {t('shelter.pages.profile.errors.firstNameRequired')}
+              </span>
+            )}
+          </div>
+          <div className={styles.field}>
+            <label htmlFor="lastName">
+              {t('shelter.pages.profile.fields.lastName')}
+            </label>
+            <input
+              id="lastName"
+              type="text"
+              placeholder={t('shelter.pages.profile.placeholders.lastName')}
+              {...register('lastName')}
+              disabled={status === 'submitting'}
+            />
+          </div>
+          <div className={styles.field}>
+            <label htmlFor="phone">
+              {t('shelter.pages.profile.fields.phone')}
+              <span className={styles.required}>*</span>
+            </label>
+            <input
+              id="phone"
+              type="tel"
+              placeholder={t('shelter.pages.profile.placeholders.phone')}
+              {...register('phone', {
+                required: true,
+                validate: validatePhone,
+              })}
+              disabled={status === 'submitting'}
+            />
+            {errors.phone && (
+              <span className={styles.error}>
+                {errors.phone.type === 'required'
+                  ? t('shelter.pages.profile.errors.phoneRequired')
+                  : errors.phone.message}
+              </span>
+            )}
+          </div>
+        </div>
       </section>
+      <div className={styles.consent}>
+        <input
+          id="consent"
+          type="checkbox"
+          {...register('consent', { required: true })}
+          disabled={status === 'submitting'}
+        />
+        <label htmlFor="consent">
+          <Trans
+            i18nKey="shelter.pages.profile.consent"
+            components={{
+              policyLink: (
+                <Link
+                  to={langLink('/privacy-policy')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.policyLink}
+                />
+              ),
+            }}
+          />
+        </label>
+        {errors.consent && (
+          <span className={styles.error}>
+            {t('shelter.pages.profile.errors.consentRequired')}
+          </span>
+        )}
+      </div>
       <Button
         type="submit"
         variant="primary"

@@ -126,6 +126,32 @@
   margin: 8px 0 0;
 }
 
+.twoColumn {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.consent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.consent input[type='checkbox'] {
+  width: 14px;
+  height: 14px;
+}
+
+.policyLink {
+  color: #1b4cd1;
+  text-decoration: underline;
+}
+
+.policyLink:hover {
+  text-decoration: none;
+}
+
 @media (max-width: 767px) {
   .form {
     padding: 20px 12px;
@@ -138,5 +164,9 @@
 
   .section h2 {
     font-size: 18px;
+  }
+
+  .twoColumn {
+    grid-template-columns: 1fr;
   }
 }
