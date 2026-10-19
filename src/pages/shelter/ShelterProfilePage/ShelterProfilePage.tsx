@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Button from '../../../components/Button/Button';
 import { useForm } from 'react-hook-form';
 import { langLink } from '../../../utils/routing';
+import { Icon } from '../../../components/Icon/Icon';
 
 type Status = 'form' | 'submitting' | 'sent';
 type ShelterProfileFormData = {
@@ -181,16 +182,19 @@ const ShelterProfilePage = () => {
           <label htmlFor="website">
             {t('shelter.pages.profile.fields.website')}
           </label>
-          <input
-            id="website"
-            type="url"
-            placeholder={t('shelter.pages.profile.placeholders.website')}
-            {...register('website', {
-              pattern: URL_PATTERN,
-              validate: { atLeastOne: atLeastOnePublicPage },
-            })}
-            disabled={status === 'submitting'}
-          />
+          <div className={styles.inputWithIcon}>
+            <Icon id="icon-website" className={styles.inputIcon} size={16} />
+            <input
+              id="website"
+              type="url"
+              placeholder={t('shelter.pages.profile.placeholders.website')}
+              {...register('website', {
+                pattern: URL_PATTERN,
+                validate: { atLeastOne: atLeastOnePublicPage },
+              })}
+              disabled={status === 'submitting'}
+            />
+          </div>
           {errors.website?.type === 'pattern' && (
             <span className={styles.error}>
               {t('shelter.pages.profile.errors.urlInvalid')}
@@ -202,13 +206,16 @@ const ShelterProfilePage = () => {
           <label htmlFor="facebook">
             {t('shelter.pages.profile.fields.facebook')}
           </label>
-          <input
-            id="facebook"
-            type="url"
-            placeholder={t('shelter.pages.profile.placeholders.facebook')}
-            {...register('facebook', { pattern: URL_PATTERN })}
-            disabled={status === 'submitting'}
-          />
+          <div className={styles.inputWithIcon}>
+            <Icon id="icon-facebook" className={styles.inputIcon} size={16} />
+            <input
+              id="facebook"
+              type="url"
+              placeholder={t('shelter.pages.profile.placeholders.facebook')}
+              {...register('facebook', { pattern: URL_PATTERN })}
+              disabled={status === 'submitting'}
+            />
+          </div>
           {errors.facebook && (
             <span className={styles.error}>
               {t('shelter.pages.profile.errors.urlInvalid')}
@@ -220,13 +227,16 @@ const ShelterProfilePage = () => {
           <label htmlFor="instagram">
             {t('shelter.pages.profile.fields.instagram')}
           </label>
-          <input
-            id="instagram"
-            type="url"
-            placeholder={t('shelter.pages.profile.placeholders.instagram')}
-            {...register('instagram', { pattern: URL_PATTERN })}
-            disabled={status === 'submitting'}
-          />
+          <div className={styles.inputWithIcon}>
+            <Icon id="icon-instagram" className={styles.inputIcon} size={16} />
+            <input
+              id="instagram"
+              type="url"
+              placeholder={t('shelter.pages.profile.placeholders.instagram')}
+              {...register('instagram', { pattern: URL_PATTERN })}
+              disabled={status === 'submitting'}
+            />
+          </div>
           {errors.instagram && (
             <span className={styles.error}>
               {t('shelter.pages.profile.errors.urlInvalid')}
@@ -238,13 +248,16 @@ const ShelterProfilePage = () => {
           <label htmlFor="otherLink">
             {t('shelter.pages.profile.fields.otherLink')}
           </label>
-          <input
-            id="otherLink"
-            type="url"
-            placeholder={t('shelter.pages.profile.placeholders.otherLink')}
-            {...register('otherLink', { pattern: URL_PATTERN })}
-            disabled={status === 'submitting'}
-          />
+          <div className={styles.inputWithIcon}>
+            <Icon id="icon-link" className={styles.inputIcon} size={16} />
+            <input
+              id="otherLink"
+              type="url"
+              placeholder={t('shelter.pages.profile.placeholders.otherLink')}
+              {...register('otherLink', { pattern: URL_PATTERN })}
+              disabled={status === 'submitting'}
+            />
+          </div>
           {errors.otherLink && (
             <span className={styles.error}>
               {t('shelter.pages.profile.errors.urlInvalid')}

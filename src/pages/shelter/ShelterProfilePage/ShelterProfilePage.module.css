@@ -158,6 +158,20 @@
   gap: 8px;
 }
 
+.inputWithIcon {
+  position: relative;
+}
+
+.inputWithIcon input {
+  padding-left: 40px;
+}
+.inputWithIcon .inputIcon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 @media (max-width: 767px) {
   .form {
     padding: 20px 12px;
