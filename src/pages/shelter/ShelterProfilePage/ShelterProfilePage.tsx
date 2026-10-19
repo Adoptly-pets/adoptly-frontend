@@ -167,14 +167,16 @@ const ShelterProfilePage = () => {
         </div>
       </section>
       <section className={styles.section}>
-        <h2>{t('shelter.pages.profile.sections.publicPages')}</h2>
-        <p className={styles.helper}>
-          {t('shelter.pages.profile.publicPagesIntro')}
-        </p>
-        {errors.website?.type === 'atLeastOne' && (
-          <span className={styles.error}>{errors.website.message}</span>
-        )}
+        <div>
+          <h2>{t('shelter.pages.profile.sections.publicPages')}</h2>
+          <p className={styles.helper}>
+            {t('shelter.pages.profile.publicPagesIntro')}
+          </p>
 
+          {errors.website?.type === 'atLeastOne' && (
+            <span className={styles.error}>{errors.website.message}</span>
+          )}
+        </div>
         <div className={styles.field}>
           <label htmlFor="website">
             {t('shelter.pages.profile.fields.website')}
@@ -251,10 +253,12 @@ const ShelterProfilePage = () => {
         </div>
       </section>
       <section className={styles.section}>
-        <h2>{t('shelter.pages.profile.sections.contact')}</h2>
-        <p className={styles.helper}>
-          {t('shelter.pages.profile.contactIntro')}
-        </p>
+        <div>
+          <h2>{t('shelter.pages.profile.sections.contact')}</h2>
+          <p className={styles.helper}>
+            {t('shelter.pages.profile.contactIntro')}
+          </p>
+        </div>
         <div className={styles.twoColumn}>
           <div className={styles.field}>
             <label htmlFor="firstName">
@@ -339,18 +343,24 @@ const ShelterProfilePage = () => {
           </span>
         )}
       </div>
-      <Button
-        type="submit"
-        variant="primary"
-        disabled={status === 'submitting'}
-      >
-        {status === 'submitting'
-          ? t('shelter.pages.profile.submitting')
-          : t('shelter.pages.profile.submit')}
-      </Button>
-      <p className={styles.disclaimer}>
-        {t('shelter.pages.profile.submitHint')}
-      </p>
+      <div className={styles.submitArea}>
+        <Button
+          type="submit"
+          variant="primary"
+          disabled={status === 'submitting'}
+          maxWidth={320}
+          height={50}
+          maxWidthMobile={250}
+          heightMobile={48}
+        >
+          {status === 'submitting'
+            ? t('shelter.pages.profile.submitting')
+            : t('shelter.pages.profile.submit')}
+        </Button>
+        <p className={styles.disclaimer}>
+          {t('shelter.pages.profile.submitHint')}
+        </p>
+      </div>
     </form>
   );
 };
