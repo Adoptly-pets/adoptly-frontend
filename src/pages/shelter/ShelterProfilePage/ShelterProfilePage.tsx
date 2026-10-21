@@ -1,11 +1,15 @@
 import { Trans, useTranslation } from 'react-i18next';
 import styles from './ShelterProfilePage.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../../../components/Button/Button';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { langLink } from '../../../utils/routing';
 import { Icon } from '../../../components/Icon/Icon';
+import regions from '../../../constants/regions.json';
+import { regionSlug as getRegionSlug } from '../../../utils/region';
+import SearchCombobox from '../../../components/SearchCombobox/SearchCombobox';
+import { useCities } from '../../../hooks/useCities';
 
 type Status = 'form' | 'submitting' | 'sent';
 type ShelterProfileFormData = {
@@ -21,6 +25,8 @@ type ShelterProfileFormData = {
   lastName?: string;
   phone: string;
   consent: boolean;
+  regionSlug: string;
+  settlement: string;
 };
 
 const DESCRIPTION_MAX = 1500;
@@ -36,8 +42,16 @@ const ShelterProfilePage = () => {
     handleSubmit,
     watch,
     getValues,
+    control,
+    setValue,
     formState: { errors },
   } = useForm<ShelterProfileFormData>();
+  const regionSlug = watch('regionSlug');
+  const { cities, loading } = useCities(regionSlug || null);
+
+  useEffect(() => {
+    setValue('settlement', '');
+  }, [regionSlug, setValue]);
 
   const atLeastOnePublicPage = () => {
     const { website, facebook, instagram, otherLink } = getValues();
@@ -118,6 +132,66 @@ const ShelterProfilePage = () => {
           <span className={styles.helper}>
             {t('shelter.pages.profile.helpers.edrpou')}
           </span>
+        </div>
+
+        <div className={styles.twoColumn}>
+          <div className={styles.field}>
+            <label htmlFor="regionSlug">
+              {t('shelter.pages.profile.fields.region')}
+              <span className={styles.required}>*</span>
+            </label>
+            <select
+              id="regionSlug"
+              {...register('regionSlug', { required: true })}
+              disabled={status === 'submitting'}
+            >
+              <option value="">
+                {t('shelter.pages.profile.placeholders.region')}
+              </option>
+              {regions.map(region => (
+                <option
+                  key={getRegionSlug(region)}
+                  value={getRegionSlug(region)}
+                >
+                  {region.uk}
+                </option>
+              ))}
+            </select>
+            {errors.regionSlug && (
+              <span className={styles.error}>
+                {t('shelter.pages.profile.errors.regionRequired')}
+              </span>
+            )}
+          </div>
+          <div className={styles.field}>
+            <label htmlFor="settlement">
+              {t('shelter.pages.profile.fields.settlement')}
+              <span className={styles.required}>*</span>
+            </label>
+            <Controller
+              name="settlement"
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <SearchCombobox
+                  id="settlement"
+                  options={cities}
+                  value={field.value}
+                  onChange={field.onChange}
+                  placeholder={t(
+                    'shelter.pages.profile.placeholders.settlement'
+                  )}
+                  disabled={!regionSlug || loading}
+                  emptyText={t('shelter.pages.profile.errors.settlement')}
+                />
+              )}
+            />
+            {errors.settlement && (
+              <span className={styles.error}>
+                {t('shelter.pages.profile.errors.settlementRequired')}
+              </span>
+            )}
+          </div>
         </div>
 
         <div className={styles.field}>

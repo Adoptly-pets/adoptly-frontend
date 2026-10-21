@@ -290,6 +290,8 @@
         "fields": {
           "name": "Shelter / volunteer initiative name",
           "edrpou": "EDRPOU",
+          "region": "Region",
+          "settlement": "Settlement",
           "address": "Address",
           "description": "Description",
           "website": "Website",
@@ -305,6 +307,8 @@
         "placeholders": {
           "name": "Enter the name",
           "edrpou": "8 digits",
+          "region": "Select a region",
+          "settlement": "Select a settlement",
           "address": "Enter the street name and building number",
           "description": "Tell us in your own words: who you are (a team, volunteers, a shelter), where your animals live and how many you care for, what you do and for how long. For example: “We are a team of two volunteers, a home shelter in Dnipro, 20 cats — we rescue, treat and find them homes for three years already.”",
           "website": "https://your-site.ua",
@@ -324,6 +328,9 @@
         "errors": {
           "nameRequired": "Enter the shelter name",
           "edrpouInvalid": "EDRPOU must be exactly 8 digits",
+          "regionRequired": "Select a region",
+          "settlementRequired": "Select a settlement",
+          "settlement": "No matches found",
           "addressRequired": "Enter the address",
           "descriptionRequired": "Describe your shelter",
           "urlInvalid": "Invalid URL",
