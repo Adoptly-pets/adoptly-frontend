@@ -300,7 +300,8 @@
           "otherLink": "Other link",
           "firstName": "First name",
           "lastName": "Last name",
-          "phone": "Phone"
+          "phone": "Phone",
+          "photo": "Profile photo"
         },
         "publicPagesIntro": "Enter at least one active page — we use it to verify your shelter's activity. These links will be shown on your profile.",
         "contactIntro": "For the Adoptly team to reach you during profile review. Not published.",
@@ -321,8 +322,11 @@
         },
         "helpers": {
           "edrpou": "For legal entities — speeds up verification via the state registry. Not published.",
-          "address": "The address is not shown publicly — only the Adoptly team sees it."
+          "address": "The address is not shown publicly — only the Adoptly team sees it.",
+          "photo": "JPEG or PNG, up to 10 MB."
         },
+        "photoUpload": "Upload photo",
+        "photoChange": "Change photo",
         "counter": "Characters left: {{count}}",
         "consent": "I agree to the processing of personal data (<policyLink>Privacy Policy</policyLink>)",
         "errors": {
@@ -338,7 +342,8 @@
           "firstNameRequired": "Enter your first name",
           "phoneRequired": "Enter your phone number",
           "phoneInvalid": "Invalid phone number",
-          "consentRequired": "Consent to data processing is required"
+          "consentRequired": "Consent to data processing is required",
+          "photoTooLarge": "File is larger than 10 MB"
         },
         "submit": "Save profile",
         "submitting": "Saving…",
