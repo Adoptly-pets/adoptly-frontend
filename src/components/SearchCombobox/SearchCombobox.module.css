@@ -32,3 +32,7 @@
   padding: 4px;
   font-size: 14px;
 }
+
+.highlighted {
+  background-color: #ecf1ff;
+}
