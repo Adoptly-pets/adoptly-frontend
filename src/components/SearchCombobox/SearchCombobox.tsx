@@ -1,9 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './SearchCombobox.module.css';
 
+export type Option = {
+  value: string;
+  label: string;
+};
+
 type SearchComboboxProps = {
   id?: string;
-  options: string[];
+  options: Option[];
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
@@ -23,9 +28,15 @@ const SearchCombobox = ({
   const [isOpen, setIsOpen] = useState(false);
   const [higihlightedIndex, setHighlightedIndex] = useState(-1);
   const listRef = useRef<HTMLUListElement>(null);
+  const [query, setQuery] = useState('');
+  const [isFocused, setIsFocused] = useState(false);
+
+  const selectedLabel =
+    options.find(option => option.value === value)?.label || '';
+  const displayValue = isFocused ? query : selectedLabel;
 
   const filteredOptions = options.filter(option =>
-    option.toLowerCase().includes(value.toLowerCase())
+    option.label.toLowerCase().includes(query.toLowerCase())
   );
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -42,7 +53,7 @@ const SearchCombobox = ({
       );
     } else if (e.key === 'Enter' && higihlightedIndex >= 0) {
       e.preventDefault();
-      onChange(filteredOptions[higihlightedIndex]);
+      onChange(filteredOptions[higihlightedIndex].value);
       setIsOpen(false);
       setHighlightedIndex(-1);
     } else if (e.key === 'Escape') {
@@ -68,15 +79,22 @@ const SearchCombobox = ({
     <div className={styles.container}>
       <input
         id={id}
-        value={value}
+        value={displayValue}
         placeholder={placeholder}
         disabled={disabled}
         onChange={e => {
-          onChange(e.target.value);
+          setQuery(e.target.value);
           setIsOpen(true);
         }}
-        onFocus={() => setIsOpen(true)}
-        onBlur={() => setIsOpen(false)}
+        onFocus={() => {
+          setQuery('');
+          setIsFocused(true);
+          setIsOpen(true);
+        }}
+        onBlur={() => {
+          setIsFocused(false);
+          setIsOpen(false);
+        }}
         role="combobox"
         aria-expanded={isOpen}
         aria-autocomplete="list"
@@ -87,17 +105,18 @@ const SearchCombobox = ({
           {filteredOptions.length > 0 ? (
             filteredOptions.map((option, index) => (
               <li
-                key={option}
+                key={option.value}
                 className={`${styles.option} ${index === higihlightedIndex ? styles.highlighted : ''}`}
                 onMouseDown={e => {
                   e.preventDefault();
-                  onChange(option);
+                  onChange(option.value);
                   setIsOpen(false);
+                  setIsFocused(false);
                 }}
                 onMouseEnter={() => setHighlightedIndex(index)}
                 role="option"
               >
-                {option}
+                {option.label}
               </li>
             ))
           ) : (
