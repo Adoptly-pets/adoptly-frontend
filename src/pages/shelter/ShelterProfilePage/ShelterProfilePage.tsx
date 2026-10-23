@@ -11,23 +11,14 @@ import { regionSlug as getRegionSlug } from '../../../utils/region';
 import SearchCombobox from '../../../components/SearchCombobox/SearchCombobox';
 import { useCities } from '../../../hooks/useCities';
 import { Option } from '../../../components/SearchCombobox/SearchCombobox';
+import {
+  createShelterProfile,
+  type ShelterProfilePayload,
+} from '../../../services/shelter';
 
 type Status = 'form' | 'submitting' | 'sent';
-type ShelterProfileFormData = {
-  name: string;
-  edrpou: string;
-  address: string;
-  description: string;
-  website?: string;
-  facebook?: string;
-  instagram?: string;
-  otherLink?: string;
-  firstName: string;
-  lastName?: string;
-  phone: string;
+type ShelterProfileFormData = ShelterProfilePayload & {
   consent: boolean;
-  region: string;
-  settlement: string;
   photo?: File | null;
 };
 
@@ -39,6 +30,7 @@ const PHONE_PATTERN = /^(\+?38)?0\d{9}$/;
 const ShelterProfilePage = () => {
   const { t, i18n } = useTranslation();
   const [status, setStatus] = useState<Status>('form');
+  const [serverError, setServerError] = useState<string | null>(null);
   const {
     register,
     handleSubmit,
@@ -88,13 +80,18 @@ const ShelterProfilePage = () => {
 
   const description = watch('description', '');
 
-  const onSubmit = (data: ShelterProfileFormData) => {
+  const onSubmit = async (data: ShelterProfileFormData) => {
+    setServerError(null);
     setStatus('submitting');
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      const { consent: _consent, photo: _photo, ...payload } = data;
+      await createShelterProfile(payload);
       setStatus('sent');
-      console.log('Form submitted:', data);
-    }, 2000);
+    } catch (error) {
+      setStatus('form');
+      setServerError(t('errors.serverError'));
+      console.error('createShelterProfile failed:', error);
+    }
   };
 
   return (
@@ -492,6 +489,11 @@ const ShelterProfilePage = () => {
         )}
       </div>
       <div className={styles.submitArea}>
+        {serverError && (
+          <span className={styles.error} role="alert">
+            {serverError}
+          </span>
+        )}
         <Button
           type="submit"
           variant="primary"
