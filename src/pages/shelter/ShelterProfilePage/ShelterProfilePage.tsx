@@ -26,6 +26,16 @@ const DESCRIPTION_MAX = 1500;
 const URL_PATTERN =
   /^(https?:\/\/)?([\w-]+(\.[\w-]+)+)([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/;
 const PHONE_PATTERN = /^(\+?38)?0\d{9}$/;
+const DRAFT = 'shelter-profile-draft';
+
+const loadDraft = (): Partial<ShelterProfileFormData> => {
+  try {
+    const raw = localStorage.getItem(DRAFT);
+    return raw ? JSON.parse(raw) : {};
+  } catch {
+    return {};
+  }
+};
 
 const ShelterProfilePage = () => {
   const { t, i18n } = useTranslation();
@@ -39,9 +49,13 @@ const ShelterProfilePage = () => {
     control,
     setValue,
     formState: { errors },
-  } = useForm<ShelterProfileFormData>();
+  } = useForm<ShelterProfileFormData>({ defaultValues: loadDraft() });
+
   const region = watch('region');
   const photo = watch('photo');
+  const description = watch('description', '');
+  const watchedValues = watch();
+
   const { cities, loading } = useCities(region || null);
   const regionOptions: Option[] = regions.map(region => ({
     value: getRegionSlug(region),
@@ -49,8 +63,14 @@ const ShelterProfilePage = () => {
   }));
 
   useEffect(() => {
-    setValue('settlement', '');
-  }, [region, setValue]);
+    if (status === 'sent') return;
+    try {
+      const { photo: _photo, ...rest } = watchedValues;
+      localStorage.setItem(DRAFT, JSON.stringify(rest));
+    } catch (err) {
+      console.warn('Failed to save draft:', err);
+    }
+  }, [watchedValues, status]);
 
   const previewUrl = photo ? URL.createObjectURL(photo) : null;
 
@@ -78,14 +98,13 @@ const ShelterProfilePage = () => {
     PHONE_PATTERN.test(value.replace(/[\s()-]/g, '')) ||
     t('shelter.pages.profile.errors.phoneInvalid');
 
-  const description = watch('description', '');
-
   const onSubmit = async (data: ShelterProfileFormData) => {
     setServerError(null);
     setStatus('submitting');
     try {
       const { consent: _consent, photo: _photo, ...payload } = data;
       await createShelterProfile(payload);
+      localStorage.removeItem(DRAFT);
       setStatus('sent');
     } catch (error) {
       setStatus('form');
@@ -163,7 +182,10 @@ const ShelterProfilePage = () => {
                   id="region"
                   options={regionOptions}
                   value={field.value || ''}
-                  onChange={field.onChange}
+                  onChange={newValue => {
+                    field.onChange(newValue);
+                    setValue('settlement', '');
+                  }}
                   placeholder={t('shelter.pages.profile.placeholders.region')}
                   disabled={status === 'submitting'}
                   emptyText={t('shelter.pages.profile.errors.region')}
