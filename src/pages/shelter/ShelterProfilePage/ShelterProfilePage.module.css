@@ -260,14 +260,18 @@
 
   .photoCard {
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
   }
 
   .photoInfo {
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
   }
 
   .photoButton {
-    text-align: center;
+    margin-top: 12px;
   }
 }

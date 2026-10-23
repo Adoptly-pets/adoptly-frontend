@@ -29,3 +29,16 @@
   font-size: 16px;
   padding: 40px 20px;
 }
+
+/* On mobile the sidebar is hidden — navigation will move into the header in a
+ * follow-up ticket. For now the cabinet pages take the full width. */
+@media (max-width: 767px) {
+  .shelter-sidebar {
+    display: none;
+  }
+
+  .shelter-page {
+    padding: 20px;
+    border-radius: 16px;
+  }
+}
