@@ -44,7 +44,7 @@
 }
 
 .required {
-  color: #d32f2f;
+  color: var(--color-error);
   margin-left: 4px;
 }
 
@@ -55,8 +55,8 @@
   padding: 18px;
   border: none;
   outline: none;
-  border-radius: 8px;
-  background-color: #ecf1ff99;
+  border-radius: var(--radius-md);
+  background-color: var(--surface-input);
   font-family: var(--font-primary);
   font-size: 16px;
   color: var(--title-color-dark);
@@ -87,12 +87,12 @@
 .field input:focus-visible,
 .field textarea:focus-visible,
 .field select:focus-visible {
-  box-shadow: 0 0 0 1px #0054d6;
+  box-shadow: 0 0 0 1px var(--btn-action-bg);
 }
 
 .field input::placeholder,
 .field textarea::placeholder {
-  color: #091a4980;
+  color: var(--text-placeholder);
 }
 
 .field input:disabled,
@@ -105,27 +105,27 @@
 .helper {
   font-family: var(--font-primary);
   font-size: 12px;
-  color: #091a4999;
+  color: var(--text-muted);
   line-height: 1;
 }
 
 .error {
   font-family: var(--font-primary);
   font-size: 14px;
-  color: #d32f2f;
+  color: var(--color-error);
 }
 
 .counter {
   align-self: flex-end;
   font-family: var(--font-primary);
   font-size: 14px;
-  color: #091a4999;
+  color: var(--text-muted);
   white-space: nowrap;
 }
 
 .reviewBanner {
   padding: 16px 20px;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   background-color: #e8f5e9;
   color: #1b5e20;
   font-family: var(--font-primary);
@@ -137,7 +137,7 @@
   text-align: center;
   font-family: var(--font-primary);
   font-size: 12px;
-  color: #091a4999;
+  color: var(--text-muted);
 }
 
 .twoColumn {
@@ -193,8 +193,8 @@
   justify-content: space-between;
   gap: 16px;
   padding: 16px;
-  background-color: #ecf1ff99;
-  border-radius: 8px;
+  background-color: var(--surface-input);
+  border-radius: var(--radius-md);
 }
 
 .photoInfo {
@@ -210,22 +210,23 @@
 }
 
 .photoTitle {
+  font-family: var(--font-primary);
   font-size: 16px;
   font-weight: 600;
-  color: var (--title-color-dark);
+  color: var(--title-color-dark);
 }
 
 .photoPreview {
   width: 120px;
   height: 120px;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   object-fit: cover;
 }
 
 .photoButton {
   padding: 8px 16px;
   border: 1px solid #1b4cd1;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   background-color: transparent;
   color: #1b4cd1;
   font-weight: 600;
