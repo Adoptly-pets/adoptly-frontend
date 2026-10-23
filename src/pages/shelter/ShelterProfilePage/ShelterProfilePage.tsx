@@ -232,7 +232,7 @@ const ShelterProfilePage = () => {
           </span>
         </div>
         <div className={styles.photoCard}>
-          <div className={styles.photoPreview}>
+          <div className={styles.photoInfo}>
             {previewUrl ? (
               <img
                 src={previewUrl}
@@ -240,39 +240,41 @@ const ShelterProfilePage = () => {
                 className={styles.photoPreview}
               />
             ) : (
-              <Icon id="icon-camera" className={styles.photoIcon} size={32} />
+              <Icon id="icon-camera" size={120} />
             )}
-            <div>
+            <div className={styles.photoText}>
               <div className={styles.photoTitle}>
                 {t('shelter.pages.profile.fields.photo')}
               </div>
               <div className={styles.helper}>
                 {t('shelter.pages.profile.helpers.photo')}
               </div>
+              <Controller
+                name="photo"
+                control={control}
+                render={({ field }) => (
+                  <>
+                    <input
+                      id="photo"
+                      type="file"
+                      accept="image/jpeg, image/png"
+                      hidden
+                      onChange={e => {
+                        const file = e.target.files?.[0];
+                        field.onChange(file || null);
+                      }}
+                    />
+                    <label htmlFor="photo" className={styles.photoButton}>
+                      {previewUrl
+                        ? t('shelter.pages.profile.photoChange')
+                        : t('shelter.pages.profile.photoUpload')}
+                    </label>
+                  </>
+                )}
+              />
             </div>
           </div>
         </div>
-        <Controller
-          name="photo"
-          control={control}
-          render={({ field }) => (
-            <>
-              <input
-                type="file"
-                accept="image/jpeg, image/png"
-                onChange={e => {
-                  const file = e.target.files?.[0];
-                  field.onChange(file || null);
-                }}
-              />
-              <label htmlFor="photo" className={styles.photoButton}>
-                {previewUrl
-                  ? t('shelter.pages.profile.photoChange')
-                  : t('shelter.pages.profile.photoUpload')}
-              </label>
-            </>
-          )}
-        />
       </section>
       <section className={styles.section}>
         <div className={styles.field}>

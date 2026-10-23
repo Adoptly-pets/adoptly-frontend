@@ -187,6 +187,58 @@
   transform: translateY(-50%);
 }
 
+.photoCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px;
+  background-color: #ecf1ff99;
+  border-radius: 8px;
+}
+
+.photoInfo {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.photoText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.photoTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var (--title-color-dark);
+}
+
+.photoPreview {
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.photoButton {
+  padding: 8px 16px;
+  border: 1px solid #1b4cd1;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #1b4cd1;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.photoButton:hover {
+  background-color: #ecf1ff;
+}
+
 @media (max-width: 767px) {
   .form {
     padding: 20px 12px;
@@ -203,5 +255,18 @@
 
   .twoColumn {
     grid-template-columns: 1fr;
+  }
+
+  .photoCard {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .photoInfo {
+    justify-content: center;
+  }
+
+  .photoButton {
+    text-align: center;
   }
 }
