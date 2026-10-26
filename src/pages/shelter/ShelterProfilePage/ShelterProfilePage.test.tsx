@@ -209,7 +209,7 @@ describe('ShelterProfilePage', () => {
     const payload = mockedCreate.mock.calls[0][0];
     expect(payload).toMatchObject({
       name: 'HappyPaws',
-      region: 'kyiv',
+      region: 'Київ',
       settlement: 'Київ',
       address: 'вул. Шевченка, 1',
       description: 'Притулок у Києві',

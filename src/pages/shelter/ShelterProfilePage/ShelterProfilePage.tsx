@@ -102,7 +102,13 @@ const ShelterProfilePage = () => {
     setServerError(null);
     setStatus('submitting');
     try {
-      const { consent: _consent, photo: _photo, ...payload } = data;
+      const { consent: _consent, photo: _photo, ...rest } = data;
+      const payload: ShelterProfilePayload = {
+        ...rest,
+        region:
+          regions.find(r => getRegionSlug(r) === data.region)?.uk ??
+          data.region,
+      };
       await createShelterProfile(payload);
       localStorage.removeItem(DRAFT);
       setStatus('sent');
