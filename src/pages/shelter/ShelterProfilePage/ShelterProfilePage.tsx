@@ -1,6 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next';
 import styles from './ShelterProfilePage.module.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../../../components/Button/Button';
 import { Controller, useForm } from 'react-hook-form';
@@ -72,7 +72,10 @@ const ShelterProfilePage = () => {
     }
   }, [watchedValues, status]);
 
-  const previewUrl = photo ? URL.createObjectURL(photo) : null;
+  const previewUrl = useMemo(
+    () => (photo ? URL.createObjectURL(photo) : null),
+    [photo]
+  );
 
   useEffect(() => {
     return () => {
@@ -175,7 +178,7 @@ const ShelterProfilePage = () => {
 
         <div className={styles.twoColumn}>
           <div className={styles.field}>
-            <label htmlFor="regionSlug">
+            <label htmlFor="region">
               {t('shelter.pages.profile.fields.region')}
               <span className={styles.required}>*</span>
             </label>

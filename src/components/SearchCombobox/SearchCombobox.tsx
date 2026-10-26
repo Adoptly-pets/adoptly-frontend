@@ -26,7 +26,7 @@ const SearchCombobox = ({
   emptyText,
 }: SearchComboboxProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [higihlightedIndex, setHighlightedIndex] = useState(-1);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const listRef = useRef<HTMLUListElement>(null);
   const [query, setQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
@@ -51,9 +51,9 @@ const SearchCombobox = ({
       setHighlightedIndex(prevIndex =>
         prevIndex <= 0 ? prevIndex : prevIndex - 1
       );
-    } else if (e.key === 'Enter' && higihlightedIndex >= 0) {
+    } else if (e.key === 'Enter' && highlightedIndex >= 0) {
       e.preventDefault();
-      onChange(filteredOptions[higihlightedIndex].value);
+      onChange(filteredOptions[highlightedIndex].value);
       setIsOpen(false);
       setHighlightedIndex(-1);
     } else if (e.key === 'Escape') {
@@ -68,12 +68,12 @@ const SearchCombobox = ({
   }, [value]);
 
   useEffect(() => {
-    if (higihlightedIndex < 0 || !listRef.current) return;
-    const el = listRef.current.children[higihlightedIndex] as
+    if (highlightedIndex < 0 || !listRef.current) return;
+    const el = listRef.current.children[highlightedIndex] as
       | HTMLElement
       | undefined;
     el?.scrollIntoView({ block: 'nearest' });
-  }, [higihlightedIndex]);
+  }, [highlightedIndex]);
 
   return (
     <div className={styles.container}>
@@ -106,7 +106,7 @@ const SearchCombobox = ({
             filteredOptions.map((option, index) => (
               <li
                 key={option.value}
-                className={`${styles.option} ${index === higihlightedIndex ? styles.highlighted : ''}`}
+                className={`${styles.option} ${index === highlightedIndex ? styles.highlighted : ''}`}
                 onMouseDown={e => {
                   e.preventDefault();
                   onChange(option.value);
