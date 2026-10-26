@@ -271,6 +271,12 @@ const ShelterProfilePage = () => {
               <Controller
                 name="photo"
                 control={control}
+                rules={{
+                  validate: file =>
+                    !file ||
+                    file.size <= 10_000_000 ||
+                    t('shelter.pages.profile.errors.photoTooLarge'),
+                }}
                 render={({ field }) => (
                   <>
                     <input
@@ -291,6 +297,9 @@ const ShelterProfilePage = () => {
                   </>
                 )}
               />
+              {errors.photo && (
+                <span className={styles.error}>{errors.photo.message}</span>
+              )}
             </div>
           </div>
         </div>
