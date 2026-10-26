@@ -1,0 +1,38 @@
+.container {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  max-height: 250px;
+  overflow-y: auto;
+  margin-top: 4px;
+  padding: 4px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.option {
+  padding: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--title-color-dark);
+}
+
+.option:hover {
+  background-color: #ecf1ff;
+}
+
+.empty {
+  padding: 4px;
+  font-size: 14px;
+}
+
+.highlighted {
+  background-color: #ecf1ff;
+}

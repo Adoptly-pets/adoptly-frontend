@@ -1,0 +1,277 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  padding: 20px;
+}
+
+.form h1 {
+  font-family: var(--font-secondary);
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--title-color-dark);
+  margin: 0;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.section h2 {
+  font-family: var(--font-secondary);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--title-color-dark);
+  margin: 0 0 4px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field label {
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--title-color-dark);
+}
+
+.required {
+  color: var(--color-error);
+  margin-left: 4px;
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  padding: 18px;
+  border: none;
+  outline: none;
+  border-radius: var(--radius-md);
+  background-color: var(--surface-input);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  color: var(--title-color-dark);
+}
+
+.field input,
+.field select {
+  height: 48px;
+}
+
+.field select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none' stroke='%23091A49' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 12px 8px;
+  padding-right: 40px;
+  cursor: pointer;
+  padding: 0 18px;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 140px;
+  line-height: 1.5;
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible,
+.field select:focus-visible {
+  box-shadow: 0 0 0 1px var(--btn-action-bg);
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--text-placeholder);
+}
+
+.field input:disabled,
+.field textarea:disabled,
+.field select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.helper {
+  font-family: var(--font-primary);
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1;
+}
+
+.error {
+  font-family: var(--font-primary);
+  font-size: 14px;
+  color: var(--color-error);
+}
+
+.counter {
+  align-self: flex-end;
+  font-family: var(--font-primary);
+  font-size: 14px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.reviewBanner {
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
+  background-color: #e8f5e9;
+  color: #1b5e20;
+  font-family: var(--font-primary);
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.disclaimer {
+  text-align: center;
+  font-family: var(--font-primary);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.twoColumn {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.consent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.consent input[type='checkbox'] {
+  width: 14px;
+  height: 14px;
+}
+
+.policyLink {
+  color: #1b4cd1;
+  text-decoration: underline;
+}
+
+.policyLink:hover {
+  text-decoration: none;
+}
+
+.submitArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.inputWithIcon {
+  position: relative;
+}
+
+.inputWithIcon input {
+  padding-left: 40px;
+}
+.inputWithIcon .inputIcon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.photoCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px;
+  background-color: var(--surface-input);
+  border-radius: var(--radius-md);
+}
+
+.photoInfo {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.photoText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.photoTitle {
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--title-color-dark);
+}
+
+.photoPreview {
+  width: 120px;
+  height: 120px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+
+.photoButton {
+  padding: 8px 16px;
+  border: 1px solid #1b4cd1;
+  border-radius: var(--radius-md);
+  background-color: transparent;
+  color: #1b4cd1;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.photoButton:hover {
+  background-color: #ecf1ff;
+}
+
+@media (max-width: 767px) {
+  .form {
+    padding: 20px 12px;
+    gap: 24px;
+  }
+
+  .form h1 {
+    font-size: 24px;
+  }
+
+  .section h2 {
+    font-size: 18px;
+  }
+
+  .twoColumn {
+    grid-template-columns: 1fr;
+  }
+
+  .photoCard {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .photoInfo {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .photoButton {
+    margin-top: 12px;
+  }
+}

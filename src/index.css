@@ -21,6 +21,15 @@
   --btn-action-bg: #0054d6;
   --btn-action-bg-hover: #153da8;
 
+  /* Form colors */
+  --surface-input: #ecf1ff99;
+  --color-error: #d32f2f;
+  --text-muted: #091a4999;
+  --text-placeholder: #091a4980;
+
+  /* Border radius values */
+  --radius-md: 8px;
+
   font-family: var(--font-primary);
   line-height: 1.5;
   font-weight: 400;
