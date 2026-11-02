@@ -189,5 +189,24 @@ describe('Header Component', () => {
       renderHeader();
       expectGuest();
     });
+
+    test('missing refreshToken', () => {
+      localStorage.setItem('accessToken', 'token');
+      localStorage.setItem(
+        'userInfo',
+        JSON.stringify({
+          id: 1,
+          email: 'u@e.com',
+          firstName: '',
+          lastName: '',
+          profileImageUrl: null,
+          location: '',
+          role: 'ROLE_USER',
+        })
+      );
+
+      renderHeader();
+      expectGuest();
+    });
   });
 });
