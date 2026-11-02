@@ -32,13 +32,13 @@ const RouteErrorBoundary = () => {
 function App() {
   return (
     <Router basename="/adoptly-frontend">
-      <Header />
-      <main>
-        <AuthProvider>
+      <AuthProvider>
+        <Header />
+        <main>
           <RouteErrorBoundary />
-        </AuthProvider>
-      </main>
-      <Footer />
+        </main>
+        <Footer />
+      </AuthProvider>
     </Router>
   );
 }

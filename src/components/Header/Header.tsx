@@ -8,12 +8,14 @@ import ModalNavigation from '../ModalNavigation/ModalNavigation';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SocialLinks from '../SocialLinks/SocialLinks';
 import { langLink } from '../../utils/routing';
+import { useAuth } from '../../context/useAuth';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
+  const { isAuthenticated, logout } = useAuth();
 
   const changeLanguage = (lng: string) => {
     const pathParts = location.pathname.split('/');
@@ -118,9 +120,34 @@ const Header = () => {
               height={15}
             />
           </button>
-          <Link to={langLink('/login')} className="btn" title="Username">
-            <Icon id="icon-user" className="icon-user" size={16} height={15} />
-          </Link>
+          {isAuthenticated ? (
+            <button
+              type="button"
+              className="btn"
+              title={t('header.logout')}
+              onClick={logout}
+            >
+              <Icon
+                id="icon-user"
+                className="icon-user"
+                size={16}
+                height={15}
+              />
+            </button>
+          ) : (
+            <Link
+              to={langLink('/login')}
+              className="btn"
+              title={t('header.login')}
+            >
+              <Icon
+                id="icon-user"
+                className="icon-user"
+                size={16}
+                height={15}
+              />
+            </Link>
+          )}
         </div>
       </div>
     </header>

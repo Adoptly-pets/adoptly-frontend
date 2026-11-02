@@ -1,5 +1,7 @@
 import { ReactNode, useMemo, useState } from 'react';
 import { UserInfo, AuthContextValue, AuthContext } from './useAuth';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 const readInitialUser = (): UserInfo | null => {
   const token = localStorage.getItem('accessToken');
@@ -14,6 +16,9 @@ const readInitialUser = (): UserInfo | null => {
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<UserInfo | null>(readInitialUser);
+  const { i18n } = useTranslation();
+  const navigate = useNavigate();
+
   const login: AuthContextValue['login'] = (tokens, userInfo) => {
     localStorage.setItem('accessToken', tokens.accessToken);
     localStorage.setItem('refreshToken', tokens.refreshToken);
@@ -26,6 +31,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('userInfo');
     setUser(null);
+    navigate(`/${i18n.language}/`);
   };
 
   const value = useMemo<AuthContextValue>(

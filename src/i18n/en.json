@@ -1,4 +1,8 @@
 {
+  "header": {
+    "login": "Log in",
+    "logout": "Log out"
+  },
   "nav": {
     "home": "Home",
     "about": "About Us",
