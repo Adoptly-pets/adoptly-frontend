@@ -190,6 +190,15 @@ describe('Header Component', () => {
       expectGuest();
     });
 
+    test('userInfo is empty object', () => {
+      localStorage.setItem('accessToken', 'token');
+      localStorage.setItem('refreshToken', 'refresh');
+      localStorage.setItem('userInfo', '{}');
+
+      renderHeader();
+      expectGuest();
+    });
+
     test('missing refreshToken', () => {
       localStorage.setItem('accessToken', 'token');
       localStorage.setItem(

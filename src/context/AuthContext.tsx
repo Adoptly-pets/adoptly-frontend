@@ -9,7 +9,9 @@ const readInitialUser = (): UserInfo | null => {
   const user = localStorage.getItem('userInfo');
   if (!accessToken || !refreshToken || !user) return null;
   try {
-    return JSON.parse(user) as UserInfo;
+    const parsed = JSON.parse(user);
+    if (!parsed || typeof parsed.id !== 'number') return null;
+    return parsed as UserInfo;
   } catch {
     return null;
   }
