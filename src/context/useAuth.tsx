@@ -1,16 +1,7 @@
 import { useContext, createContext } from 'react';
+import type { Role, UserInfo } from '../services/auth';
 
-export type Role = 'ROLE_USER' | 'ROLE_SHELTER_OWNER';
-
-export type UserInfo = {
-  id: number;
-  email: string;
-  firstName: string;
-  lastName: string;
-  profileImageUrl: string | null;
-  location: string;
-  role?: Role;
-};
+export type { Role, UserInfo };
 
 export type AuthContextValue = {
   isAuthenticated: boolean;
