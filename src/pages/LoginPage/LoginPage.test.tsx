@@ -153,7 +153,7 @@ describe('LoginPage', () => {
     fireEvent.click(screen.getByText('login.submit'));
 
     await waitFor(() => {
-      expect(screen.getByTestId('location')).toHaveTextContent('/en/');
+      expect(screen.getByTestId('location').textContent).toBe('/en/');
     });
   });
 
@@ -167,7 +167,7 @@ describe('LoginPage', () => {
     fireEvent.click(screen.getByText('login.submit'));
 
     await waitFor(() => {
-      expect(screen.getByTestId('location')).toHaveTextContent(
+      expect(screen.getByTestId('location').textContent).toBe(
         '/en/shelter/profile'
       );
     });

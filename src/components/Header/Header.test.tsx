@@ -139,7 +139,7 @@ describe('Header Component', () => {
     expect(localStorage.getItem('accessToken')).toBeNull();
     expect(localStorage.getItem('refreshToken')).toBeNull();
     expect(localStorage.getItem('userInfo')).toBeNull();
-    expect(screen.getByTestId('location')).toHaveTextContent('/uk/');
+    expect(screen.getByTestId('location').textContent).toBe('/uk/');
     expect(
       screen.queryByRole('button', { name: 'header.logout' })
     ).not.toBeInTheDocument();
