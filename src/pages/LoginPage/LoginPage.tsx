@@ -11,6 +11,7 @@ import { loginWithEmail } from '../../services/auth';
 import { isApiError } from '../../services/api';
 import { HTTP_STATUS } from '../../constants/HTTP_STATUS';
 import styles from './LoginPage.module.css';
+import { useAuth } from '../../context/useAuth';
 
 type LoginFormData = {
   email: string;
@@ -21,6 +22,7 @@ type LoginFormData = {
 const LoginPage = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
   const [confirmEmail, setConfirmEmail] = useState<string | null>(null);
@@ -37,8 +39,22 @@ const LoginPage = () => {
   const onSubmit = async (data: LoginFormData) => {
     setServerError(null);
     try {
-      await loginWithEmail({ email: data.email, password: data.password });
-      navigate(`/${i18n.language}/`);
+      const response = await loginWithEmail({
+        email: data.email,
+        password: data.password,
+      });
+      login(
+        {
+          accessToken: response.accessToken,
+          refreshToken: response.refreshToken,
+        },
+        response.userInfo
+      );
+      const redirectPath =
+        response.userInfo.role === 'ROLE_SHELTER_OWNER'
+          ? `/${i18n.language}/shelter/profile`
+          : `/${i18n.language}/`;
+      navigate(redirectPath);
     } catch (error) {
       if (isApiError(error)) {
         if (error.type === 'network') {
@@ -174,7 +190,6 @@ const LoginPage = () => {
           <FormDivider text={t('login.divider')} />
           <div className={styles.googleAuth}>
             <GoogleAuthContainer
-              onSuccess={() => navigate(`/${i18n.language}/`)}
               onError={() => setServerError(t('login.googleError'))}
               rememberMe={rememberMeValue}
             />

@@ -65,10 +65,6 @@ export const loginWithEmail = async (data: {
     } as ApiError;
   }
 
-  localStorage.setItem('accessToken', accessToken);
-  localStorage.setItem('refreshToken', refreshToken);
-  localStorage.setItem('userInfo', JSON.stringify(userInfo));
-
   return response.data;
 };
 
@@ -88,10 +84,6 @@ export const loginWithGoogle = async (
       message: 'Invalid Google login response: missing tokens or userInfo',
     } as ApiError;
   }
-
-  localStorage.setItem('accessToken', accessToken);
-  localStorage.setItem('refreshToken', refreshToken);
-  localStorage.setItem('userInfo', JSON.stringify(userInfo));
 
   return response.data;
 };

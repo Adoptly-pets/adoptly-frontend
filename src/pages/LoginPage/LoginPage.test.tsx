@@ -2,6 +2,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { MemoryRouter, useLocation } from 'react-router-dom';
 import LoginPage from './LoginPage';
 import { loginWithEmail } from '../../services/auth';
+import { AuthProvider } from '../../context/AuthContext';
 
 jest.mock('../../services/auth', () => ({
   loginWithEmail: jest.fn(),
@@ -39,8 +40,10 @@ const LocationDisplay = () => {
 const renderPage = () => {
   return render(
     <MemoryRouter initialEntries={['/en/login']}>
-      <LoginPage />
-      <LocationDisplay />
+      <AuthProvider>
+        <LoginPage />
+        <LocationDisplay />
+      </AuthProvider>
     </MemoryRouter>
   );
 };
@@ -54,23 +57,26 @@ const fillForm = (email: string, password: string) => {
   });
 };
 
+const makeLoginResponse = (role: 'ROLE_USER' | 'ROLE_SHELTER_OWNER') => ({
+  accessToken: 'token',
+  refreshToken: 'refresh',
+  expiresIn: 86400000,
+  userInfo: {
+    id: 1,
+    email: 'test@example.com',
+    firstName: '',
+    lastName: '',
+    profileImageUrl: null,
+    location: '',
+    role,
+  },
+});
+
 describe('LoginPage', () => {
   beforeEach(() => {
+    localStorage.clear();
     mockedLoginUser.mockReset();
-    mockedLoginUser.mockResolvedValue({
-      accessToken: 'token',
-      refreshToken: 'refresh',
-      expiresIn: 86400000,
-      userInfo: {
-        id: 1,
-        email: 'test@example.com',
-        firstName: '',
-        lastName: '',
-        profileImageUrl: null,
-        location: '',
-        role: 'ROLE_USER',
-      },
-    });
+    mockedLoginUser.mockResolvedValue(makeLoginResponse('ROLE_USER'));
   });
 
   test('renders form with all fields', () => {
@@ -141,13 +147,29 @@ describe('LoginPage', () => {
     });
   });
 
-  test('navigates to homepage after successful login', async () => {
+  test('navigates to homepage after successful login as ROLE_USER', async () => {
     renderPage();
     fillForm('test@example.com', 'password123');
     fireEvent.click(screen.getByText('login.submit'));
 
     await waitFor(() => {
       expect(screen.getByTestId('location')).toHaveTextContent('/en/');
+    });
+  });
+
+  test('navigates to shelter profile for ROLE_SHELTER_OWNER', async () => {
+    mockedLoginUser.mockResolvedValueOnce(
+      makeLoginResponse('ROLE_SHELTER_OWNER')
+    );
+
+    renderPage();
+    fillForm('owner@example.com', 'password123');
+    fireEvent.click(screen.getByText('login.submit'));
+
+    await waitFor(() => {
+      expect(screen.getByTestId('location')).toHaveTextContent(
+        '/en/shelter/profile'
+      );
     });
   });
 

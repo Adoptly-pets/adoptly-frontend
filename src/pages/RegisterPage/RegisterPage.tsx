@@ -1,7 +1,7 @@
 import { lazy, Suspense, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Icon } from '../../components/Icon/Icon';
 import Button from '../../components/Button/Button';
 import FormDivider from '../../components/FormDivider/FormDivider';
@@ -25,7 +25,6 @@ type Status = 'form' | 'confirm';
 
 const RegisterPage = () => {
   const { t, i18n } = useTranslation();
-  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [status, setStatus] = useState<Status>('form');
   const [submittedEmail, setSubmittedEmail] = useState('');
@@ -221,7 +220,6 @@ const RegisterPage = () => {
             <div className={styles.googleAuth}>
               <GoogleAuthContainer
                 text="signup_with"
-                onSuccess={() => navigate(`/${i18n.language}/`)}
                 onError={() => setServerError(t('login.googleError'))}
               />
             </div>

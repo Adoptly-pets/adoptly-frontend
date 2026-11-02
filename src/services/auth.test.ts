@@ -125,7 +125,6 @@ describe('loginWithEmail', () => {
 
   beforeEach(() => {
     mockedPost.mockReset();
-    localStorage.clear();
     mockedPost.mockResolvedValue(successResponse);
   });
 
@@ -140,26 +139,6 @@ describe('loginWithEmail', () => {
     });
   });
 
-  test('stores accessToken in localStorage on success', async () => {
-    await loginWithEmail({ email: 'user@example.com', password: 'secret123' });
-
-    expect(localStorage.getItem('accessToken')).toBe('access-token-jwt');
-  });
-
-  test('stores refreshToken in localStorage on success', async () => {
-    await loginWithEmail({ email: 'user@example.com', password: 'secret123' });
-
-    expect(localStorage.getItem('refreshToken')).toBe('refresh-token-uuid');
-  });
-
-  test('stores userInfo as JSON in localStorage on success', async () => {
-    await loginWithEmail({ email: 'user@example.com', password: 'secret123' });
-
-    const stored = localStorage.getItem('userInfo');
-    expect(stored).not.toBeNull();
-    expect(JSON.parse(stored!)).toEqual(successResponse.data.userInfo);
-  });
-
   test('returns the LoginResponse data', async () => {
     const result = await loginWithEmail({
       email: 'user@example.com',
@@ -167,23 +146,6 @@ describe('loginWithEmail', () => {
     });
 
     expect(result).toEqual(successResponse.data);
-  });
-
-  test('does not write to localStorage when request fails', async () => {
-    mockedPost.mockReset();
-    mockedPost.mockRejectedValueOnce({
-      type: 'client',
-      status: 401,
-      message: 'Bad credentials',
-    });
-
-    await expect(
-      loginWithEmail({ email: 'user@example.com', password: 'wrong' })
-    ).rejects.toBeDefined();
-
-    expect(localStorage.getItem('accessToken')).toBeNull();
-    expect(localStorage.getItem('refreshToken')).toBeNull();
-    expect(localStorage.getItem('userInfo')).toBeNull();
   });
 
   test('propagates errors from apiClient', async () => {
