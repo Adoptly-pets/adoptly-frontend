@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/useAuth';
 import { loginWithGoogle } from '../../services/auth';
 
 interface GoogleAuthContainerProps {
-  onSuccess: () => void;
   onError: () => void;
   rememberMe?: boolean;
   text?: 'signin_with' | 'signup_with';
@@ -21,12 +22,13 @@ const computeWidth = () =>
   );
 
 const GoogleAuthContainer: React.FC<GoogleAuthContainerProps> = ({
-  onSuccess,
   onError,
   rememberMe = false,
   text = 'signin_with',
 }) => {
   const { i18n } = useTranslation();
+  const navigate = useNavigate();
+  const { login } = useAuth();
   const [width, setWidth] = useState(computeWidth);
 
   useEffect(() => {
@@ -47,8 +49,19 @@ const GoogleAuthContainer: React.FC<GoogleAuthContainerProps> = ({
             return;
           }
           try {
-            await loginWithGoogle(response.credential, rememberMe);
-            onSuccess();
+            const data = await loginWithGoogle(response.credential, rememberMe);
+            login(
+              {
+                accessToken: data.accessToken,
+                refreshToken: data.refreshToken,
+              },
+              data.userInfo
+            );
+            const redirectPath =
+              data.userInfo.role === 'ROLE_SHELTER_OWNER'
+                ? `/${i18n.language}/shelter/profile`
+                : `/${i18n.language}/`;
+            navigate(redirectPath);
           } catch {
             onError();
           }

@@ -1,18 +1,22 @@
 import { apiClient, ApiError } from './api';
 
+export type Role = 'ROLE_USER' | 'ROLE_SHELTER_OWNER';
+
+export type UserInfo = {
+  id: number;
+  email: string;
+  firstName: string;
+  lastName: string;
+  profileImageUrl: string | null;
+  location: string;
+  role?: Role;
+};
+
 export type LoginResponse = {
   accessToken: string;
   refreshToken: string;
   expiresIn: number;
-  userInfo: {
-    id: number;
-    email: string;
-    firstName: string;
-    lastName: string;
-    profileImageUrl: string | null;
-    location: string;
-    role: 'ROLE_USER' | 'ROLE_SHELTER_OWNER';
-  };
+  userInfo: UserInfo;
 };
 
 export const registerWithEmail = async (data: {
@@ -65,10 +69,6 @@ export const loginWithEmail = async (data: {
     } as ApiError;
   }
 
-  localStorage.setItem('accessToken', accessToken);
-  localStorage.setItem('refreshToken', refreshToken);
-  localStorage.setItem('userInfo', JSON.stringify(userInfo));
-
   return response.data;
 };
 
@@ -88,10 +88,6 @@ export const loginWithGoogle = async (
       message: 'Invalid Google login response: missing tokens or userInfo',
     } as ApiError;
   }
-
-  localStorage.setItem('accessToken', accessToken);
-  localStorage.setItem('refreshToken', refreshToken);
-  localStorage.setItem('userInfo', JSON.stringify(userInfo));
 
   return response.data;
 };

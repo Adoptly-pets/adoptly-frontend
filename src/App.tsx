@@ -4,6 +4,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import AppRoutes from './routes/AppRoutes';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
+import { AuthProvider } from './context/AuthContext';
 
 const ErrorFallback = () => {
   const { t } = useTranslation();
@@ -31,11 +32,13 @@ const RouteErrorBoundary = () => {
 function App() {
   return (
     <Router basename="/adoptly-frontend">
-      <Header />
-      <main>
-        <RouteErrorBoundary />
-      </main>
-      <Footer />
+      <AuthProvider>
+        <Header />
+        <main>
+          <RouteErrorBoundary />
+        </main>
+        <Footer />
+      </AuthProvider>
     </Router>
   );
 }
