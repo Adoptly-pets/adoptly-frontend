@@ -157,6 +157,21 @@ describe('LoginPage', () => {
     });
   });
 
+  test('saves tokens and userInfo to localStorage on success', async () => {
+    renderPage();
+    fillForm('test@example.com', 'password123');
+    fireEvent.click(screen.getByText('login.submit'));
+
+    await waitFor(() => {
+      expect(localStorage.getItem('accessToken')).toBe('token');
+    });
+    expect(localStorage.getItem('refreshToken')).toBe('refresh');
+    expect(JSON.parse(localStorage.getItem('userInfo')!)).toMatchObject({
+      email: 'test@example.com',
+      role: 'ROLE_USER',
+    });
+  });
+
   test('navigates to shelter profile for ROLE_SHELTER_OWNER', async () => {
     mockedLoginUser.mockResolvedValueOnce(
       makeLoginResponse('ROLE_SHELTER_OWNER')
