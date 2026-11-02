@@ -21,9 +21,7 @@ const Probe = () => {
   const { isAuthenticated, login, logout } = useAuth();
   return (
     <div>
-      <span data-testid="status">
-        {isAuthenticated ? 'authed' : 'guest'}
-      </span>
+      <span data-testid="status">{isAuthenticated ? 'authed' : 'guest'}</span>
       <button
         type="button"
         onClick={() =>
