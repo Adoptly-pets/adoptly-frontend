@@ -4,9 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 const readInitialUser = (): UserInfo | null => {
-  const token = localStorage.getItem('accessToken');
+  const accessToken = localStorage.getItem('accessToken');
+  const refreshToken = localStorage.getItem('refreshToken');
   const user = localStorage.getItem('userInfo');
-  if (!token || !user) return null;
+  if (!accessToken || !refreshToken || !user) return null;
   try {
     return JSON.parse(user) as UserInfo;
   } catch {
