@@ -145,4 +145,49 @@ describe('Header Component', () => {
     ).not.toBeInTheDocument();
     expect(screen.getByTitle('header.login')).toBeInTheDocument();
   });
+
+  describe('corrupted auth storage falls back to guest', () => {
+    const expectGuest = () => {
+      expect(screen.getByTitle('header.login')).toBeInTheDocument();
+      expect(
+        screen.queryByRole('button', { name: 'header.logout' })
+      ).not.toBeInTheDocument();
+    };
+
+    test('broken userInfo JSON', () => {
+      localStorage.setItem('accessToken', 'token');
+      localStorage.setItem('refreshToken', 'refresh');
+      localStorage.setItem('userInfo', '{broken-json');
+
+      expect(() => renderHeader()).not.toThrow();
+      expectGuest();
+    });
+
+    test('missing accessToken', () => {
+      localStorage.setItem('refreshToken', 'refresh');
+      localStorage.setItem(
+        'userInfo',
+        JSON.stringify({
+          id: 1,
+          email: 'u@e.com',
+          firstName: '',
+          lastName: '',
+          profileImageUrl: null,
+          location: '',
+          role: 'ROLE_USER',
+        })
+      );
+
+      renderHeader();
+      expectGuest();
+    });
+
+    test('missing userInfo', () => {
+      localStorage.setItem('accessToken', 'token');
+      localStorage.setItem('refreshToken', 'refresh');
+
+      renderHeader();
+      expectGuest();
+    });
+  });
 });
