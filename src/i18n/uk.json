@@ -1,7 +1,11 @@
 {
   "header": {
     "login": "Увійти",
-    "logout": "Вийти"
+    "logout": "Вийти",
+    "account": "Мій кабінет"
+  },
+  "account": {
+    "title": "Мій кабінет"
   },
   "nav": {
     "home": "Головна",
