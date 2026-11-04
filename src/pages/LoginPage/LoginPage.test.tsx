@@ -153,7 +153,7 @@ describe('LoginPage', () => {
     fireEvent.click(screen.getByText('login.submit'));
 
     await waitFor(() => {
-      expect(screen.getByTestId('location').textContent).toBe('/en/');
+      expect(screen.getByTestId('location').textContent).toBe('/en/account');
     });
   });
 
