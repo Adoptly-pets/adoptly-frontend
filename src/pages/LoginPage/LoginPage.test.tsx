@@ -147,7 +147,7 @@ describe('LoginPage', () => {
     });
   });
 
-  test('navigates to homepage after successful login as ROLE_USER', async () => {
+  test('navigates to account after successful login as ROLE_USER', async () => {
     renderPage();
     fillForm('test@example.com', 'password123');
     fireEvent.click(screen.getByText('login.submit'));
