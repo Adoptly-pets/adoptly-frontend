@@ -191,6 +191,8 @@ describe('Header Component', () => {
       expect(button).toHaveAttribute('aria-expanded', 'true');
       expect(screen.getByText('shelter.menu.profile')).toBeInTheDocument();
 
+      // A real tap fires pointerdown before click
+      fireEvent.pointerDown(button);
       fireEvent.click(button);
 
       expect(button).toHaveAttribute('aria-expanded', 'false');
@@ -206,7 +208,38 @@ describe('Header Component', () => {
       const burger = screen.getByTestId('icon-icon-menu').closest('button');
       fireEvent.click(burger!);
 
+      expect(screen.getByTestId('icon-icon-close')).toBeInTheDocument();
       expect(getCabinetButton()).toHaveAttribute('aria-expanded', 'false');
+      expect(
+        screen.queryByText('shelter.menu.profile')
+      ).not.toBeInTheDocument();
+    });
+
+    test('Escape closes the cabinet menu and focuses the trigger', () => {
+      renderHeader();
+      const button = getCabinetButton();
+      fireEvent.click(button);
+
+      fireEvent.keyDown(document, { key: 'Escape' });
+
+      expect(button).toHaveAttribute('aria-expanded', 'false');
+      expect(
+        screen.queryByText('shelter.menu.profile')
+      ).not.toBeInTheDocument();
+      expect(button).toHaveFocus();
+    });
+
+    test('route change closes the cabinet menu', () => {
+      renderHeader(['/uk/']);
+      const button = getCabinetButton();
+      fireEvent.click(button);
+
+      fireEvent.click(
+        screen.getByRole('button', { name: /switch language to english/i })
+      );
+
+      expect(screen.getByTestId('location')).toHaveTextContent('/en/');
+      expect(button).toHaveAttribute('aria-expanded', 'false');
       expect(
         screen.queryByText('shelter.menu.profile')
       ).not.toBeInTheDocument();

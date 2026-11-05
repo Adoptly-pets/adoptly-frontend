@@ -64,6 +64,8 @@ describe('ShelterSidebar', () => {
     expect(screen.getByText('shelter.menu.profile')).not.toHaveAttribute(
       'aria-current'
     );
+    expect(screen.getByText('shelter.menu.applications')).toHaveClass('active');
+    expect(screen.getByText('shelter.menu.profile')).not.toHaveClass('active');
   });
 
   test('renders links pointing to the correct shelter routes', () => {
