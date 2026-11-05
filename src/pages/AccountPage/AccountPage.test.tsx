@@ -51,7 +51,7 @@ describe('AccountPage', () => {
     seedAuthenticated();
     renderPage();
 
-    fireEvent.click(screen.getByRole('button', { name: 'header.logout' }));
+    fireEvent.click(screen.getByRole('button', { name: 'account.logout' }));
 
     expect(localStorage.getItem('accessToken')).toBeNull();
     expect(localStorage.getItem('refreshToken')).toBeNull();

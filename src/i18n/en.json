@@ -5,7 +5,8 @@
     "account": "My account"
   },
   "account": {
-    "title": "My account"
+    "title": "My account",
+    "logout": "Log out"
   },
   "nav": {
     "home": "Home",

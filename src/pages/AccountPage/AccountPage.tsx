@@ -10,8 +10,8 @@ const AccountPage = () => {
   return (
     <section className={styles.page}>
       <h1 className={styles.title}>{t('account.title')}</h1>
-      <Button onClick={logout} maxWidth={200}>
-        {t('header.logout')}
+      <Button onClick={logout} maxWidth={250}>
+        {t('account.logout')}
       </Button>
     </section>
   );
