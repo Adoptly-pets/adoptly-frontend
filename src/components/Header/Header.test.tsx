@@ -39,7 +39,7 @@ jest.mock('../GoogleAuthContainer/GoogleAuthContainer', () => ({
   default: () => <div data-testid="google-auth-container" />,
 }));
 
-const seedAuthenticated = (role: Role = 'ROLE_USER') => {
+const seedAuthenticated = (role?: Role) => {
   localStorage.setItem('accessToken', 'token');
   localStorage.setItem('refreshToken', 'refresh');
   localStorage.setItem(
@@ -132,7 +132,7 @@ describe('Header Component', () => {
   });
 
   test('shows account link for adopter', () => {
-    seedAuthenticated();
+    seedAuthenticated('ROLE_USER');
     renderHeader();
 
     const link = screen.getByRole('link', { name: 'header.account' });
@@ -142,8 +142,8 @@ describe('Header Component', () => {
     ).not.toBeInTheDocument();
   });
 
-  test('logs out shelter owner, clears storage, and redirects to home', () => {
-    seedAuthenticated('ROLE_SHELTER_OWNER');
+  test('logs out user without role, clears storage, and redirects to home', () => {
+    seedAuthenticated();
     renderHeader(['/uk/pets']);
 
     fireEvent.click(screen.getByRole('button', { name: 'header.logout' }));
@@ -156,6 +156,61 @@ describe('Header Component', () => {
       screen.queryByRole('button', { name: 'header.logout' })
     ).not.toBeInTheDocument();
     expect(screen.getByTitle('header.login')).toBeInTheDocument();
+  });
+
+  describe('shelter owner', () => {
+    beforeEach(() => {
+      seedAuthenticated('ROLE_SHELTER_OWNER');
+    });
+
+    const getCabinetButton = () =>
+      screen.getByRole('button', { name: 'header.cabinetMenu' });
+
+    test('shows cabinet link and no logout button', () => {
+      renderHeader();
+
+      const link = screen.getByRole('link', { name: 'header.cabinet' });
+      expect(link).toHaveAttribute('href', '/shelter/profile');
+      expect(
+        screen.queryByRole('button', { name: 'header.logout' })
+      ).not.toBeInTheDocument();
+    });
+
+    test('cabinet button toggles the mobile menu', () => {
+      renderHeader();
+      const button = getCabinetButton();
+
+      expect(button).toHaveAttribute('aria-expanded', 'false');
+      expect(button).toHaveAttribute('aria-controls', 'shelter-mobile-menu');
+      expect(
+        screen.queryByText('shelter.menu.profile')
+      ).not.toBeInTheDocument();
+
+      fireEvent.click(button);
+
+      expect(button).toHaveAttribute('aria-expanded', 'true');
+      expect(screen.getByText('shelter.menu.profile')).toBeInTheDocument();
+
+      fireEvent.click(button);
+
+      expect(button).toHaveAttribute('aria-expanded', 'false');
+      expect(
+        screen.queryByText('shelter.menu.profile')
+      ).not.toBeInTheDocument();
+    });
+
+    test('opening the burger closes the cabinet menu', () => {
+      renderHeader();
+      fireEvent.click(getCabinetButton());
+
+      const burger = screen.getByTestId('icon-icon-menu').closest('button');
+      fireEvent.click(burger!);
+
+      expect(getCabinetButton()).toHaveAttribute('aria-expanded', 'false');
+      expect(
+        screen.queryByText('shelter.menu.profile')
+      ).not.toBeInTheDocument();
+    });
   });
 
   describe('corrupted auth storage falls back to guest', () => {
