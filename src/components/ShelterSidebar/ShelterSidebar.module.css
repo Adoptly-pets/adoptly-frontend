@@ -1,0 +1,32 @@
+.sidebar {
+  --shelter-sidebar-width: 287px;
+  --shelter-sidebar-menu-width: 216px;
+
+  background-color: white;
+  padding: 40px 20px;
+  border-radius: 44px;
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: var(--shelter-sidebar-width);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--title-color-dark);
+  align-self: center;
+}
+
+.menu {
+  width: var(--shelter-sidebar-menu-width);
+}
+
+/* Mobile navigation lives in the cabinet menu */
+@media (max-width: 767px) {
+  .sidebar {
+    display: none;
+  }
+}
