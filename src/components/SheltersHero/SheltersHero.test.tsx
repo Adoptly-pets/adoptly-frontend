@@ -19,10 +19,6 @@ jest.mock(
   )
 );
 
-jest.mock('i18next', () => ({
-  t: (key: string) => key,
-}));
-
 jest.mock('../../constants/SHELTERS_NUMBER_CARD_DATA', () => ({
   SHELTERS_NUMBER_CARD_DATA: [{ cardNumber: '1', cardText: 'Test Card' }],
 }));
