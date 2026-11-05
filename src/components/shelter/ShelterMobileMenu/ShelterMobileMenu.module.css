@@ -1,0 +1,28 @@
+.card {
+  position: absolute;
+  top: 100%;
+  right: var(--container-padding);
+  z-index: 10;
+  width: 260px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px 0 rgba(81, 81, 81, 0.16);
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--title-color-dark);
+}
+
+/* The cabinet menu is mobile-only; desktop uses the sidebar */
+@media (min-width: 769px) {
+  .card {
+    display: none;
+  }
+}

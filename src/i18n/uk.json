@@ -2,7 +2,9 @@
   "header": {
     "login": "Увійти",
     "logout": "Вийти",
-    "account": "Мій кабінет"
+    "account": "Мій кабінет",
+    "cabinet": "Кабінет",
+    "cabinetMenu": "Меню кабінету"
   },
   "account": {
     "title": "Мій кабінет",
@@ -288,7 +290,8 @@
       "profile": "Профіль притулку",
       "pets": "Картки тварин",
       "applications": "Заявки на адопцію",
-      "analytics": "Аналітика"
+      "analytics": "Аналітика",
+      "logout": "Вийти з кабінету"
     },
     "pages": {
       "profile": {

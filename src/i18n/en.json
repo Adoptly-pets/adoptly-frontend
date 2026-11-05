@@ -2,7 +2,9 @@
   "header": {
     "login": "Log in",
     "logout": "Log out",
-    "account": "My account"
+    "account": "My account",
+    "cabinet": "Cabinet",
+    "cabinetMenu": "Cabinet menu"
   },
   "account": {
     "title": "My account",
@@ -286,7 +288,8 @@
       "profile": "Shelter Profile",
       "pets": "Animal Cards",
       "applications": "Adoption Applications",
-      "analytics": "Analytics"
+      "analytics": "Analytics",
+      "logout": "Log out"
     },
     "pages": {
       "profile": {

@@ -1,4 +1,5 @@
 .header {
+  position: relative; /* anchors the shelter cabinet menu below the header */
   width: 100%;
   height: 94px;
   box-shadow: 0 2px 4px 0 rgba(81, 81, 81, 0.16);
@@ -69,7 +70,16 @@
   height: 40px;
   fill: #091a49;
 }
+.user-mobile {
+  display: none;
+}
 @media (max-width: 768px) {
+  .user-desktop {
+    display: none;
+  }
+  .user-mobile {
+    display: flex;
+  }
   .header {
     height: 100px;
     padding: 56px 0 12px 0;

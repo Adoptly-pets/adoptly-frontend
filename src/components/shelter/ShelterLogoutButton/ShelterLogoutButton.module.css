@@ -1,0 +1,17 @@
+.divider {
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 16px 0;
+}
+
+.logout {
+  line-height: 1;
+  font-weight: 600;
+  color: var(--title-color-dark);
+  padding: 8px 12px;
+  transition: color 0.15s ease;
+
+  &:hover {
+    color: var(--accent-color);
+  }
+}

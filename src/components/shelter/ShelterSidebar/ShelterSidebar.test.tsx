@@ -1,6 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Routes, Route, Outlet } from 'react-router-dom';
+import i18n from 'i18next';
 import ShelterSidebar from './ShelterSidebar';
+import { AuthProvider } from '../../../context/AuthContext';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -19,18 +21,24 @@ const TestLayout = () => (
 const renderAt = (route: string) =>
   render(
     <MemoryRouter initialEntries={[route]}>
-      <Routes>
-        <Route path="/:lng/shelter" element={<TestLayout />}>
-          <Route path="profile" element={null} />
-          <Route path="pets" element={null} />
-          <Route path="applications" element={null} />
-          <Route path="analytics" element={null} />
-        </Route>
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path="/:lng/shelter" element={<TestLayout />}>
+            <Route path="profile" element={null} />
+            <Route path="pets" element={null} />
+            <Route path="applications" element={null} />
+            <Route path="analytics" element={null} />
+          </Route>
+        </Routes>
+      </AuthProvider>
     </MemoryRouter>
   );
 
 describe('ShelterSidebar', () => {
+  afterEach(() => {
+    i18n.language = 'uk';
+  });
+
   test('renders all four menu items', () => {
     renderAt('/uk/shelter/profile');
 
@@ -56,6 +64,8 @@ describe('ShelterSidebar', () => {
     expect(screen.getByText('shelter.menu.profile')).not.toHaveAttribute(
       'aria-current'
     );
+    expect(screen.getByText('shelter.menu.applications')).toHaveClass('active');
+    expect(screen.getByText('shelter.menu.profile')).not.toHaveClass('active');
   });
 
   test('renders links pointing to the correct shelter routes', () => {
@@ -74,5 +84,23 @@ describe('ShelterSidebar', () => {
     expect(
       screen.getByText('shelter.menu.analytics').closest('a')
     ).toHaveAttribute('href', '/uk/shelter/analytics');
+  });
+
+  test('keeps current language in links', () => {
+    i18n.language = 'en';
+    renderAt('/en/shelter/profile');
+
+    expect(screen.getByText('shelter.menu.pets').closest('a')).toHaveAttribute(
+      'href',
+      '/en/shelter/pets'
+    );
+  });
+
+  test('renders logout button', () => {
+    renderAt('/uk/shelter/profile');
+
+    expect(
+      screen.getByRole('button', { name: 'shelter.menu.logout' })
+    ).toBeInTheDocument();
   });
 });
