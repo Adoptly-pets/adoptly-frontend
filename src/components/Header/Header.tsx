@@ -15,7 +15,12 @@ const Header = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, user, logout } = useAuth();
+  const isAdopter = user?.role === 'ROLE_USER';
+
+  const userIcon = (
+    <Icon id="icon-user" className="icon-user" size={16} height={15} />
+  );
 
   const changeLanguage = (lng: string) => {
     const pathParts = location.pathname.split('/');
@@ -120,19 +125,22 @@ const Header = () => {
               height={15}
             />
           </button>
-          {isAuthenticated ? (
+          {isAdopter ? (
+            <Link
+              to={langLink('/account')}
+              className="btn"
+              title={t('header.account')}
+            >
+              {userIcon}
+            </Link>
+          ) : isAuthenticated ? (
             <button
               type="button"
               className="btn"
               title={t('header.logout')}
               onClick={logout}
             >
-              <Icon
-                id="icon-user"
-                className="icon-user"
-                size={16}
-                height={15}
-              />
+              {userIcon}
             </button>
           ) : (
             <Link
@@ -140,12 +148,7 @@ const Header = () => {
               className="btn"
               title={t('header.login')}
             >
-              <Icon
-                id="icon-user"
-                className="icon-user"
-                size={16}
-                height={15}
-              />
+              {userIcon}
             </Link>
           )}
         </div>
