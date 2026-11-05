@@ -2,7 +2,9 @@
   "header": {
     "login": "Увійти",
     "logout": "Вийти",
-    "account": "Мій кабінет"
+    "account": "Мій кабінет",
+    "cabinet": "Кабінет",
+    "cabinetMenu": "Меню кабінету"
   },
   "account": {
     "title": "Мій кабінет",

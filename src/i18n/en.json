@@ -2,7 +2,9 @@
   "header": {
     "login": "Log in",
     "logout": "Log out",
-    "account": "My account"
+    "account": "My account",
+    "cabinet": "Cabinet",
+    "cabinetMenu": "Cabinet menu"
   },
   "account": {
     "title": "My account",
