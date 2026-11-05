@@ -363,7 +363,8 @@
         "sentMessage": "Your profile has been sent to the Adoptly team for review."
       },
       "pets": {
-        "title": "Animal Cards"
+        "title": "Animal Cards",
+        "addPet": "Add pet"
       },
       "applications": {
         "title": "Adoption Applications"
