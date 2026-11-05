@@ -17,6 +17,11 @@ jest.mock('react-i18next', () => ({
   Trans: ({ i18nKey }: { i18nKey: string }) => <>{i18nKey}</>,
 }));
 
+jest.mock('i18next', () => ({
+  __esModule: true,
+  default: { language: 'en' },
+}));
+
 const mockedLoginUser = loginWithEmail as jest.MockedFunction<
   typeof loginWithEmail
 >;
@@ -147,13 +152,13 @@ describe('LoginPage', () => {
     });
   });
 
-  test('navigates to homepage after successful login as ROLE_USER', async () => {
+  test('navigates to account after successful login as ROLE_USER', async () => {
     renderPage();
     fillForm('test@example.com', 'password123');
     fireEvent.click(screen.getByText('login.submit'));
 
     await waitFor(() => {
-      expect(screen.getByTestId('location').textContent).toBe('/en/');
+      expect(screen.getByTestId('location').textContent).toBe('/en/account');
     });
   });
 

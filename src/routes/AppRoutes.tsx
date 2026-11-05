@@ -15,6 +15,7 @@ import ForgotPasswordForm from '../components/ForgotPasswordForm/ForgotPasswordF
 import ResetPasswordPage from '../pages/ResetPasswordPage/ResetPasswordPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import RegisterPage from '../pages/RegisterPage/RegisterPage';
+import AccountPage from '../pages/AccountPage/AccountPage';
 
 const ShelterProfilePage = lazy(
   () => import('../pages/shelter/ShelterProfilePage/ShelterProfilePage')
@@ -58,6 +59,7 @@ function AppRoutes() {
           <Route path="applications" element={<ShelterApplicationsPage />} />
           <Route path="analytics" element={<ShelterAnalyticsPage />} />
         </Route>
+        <Route path="account" element={<AccountPage />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

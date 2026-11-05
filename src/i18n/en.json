@@ -1,6 +1,11 @@
 {
   "header": {
     "login": "Log in",
+    "logout": "Log out",
+    "account": "My account"
+  },
+  "account": {
+    "title": "My account",
     "logout": "Log out"
   },
   "nav": {

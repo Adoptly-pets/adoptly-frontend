@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/useAuth';
 import { loginWithGoogle } from '../../services/auth';
+import { getPostLoginPath, langLink } from '../../utils/routing';
 
 interface GoogleAuthContainerProps {
   onError: () => void;
@@ -57,11 +58,8 @@ const GoogleAuthContainer: React.FC<GoogleAuthContainerProps> = ({
               },
               data.userInfo
             );
-            const redirectPath =
-              data.userInfo.role === 'ROLE_SHELTER_OWNER'
-                ? `/${i18n.language}/shelter/profile`
-                : `/${i18n.language}/`;
-            navigate(redirectPath);
+
+            navigate(langLink(getPostLoginPath(data.userInfo.role)));
           } catch {
             onError();
           }

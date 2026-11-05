@@ -12,6 +12,7 @@ import { isApiError } from '../../services/api';
 import { HTTP_STATUS } from '../../constants/HTTP_STATUS';
 import styles from './LoginPage.module.css';
 import { useAuth } from '../../context/useAuth';
+import { getPostLoginPath, langLink } from '../../utils/routing';
 
 type LoginFormData = {
   email: string;
@@ -50,11 +51,7 @@ const LoginPage = () => {
         },
         response.userInfo
       );
-      const redirectPath =
-        response.userInfo.role === 'ROLE_SHELTER_OWNER'
-          ? `/${i18n.language}/shelter/profile`
-          : `/${i18n.language}/`;
-      navigate(redirectPath);
+      navigate(langLink(getPostLoginPath(response.userInfo.role)));
     } catch (error) {
       if (isApiError(error)) {
         if (error.type === 'network') {

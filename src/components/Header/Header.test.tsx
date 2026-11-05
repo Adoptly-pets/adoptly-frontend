@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import Header from './Header';
 import { MemoryRouter, useLocation } from 'react-router-dom';
 import { AuthProvider } from '../../context/AuthContext';
+import type { Role } from '../../services/auth';
 
 const LocationDisplay = () => {
   const location = useLocation();
@@ -38,7 +39,7 @@ jest.mock('../GoogleAuthContainer/GoogleAuthContainer', () => ({
   default: () => <div data-testid="google-auth-container" />,
 }));
 
-const seedAuthenticated = () => {
+const seedAuthenticated = (role: Role = 'ROLE_USER') => {
   localStorage.setItem('accessToken', 'token');
   localStorage.setItem('refreshToken', 'refresh');
   localStorage.setItem(
@@ -50,7 +51,7 @@ const seedAuthenticated = () => {
       lastName: '',
       profileImageUrl: null,
       location: '',
-      role: 'ROLE_USER',
+      role,
     })
   );
 };
@@ -130,8 +131,19 @@ describe('Header Component', () => {
     ).not.toBeInTheDocument();
   });
 
-  test('logs out, clears storage, and redirects to home when authenticated', () => {
+  test('shows account link for adopter', () => {
     seedAuthenticated();
+    renderHeader();
+
+    const link = screen.getByRole('link', { name: 'header.account' });
+    expect(link).toHaveAttribute('href', '/account');
+    expect(
+      screen.queryByRole('button', { name: 'header.logout' })
+    ).not.toBeInTheDocument();
+  });
+
+  test('logs out shelter owner, clears storage, and redirects to home', () => {
+    seedAuthenticated('ROLE_SHELTER_OWNER');
     renderHeader(['/uk/pets']);
 
     fireEvent.click(screen.getByRole('button', { name: 'header.logout' }));
