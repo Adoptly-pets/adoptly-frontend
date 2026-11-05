@@ -9,7 +9,7 @@ import NotFound from '../pages/NotFound/NotFound';
 import PetsPage from '../pages/PetsPage/PetsPage';
 import PolicyPage from '../pages/PolicyPage/PolicyPage';
 import LanguageLayout from '../components/LanguageLayout/LanguageLayout';
-import ShelterLayout from '../components/ShelterLayout/ShelterLayout';
+import ShelterLayout from '../components/shelter/ShelterLayout/ShelterLayout';
 import PetDetailPage from '../pages/PetDetailPage/PetDetailPage';
 import ForgotPasswordForm from '../components/ForgotPasswordForm/ForgotPasswordForm';
 import ResetPasswordPage from '../pages/ResetPasswordPage/ResetPasswordPage';

@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { SHELTER_MENU } from '../../constants/SHELTER_MENU';
-import { langLink } from '../../utils/routing';
+import { SHELTER_MENU } from '../../../constants/SHELTER_MENU';
+import { langLink } from '../../../utils/routing';
 import styles from './ShelterNavList.module.css';
 
 interface ShelterNavListProps {
