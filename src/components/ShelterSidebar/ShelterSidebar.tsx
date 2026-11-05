@@ -1,6 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import './ShelterSidebar.css';
 import { useTranslation } from 'react-i18next';
+import { SHELTER_MENU } from '../../constants/SHELTER_MENU';
+import { langLink } from '../../utils/routing';
 
 const ShelterSidebar = () => {
   const { t } = useTranslation();
@@ -9,18 +11,11 @@ const ShelterSidebar = () => {
       {/* TODO: replace with real shelter name from backend */}
       <h2>Назва притулку</h2>
       <ul>
-        <li>
-          <NavLink to="profile">{t('shelter.menu.profile')}</NavLink>
-        </li>
-        <li>
-          <NavLink to="pets">{t('shelter.menu.pets')}</NavLink>
-        </li>
-        <li>
-          <NavLink to="applications">{t('shelter.menu.applications')}</NavLink>
-        </li>
-        <li>
-          <NavLink to="analytics">{t('shelter.menu.analytics')}</NavLink>
-        </li>
+        {SHELTER_MENU.map(({ path, labelKey }) => (
+          <li key={path}>
+            <NavLink to={langLink(path)}>{t(labelKey)}</NavLink>
+          </li>
+        ))}
       </ul>
     </nav>
   );
