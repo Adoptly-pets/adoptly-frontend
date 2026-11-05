@@ -30,7 +30,7 @@
   padding: 40px 20px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .shelter-page {
     padding: 20px;
     border-radius: 16px;
