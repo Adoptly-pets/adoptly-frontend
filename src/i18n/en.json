@@ -286,7 +286,8 @@
       "profile": "Shelter Profile",
       "pets": "Animal Cards",
       "applications": "Adoption Applications",
-      "analytics": "Analytics"
+      "analytics": "Analytics",
+      "logout": "Log out"
     },
     "pages": {
       "profile": {

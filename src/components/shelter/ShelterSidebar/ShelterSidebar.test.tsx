@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Routes, Route, Outlet } from 'react-router-dom';
 import i18n from 'i18next';
 import ShelterSidebar from './ShelterSidebar';
+import { AuthProvider } from '../../../context/AuthContext';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -20,14 +21,16 @@ const TestLayout = () => (
 const renderAt = (route: string) =>
   render(
     <MemoryRouter initialEntries={[route]}>
-      <Routes>
-        <Route path="/:lng/shelter" element={<TestLayout />}>
-          <Route path="profile" element={null} />
-          <Route path="pets" element={null} />
-          <Route path="applications" element={null} />
-          <Route path="analytics" element={null} />
-        </Route>
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path="/:lng/shelter" element={<TestLayout />}>
+            <Route path="profile" element={null} />
+            <Route path="pets" element={null} />
+            <Route path="applications" element={null} />
+            <Route path="analytics" element={null} />
+          </Route>
+        </Routes>
+      </AuthProvider>
     </MemoryRouter>
   );
 
@@ -89,5 +92,13 @@ describe('ShelterSidebar', () => {
       'href',
       '/en/shelter/pets'
     );
+  });
+
+  test('renders logout button', () => {
+    renderAt('/uk/shelter/profile');
+
+    expect(
+      screen.getByRole('button', { name: 'shelter.menu.logout' })
+    ).toBeInTheDocument();
   });
 });

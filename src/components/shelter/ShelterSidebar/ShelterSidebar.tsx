@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import ShelterNavList from '../ShelterNavList/ShelterNavList';
+import ShelterLogoutButton from '../ShelterLogoutButton/ShelterLogoutButton';
 import styles from './ShelterSidebar.module.css';
 
 const ShelterSidebar = () => {
@@ -10,6 +11,7 @@ const ShelterSidebar = () => {
       <h2 className={styles.title}>Назва притулку</h2>
       <div className={styles.menu}>
         <ShelterNavList />
+        <ShelterLogoutButton />
       </div>
     </nav>
   );
