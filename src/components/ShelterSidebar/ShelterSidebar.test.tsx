@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Routes, Route, Outlet } from 'react-router-dom';
+import i18n from 'i18next';
 import ShelterSidebar from './ShelterSidebar';
 
 jest.mock('react-i18next', () => ({
@@ -31,6 +32,10 @@ const renderAt = (route: string) =>
   );
 
 describe('ShelterSidebar', () => {
+  afterEach(() => {
+    i18n.language = 'uk';
+  });
+
   test('renders all four menu items', () => {
     renderAt('/uk/shelter/profile');
 
@@ -74,5 +79,15 @@ describe('ShelterSidebar', () => {
     expect(
       screen.getByText('shelter.menu.analytics').closest('a')
     ).toHaveAttribute('href', '/uk/shelter/analytics');
+  });
+
+  test('keeps current language in links', () => {
+    i18n.language = 'en';
+    renderAt('/en/shelter/profile');
+
+    expect(screen.getByText('shelter.menu.pets').closest('a')).toHaveAttribute(
+      'href',
+      '/en/shelter/pets'
+    );
   });
 });
