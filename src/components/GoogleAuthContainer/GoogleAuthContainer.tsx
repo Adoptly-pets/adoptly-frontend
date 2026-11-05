@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/useAuth';
 import { loginWithGoogle } from '../../services/auth';
-import { getPostLoginPath } from '../../utils/routing';
+import { getPostLoginPath, langLink } from '../../utils/routing';
 
 interface GoogleAuthContainerProps {
   onError: () => void;
@@ -59,9 +59,7 @@ const GoogleAuthContainer: React.FC<GoogleAuthContainerProps> = ({
               data.userInfo
             );
 
-            navigate(
-              `/${i18n.language}${getPostLoginPath(data.userInfo.role)}`
-            );
+            navigate(langLink(getPostLoginPath(data.userInfo.role)));
           } catch {
             onError();
           }

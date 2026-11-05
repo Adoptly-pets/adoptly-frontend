@@ -17,6 +17,11 @@ jest.mock('react-i18next', () => ({
   Trans: ({ i18nKey }: { i18nKey: string }) => <>{i18nKey}</>,
 }));
 
+jest.mock('i18next', () => ({
+  __esModule: true,
+  default: { language: 'en' },
+}));
+
 const mockedLoginUser = loginWithEmail as jest.MockedFunction<
   typeof loginWithEmail
 >;
