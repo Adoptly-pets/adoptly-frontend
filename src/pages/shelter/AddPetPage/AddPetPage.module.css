@@ -1,0 +1,91 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 24px;
+}
+
+.header a {
+  color: var(--btn-action-bg);
+  font-weight: 400;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.petName,
+.petType,
+.petDescription {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form input[type='text'] {
+  padding: 12px;
+  border: none;
+  border-radius: var(--radius-md);
+  background-color: var(--surface-input);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  color: var(--title-color-dark);
+}
+
+.form select,
+.form textarea {
+  padding: 12px;
+  border: none;
+  border-radius: var(--radius-md);
+  background-color: var(--surface-input);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  color: var(--title-color-dark);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.petGender {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  border: none;
+}
+
+.petGender legend {
+  margin-bottom: 10px;
+}
+.petGender label {
+  padding: 12px 0;
+}
+
+.petDescription p {
+  text-align: right;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.saveCard {
+  display: flex;
+  justify-content: center;
+}
+
+.required {
+  color: var(--color-error);
+  margin-left: 4px;
+}
+
+@media (max-width: 768px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

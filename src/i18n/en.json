@@ -366,6 +366,33 @@
         "title": "Animal Cards",
         "addPet": "Add pet"
       },
+      "addPet": {
+        "title": "Add pet",
+        "backToList": "Back to list",
+        "fields": {
+          "name": "Pet name",
+          "species": "Species",
+          "gender": "Gender",
+          "description": "Description"
+        },
+        "placeholders": {
+          "name": "Enter name",
+          "species": "Select species",
+          "description": "Personality, activity level, attitude to children and other animals, health, care needs and other important details"
+        },
+        "counter": "Characters left: {{count}}",
+        "submit": "Save card",
+        "options": {
+          "species": {
+            "DOG": "Dog",
+            "CAT": "Cat"
+          },
+          "gender": {
+            "MALE": "Male",
+            "FEMALE": "Female"
+          }
+        }
+      },
       "applications": {
         "title": "Adoption Applications"
       },
