@@ -375,11 +375,14 @@
           "name": "Ім'я тварини",
           "species": "Вид тварини",
           "gender": "Стать",
+          "age": "Вік (приблизно)",
+          "ageUnit": "Одиниці віку",
           "description": "Опис"
         },
         "placeholders": {
           "name": "Введіть ім'я",
           "species": "Виберіть вид",
+          "age": "Вік",
           "description": "Характер, рівень активності, ставлення до дітей та інших тварин, стан здоров'я, особливості догляду та інші важливі деталі"
         },
         "counter": "Залишилось символів: {{count}}",
@@ -388,7 +391,8 @@
           "nameRequired": "Введіть ім'я тварини",
           "speciesRequired": "Оберіть вид тварини",
           "genderRequired": "Оберіть стать",
-          "descriptionRequired": "Опишіть тварину"
+          "descriptionRequired": "Опишіть тварину",
+          "ageRequired": "Вкажіть вік"
         },
         "options": {
           "species": {
@@ -398,6 +402,14 @@
           "gender": {
             "MALE": "Самець",
             "FEMALE": "Самка"
+          },
+          "ageUnit": {
+            "MONTHS_one": "місяць",
+            "MONTHS_few": "місяці",
+            "MONTHS_many": "місяців",
+            "YEARS_one": "рік",
+            "YEARS_few": "роки",
+            "YEARS_many": "років"
           }
         }
       },

@@ -373,11 +373,14 @@
           "name": "Pet name",
           "species": "Species",
           "gender": "Gender",
+          "age": "Age (approx.)",
+          "ageUnit": "Age unit",
           "description": "Description"
         },
         "placeholders": {
           "name": "Enter name",
           "species": "Select species",
+          "age": "Age",
           "description": "Personality, activity level, attitude to children and other animals, health, care needs and other important details"
         },
         "counter": "Characters left: {{count}}",
@@ -386,7 +389,8 @@
           "nameRequired": "Enter the pet's name",
           "speciesRequired": "Select species",
           "genderRequired": "Select gender",
-          "descriptionRequired": "Describe the pet"
+          "descriptionRequired": "Describe the pet",
+          "ageRequired": "Enter the age"
         },
         "options": {
           "species": {
@@ -396,6 +400,12 @@
           "gender": {
             "MALE": "Male",
             "FEMALE": "Female"
+          },
+          "ageUnit": {
+            "MONTHS_one": "month",
+            "MONTHS_other": "months",
+            "YEARS_one": "year",
+            "YEARS_other": "years"
           }
         }
       },

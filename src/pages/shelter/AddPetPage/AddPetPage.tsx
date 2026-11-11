@@ -4,12 +4,14 @@ import styles from './AddPetPage.module.css';
 import { langLink } from '../../../utils/routing';
 import Button from '../../../components/Button/Button';
 import { useForm } from 'react-hook-form';
-import { Gender, Species } from '../../../types/pet';
+import { Gender, Species, AgeUnit } from '../../../types/pet';
 
 type AddPetFormData = {
   name: string;
   species: Species | '';
   gender: Gender | '';
+  ageValue: number;
+  ageUnit: AgeUnit;
   description: string;
 };
 
@@ -28,10 +30,13 @@ const AddPetPage = () => {
       species: '',
       gender: '',
       description: '',
+      ageUnit: 'YEARS',
     },
   });
 
   const description = watch('description');
+  // Empty input gives NaN; 0 picks the "many" plural form (місяців / років)
+  const ageCount = watch('ageValue') || 0;
 
   const onDataSubmit = (data: AddPetFormData) => {
     console.log(data);
@@ -45,7 +50,11 @@ const AddPetPage = () => {
           {t('shelter.pages.addPet.backToList')}
         </Link>
       </div>
-      <form className={styles.form} onSubmit={handleSubmit(onDataSubmit)}>
+      <form
+        className={styles.form}
+        onSubmit={handleSubmit(onDataSubmit)}
+        noValidate
+      >
         <div className={styles.petName}>
           <label htmlFor="petName">
             {t('shelter.pages.addPet.fields.name')}
@@ -123,6 +132,47 @@ const AddPetPage = () => {
             )}
           </div>
         </div>
+        <div className={styles.row}>
+          <div className={styles.petAgeBlock}>
+            <label htmlFor="petAge">
+              {t('shelter.pages.addPet.fields.age')}
+              <span className={styles.required}>*</span>
+            </label>
+            <div className={styles.petAge}>
+              <input
+                type="number"
+                placeholder={t('shelter.pages.addPet.placeholders.age')}
+                id="petAge"
+                aria-invalid={!!errors.ageValue}
+                {...register('ageValue', {
+                  valueAsNumber: true,
+                  required: true,
+                  min: 1,
+                })}
+              />
+              <select
+                {...register('ageUnit')}
+                aria-label={t('shelter.pages.addPet.fields.ageUnit')}
+              >
+                <option value="MONTHS">
+                  {t('shelter.pages.addPet.options.ageUnit.MONTHS', {
+                    count: ageCount,
+                  })}
+                </option>
+                <option value="YEARS">
+                  {t('shelter.pages.addPet.options.ageUnit.YEARS', {
+                    count: ageCount,
+                  })}
+                </option>
+              </select>
+            </div>
+            {errors.ageValue && (
+              <span className={styles.error}>
+                {t('shelter.pages.addPet.errors.ageRequired')}
+              </span>
+            )}
+          </div>
+        </div>
         <div className={styles.petDescription}>
           <label htmlFor="petDescription">
             {t('shelter.pages.addPet.fields.description')}
@@ -136,16 +186,18 @@ const AddPetPage = () => {
             aria-invalid={!!errors.description}
             {...register('description', { required: true })}
           />
-          <p>
-            {t('shelter.pages.addPet.counter', {
-              count: DESCRIPTION_MAX - description.length,
-            })}
-          </p>
-          {errors.description && (
-            <span className={styles.error}>
-              {t('shelter.pages.addPet.errors.descriptionRequired')}
-            </span>
-          )}
+          <div className={styles.descriptionFooter}>
+            {errors.description && (
+              <span className={styles.error}>
+                {t('shelter.pages.addPet.errors.descriptionRequired')}
+              </span>
+            )}
+            <p>
+              {t('shelter.pages.addPet.counter', {
+                count: DESCRIPTION_MAX - description.length,
+              })}
+            </p>
+          </div>
         </div>
         <div className={styles.saveCard}>
           <Button variant="primary" maxWidth={250} height={50} type="submit">

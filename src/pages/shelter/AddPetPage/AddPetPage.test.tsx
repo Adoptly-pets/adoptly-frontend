@@ -16,11 +16,15 @@ const ERRORS = [
   'shelter.pages.addPet.errors.nameRequired',
   'shelter.pages.addPet.errors.speciesRequired',
   'shelter.pages.addPet.errors.genderRequired',
+  'shelter.pages.addPet.errors.ageRequired',
   'shelter.pages.addPet.errors.descriptionRequired',
 ];
 
 const getNameInput = () =>
   screen.getByLabelText(/shelter\.pages\.addPet\.fields\.name/);
+
+const getAgeInput = () =>
+  screen.getByLabelText(/shelter\.pages\.addPet\.fields\.age\b/);
 
 const getDescription = () =>
   screen.getByRole('textbox', {
@@ -132,6 +136,7 @@ describe('AddPetPage', () => {
           name: 'shelter.pages.addPet.options.gender.MALE',
         })
       );
+      await userEvent.type(getAgeInput(), '2');
       await userEvent.type(getDescription(), 'Friendly dog');
       await submit();
 
@@ -139,6 +144,34 @@ describe('AddPetPage', () => {
         expect(screen.queryByText(error)).not.toBeInTheDocument();
       }
     });
+
+    test('age of 0 shows the age error', async () => {
+      renderPage();
+
+      await userEvent.type(getAgeInput(), '0');
+      await submit();
+
+      expect(
+        await screen.findByText('shelter.pages.addPet.errors.ageRequired')
+      ).toBeInTheDocument();
+    });
+  });
+
+  test('age unit labels follow the entered number', async () => {
+    renderPage();
+
+    expect(
+      screen.getByText('shelter.pages.addPet.options.ageUnit.YEARS:0')
+    ).toBeInTheDocument();
+
+    await userEvent.type(getAgeInput(), '5');
+
+    expect(
+      screen.getByText('shelter.pages.addPet.options.ageUnit.YEARS:5')
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText('shelter.pages.addPet.options.ageUnit.MONTHS:5')
+    ).toBeInTheDocument();
   });
 
   test('description counter shows remaining characters', async () => {

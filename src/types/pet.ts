@@ -1,5 +1,6 @@
 export type Species = 'CAT' | 'DOG';
 export type Gender = 'MALE' | 'FEMALE';
+export type AgeUnit = 'MONTHS' | 'YEARS';
 export type Size = 'SMALL' | 'MEDIUM' | 'LARGE';
 export type AnimalStatus = 'AVAILABLE' | 'PENDING' | 'ADOPTED' | 'MEDICAL';
 
