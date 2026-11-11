@@ -26,6 +26,21 @@ const getNameInput = () =>
 const getAgeInput = () =>
   screen.getByLabelText(/shelter\.pages\.addPet\.fields\.age\b/);
 
+const SIZE_ERROR = 'shelter.pages.addPet.errors.sizeRequired';
+
+const selectSpecies = (species: 'DOG' | 'CAT') =>
+  userEvent.selectOptions(
+    screen.getByRole('combobox', {
+      name: /shelter\.pages\.addPet\.fields\.species/,
+    }),
+    species
+  );
+
+const querySizeSelect = () =>
+  screen.queryByRole('combobox', {
+    name: /shelter\.pages\.addPet\.fields\.size\b/,
+  });
+
 const getDescription = () =>
   screen.getByRole('textbox', {
     name: /shelter\.pages\.addPet\.fields\.description/,
@@ -125,12 +140,8 @@ describe('AddPetPage', () => {
       renderPage();
 
       await userEvent.type(getNameInput(), 'Rex');
-      await userEvent.selectOptions(
-        screen.getByRole('combobox', {
-          name: /shelter\.pages\.addPet\.fields\.species/,
-        }),
-        'DOG'
-      );
+      await selectSpecies('DOG');
+      await userEvent.selectOptions(querySizeSelect()!, 'MEDIUM');
       await userEvent.click(
         screen.getByRole('radio', {
           name: 'shelter.pages.addPet.options.gender.MALE',
@@ -140,7 +151,7 @@ describe('AddPetPage', () => {
       await userEvent.type(getDescription(), 'Friendly dog');
       await submit();
 
-      for (const error of ERRORS) {
+      for (const error of [...ERRORS, SIZE_ERROR]) {
         expect(screen.queryByText(error)).not.toBeInTheDocument();
       }
     });
@@ -154,6 +165,63 @@ describe('AddPetPage', () => {
       expect(
         await screen.findByText('shelter.pages.addPet.errors.ageRequired')
       ).toBeInTheDocument();
+    });
+  });
+
+  describe('size', () => {
+    test('is hidden until Dog is selected', async () => {
+      renderPage();
+      expect(querySizeSelect()).not.toBeInTheDocument();
+
+      await selectSpecies('CAT');
+      expect(querySizeSelect()).not.toBeInTheDocument();
+
+      await selectSpecies('DOG');
+      expect(querySizeSelect()).toBeInTheDocument();
+    });
+
+    test('options use Size values', async () => {
+      renderPage();
+      await selectSpecies('DOG');
+
+      const values = within(querySizeSelect()!)
+        .getAllByRole('option')
+        .map(option => option.getAttribute('value'));
+
+      expect(values).toEqual(['', 'SMALL', 'MEDIUM', 'LARGE']);
+    });
+
+    test('is required for a dog', async () => {
+      renderPage();
+      await selectSpecies('DOG');
+      await submit();
+
+      expect(await screen.findByText(SIZE_ERROR)).toBeInTheDocument();
+      expect(querySizeSelect()).toHaveAttribute('aria-invalid', 'true');
+    });
+
+    test('switching to Cat drops the size from submitted data', async () => {
+      // Submit currently logs the data; switch to the createPet mock later
+      const log = jest.spyOn(console, 'log').mockImplementation(() => {});
+      renderPage();
+
+      await userEvent.type(getNameInput(), 'Murka');
+      await selectSpecies('DOG');
+      await userEvent.selectOptions(querySizeSelect()!, 'LARGE');
+      await selectSpecies('CAT');
+      await userEvent.click(
+        screen.getByRole('radio', {
+          name: 'shelter.pages.addPet.options.gender.FEMALE',
+        })
+      );
+      await userEvent.type(getAgeInput(), '3');
+      await userEvent.type(getDescription(), 'Calm cat');
+      await submit();
+
+      expect(querySizeSelect()).not.toBeInTheDocument();
+      expect(log).toHaveBeenCalledTimes(1);
+      expect(log.mock.calls[0][0]).not.toHaveProperty('size');
+      log.mockRestore();
     });
   });
 
