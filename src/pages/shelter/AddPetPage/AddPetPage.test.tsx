@@ -1,6 +1,36 @@
 import { render, screen, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import AddPetPage from './AddPetPage';
+
+// Appends count so the description counter can be asserted
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string, options?: { count?: number }) =>
+      options?.count === undefined ? key : `${key}:${options.count}`,
+    i18n: { language: 'uk', changeLanguage: jest.fn() },
+  }),
+}));
+
+const ERRORS = [
+  'shelter.pages.addPet.errors.nameRequired',
+  'shelter.pages.addPet.errors.speciesRequired',
+  'shelter.pages.addPet.errors.genderRequired',
+  'shelter.pages.addPet.errors.descriptionRequired',
+];
+
+const getNameInput = () =>
+  screen.getByLabelText(/shelter\.pages\.addPet\.fields\.name/);
+
+const getDescription = () =>
+  screen.getByRole('textbox', {
+    name: /shelter\.pages\.addPet\.fields\.description/,
+  });
+
+const submit = () =>
+  userEvent.click(
+    screen.getByRole('button', { name: 'shelter.pages.addPet.submit' })
+  );
 
 const renderPage = () =>
   render(
@@ -52,5 +82,76 @@ describe('AddPetPage', () => {
       .map(option => option.getAttribute('value'));
 
     expect(values).toEqual(['', 'DOG', 'CAT']);
+  });
+
+  describe('validation', () => {
+    test('empty submit shows an error for every required field', async () => {
+      renderPage();
+
+      await submit();
+
+      for (const error of ERRORS) {
+        expect(await screen.findByText(error)).toBeInTheDocument();
+      }
+      expect(getNameInput()).toHaveAttribute('aria-invalid', 'true');
+      expect(getDescription()).toHaveAttribute('aria-invalid', 'true');
+      screen
+        .getAllByRole('radio')
+        .forEach(radio =>
+          expect(radio).toHaveAttribute('aria-invalid', 'true')
+        );
+    });
+
+    test('filling a field clears its error', async () => {
+      renderPage();
+      await submit();
+      expect(
+        await screen.findByText('shelter.pages.addPet.errors.nameRequired')
+      ).toBeInTheDocument();
+
+      await userEvent.type(getNameInput(), 'Rex');
+
+      expect(
+        screen.queryByText('shelter.pages.addPet.errors.nameRequired')
+      ).not.toBeInTheDocument();
+      expect(getNameInput()).toHaveAttribute('aria-invalid', 'false');
+    });
+
+    test('valid form submits without errors', async () => {
+      renderPage();
+
+      await userEvent.type(getNameInput(), 'Rex');
+      await userEvent.selectOptions(
+        screen.getByRole('combobox', {
+          name: /shelter\.pages\.addPet\.fields\.species/,
+        }),
+        'DOG'
+      );
+      await userEvent.click(
+        screen.getByRole('radio', {
+          name: 'shelter.pages.addPet.options.gender.MALE',
+        })
+      );
+      await userEvent.type(getDescription(), 'Friendly dog');
+      await submit();
+
+      for (const error of ERRORS) {
+        expect(screen.queryByText(error)).not.toBeInTheDocument();
+      }
+    });
+  });
+
+  test('description counter shows remaining characters', async () => {
+    renderPage();
+
+    expect(
+      screen.getByText('shelter.pages.addPet.counter:1500')
+    ).toBeInTheDocument();
+
+    await userEvent.type(getDescription(), 'Rex');
+
+    expect(
+      screen.getByText('shelter.pages.addPet.counter:1497')
+    ).toBeInTheDocument();
   });
 });
