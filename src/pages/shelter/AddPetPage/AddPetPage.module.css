@@ -20,6 +20,7 @@
 
 .petName,
 .petSpecies,
+.petSize,
 .petDescription,
 .petAgeBlock {
   display: flex;
@@ -83,7 +84,6 @@
 
 .descriptionFooter {
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 

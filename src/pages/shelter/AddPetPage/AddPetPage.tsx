@@ -4,7 +4,7 @@ import styles from './AddPetPage.module.css';
 import { langLink } from '../../../utils/routing';
 import Button from '../../../components/Button/Button';
 import { useForm } from 'react-hook-form';
-import { Gender, Species, AgeUnit } from '../../../types/pet';
+import { Gender, Species, AgeUnit, Size } from '../../../types/pet';
 
 type AddPetFormData = {
   name: string;
@@ -12,6 +12,7 @@ type AddPetFormData = {
   gender: Gender | '';
   ageValue: number;
   ageUnit: AgeUnit;
+  size?: Size;
   description: string;
 };
 
@@ -37,6 +38,7 @@ const AddPetPage = () => {
   const description = watch('description');
   // Empty input gives NaN; 0 picks the "many" plural form (місяців / років)
   const ageCount = watch('ageValue') || 0;
+  const species = watch('species');
 
   const onDataSubmit = (data: AddPetFormData) => {
     console.log(data);
@@ -172,6 +174,40 @@ const AddPetPage = () => {
               </span>
             )}
           </div>
+          {species === 'DOG' && (
+            <div className={styles.petSize}>
+              <label htmlFor="size">
+                {t('shelter.pages.addPet.fields.size')}
+                <span className={styles.required}>*</span>
+              </label>
+              <select
+                id="size"
+                aria-invalid={!!errors.size}
+                {...register('size', {
+                  required: true,
+                  shouldUnregister: true,
+                })}
+              >
+                <option value="">
+                  {t('shelter.pages.addPet.placeholders.size')}
+                </option>
+                <option value="SMALL">
+                  {t('shelter.pages.addPet.options.size.SMALL')}
+                </option>
+                <option value="MEDIUM">
+                  {t('shelter.pages.addPet.options.size.MEDIUM')}
+                </option>
+                <option value="LARGE">
+                  {t('shelter.pages.addPet.options.size.LARGE')}
+                </option>
+              </select>
+              {errors.size && (
+                <span className={styles.error}>
+                  {t('shelter.pages.addPet.errors.sizeRequired')}
+                </span>
+              )}
+            </div>
+          )}
         </div>
         <div className={styles.petDescription}>
           <label htmlFor="petDescription">

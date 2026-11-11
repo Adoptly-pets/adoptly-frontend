@@ -375,11 +375,13 @@
           "gender": "Gender",
           "age": "Age (approx.)",
           "ageUnit": "Age unit",
+          "size": "Size",
           "description": "Description"
         },
         "placeholders": {
           "name": "Enter name",
           "species": "Select species",
+          "size": "Select size",
           "age": "Age",
           "description": "Personality, activity level, attitude to children and other animals, health, care needs and other important details"
         },
@@ -390,7 +392,8 @@
           "speciesRequired": "Select species",
           "genderRequired": "Select gender",
           "descriptionRequired": "Describe the pet",
-          "ageRequired": "Enter the age"
+          "ageRequired": "Enter the age",
+          "sizeRequired": "Select the dog's size"
         },
         "options": {
           "species": {
@@ -406,6 +409,11 @@
             "MONTHS_other": "months",
             "YEARS_one": "year",
             "YEARS_other": "years"
+          },
+          "size": {
+            "SMALL": "Small (up to 10 kg)",
+            "MEDIUM": "Medium (10–25 kg)",
+            "LARGE": "Large (over 25 kg)"
           }
         }
       },
