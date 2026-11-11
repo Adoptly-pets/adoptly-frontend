@@ -384,6 +384,12 @@
         },
         "counter": "Залишилось символів: {{count}}",
         "submit": "Зберегти картку",
+        "errors": {
+          "nameRequired": "Введіть ім'я тварини",
+          "speciesRequired": "Оберіть вид тварини",
+          "genderRequired": "Оберіть стать",
+          "descriptionRequired": "Опишіть тварину"
+        },
         "options": {
           "species": {
             "DOG": "Собака",

@@ -19,7 +19,7 @@
 }
 
 .petName,
-.petType,
+.petSpecies,
 .petDescription {
   display: flex;
   flex-direction: column;
@@ -82,6 +82,11 @@
 .required {
   color: var(--color-error);
   margin-left: 4px;
+}
+
+.error {
+  color: var(--color-error);
+  font-size: 12px;
 }
 
 @media (max-width: 768px) {

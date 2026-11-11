@@ -382,6 +382,12 @@
         },
         "counter": "Characters left: {{count}}",
         "submit": "Save card",
+        "errors": {
+          "nameRequired": "Enter the pet's name",
+          "speciesRequired": "Select species",
+          "genderRequired": "Select gender",
+          "descriptionRequired": "Describe the pet"
+        },
         "options": {
           "species": {
             "DOG": "Dog",
