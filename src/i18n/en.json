@@ -376,12 +376,16 @@
           "age": "Age (approx.)",
           "ageUnit": "Age unit",
           "size": "Size",
+          "breed": "Breed",
+          "adoptionConditions": "Special adoption conditions",
           "description": "Description"
         },
         "placeholders": {
           "name": "Enter name",
           "species": "Select species",
           "size": "Select size",
+          "breed": "Enter the breed or leave blank",
+          "adoptionConditions": "For example: flat only, no small children",
           "age": "Age",
           "description": "Personality, activity level, attitude to children and other animals, health, care needs and other important details"
         },

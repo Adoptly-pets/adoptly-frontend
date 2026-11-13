@@ -14,6 +14,8 @@ type AddPetFormData = {
   ageUnit: AgeUnit;
   size?: Size;
   description: string;
+  breed?: string;
+  adoptionConditions?: string;
 };
 
 const DESCRIPTION_MAX = 1500;
@@ -234,6 +236,30 @@ const AddPetPage = () => {
               })}
             </p>
           </div>
+        </div>
+        <div className={styles.petBreed}>
+          <label htmlFor="breed">
+            {t('shelter.pages.addPet.fields.breed')}
+          </label>
+          <input
+            type="text"
+            id="breed"
+            placeholder={t('shelter.pages.addPet.placeholders.breed')}
+            {...register('breed')}
+          />
+        </div>
+        <div className={styles.petConditions}>
+          <label htmlFor="conditions">
+            {t('shelter.pages.addPet.fields.adoptionConditions')}
+          </label>
+          <input
+            id="conditions"
+            type="text"
+            placeholder={t(
+              'shelter.pages.addPet.placeholders.adoptionConditions'
+            )}
+            {...register('adoptionConditions')}
+          />
         </div>
         <div className={styles.saveCard}>
           <Button variant="primary" maxWidth={250} height={50} type="submit">
