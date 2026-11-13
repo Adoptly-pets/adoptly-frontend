@@ -402,7 +402,9 @@
           "genderRequired": "Оберіть стать",
           "descriptionRequired": "Опишіть тварину",
           "ageRequired": "Вкажіть вік",
-          "sizeRequired": "Виберіть розмір собаки"
+          "sizeRequired": "Виберіть розмір собаки",
+          "arrivalIncomplete": "Вкажіть і місяць, і рік",
+          "arrivalFuture": "Дата не може бути в майбутньому"
         },
         "options": {
           "species": {

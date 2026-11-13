@@ -15,6 +15,8 @@ type AddPetFormData = {
   size?: Size;
   description: string;
   breed?: string;
+  arrivalMonth?: number;
+  arrivalYear?: number;
   adoptionConditions?: string;
 };
 
@@ -52,6 +54,18 @@ const AddPetPage = () => {
   // Empty input gives NaN; 0 picks the "many" plural form (місяців / років)
   const ageCount = watch('ageValue') || 0;
   const species = watch('species');
+
+  const validateArrival = (
+    _: unknown,
+    { arrivalMonth, arrivalYear }: AddPetFormData
+  ) => {
+    const now = new Date();
+    if ((arrivalMonth === undefined) !== (arrivalYear === undefined))
+      return t('shelter.pages.addPet.errors.arrivalIncomplete');
+    if (arrivalYear === now.getFullYear() && arrivalMonth! > now.getMonth() + 1)
+      return t('shelter.pages.addPet.errors.arrivalFuture');
+    return true;
+  };
 
   const onDataSubmit = (data: AddPetFormData) => {
     console.log(data);
@@ -265,6 +279,13 @@ const AddPetPage = () => {
             <div className={styles.petArrivalSelects}>
               <select
                 aria-label={t('shelter.pages.addPet.fields.arrivalMonth')}
+                aria-invalid={!!errors.arrivalMonth}
+                {...register('arrivalMonth', {
+                  setValueAs: value =>
+                    value === '' ? undefined : Number(value),
+                  validate: validateArrival,
+                  deps: 'arrivalYear',
+                })}
               >
                 <option value="">
                   {t('shelter.pages.addPet.fields.arrivalMonth')}
@@ -275,7 +296,16 @@ const AddPetPage = () => {
                   </option>
                 ))}
               </select>
-              <select aria-label={t('shelter.pages.addPet.fields.arrivalYear')}>
+              <select
+                aria-label={t('shelter.pages.addPet.fields.arrivalYear')}
+                aria-invalid={!!errors.arrivalYear}
+                {...register('arrivalYear', {
+                  setValueAs: value =>
+                    value === '' ? undefined : Number(value),
+                  validate: validateArrival,
+                  deps: 'arrivalMonth',
+                })}
+              >
                 <option value="">
                   {t('shelter.pages.addPet.fields.arrivalYear')}
                 </option>
@@ -286,6 +316,11 @@ const AddPetPage = () => {
                 ))}
               </select>
             </div>
+            {(errors.arrivalMonth || errors.arrivalYear) && (
+              <span className={styles.error}>
+                {(errors.arrivalMonth || errors.arrivalYear)?.message}
+              </span>
+            )}
           </fieldset>
         </div>
 
