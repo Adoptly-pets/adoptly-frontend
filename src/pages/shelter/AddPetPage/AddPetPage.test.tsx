@@ -58,6 +58,32 @@ const renderPage = () =>
     </MemoryRouter>
   );
 
+// A cat needs no size, so these are all the required fields
+const fillRequiredFields = async () => {
+  await userEvent.type(getNameInput(), 'Murka');
+  await selectSpecies('CAT');
+  await userEvent.click(
+    screen.getByRole('radio', {
+      name: 'shelter.pages.addPet.options.gender.FEMALE',
+    })
+  );
+  await userEvent.type(getAgeInput(), '3');
+  await userEvent.type(getDescription(), 'Calm cat');
+};
+
+const getArrivalMonth = () =>
+  screen.getByRole('combobox', {
+    name: 'shelter.pages.addPet.fields.arrivalMonth',
+  });
+
+const getArrivalYear = () =>
+  screen.getByRole('combobox', {
+    name: 'shelter.pages.addPet.fields.arrivalYear',
+  });
+
+const ARRIVAL_INCOMPLETE = 'shelter.pages.addPet.errors.arrivalIncomplete';
+const ARRIVAL_FUTURE = 'shelter.pages.addPet.errors.arrivalFuture';
+
 describe('AddPetPage', () => {
   test('fields are reachable by their labels', () => {
     renderPage();
@@ -254,5 +280,82 @@ describe('AddPetPage', () => {
     expect(
       screen.getByText('shelter.pages.addPet.counter:1497')
     ).toBeInTheDocument();
+  });
+
+  describe('arrival date', () => {
+    beforeEach(() => {
+      // Real timers keep running so userEvent doesn't hang
+      jest.useFakeTimers({ advanceTimers: true });
+      jest.setSystemTime(new Date(2026, 10, 15)); // 15 November 2026
+    });
+
+    afterEach(() => {
+      jest.useRealTimers();
+    });
+
+    test('years go from the current year back 30', () => {
+      renderPage();
+
+      const years = within(getArrivalYear())
+        .getAllByRole('option')
+        .map(option => option.getAttribute('value'))
+        .filter(Boolean);
+
+      expect(years).toHaveLength(31);
+      expect(years[0]).toBe('2026');
+      expect(years[30]).toBe('1996');
+    });
+
+    test('only month or only year shows the incomplete error', async () => {
+      renderPage();
+
+      await userEvent.selectOptions(getArrivalMonth(), '5');
+      await submit();
+
+      expect(await screen.findByText(ARRIVAL_INCOMPLETE)).toBeInTheDocument();
+      expect(getArrivalMonth()).toHaveAttribute('aria-invalid', 'true');
+      expect(getArrivalYear()).toHaveAttribute('aria-invalid', 'true');
+    });
+
+    test('choosing the missing part clears the error', async () => {
+      renderPage();
+
+      await userEvent.selectOptions(getArrivalYear(), '2025');
+      await submit();
+      expect(await screen.findByText(ARRIVAL_INCOMPLETE)).toBeInTheDocument();
+
+      await userEvent.selectOptions(getArrivalMonth(), '5');
+
+      expect(screen.queryByText(ARRIVAL_INCOMPLETE)).not.toBeInTheDocument();
+      expect(getArrivalMonth()).toHaveAttribute('aria-invalid', 'false');
+      expect(getArrivalYear()).toHaveAttribute('aria-invalid', 'false');
+    });
+
+    test('a month later than now shows the future error', async () => {
+      renderPage();
+
+      await userEvent.selectOptions(getArrivalMonth(), '12');
+      await userEvent.selectOptions(getArrivalYear(), '2026');
+      await submit();
+
+      expect(await screen.findByText(ARRIVAL_FUTURE)).toBeInTheDocument();
+    });
+
+    test('current month submits arrival as numbers', async () => {
+      const log = jest.spyOn(console, 'log').mockImplementation(() => {});
+      renderPage();
+
+      await fillRequiredFields();
+      await userEvent.selectOptions(getArrivalMonth(), '11');
+      await userEvent.selectOptions(getArrivalYear(), '2026');
+      await submit();
+
+      expect(log).toHaveBeenCalledTimes(1);
+      expect(log.mock.calls[0][0]).toMatchObject({
+        arrivalMonth: 11,
+        arrivalYear: 2026,
+      });
+      log.mockRestore();
+    });
   });
 });
