@@ -78,6 +78,23 @@
   gap: 8px;
 }
 
+.petArrival {
+  border: none;
+}
+
+.petArrival legend {
+  margin-bottom: 4px;
+}
+
+.petArrivalSelects {
+  display: flex;
+  gap: 8px;
+}
+
+.petArrivalSelects select {
+  flex: 1;
+}
+
 .petDescription p {
   margin-left: auto;
   color: var(--text-muted);

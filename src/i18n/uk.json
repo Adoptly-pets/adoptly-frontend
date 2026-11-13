@@ -379,6 +379,9 @@
           "ageUnit": "Одиниці віку",
           "size": "Розмір",
           "breed": "Порода",
+          "arrival": "Дата прибуття до притулку",
+          "arrivalMonth": "Місяць",
+          "arrivalYear": "Рік",
           "adoptionConditions": "Особливі умови всиновлення",
           "description": "Опис"
         },

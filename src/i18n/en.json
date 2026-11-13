@@ -377,6 +377,9 @@
           "ageUnit": "Age unit",
           "size": "Size",
           "breed": "Breed",
+          "arrival": "Date of arrival at the shelter",
+          "arrivalMonth": "Month",
+          "arrivalYear": "Year",
           "adoptionConditions": "Special adoption conditions",
           "description": "Description"
         },

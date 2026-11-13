@@ -19,9 +19,20 @@ type AddPetFormData = {
 };
 
 const DESCRIPTION_MAX = 1500;
+const ARRIVAL_YEARS_BACK = 30;
+const MONTHS = Array.from({ length: 12 }, (_, i) => i + 1);
 
 const AddPetPage = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  // Month names come from the browser in the current language
+  const monthFormat = new Intl.DateTimeFormat(i18n.language, {
+    month: 'long',
+  });
+  const currentYear = new Date().getFullYear();
+  const arrivalYears = Array.from(
+    { length: ARRIVAL_YEARS_BACK + 1 },
+    (_, i) => currentYear - i
+  );
   const {
     register,
     handleSubmit,
@@ -237,17 +248,47 @@ const AddPetPage = () => {
             </p>
           </div>
         </div>
-        <div className={styles.petBreed}>
-          <label htmlFor="breed">
-            {t('shelter.pages.addPet.fields.breed')}
-          </label>
-          <input
-            type="text"
-            id="breed"
-            placeholder={t('shelter.pages.addPet.placeholders.breed')}
-            {...register('breed')}
-          />
+        <div className={styles.row}>
+          <div className={styles.petBreed}>
+            <label htmlFor="breed">
+              {t('shelter.pages.addPet.fields.breed')}
+            </label>
+            <input
+              type="text"
+              id="breed"
+              placeholder={t('shelter.pages.addPet.placeholders.breed')}
+              {...register('breed')}
+            />
+          </div>
+          <fieldset className={styles.petArrival}>
+            <legend>{t('shelter.pages.addPet.fields.arrival')}</legend>
+            <div className={styles.petArrivalSelects}>
+              <select
+                aria-label={t('shelter.pages.addPet.fields.arrivalMonth')}
+              >
+                <option value="">
+                  {t('shelter.pages.addPet.fields.arrivalMonth')}
+                </option>
+                {MONTHS.map(month => (
+                  <option key={month} value={month}>
+                    {monthFormat.format(new Date(2000, month - 1, 1))}
+                  </option>
+                ))}
+              </select>
+              <select aria-label={t('shelter.pages.addPet.fields.arrivalYear')}>
+                <option value="">
+                  {t('shelter.pages.addPet.fields.arrivalYear')}
+                </option>
+                {arrivalYears.map(year => (
+                  <option key={year} value={year}>
+                    {year}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </fieldset>
         </div>
+
         <div className={styles.petConditions}>
           <label htmlFor="conditions">
             {t('shelter.pages.addPet.fields.adoptionConditions')}
