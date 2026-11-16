@@ -392,4 +392,74 @@ describe('AddPetPage', () => {
       });
     });
   });
+
+  describe('submit', () => {
+    const getSubmitButton = () =>
+      screen.getByRole('button', { name: 'shelter.pages.addPet.submit' });
+
+    test('sends birth date instead of age', async () => {
+      jest.useFakeTimers({ advanceTimers: true });
+      jest.setSystemTime(new Date(2026, 10, 15)); // 15 November 2026
+      renderPage();
+
+      await fillRequiredFields(); // age: 3 years
+      await submit();
+
+      const payload = mockCreatePet.mock.calls[0][0];
+      expect(payload).toMatchObject({ birthYear: 2023, birthMonth: 11 });
+      expect(payload).not.toHaveProperty('ageValue');
+      expect(payload).not.toHaveProperty('ageUnit');
+      jest.useRealTimers();
+    });
+
+    test('leaves out empty breed and adoption conditions', async () => {
+      renderPage();
+
+      await fillRequiredFields();
+      await submit();
+
+      const payload = mockCreatePet.mock.calls[0][0];
+      expect(payload).not.toHaveProperty('breed');
+      expect(payload).not.toHaveProperty('adoptionConditions');
+    });
+
+    test('sends breed when it is filled in', async () => {
+      renderPage();
+
+      await fillRequiredFields();
+      await userEvent.type(
+        screen.getByLabelText('shelter.pages.addPet.fields.breed'),
+        'Siamese'
+      );
+      await submit();
+
+      expect(mockCreatePet.mock.calls[0][0]).toMatchObject({
+        breed: 'Siamese',
+      });
+    });
+
+    test('shows an error and keeps the form when saving fails', async () => {
+      mockCreatePet.mockRejectedValueOnce(new Error('Network error'));
+      renderPage();
+
+      await fillRequiredFields();
+      await submit();
+
+      expect(await screen.findByRole('alert')).toHaveTextContent(
+        'errors.serverError'
+      );
+      expect(getNameInput()).toHaveValue('Murka');
+    });
+
+    test('disables the save button while saving', async () => {
+      mockCreatePet.mockReturnValueOnce(new Promise(() => {}));
+      renderPage();
+
+      await fillRequiredFields();
+      expect(getSubmitButton()).toBeEnabled();
+      await submit();
+
+      expect(getSubmitButton()).toBeDisabled();
+    });
+  });
 });

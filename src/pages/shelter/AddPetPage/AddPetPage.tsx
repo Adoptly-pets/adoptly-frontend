@@ -375,7 +375,9 @@ const AddPetPage = () => {
           </Button>
         </div>
         {serverError && (
-          <p className={styles.error}>{t('errors.serverError')}</p>
+          <p className={styles.error} role="alert">
+            {t('errors.serverError')}
+          </p>
         )}
       </form>
     </div>
