@@ -383,7 +383,8 @@
           "arrivalMonth": "Місяць",
           "arrivalYear": "Рік",
           "adoptionConditions": "Особливі умови всиновлення",
-          "description": "Опис"
+          "description": "Опис",
+          "spayedNeutered": "Стерилізовано / кастровано"
         },
         "placeholders": {
           "name": "Введіть ім'я",

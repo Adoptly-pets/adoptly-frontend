@@ -381,7 +381,8 @@
           "arrivalMonth": "Month",
           "arrivalYear": "Year",
           "adoptionConditions": "Special adoption conditions",
-          "description": "Description"
+          "description": "Description",
+          "spayedNeutered": "Spayed / neutered"
         },
         "placeholders": {
           "name": "Enter name",

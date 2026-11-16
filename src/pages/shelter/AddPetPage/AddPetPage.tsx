@@ -14,6 +14,7 @@ type AddPetFormData = {
   ageUnit: AgeUnit;
   size?: Size;
   description: string;
+  spayedNeutered: boolean;
   breed?: string;
   arrivalMonth?: number;
   arrivalYear?: number;
@@ -47,6 +48,7 @@ const AddPetPage = () => {
       gender: '',
       description: '',
       ageUnit: 'YEARS',
+      spayedNeutered: false,
     },
   });
 
@@ -236,6 +238,14 @@ const AddPetPage = () => {
             </div>
           )}
         </div>
+        <label className={styles.toggle}>
+          <input
+            type="checkbox"
+            role="switch"
+            {...register('spayedNeutered')}
+          />
+          {t('shelter.pages.addPet.fields.spayedNeutered')}
+        </label>
         <div className={styles.petDescription}>
           <label htmlFor="petDescription">
             {t('shelter.pages.addPet.fields.description')}
@@ -262,6 +272,7 @@ const AddPetPage = () => {
             </p>
           </div>
         </div>
+
         <div className={styles.row}>
           <div className={styles.petBreed}>
             <label htmlFor="breed">
