@@ -67,7 +67,7 @@ const AddPetPage = () => {
   useEffect(() => {
     if (!saved) return;
     setFocus('name');
-    const timer = setTimeout(() => setSaved(false), 3000);
+    const timer = setTimeout(() => setSaved(false), 4000);
     return () => clearTimeout(timer);
   }, [saved, setFocus]);
 
