@@ -5,7 +5,7 @@ import { langLink } from '../../../utils/routing';
 import Button from '../../../components/Button/Button';
 import { useForm } from 'react-hook-form';
 import { Gender, Species, AgeUnit, Size } from '../../../types/pet';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ageToBirthDate } from '../../../utils/ageToBirthDate';
 import { createPet } from '../../../services/pets';
 
@@ -46,6 +46,7 @@ const AddPetPage = () => {
     handleSubmit,
     watch,
     reset,
+    setFocus,
     formState: { errors, isSubmitting },
   } = useForm<AddPetFormData>({
     defaultValues: {
@@ -62,6 +63,13 @@ const AddPetPage = () => {
   // Empty input gives NaN; 0 picks the "many" plural form (місяців / років)
   const ageCount = watch('ageValue') || 0;
   const species = watch('species');
+
+  useEffect(() => {
+    if (!saved) return;
+    setFocus('name');
+    const timer = setTimeout(() => setSaved(false), 3000);
+    return () => clearTimeout(timer);
+  }, [saved, setFocus]);
 
   const validateArrival = (
     _: unknown,
@@ -86,8 +94,8 @@ const AddPetPage = () => {
         gender: rest.gender as Gender,
         ...ageToBirthDate(ageValue, ageUnit),
       });
-      reset();
       setSaved(true);
+      reset();
     } catch {
       setServerError(true);
     }
@@ -101,6 +109,11 @@ const AddPetPage = () => {
           {t('shelter.pages.addPet.backToList')}
         </Link>
       </div>
+
+      <p className={styles.success} role="status">
+        {saved ? t('shelter.pages.addPet.saved') : ''}
+      </p>
+
       <form
         className={styles.form}
         onSubmit={handleSubmit(onDataSubmit)}
@@ -386,11 +399,6 @@ const AddPetPage = () => {
         {serverError && (
           <p className={styles.error} role="alert">
             {t('errors.serverError')}
-          </p>
-        )}
-        {saved && (
-          <p className={styles.success} role="status">
-            {t('shelter.pages.addPet.saved')}
           </p>
         )}
       </form>

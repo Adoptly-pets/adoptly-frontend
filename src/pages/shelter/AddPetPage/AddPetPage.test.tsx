@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react';
+import { act, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import AddPetPage from './AddPetPage';
@@ -460,6 +460,58 @@ describe('AddPetPage', () => {
       await submit();
 
       expect(getSubmitButton()).toBeDisabled();
+    });
+  });
+
+  describe('after saving', () => {
+    const SAVED = 'shelter.pages.addPet.saved';
+
+    beforeEach(() => {
+      // Real timers keep running so userEvent doesn't hang
+      jest.useFakeTimers({ advanceTimers: true });
+    });
+
+    afterEach(() => {
+      jest.useRealTimers();
+    });
+
+    test('shows the saved message, clears the form and focuses the name', async () => {
+      renderPage();
+
+      await fillRequiredFields();
+      await submit();
+
+      // Focus is set in an effect after the save
+      await waitFor(() => expect(getNameInput()).toHaveFocus());
+      expect(screen.getByRole('status')).toHaveTextContent(SAVED);
+      expect(getNameInput()).toHaveValue('');
+    });
+
+    test('hides the saved message after 3 seconds', async () => {
+      renderPage();
+
+      await fillRequiredFields();
+      await submit();
+      // The effect that starts the timer has run once the name is focused
+      await waitFor(() => expect(getNameInput()).toHaveFocus());
+      expect(screen.getByRole('status')).toHaveTextContent(SAVED);
+
+      act(() => {
+        jest.advanceTimersByTime(3000);
+      });
+
+      expect(screen.getByRole('status')).toBeEmptyDOMElement();
+    });
+
+    test('shows no saved message when saving fails', async () => {
+      mockCreatePet.mockRejectedValueOnce(new Error('Network error'));
+      renderPage();
+
+      await fillRequiredFields();
+      await submit();
+
+      expect(await screen.findByRole('alert')).toBeInTheDocument();
+      expect(screen.getByRole('status')).toBeEmptyDOMElement();
     });
   });
 });
