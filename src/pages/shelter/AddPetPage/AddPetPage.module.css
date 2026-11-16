@@ -121,6 +121,12 @@
   font-size: 12px;
 }
 
+.success {
+  color: var(--color-success);
+  font-weight: 600;
+  text-align: center;
+}
+
 .toggle {
   align-self: flex-start;
   display: inline-flex;

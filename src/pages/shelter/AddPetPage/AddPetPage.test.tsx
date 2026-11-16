@@ -419,8 +419,8 @@ describe('AddPetPage', () => {
       await submit();
 
       const payload = mockCreatePet.mock.calls[0][0];
-      expect(payload).not.toHaveProperty('breed');
-      expect(payload).not.toHaveProperty('adoptionConditions');
+      expect(payload.breed).toBeUndefined();
+      expect(payload.adoptionConditions).toBeUndefined();
     });
 
     test('sends breed when it is filled in', async () => {

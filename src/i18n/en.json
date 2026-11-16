@@ -395,6 +395,7 @@
         },
         "counter": "Characters left: {{count}}",
         "submit": "Save card",
+        "saved": "Card saved",
         "errors": {
           "nameRequired": "Enter the pet's name",
           "speciesRequired": "Select species",

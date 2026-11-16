@@ -31,6 +31,7 @@ const MONTHS = Array.from({ length: 12 }, (_, i) => i + 1);
 const AddPetPage = () => {
   const { t, i18n } = useTranslation();
   const [serverError, setServerError] = useState(false);
+  const [saved, setSaved] = useState(false);
   // Month names come from the browser in the current language
   const monthFormat = new Intl.DateTimeFormat(i18n.language, {
     month: 'long',
@@ -44,6 +45,7 @@ const AddPetPage = () => {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<AddPetFormData>({
     defaultValues: {
@@ -75,6 +77,7 @@ const AddPetPage = () => {
 
   const onDataSubmit = async (data: AddPetFormData) => {
     setServerError(false);
+    setSaved(false);
     const { ageValue, ageUnit, ...rest } = data;
     try {
       await createPet({
@@ -83,6 +86,8 @@ const AddPetPage = () => {
         gender: rest.gender as Gender,
         ...ageToBirthDate(ageValue, ageUnit),
       });
+      reset();
+      setSaved(true);
     } catch {
       setServerError(true);
     }
@@ -297,7 +302,9 @@ const AddPetPage = () => {
               type="text"
               id="breed"
               placeholder={t('shelter.pages.addPet.placeholders.breed')}
-              {...register('breed')}
+              {...register('breed', {
+                setValueAs: value => value.trim() || undefined,
+              })}
             />
           </div>
           <fieldset className={styles.petArrival}>
@@ -360,7 +367,9 @@ const AddPetPage = () => {
             placeholder={t(
               'shelter.pages.addPet.placeholders.adoptionConditions'
             )}
-            {...register('adoptionConditions')}
+            {...register('adoptionConditions', {
+              setValueAs: value => value.trim() || undefined,
+            })}
           />
         </div>
         <div className={styles.saveCard}>
@@ -377,6 +386,11 @@ const AddPetPage = () => {
         {serverError && (
           <p className={styles.error} role="alert">
             {t('errors.serverError')}
+          </p>
+        )}
+        {saved && (
+          <p className={styles.success} role="status">
+            {t('shelter.pages.addPet.saved')}
           </p>
         )}
       </form>
