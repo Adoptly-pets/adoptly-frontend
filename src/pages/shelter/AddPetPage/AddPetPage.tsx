@@ -5,6 +5,9 @@ import { langLink } from '../../../utils/routing';
 import Button from '../../../components/Button/Button';
 import { useForm } from 'react-hook-form';
 import { Gender, Species, AgeUnit, Size } from '../../../types/pet';
+import { useState } from 'react';
+import { ageToBirthDate } from '../../../utils/ageToBirthDate';
+import { createPet } from '../../../services/pets';
 
 type AddPetFormData = {
   name: string;
@@ -27,6 +30,7 @@ const MONTHS = Array.from({ length: 12 }, (_, i) => i + 1);
 
 const AddPetPage = () => {
   const { t, i18n } = useTranslation();
+  const [serverError, setServerError] = useState(false);
   // Month names come from the browser in the current language
   const monthFormat = new Intl.DateTimeFormat(i18n.language, {
     month: 'long',
@@ -40,7 +44,7 @@ const AddPetPage = () => {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<AddPetFormData>({
     defaultValues: {
       name: '',
@@ -69,8 +73,19 @@ const AddPetPage = () => {
     return true;
   };
 
-  const onDataSubmit = (data: AddPetFormData) => {
-    console.log(data);
+  const onDataSubmit = async (data: AddPetFormData) => {
+    setServerError(false);
+    const { ageValue, ageUnit, ...rest } = data;
+    try {
+      await createPet({
+        ...rest,
+        species: rest.species as Species,
+        gender: rest.gender as Gender,
+        ...ageToBirthDate(ageValue, ageUnit),
+      });
+    } catch {
+      setServerError(true);
+    }
   };
 
   return (
@@ -349,10 +364,19 @@ const AddPetPage = () => {
           />
         </div>
         <div className={styles.saveCard}>
-          <Button variant="primary" maxWidth={250} height={50} type="submit">
+          <Button
+            variant="primary"
+            maxWidth={250}
+            height={50}
+            type="submit"
+            disabled={isSubmitting}
+          >
             {t('shelter.pages.addPet.submit')}
           </Button>
         </div>
+        {serverError && (
+          <p className={styles.error}>{t('errors.serverError')}</p>
+        )}
       </form>
     </div>
   );

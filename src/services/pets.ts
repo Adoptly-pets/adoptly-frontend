@@ -25,5 +25,5 @@ export const getPetById = async (id: number): Promise<Pet | null> => {
 //TODO: Replace with actual API calls when backend is ready
 export const createPet = async (payload: CreatePetPayload): Promise<void> => {
   await new Promise(resolve => setTimeout(resolve, 1200));
-  console.log('createPet: ', payload);
+  console.log('createPet (mock): ', payload);
 };

@@ -2,6 +2,10 @@ import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import AddPetPage from './AddPetPage';
+import { createPet } from '../../../services/pets';
+
+jest.mock('../../../services/pets');
+const mockCreatePet = createPet as jest.MockedFunction<typeof createPet>;
 
 // Appends count so the description counter can be asserted
 jest.mock('react-i18next', () => ({
@@ -85,6 +89,10 @@ const ARRIVAL_INCOMPLETE = 'shelter.pages.addPet.errors.arrivalIncomplete';
 const ARRIVAL_FUTURE = 'shelter.pages.addPet.errors.arrivalFuture';
 
 describe('AddPetPage', () => {
+  beforeEach(() => {
+    mockCreatePet.mockClear();
+  });
+
   test('fields are reachable by their labels', () => {
     renderPage();
 
@@ -227,8 +235,6 @@ describe('AddPetPage', () => {
     });
 
     test('switching to Cat drops the size from submitted data', async () => {
-      // Submit currently logs the data; switch to the createPet mock later
-      const log = jest.spyOn(console, 'log').mockImplementation(() => {});
       renderPage();
 
       await userEvent.type(getNameInput(), 'Murka');
@@ -245,9 +251,8 @@ describe('AddPetPage', () => {
       await submit();
 
       expect(querySizeSelect()).not.toBeInTheDocument();
-      expect(log).toHaveBeenCalledTimes(1);
-      expect(log.mock.calls[0][0]).not.toHaveProperty('size');
-      log.mockRestore();
+      expect(mockCreatePet).toHaveBeenCalledTimes(1);
+      expect(mockCreatePet.mock.calls[0][0]).not.toHaveProperty('size');
     });
   });
 
@@ -298,7 +303,6 @@ describe('AddPetPage', () => {
       ['untouched', false, 0],
       ['turned on', true, 1],
     ])('submits %s switch as %s', async (_, expected, clicks) => {
-      const log = jest.spyOn(console, 'log').mockImplementation(() => {});
       renderPage();
 
       await fillRequiredFields();
@@ -307,11 +311,10 @@ describe('AddPetPage', () => {
       }
       await submit();
 
-      expect(log).toHaveBeenCalledTimes(1);
-      expect(log.mock.calls[0][0]).toMatchObject({
+      expect(mockCreatePet).toHaveBeenCalledTimes(1);
+      expect(mockCreatePet.mock.calls[0][0]).toMatchObject({
         spayedNeutered: expected,
       });
-      log.mockRestore();
     });
   });
 
@@ -375,7 +378,6 @@ describe('AddPetPage', () => {
     });
 
     test('current month submits arrival as numbers', async () => {
-      const log = jest.spyOn(console, 'log').mockImplementation(() => {});
       renderPage();
 
       await fillRequiredFields();
@@ -383,12 +385,11 @@ describe('AddPetPage', () => {
       await userEvent.selectOptions(getArrivalYear(), '2026');
       await submit();
 
-      expect(log).toHaveBeenCalledTimes(1);
-      expect(log.mock.calls[0][0]).toMatchObject({
+      expect(mockCreatePet).toHaveBeenCalledTimes(1);
+      expect(mockCreatePet.mock.calls[0][0]).toMatchObject({
         arrivalMonth: 11,
         arrivalYear: 2026,
       });
-      log.mockRestore();
     });
   });
 });
