@@ -412,8 +412,8 @@
             "CAT": "Cat"
           },
           "gender": {
-            "MALE": "Male",
-            "FEMALE": "Female"
+            "MALE": "Boy",
+            "FEMALE": "Girl"
           },
           "ageUnit": {
             "MONTHS_one": "month",

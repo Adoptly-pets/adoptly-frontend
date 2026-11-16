@@ -414,8 +414,8 @@
             "CAT": "Кіт"
           },
           "gender": {
-            "MALE": "Самець",
-            "FEMALE": "Самка"
+            "MALE": "Хлопчик",
+            "FEMALE": "Дівчинка"
           },
           "ageUnit": {
             "MONTHS_one": "місяць",
