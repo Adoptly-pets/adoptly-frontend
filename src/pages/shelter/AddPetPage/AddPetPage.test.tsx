@@ -282,6 +282,39 @@ describe('AddPetPage', () => {
     ).toBeInTheDocument();
   });
 
+  describe('spayed/neutered switch', () => {
+    const getSwitch = () =>
+      screen.getByRole('switch', {
+        name: 'shelter.pages.addPet.fields.spayedNeutered',
+      });
+
+    test('is off by default', () => {
+      renderPage();
+
+      expect(getSwitch()).not.toBeChecked();
+    });
+
+    test.each([
+      ['untouched', false, 0],
+      ['turned on', true, 1],
+    ])('submits %s switch as %s', async (_, expected, clicks) => {
+      const log = jest.spyOn(console, 'log').mockImplementation(() => {});
+      renderPage();
+
+      await fillRequiredFields();
+      for (let i = 0; i < clicks; i++) {
+        await userEvent.click(getSwitch());
+      }
+      await submit();
+
+      expect(log).toHaveBeenCalledTimes(1);
+      expect(log.mock.calls[0][0]).toMatchObject({
+        spayedNeutered: expected,
+      });
+      log.mockRestore();
+    });
+  });
+
   describe('arrival date', () => {
     beforeEach(() => {
       // Real timers keep running so userEvent doesn't hang
