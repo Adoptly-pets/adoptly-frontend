@@ -201,6 +201,41 @@ describe('AddPetPage', () => {
       ).toBeInTheDocument();
     });
 
+    test('name of only spaces shows the required error', async () => {
+      renderPage();
+
+      await userEvent.type(getNameInput(), '   ');
+      await submit();
+
+      expect(
+        await screen.findByText('shelter.pages.addPet.errors.nameRequired')
+      ).toBeInTheDocument();
+    });
+
+    test('name of 1 character with spaces shows the length error', async () => {
+      renderPage();
+
+      await userEvent.type(getNameInput(), ' R ');
+      await submit();
+
+      expect(
+        await screen.findByText('shelter.pages.addPet.errors.nameTooShort')
+      ).toBeInTheDocument();
+    });
+
+    test('description of only spaces shows the required error', async () => {
+      renderPage();
+
+      await userEvent.type(getDescription(), '   ');
+      await submit();
+
+      expect(
+        await screen.findByText(
+          'shelter.pages.addPet.errors.descriptionRequired'
+        )
+      ).toBeInTheDocument();
+    });
+
     test('text fields limit their length', () => {
       renderPage();
 
@@ -487,6 +522,20 @@ describe('AddPetPage', () => {
       expect(payload).not.toHaveProperty('ageValue');
       expect(payload).not.toHaveProperty('ageUnit');
       jest.useRealTimers();
+    });
+
+    test('sends name and description without outer spaces', async () => {
+      renderPage();
+
+      await fillRequiredFields();
+      await userEvent.type(getNameInput(), '  ');
+      await userEvent.type(getDescription(), '  ');
+      await submit();
+
+      expect(mockCreatePet.mock.calls[0][0]).toMatchObject({
+        name: 'Murka',
+        description: 'Calm cat',
+      });
     });
 
     test('leaves out empty breed and adoption conditions', async () => {

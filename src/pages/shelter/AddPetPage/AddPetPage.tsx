@@ -147,6 +147,7 @@ const AddPetPage = () => {
             maxLength={NAME_MAX}
             aria-invalid={!!errors.name}
             {...register('name', {
+              setValueAs: value => value.trim(),
               required: t('shelter.pages.addPet.errors.nameRequired'),
               minLength: {
                 value: NAME_MIN,
@@ -305,7 +306,10 @@ const AddPetPage = () => {
             maxLength={DESCRIPTION_MAX}
             rows={5}
             aria-invalid={!!errors.description}
-            {...register('description', { required: true })}
+            {...register('description', {
+              setValueAs: value => value.trim(),
+              required: true,
+            })}
           />
           <div className={styles.descriptionFooter}>
             {errors.description && (
