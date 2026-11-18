@@ -564,7 +564,7 @@ describe('AddPetPage', () => {
       expect(getNameInput()).toHaveValue('');
     });
 
-    test('hides the saved message after 3 seconds', async () => {
+    test('hides the saved message after 5 seconds', async () => {
       renderPage();
 
       await fillRequiredFields();
@@ -574,7 +574,7 @@ describe('AddPetPage', () => {
       expect(screen.getByRole('status')).toHaveTextContent(SAVED);
 
       act(() => {
-        jest.advanceTimersByTime(3000);
+        jest.advanceTimersByTime(5000);
       });
 
       expect(screen.getByRole('status')).toBeEmptyDOMElement();
