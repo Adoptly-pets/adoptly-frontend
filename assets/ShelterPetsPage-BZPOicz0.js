@@ -1,0 +1,1 @@
+import{u as s,j as e,B as a,l as r}from"./index-BeR_ZSAN.js";const l=()=>{const{t}=s();return e.jsxs("div",{children:[e.jsx("h1",{children:t("shelter.pages.pets.title")}),e.jsx(a,{to:r("/shelter/pets/new"),maxWidth:"200px",height:"45px",children:t("shelter.pages.pets.addPet")})]})};export{l as default};
