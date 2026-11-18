@@ -190,15 +190,92 @@ describe('AddPetPage', () => {
       }
     });
 
-    test('age of 0 shows the age error', async () => {
+    test('name shorter than 2 characters shows an error', async () => {
       renderPage();
 
-      await userEvent.type(getAgeInput(), '0');
+      await userEvent.type(getNameInput(), 'R');
       await submit();
 
       expect(
-        await screen.findByText('shelter.pages.addPet.errors.ageRequired')
+        await screen.findByText('shelter.pages.addPet.errors.nameTooShort')
       ).toBeInTheDocument();
+    });
+
+    test('text fields limit their length', () => {
+      renderPage();
+
+      expect(getNameInput()).toHaveAttribute('maxLength', '100');
+      expect(getDescription()).toHaveAttribute('maxLength', '2000');
+      expect(
+        screen.getByLabelText('shelter.pages.addPet.fields.breed')
+      ).toHaveAttribute('maxLength', '100');
+      expect(
+        screen.getByLabelText('shelter.pages.addPet.fields.adoptionConditions')
+      ).toHaveAttribute('maxLength', '1000');
+    });
+
+    test.each([
+      ['0', 'YEARS', 'ageYearsRange'],
+      ['31', 'YEARS', 'ageYearsRange'],
+      ['12', 'MONTHS', 'ageMonthsRange'],
+    ])('age %s %s shows the range error', async (age, unit, error) => {
+      renderPage();
+
+      await userEvent.type(getAgeInput(), age);
+      await userEvent.selectOptions(
+        screen.getByLabelText('shelter.pages.addPet.fields.ageUnit'),
+        unit
+      );
+      await submit();
+
+      expect(
+        await screen.findByText(`shelter.pages.addPet.errors.${error}`)
+      ).toBeInTheDocument();
+    });
+
+    test.each([
+      ['1', 'YEARS'],
+      ['30', 'YEARS'],
+      ['0', 'MONTHS'],
+      ['11', 'MONTHS'],
+    ])('age %s %s is accepted', async (age, unit) => {
+      renderPage();
+      await fillRequiredFields();
+
+      await userEvent.clear(getAgeInput());
+      await userEvent.type(getAgeInput(), age);
+      await userEvent.selectOptions(
+        screen.getByLabelText('shelter.pages.addPet.fields.ageUnit'),
+        unit
+      );
+      await submit();
+
+      await waitFor(() => expect(mockCreatePet).toHaveBeenCalled());
+    });
+
+    test('changing the unit re-checks the age after submit', async () => {
+      renderPage();
+      await userEvent.type(getAgeInput(), '20');
+      await userEvent.selectOptions(
+        screen.getByLabelText('shelter.pages.addPet.fields.ageUnit'),
+        'MONTHS'
+      );
+      await submit();
+      expect(
+        await screen.findByText('shelter.pages.addPet.errors.ageMonthsRange')
+      ).toBeInTheDocument();
+
+      await userEvent.selectOptions(
+        screen.getByLabelText('shelter.pages.addPet.fields.ageUnit'),
+        'YEARS'
+      );
+
+      await waitFor(() =>
+        expect(
+          screen.queryByText('shelter.pages.addPet.errors.ageMonthsRange')
+        ).not.toBeInTheDocument()
+      );
+      expect(getAgeInput()).toHaveAttribute('aria-invalid', 'false');
     });
   });
 
@@ -277,13 +354,13 @@ describe('AddPetPage', () => {
     renderPage();
 
     expect(
-      screen.getByText('shelter.pages.addPet.counter:1500')
+      screen.getByText('shelter.pages.addPet.counter:2000')
     ).toBeInTheDocument();
 
     await userEvent.type(getDescription(), 'Rex');
 
     expect(
-      screen.getByText('shelter.pages.addPet.counter:1497')
+      screen.getByText('shelter.pages.addPet.counter:1997')
     ).toBeInTheDocument();
   });
 

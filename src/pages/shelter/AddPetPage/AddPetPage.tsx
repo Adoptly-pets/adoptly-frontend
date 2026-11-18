@@ -24,7 +24,11 @@ type AddPetFormData = {
   adoptionConditions?: string;
 };
 
-const DESCRIPTION_MAX = 1500;
+const NAME_MIN = 2;
+const NAME_MAX = 100;
+const DESCRIPTION_MAX = 2000;
+const BREED_MAX = 100;
+const CONDITIONS_MAX = 1000;
 const ARRIVAL_YEARS_BACK = 30;
 const MONTHS = Array.from({ length: 12 }, (_, i) => i + 1);
 
@@ -67,7 +71,7 @@ const AddPetPage = () => {
   useEffect(() => {
     if (!saved) return;
     setFocus('name');
-    const timer = setTimeout(() => setSaved(false), 4000);
+    const timer = setTimeout(() => setSaved(false), 5000);
     return () => clearTimeout(timer);
   }, [saved, setFocus]);
 
@@ -81,6 +85,18 @@ const AddPetPage = () => {
     if (arrivalYear === now.getFullYear() && arrivalMonth! > now.getMonth() + 1)
       return t('shelter.pages.addPet.errors.arrivalFuture');
     return true;
+  };
+
+  const validateAge = (ageValue: number, { ageUnit }: AddPetFormData) => {
+    if (ageUnit === 'MONTHS')
+      return (
+        (ageValue >= 0 && ageValue <= 11) ||
+        t('shelter.pages.addPet.errors.ageMonthsRange')
+      );
+    return (
+      (ageValue >= 1 && ageValue <= 30) ||
+      t('shelter.pages.addPet.errors.ageYearsRange')
+    );
   };
 
   const onDataSubmit = async (data: AddPetFormData) => {
@@ -128,13 +144,18 @@ const AddPetPage = () => {
             type="text"
             id="petName"
             placeholder={t('shelter.pages.addPet.placeholders.name')}
+            maxLength={NAME_MAX}
             aria-invalid={!!errors.name}
-            {...register('name', { required: true })}
+            {...register('name', {
+              required: t('shelter.pages.addPet.errors.nameRequired'),
+              minLength: {
+                value: NAME_MIN,
+                message: t('shelter.pages.addPet.errors.nameTooShort'),
+              },
+            })}
           />
           {errors.name && (
-            <span className={styles.error}>
-              {t('shelter.pages.addPet.errors.nameRequired')}
-            </span>
+            <span className={styles.error}>{errors.name.message}</span>
           )}
         </div>
         <div className={styles.row}>
@@ -210,12 +231,12 @@ const AddPetPage = () => {
                 aria-invalid={!!errors.ageValue}
                 {...register('ageValue', {
                   valueAsNumber: true,
-                  required: true,
-                  min: 1,
+                  required: t('shelter.pages.addPet.errors.ageRequired'),
+                  validate: validateAge,
                 })}
               />
               <select
-                {...register('ageUnit')}
+                {...register('ageUnit', { deps: 'ageValue' })}
                 aria-label={t('shelter.pages.addPet.fields.ageUnit')}
               >
                 <option value="MONTHS">
@@ -231,9 +252,7 @@ const AddPetPage = () => {
               </select>
             </div>
             {errors.ageValue && (
-              <span className={styles.error}>
-                {t('shelter.pages.addPet.errors.ageRequired')}
-              </span>
+              <span className={styles.error}>{errors.ageValue.message}</span>
             )}
           </div>
           {species === 'DOG' && (
@@ -315,6 +334,7 @@ const AddPetPage = () => {
               type="text"
               id="breed"
               placeholder={t('shelter.pages.addPet.placeholders.breed')}
+              maxLength={BREED_MAX}
               {...register('breed', {
                 setValueAs: value => value.trim() || undefined,
               })}
@@ -380,6 +400,7 @@ const AddPetPage = () => {
             placeholder={t(
               'shelter.pages.addPet.placeholders.adoptionConditions'
             )}
+            maxLength={CONDITIONS_MAX}
             {...register('adoptionConditions', {
               setValueAs: value => value.trim() || undefined,
             })}

@@ -400,10 +400,13 @@
         "saved": "Картку збережено",
         "errors": {
           "nameRequired": "Введіть ім'я тварини",
+          "nameTooShort": "Ім'я має містити щонайменше 2 символи",
           "speciesRequired": "Оберіть вид тварини",
           "genderRequired": "Оберіть стать",
           "descriptionRequired": "Опишіть тварину",
           "ageRequired": "Вкажіть вік",
+          "ageYearsRange": "Вкажіть вік від 1 до 30 років",
+          "ageMonthsRange": "Вкажіть вік від 0 до 11 місяців",
           "sizeRequired": "Виберіть розмір собаки",
           "arrivalIncomplete": "Вкажіть і місяць, і рік",
           "arrivalFuture": "Дата не може бути в майбутньому"
