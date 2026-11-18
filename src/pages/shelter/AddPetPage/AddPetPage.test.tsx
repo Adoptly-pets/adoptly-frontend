@@ -255,6 +255,8 @@ describe('AddPetPage', () => {
       ['0', 'YEARS', 'ageYearsRange'],
       ['31', 'YEARS', 'ageYearsRange'],
       ['12', 'MONTHS', 'ageMonthsRange'],
+      ['1.5', 'YEARS', 'ageYearsRange'],
+      ['2.5', 'MONTHS', 'ageMonthsRange'],
     ])('age %s %s shows the range error', async (age, unit, error) => {
       renderPage();
 

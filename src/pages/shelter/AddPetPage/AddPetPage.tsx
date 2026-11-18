@@ -90,11 +90,11 @@ const AddPetPage = () => {
   const validateAge = (ageValue: number, { ageUnit }: AddPetFormData) => {
     if (ageUnit === 'MONTHS')
       return (
-        (ageValue >= 0 && ageValue <= 11) ||
+        (Number.isInteger(ageValue) && ageValue >= 0 && ageValue <= 11) ||
         t('shelter.pages.addPet.errors.ageMonthsRange')
       );
     return (
-      (ageValue >= 1 && ageValue <= 30) ||
+      (Number.isInteger(ageValue) && ageValue >= 1 && ageValue <= 30) ||
       t('shelter.pages.addPet.errors.ageYearsRange')
     );
   };
