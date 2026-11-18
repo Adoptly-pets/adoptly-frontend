@@ -17,7 +17,7 @@ type AddPetFormData = {
   ageUnit: AgeUnit;
   size?: Size;
   description: string;
-  spayedNeutered: boolean;
+  isSterilized: boolean;
   breed?: string;
   arrivalMonth?: number;
   arrivalYear?: number;
@@ -59,7 +59,7 @@ const AddPetPage = () => {
       gender: '',
       description: '',
       ageUnit: 'YEARS',
-      spayedNeutered: false,
+      isSterilized: false,
     },
   });
 
@@ -294,7 +294,7 @@ const AddPetPage = () => {
           <input
             type="checkbox"
             role="switch"
-            {...register('spayedNeutered')}
+            {...register('isSterilized')}
           />
           {t('shelter.pages.addPet.fields.spayedNeutered')}
         </label>

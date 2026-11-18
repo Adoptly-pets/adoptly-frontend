@@ -9,7 +9,7 @@ export type CreatePetPayload = {
   birthYear: number;
   birthMonth: number;
   description: string;
-  spayedNeutered: boolean;
+  isSterilized: boolean;
   breed?: string;
   adoptionConditions?: string;
   arrivalYear?: number;

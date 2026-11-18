@@ -390,7 +390,7 @@ describe('AddPetPage', () => {
 
       expect(mockCreatePet).toHaveBeenCalledTimes(1);
       expect(mockCreatePet.mock.calls[0][0]).toMatchObject({
-        spayedNeutered: expected,
+        isSterilized: expected,
       });
     });
   });
