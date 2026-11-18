@@ -291,11 +291,7 @@ const AddPetPage = () => {
           )}
         </div>
         <label className={styles.toggle}>
-          <input
-            type="checkbox"
-            role="switch"
-            {...register('isSterilized')}
-          />
+          <input type="checkbox" role="switch" {...register('isSterilized')} />
           {t('shelter.pages.addPet.fields.spayedNeutered')}
         </label>
         <div className={styles.petDescription}>
