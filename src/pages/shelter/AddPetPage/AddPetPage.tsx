@@ -35,7 +35,7 @@ const MONTHS = Array.from({ length: 12 }, (_, i) => i + 1);
 const AddPetPage = () => {
   const { t, i18n } = useTranslation();
   const [serverError, setServerError] = useState(false);
-  const [saved, setSaved] = useState(false);
+  const [savedName, setSavedName] = useState<string | null>(null);
   // Month names come from the browser in the current language
   const monthFormat = new Intl.DateTimeFormat(i18n.language, {
     month: 'long',
@@ -69,11 +69,11 @@ const AddPetPage = () => {
   const species = watch('species');
 
   useEffect(() => {
-    if (!saved) return;
+    if (!savedName) return;
     setFocus('name');
-    const timer = setTimeout(() => setSaved(false), 5000);
+    const timer = setTimeout(() => setSavedName(null), 5000);
     return () => clearTimeout(timer);
-  }, [saved, setFocus]);
+  }, [savedName, setFocus]);
 
   const validateArrival = (
     _: unknown,
@@ -101,7 +101,7 @@ const AddPetPage = () => {
 
   const onDataSubmit = async (data: AddPetFormData) => {
     setServerError(false);
-    setSaved(false);
+    setSavedName(null);
     const { ageValue, ageUnit, ...rest } = data;
     try {
       await createPet({
@@ -110,7 +110,7 @@ const AddPetPage = () => {
         gender: rest.gender as Gender,
         ...ageToBirthDate(ageValue, ageUnit),
       });
-      setSaved(true);
+      setSavedName(data.name);
       reset();
     } catch {
       setServerError(true);
@@ -127,7 +127,7 @@ const AddPetPage = () => {
       </div>
 
       <p className={styles.success} role="status">
-        {saved ? t('shelter.pages.addPet.saved') : ''}
+        {savedName ? t('shelter.pages.addPet.saved', { name: savedName }) : ''}
       </p>
 
       <form

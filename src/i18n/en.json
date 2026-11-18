@@ -395,7 +395,7 @@
         },
         "counter": "Characters left: {{count}}",
         "submit": "Save card",
-        "saved": "Card saved",
+        "saved": "Card “{{name}}” saved",
         "errors": {
           "nameRequired": "Enter the pet's name",
           "nameTooShort": "The name must be at least 2 characters",

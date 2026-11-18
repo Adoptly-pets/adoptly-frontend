@@ -7,11 +7,13 @@ import { createPet } from '../../../services/pets';
 jest.mock('../../../services/pets');
 const mockCreatePet = createPet as jest.MockedFunction<typeof createPet>;
 
-// Appends count so the description counter can be asserted
+// Appends count or name so the counter and saved message can be asserted
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
-    t: (key: string, options?: { count?: number }) =>
-      options?.count === undefined ? key : `${key}:${options.count}`,
+    t: (key: string, options?: { count?: number; name?: string }) => {
+      const value = options?.count ?? options?.name;
+      return value === undefined ? key : `${key}:${value}`;
+    },
     i18n: { language: 'uk', changeLanguage: jest.fn() },
   }),
 }));
@@ -590,7 +592,7 @@ describe('AddPetPage', () => {
   });
 
   describe('after saving', () => {
-    const SAVED = 'shelter.pages.addPet.saved';
+    const SAVED = 'shelter.pages.addPet.saved:Murka';
 
     beforeEach(() => {
       // Real timers keep running so userEvent doesn't hang
