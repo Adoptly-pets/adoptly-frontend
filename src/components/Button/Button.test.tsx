@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import Button from './Button';
 
 describe('Button Component', () => {
@@ -106,6 +107,23 @@ describe('Button Component', () => {
       render(<Button>Click me</Button>);
       const button = screen.getByText('Click me');
       expect(button.style.getPropertyValue('--btn-height')).toBe('');
+    });
+  });
+
+  describe('to prop', () => {
+    test('renders a link with href and button classes', () => {
+      render(
+        <MemoryRouter>
+          <Button to="/uk/shelter/pets/new" variant="secondary" height={64}>
+            Add pet
+          </Button>
+        </MemoryRouter>
+      );
+      const link = screen.getByRole('link', { name: 'Add pet' });
+      expect(link).toHaveAttribute('href', '/uk/shelter/pets/new');
+      expect(link.className).toBe('button button--secondary');
+      expect(link.style.getPropertyValue('--btn-height')).toBe('64px');
+      expect(screen.queryByRole('button')).not.toBeInTheDocument();
     });
   });
 });

@@ -363,7 +363,73 @@
         "sentMessage": "Your profile has been sent to the Adoptly team for review."
       },
       "pets": {
-        "title": "Animal Cards"
+        "title": "Animal Cards",
+        "addPet": "Add pet"
+      },
+      "addPet": {
+        "title": "Add pet",
+        "backToList": "Back to list",
+        "fields": {
+          "name": "Pet name",
+          "species": "Species",
+          "gender": "Gender",
+          "age": "Age (approx.)",
+          "ageUnit": "Age unit",
+          "size": "Size",
+          "breed": "Breed",
+          "arrival": "Date of arrival at the shelter",
+          "arrivalMonth": "Month",
+          "arrivalYear": "Year",
+          "adoptionConditions": "Special adoption conditions",
+          "description": "Description",
+          "spayedNeutered": "Spayed / neutered"
+        },
+        "placeholders": {
+          "name": "Enter name",
+          "species": "Select species",
+          "size": "Select size",
+          "breed": "Enter the breed or leave blank",
+          "adoptionConditions": "For example: flat only, no small children",
+          "age": "Age",
+          "description": "Personality, activity level, attitude to children and other animals, health, care needs and other important details"
+        },
+        "counter": "Characters left: {{count}}",
+        "submit": "Save card",
+        "saved": "Card “{{name}}” saved",
+        "errors": {
+          "nameRequired": "Enter the pet's name",
+          "nameTooShort": "The name must be at least 2 characters",
+          "speciesRequired": "Select species",
+          "genderRequired": "Select gender",
+          "descriptionRequired": "Describe the pet",
+          "ageRequired": "Enter the age",
+          "ageYearsRange": "Enter an age from 1 to 30 years",
+          "ageMonthsRange": "Enter an age from 0 to 11 months",
+          "sizeRequired": "Select the dog's size",
+          "arrivalIncomplete": "Select both the month and the year",
+          "arrivalFuture": "The date can't be in the future"
+        },
+        "options": {
+          "species": {
+            "DOG": "Dog",
+            "CAT": "Cat"
+          },
+          "gender": {
+            "MALE": "Boy",
+            "FEMALE": "Girl"
+          },
+          "ageUnit": {
+            "MONTHS_one": "month",
+            "MONTHS_other": "months",
+            "YEARS_one": "year",
+            "YEARS_other": "years"
+          },
+          "size": {
+            "SMALL": "Small (up to 10 kg)",
+            "MEDIUM": "Medium (10–25 kg)",
+            "LARGE": "Large (over 25 kg)"
+          }
+        }
       },
       "applications": {
         "title": "Adoption Applications"

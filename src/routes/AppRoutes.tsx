@@ -25,6 +25,8 @@ const ShelterPetsPage = lazy(
   () => import('../pages/shelter/ShelterPetsPage/ShelterPetsPage')
 );
 
+const AddPetPage = lazy(() => import('../pages/shelter/AddPetPage/AddPetPage'));
+
 const ShelterApplicationsPage = lazy(
   () =>
     import('../pages/shelter/ShelterApplicationsPage/ShelterApplicationsPage')
@@ -56,6 +58,7 @@ function AppRoutes() {
           <Route index element={<Navigate to="profile" replace />} />
           <Route path="profile" element={<ShelterProfilePage />} />
           <Route path="pets" element={<ShelterPetsPage />} />
+          <Route path="pets/new" element={<AddPetPage />} />
           <Route path="applications" element={<ShelterApplicationsPage />} />
           <Route path="analytics" element={<ShelterAnalyticsPage />} />
         </Route>
