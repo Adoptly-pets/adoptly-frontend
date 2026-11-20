@@ -62,7 +62,7 @@ const fillForm = (email: string, password: string) => {
   });
 };
 
-const makeLoginResponse = (role: 'ROLE_USER' | 'ROLE_SHELTER_OWNER') => ({
+const makeLoginResponse = (role?: 'ROLE_USER' | 'ROLE_SHELTER_OWNER') => ({
   accessToken: 'token',
   refreshToken: 'refresh',
   expiresIn: 86400000,
@@ -189,6 +189,20 @@ describe('LoginPage', () => {
     await waitFor(() => {
       expect(screen.getByTestId('location').textContent).toBe(
         '/en/shelter/profile'
+      );
+    });
+  });
+
+  test('navigates to choose-role for a user without a role', async () => {
+    mockedLoginUser.mockResolvedValueOnce(makeLoginResponse());
+
+    renderPage();
+    fillForm('new@example.com', 'password123');
+    fireEvent.click(screen.getByText('login.submit'));
+
+    await waitFor(() => {
+      expect(screen.getByTestId('location').textContent).toBe(
+        '/en/choose-role'
       );
     });
   });
