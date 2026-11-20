@@ -1,9 +1,12 @@
 import { Icon } from '../../components/Icon/Icon';
 import { useState } from 'react';
 import styles from './ChooseRolePage.module.css';
+import Button from '../../components/Button/Button';
+import { useAuth } from '../../context/useAuth';
 
 const ChooseRolePage = () => {
   const [role, setRole] = useState<'USER' | 'SHELTER' | null>(null);
+  const { logout } = useAuth();
 
   return (
     <div className={styles.page}>
@@ -53,16 +56,34 @@ const ChooseRolePage = () => {
               <span className={styles.iconBox}>
                 <Icon id="icon-house" className={styles.icon} />
               </span>
-              <span className={styles.optionTitle}>
-                Я представляю притулок{' '}
-              </span>
+              <span className={styles.optionTitle}>Я представляю притулок</span>
               <span>
                 Притулок або волонтерська ініціатива: створіть профіль і
                 додавайте картки тварин.
               </span>
             </label>
           </fieldset>
+          <p className={styles.note}>
+            <Icon id="icon-circle-alert" className={styles.noteIcon} />
+            Змінити роль самостійно пізніше не вийде. Якщо помилились — напишіть
+            нам.
+          </p>
+          <div className={styles.actions}>
+            <Button
+              variant="action"
+              maxWidth={240}
+              height={55}
+              disabled={!role}
+            >
+              Продовжити
+            </Button>
+          </div>
         </form>
+        <div className={styles.actions}>
+          <button type="button" className={styles.logout} onClick={logout}>
+            Вийти з акаунта
+          </button>
+        </div>
       </div>
     </div>
   );
