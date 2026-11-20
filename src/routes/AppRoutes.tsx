@@ -16,6 +16,7 @@ import ResetPasswordPage from '../pages/ResetPasswordPage/ResetPasswordPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import RegisterPage from '../pages/RegisterPage/RegisterPage';
 import AccountPage from '../pages/AccountPage/AccountPage';
+import ChooseRolePage from '../pages/ChooseRolePage/ChooseRolePage';
 
 const ShelterProfilePage = lazy(
   () => import('../pages/shelter/ShelterProfilePage/ShelterProfilePage')
@@ -53,7 +54,7 @@ function AppRoutes() {
         <Route path="reset-password" element={<ResetPasswordPage />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<RegisterPage />} />
-
+        <Route path="choose-role" element={<ChooseRolePage />} />
         <Route path="shelter" element={<ShelterLayout />}>
           <Route index element={<Navigate to="profile" replace />} />
           <Route path="profile" element={<ShelterProfilePage />} />
