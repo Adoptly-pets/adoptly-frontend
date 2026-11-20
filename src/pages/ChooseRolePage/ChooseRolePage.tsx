@@ -17,7 +17,7 @@ const ChooseRolePage = () => {
         <form>
           <fieldset
             className={styles.roleOptions}
-            aria-labelledby="cooseRoleTitle"
+            aria-labelledby="chooseRoleTitle"
           >
             <label className={styles.option}>
               <input
@@ -27,6 +27,9 @@ const ChooseRolePage = () => {
                 checked={role === 'USER'}
                 onChange={() => setRole('USER')}
               />
+              <span className={styles.check}>
+                <Icon id="icon-checkmark" className={styles.checkIcon} />
+              </span>
               <span className={styles.iconBox}>
                 <Icon id="icon-heart-outline" className={styles.icon} />
               </span>
@@ -44,6 +47,9 @@ const ChooseRolePage = () => {
                 checked={role === 'SHELTER'}
                 onChange={() => setRole('SHELTER')}
               />
+              <span className={styles.check}>
+                <Icon id="icon-checkmark" className={styles.checkIcon} />
+              </span>
               <span className={styles.iconBox}>
                 <Icon id="icon-house" className={styles.icon} />
               </span>
