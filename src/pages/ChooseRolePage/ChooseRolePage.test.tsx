@@ -3,6 +3,10 @@ import userEvent from '@testing-library/user-event';
 import ChooseRolePage from './ChooseRolePage';
 import { useAuth } from '../../context/useAuth';
 
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({ t: (key: string) => key }),
+}));
+
 jest.mock('../../components/Icon/Icon', () => ({
   Icon: ({ id, className }: { id: string; className?: string }) => (
     <svg data-testid={id} className={className} />
@@ -14,13 +18,13 @@ const mockUseAuth = useAuth as jest.MockedFunction<typeof useAuth>;
 const mockLogout = jest.fn();
 
 const getAdopterOption = () =>
-  screen.getByRole('radio', { name: /Я хочу взяти тварину/ });
+  screen.getByRole('radio', { name: /chooseRole\.options\.USER\.title/ });
 
 const getShelterOption = () =>
-  screen.getByRole('radio', { name: /Я представляю притулок/ });
+  screen.getByRole('radio', { name: /chooseRole\.options\.SHELTER\.title/ });
 
 const getContinueButton = () =>
-  screen.getByRole('button', { name: 'Продовжити' });
+  screen.getByRole('button', { name: 'chooseRole.continue' });
 
 describe('ChooseRolePage', () => {
   beforeEach(() => {
@@ -43,9 +47,9 @@ describe('ChooseRolePage', () => {
   test('options are grouped under the page heading', () => {
     render(<ChooseRolePage />);
 
-    expect(screen.getByRole('group', { name: /Adoptly/ })).toContainElement(
-      getAdopterOption()
-    );
+    expect(
+      screen.getByRole('group', { name: 'chooseRole.title' })
+    ).toContainElement(getAdopterOption());
   });
 
   test('continue is disabled until a role is chosen', async () => {
@@ -72,7 +76,7 @@ describe('ChooseRolePage', () => {
     render(<ChooseRolePage />);
 
     await userEvent.click(
-      screen.getByRole('button', { name: 'Вийти з акаунта' })
+      screen.getByRole('button', { name: 'chooseRole.logout' })
     );
 
     expect(mockLogout).toHaveBeenCalledTimes(1);

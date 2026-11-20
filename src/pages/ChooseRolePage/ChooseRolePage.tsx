@@ -3,19 +3,21 @@ import { useState } from 'react';
 import styles from './ChooseRolePage.module.css';
 import Button from '../../components/Button/Button';
 import { useAuth } from '../../context/useAuth';
+import { useTranslation } from 'react-i18next';
 
 const ChooseRolePage = () => {
   const [role, setRole] = useState<'USER' | 'SHELTER' | null>(null);
   const { logout } = useAuth();
+  const { t } = useTranslation();
 
   return (
     <div className={styles.page}>
       <div className={styles.card}>
         <div className={styles.header}>
           <h1 className={styles.title} id="chooseRoleTitle">
-            Як ви будете використовувати Adoptly?
+            {t('chooseRole.title')}
           </h1>
-          <p>Оберіть роль, щоб ми відкрили вам потрібний кабінет.</p>
+          <p>{t('chooseRole.subtitle')}</p>
         </div>
         <form>
           <fieldset
@@ -36,11 +38,10 @@ const ChooseRolePage = () => {
               <span className={styles.iconBox}>
                 <Icon id="icon-heart-outline" className={styles.icon} />
               </span>
-              <span className={styles.optionTitle}>Я хочу взяти тварину</span>
-              <span>
-                Переглядайте тварин із притулків і подавайте заявку на
-                усиновлення.
+              <span className={styles.optionTitle}>
+                {t('chooseRole.options.USER.title')}
               </span>
+              <span>{t('chooseRole.options.USER.text')}</span>
             </label>
             <label className={styles.option}>
               <input
@@ -56,17 +57,15 @@ const ChooseRolePage = () => {
               <span className={styles.iconBox}>
                 <Icon id="icon-house" className={styles.icon} />
               </span>
-              <span className={styles.optionTitle}>Я представляю притулок</span>
-              <span>
-                Притулок або волонтерська ініціатива: створіть профіль і
-                додавайте картки тварин.
+              <span className={styles.optionTitle}>
+                {t('chooseRole.options.SHELTER.title')}
               </span>
+              <span>{t('chooseRole.options.SHELTER.text')}</span>
             </label>
           </fieldset>
           <p className={styles.note}>
             <Icon id="icon-circle-alert" className={styles.noteIcon} />
-            Змінити роль самостійно пізніше не вийде. Якщо помилились — напишіть
-            нам.
+            {t('chooseRole.note')}
           </p>
           <div className={styles.actions}>
             <Button
@@ -75,13 +74,13 @@ const ChooseRolePage = () => {
               height={55}
               disabled={!role}
             >
-              Продовжити
+              {t('chooseRole.continue')}
             </Button>
           </div>
         </form>
         <div className={styles.actions}>
           <button type="button" className={styles.logout} onClick={logout}>
-            Вийти з акаунта
+            {t('chooseRole.logout')}
           </button>
         </div>
       </div>
