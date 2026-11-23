@@ -71,51 +71,6 @@
   margin-top: 4px;
 }
 
-.radioGroup {
-  display: flex;
-  gap: 64px;
-}
-
-.radio {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-}
-
-.radio input {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.radioCustom {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 1px solid var(--title-color-dark);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.radio input:checked + .radioCustom::after {
-  content: '';
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: var(--title-color-dark);
-}
-
-.radioLabel {
-  font-family: var(--font-primary);
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--title-color-dark);
-}
-
 .passwordWrapper {
   position: relative;
 }
@@ -185,9 +140,5 @@
 @media (max-width: 767px) {
   .card {
     padding: 32px 12px;
-  }
-
-  .radioGroup {
-    gap: 24px;
   }
 }

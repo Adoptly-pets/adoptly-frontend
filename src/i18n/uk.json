@@ -181,12 +181,9 @@
   },
   "registration": {
     "title": "Реєстрація особистого кабінету",
-    "role_adopter": "Усиновлювач",
-    "role_shelter": "Притулок",
     "email_placeholder": "Введіть адресу електронної пошти",
     "password_label": "Пароль",
     "password_placeholder": "Введіть пароль",
-    "role_required": "Оберіть тип облікового запису",
     "email_required": "Введіть адресу електронної пошти",
     "email_invalid": "Введіть коректну адресу електронної пошти",
     "password_required": "Введіть пароль",

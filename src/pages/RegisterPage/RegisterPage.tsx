@@ -16,7 +16,6 @@ const PasswordStrengthBar = lazy(
 );
 
 type RegistrationFormData = {
-  role: 'adopter' | 'shelter';
   email: string;
   password: string;
 };
@@ -46,7 +45,6 @@ const RegisterPage = () => {
       await registerWithEmail({
         email: data.email,
         password: data.password,
-        role: data.role,
       });
       setSubmittedEmail(data.email);
       setStatus('confirm');
@@ -83,41 +81,6 @@ const RegisterPage = () => {
               onSubmit={handleSubmit(onSubmit)}
               noValidate
             >
-              <div className={styles.field}>
-                <div className={styles.radioGroup}>
-                  <label className={styles.radio}>
-                    <input
-                      type="radio"
-                      value="adopter"
-                      {...register('role', {
-                        required: t('registration.role_required'),
-                      })}
-                    />
-                    <span className={styles.radioCustom} />
-                    <span className={styles.radioLabel}>
-                      {t('registration.role_adopter')}
-                    </span>
-                  </label>
-
-                  <label className={styles.radio}>
-                    <input
-                      type="radio"
-                      value="shelter"
-                      {...register('role', {
-                        required: t('registration.role_required'),
-                      })}
-                    />
-                    <span className={styles.radioCustom} />
-                    <span className={styles.radioLabel}>
-                      {t('registration.role_shelter')}
-                    </span>
-                  </label>
-                </div>
-                {errors.role && (
-                  <span className={styles.error}>{errors.role.message}</span>
-                )}
-              </div>
-
               <div className={styles.field}>
                 <label className={styles.label} htmlFor="reg-email">
                   Email
