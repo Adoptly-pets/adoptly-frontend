@@ -164,7 +164,8 @@
     "required": "This field is required",
     "somethingWentWrong": "Something went wrong",
     "reload": "Reload",
-    "serverError": "Server error. Please try again later."
+    "serverError": "Server error. Please try again later.",
+    "networkError": "Network error. Please check your internet connection and try again."
   },
   "notFoundPage": {
     "button": "Return to Home",
@@ -259,6 +260,23 @@
     "tokenErrorMessage": "This link is invalid or has expired. Please request a new one.",
     "requestNewLink": "Get a new link",
     "submitting": "Saving..."
+  },
+  "chooseRole": {
+    "title": "How will you use Adoptly?",
+    "subtitle": "Choose a role so we can open the right account for you.",
+    "options": {
+      "USER": {
+        "title": "I want to adopt a pet",
+        "text": "Browse pets from shelters and send adoption requests."
+      },
+      "SHELTER": {
+        "title": "I represent a shelter",
+        "text": "A shelter or volunteer initiative: create a profile and add pet cards."
+      }
+    },
+    "note": "You won't be able to change your role yourself later. If you made a mistake, contact us.",
+    "continue": "Continue",
+    "logout": "Log out"
   },
   "petDetail": {
     "shelter": "Shelter",
