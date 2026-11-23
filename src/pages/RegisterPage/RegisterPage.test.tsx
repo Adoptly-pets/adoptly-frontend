@@ -44,8 +44,7 @@ const renderPage = () =>
     </MemoryRouter>
   );
 
-const fillForm = (email: string, password: string, role = 'adopter') => {
-  fireEvent.click(screen.getByText(`registration.role_${role}`));
+const fillForm = (email: string, password: string) => {
   fireEvent.change(
     screen.getByPlaceholderText('registration.email_placeholder'),
     { target: { value: email } }
@@ -67,8 +66,6 @@ describe('RegisterPage', () => {
   test('renders form with all fields and Google button', () => {
     renderPage();
 
-    expect(screen.getByText('registration.role_adopter')).toBeInTheDocument();
-    expect(screen.getByText('registration.role_shelter')).toBeInTheDocument();
     expect(
       screen.getByPlaceholderText('registration.email_placeholder')
     ).toBeInTheDocument();
@@ -84,9 +81,6 @@ describe('RegisterPage', () => {
     fireEvent.click(screen.getByText('registration.submit'));
 
     await waitFor(() => {
-      expect(
-        screen.getByText('registration.role_required')
-      ).toBeInTheDocument();
       expect(
         screen.getByText('registration.email_required')
       ).toBeInTheDocument();
@@ -117,7 +111,6 @@ describe('RegisterPage', () => {
       expect(mockedRegister).toHaveBeenCalledWith({
         email: 'new@example.com',
         password: 'password123',
-        role: 'adopter',
       });
     });
 
