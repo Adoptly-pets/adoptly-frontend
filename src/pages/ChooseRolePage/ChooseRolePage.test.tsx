@@ -1,11 +1,18 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import ChooseRolePage from './ChooseRolePage';
 import { useAuth } from '../../context/useAuth';
 import { chooseRole, LoginResponse } from '../../services/auth';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key: string) => key }),
+}));
+
+// langLink takes the language from the global i18n instance
+jest.mock('i18next', () => ({
+  __esModule: true,
+  default: { language: 'en' },
 }));
 
 jest.mock('../../components/Icon/Icon', () => ({
@@ -19,6 +26,7 @@ jest.mock('../../services/auth');
 const mockChooseRole = chooseRole as jest.MockedFunction<typeof chooseRole>;
 const mockUseAuth = useAuth as jest.MockedFunction<typeof useAuth>;
 const mockLogout = jest.fn();
+const mockLogin = jest.fn();
 
 const getAdopterOption = () =>
   screen.getByRole('radio', { name: /chooseRole\.options\.USER\.title/ });
@@ -28,6 +36,17 @@ const getShelterOption = () =>
 
 const getContinueButton = () =>
   screen.getByRole('button', { name: 'chooseRole.continue' });
+
+const renderPage = () =>
+  render(
+    <MemoryRouter initialEntries={['/en/choose-role']}>
+      <Routes>
+        <Route path="/:lng/choose-role" element={<ChooseRolePage />} />
+        <Route path="/:lng/account" element={<p>account page</p>} />
+        <Route path="/:lng/shelter/profile" element={<p>shelter page</p>} />
+      </Routes>
+    </MemoryRouter>
+  );
 
 const response: LoginResponse = {
   accessToken: 'token',
@@ -47,25 +66,26 @@ const response: LoginResponse = {
 describe('ChooseRolePage', () => {
   beforeEach(() => {
     mockLogout.mockClear();
+    mockLogin.mockClear();
     mockChooseRole.mockReset();
     mockChooseRole.mockResolvedValue(response);
     mockUseAuth.mockReturnValue({
       isAuthenticated: true,
       user: null,
-      login: jest.fn(),
+      login: mockLogin,
       logout: mockLogout,
     });
   });
 
   test('shows both role options, none chosen', () => {
-    render(<ChooseRolePage />);
+    renderPage();
 
     expect(getAdopterOption()).not.toBeChecked();
     expect(getShelterOption()).not.toBeChecked();
   });
 
   test('options are grouped under the page heading', () => {
-    render(<ChooseRolePage />);
+    renderPage();
 
     expect(
       screen.getByRole('group', { name: 'chooseRole.title' })
@@ -73,7 +93,7 @@ describe('ChooseRolePage', () => {
   });
 
   test('continue is disabled until a role is chosen', async () => {
-    render(<ChooseRolePage />);
+    renderPage();
     expect(getContinueButton()).toBeDisabled();
 
     await userEvent.click(getShelterOption());
@@ -83,7 +103,7 @@ describe('ChooseRolePage', () => {
   });
 
   test('choosing another option switches the role', async () => {
-    render(<ChooseRolePage />);
+    renderPage();
 
     await userEvent.click(getShelterOption());
     await userEvent.click(getAdopterOption());
@@ -93,7 +113,7 @@ describe('ChooseRolePage', () => {
   });
 
   test('log out calls logout', async () => {
-    render(<ChooseRolePage />);
+    renderPage();
 
     await userEvent.click(
       screen.getByRole('button', { name: 'chooseRole.logout' })
@@ -107,7 +127,7 @@ describe('ChooseRolePage', () => {
       ['USER', getAdopterOption],
       ['SHELTER', getShelterOption],
     ] as const)('sends %s', async (role, getOption) => {
-      render(<ChooseRolePage />);
+      renderPage();
 
       await userEvent.click(getOption());
       await userEvent.click(getContinueButton());
@@ -116,7 +136,7 @@ describe('ChooseRolePage', () => {
     });
 
     test('choosing an option does not send it', async () => {
-      render(<ChooseRolePage />);
+      renderPage();
 
       await userEvent.click(getShelterOption());
 
@@ -130,7 +150,7 @@ describe('ChooseRolePage', () => {
           finish = resolve;
         })
       );
-      render(<ChooseRolePage />);
+      renderPage();
 
       await userEvent.click(getShelterOption());
       await userEvent.click(getContinueButton());
@@ -145,7 +165,7 @@ describe('ChooseRolePage', () => {
 
     test('shows an error when saving fails and unlocks the form', async () => {
       mockChooseRole.mockRejectedValueOnce(new Error('Network error'));
-      render(<ChooseRolePage />);
+      renderPage();
 
       await userEvent.click(getShelterOption());
       await userEvent.click(getContinueButton());
@@ -159,7 +179,7 @@ describe('ChooseRolePage', () => {
 
     test('retry sends again and hides the error', async () => {
       mockChooseRole.mockRejectedValueOnce(new Error('Network error'));
-      render(<ChooseRolePage />);
+      renderPage();
 
       await userEvent.click(getShelterOption());
       await userEvent.click(getContinueButton());
@@ -171,6 +191,52 @@ describe('ChooseRolePage', () => {
         expect(screen.queryByRole('alert')).not.toBeInTheDocument()
       );
       expect(mockChooseRole).toHaveBeenCalledTimes(2);
+    });
+  });
+
+  describe('after saving', () => {
+    test('replaces the session with the tokens and user from the response', async () => {
+      renderPage();
+
+      await userEvent.click(getAdopterOption());
+      await userEvent.click(getContinueButton());
+
+      await waitFor(() =>
+        expect(mockLogin).toHaveBeenCalledWith(
+          { accessToken: 'token', refreshToken: 'refresh' },
+          response.userInfo
+        )
+      );
+    });
+
+    test('keeps the session when saving fails', async () => {
+      mockChooseRole.mockRejectedValueOnce(new Error('Network error'));
+      renderPage();
+
+      await userEvent.click(getAdopterOption());
+      await userEvent.click(getContinueButton());
+      await screen.findByRole('alert');
+
+      expect(mockLogin).not.toHaveBeenCalled();
+    });
+
+    test.each([
+      ['ROLE_USER', 'account page'],
+      ['ROLE_SHELTER_OWNER', 'shelter page'],
+    ] as const)('a user with %s goes to their cabinet', (role, page) => {
+      mockUseAuth.mockReturnValue({
+        isAuthenticated: true,
+        user: { ...response.userInfo, role },
+        login: mockLogin,
+        logout: mockLogout,
+      });
+
+      renderPage();
+
+      expect(screen.getByText(page)).toBeInTheDocument();
+      expect(
+        screen.queryByRole('heading', { name: 'chooseRole.title' })
+      ).not.toBeInTheDocument();
     });
   });
 });

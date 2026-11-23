@@ -5,12 +5,14 @@ import Button from '../../components/Button/Button';
 import { useAuth } from '../../context/useAuth';
 import { useTranslation } from 'react-i18next';
 import { chooseRole } from '../../services/auth';
+import { Navigate } from 'react-router-dom';
+import { getPostLoginPath, langLink } from '../../utils/routing';
 
 const ChooseRolePage = () => {
   const [role, setRole] = useState<'USER' | 'SHELTER' | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(false);
-  const { logout } = useAuth();
+  const { user, login, logout } = useAuth();
   const { t } = useTranslation();
 
   const handleSubmit = async (e: FormEvent) => {
@@ -19,13 +21,23 @@ const ChooseRolePage = () => {
     setError(false);
     setIsSubmitting(true);
     try {
-      await chooseRole(role);
+      const response = await chooseRole(role);
+      login(
+        {
+          accessToken: response.accessToken,
+          refreshToken: response.refreshToken,
+        },
+        response.userInfo
+      );
     } catch {
       setError(true);
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  if (user?.role)
+    return <Navigate to={langLink(getPostLoginPath(user.role))} replace />;
 
   return (
     <div className={styles.page}>
