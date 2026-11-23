@@ -95,3 +95,12 @@ export const loginWithGoogle = async (
 export const forgotPassword = async (email: string): Promise<void> => {
   await apiClient.post('/auth/forgot-password', { email });
 };
+
+export const chooseRole = async (
+  role: 'USER' | 'SHELTER'
+): Promise<LoginResponse> => {
+  const response = await apiClient.post<LoginResponse>('/users/me/role', {
+    role,
+  });
+  return response.data;
+};

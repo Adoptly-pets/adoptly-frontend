@@ -1,14 +1,31 @@
 import { Icon } from '../../components/Icon/Icon';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import styles from './ChooseRolePage.module.css';
 import Button from '../../components/Button/Button';
 import { useAuth } from '../../context/useAuth';
 import { useTranslation } from 'react-i18next';
+import { chooseRole } from '../../services/auth';
 
 const ChooseRolePage = () => {
   const [role, setRole] = useState<'USER' | 'SHELTER' | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState(false);
   const { logout } = useAuth();
   const { t } = useTranslation();
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!role) return;
+    setError(false);
+    setIsSubmitting(true);
+    try {
+      await chooseRole(role);
+    } catch {
+      setError(true);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className={styles.page}>
@@ -19,10 +36,11 @@ const ChooseRolePage = () => {
           </h1>
           <p>{t('chooseRole.subtitle')}</p>
         </div>
-        <form>
+        <form onSubmit={handleSubmit}>
           <fieldset
             className={styles.roleOptions}
             aria-labelledby="chooseRoleTitle"
+            disabled={isSubmitting}
           >
             <label className={styles.option}>
               <input
@@ -67,12 +85,18 @@ const ChooseRolePage = () => {
             <Icon id="icon-circle-alert" className={styles.noteIcon} />
             {t('chooseRole.note')}
           </p>
+          {error && (
+            <p className={styles.error} role="alert">
+              {t('errors.serverError')}
+            </p>
+          )}
           <div className={styles.actions}>
             <Button
+              type="submit"
               variant="action"
               maxWidth={240}
               height={55}
-              disabled={!role}
+              disabled={!role || isSubmitting}
             >
               {t('chooseRole.continue')}
             </Button>
