@@ -42,6 +42,7 @@ const renderPage = () =>
     <MemoryRouter initialEntries={['/en/choose-role']}>
       <Routes>
         <Route path="/:lng/choose-role" element={<ChooseRolePage />} />
+        <Route path="/:lng/login" element={<p>login page</p>} />
         <Route path="/:lng/account" element={<p>account page</p>} />
         <Route path="/:lng/shelter/profile" element={<p>shelter page</p>} />
       </Routes>
@@ -71,7 +72,7 @@ describe('ChooseRolePage', () => {
     mockChooseRole.mockResolvedValue(response);
     mockUseAuth.mockReturnValue({
       isAuthenticated: true,
-      user: null,
+      user: { ...response.userInfo, role: undefined },
       login: mockLogin,
       logout: mockLogout,
     });
@@ -234,17 +235,30 @@ describe('ChooseRolePage', () => {
 
       expect(mockLogin).not.toHaveBeenCalled();
     });
+  });
+
+  describe('redirects', () => {
+    const mockUser = (user: LoginResponse['userInfo'] | null) =>
+      mockUseAuth.mockReturnValue({
+        isAuthenticated: user !== null,
+        user,
+        login: mockLogin,
+        logout: mockLogout,
+      });
+
+    test('a guest goes to login', () => {
+      mockUser(null);
+
+      renderPage();
+
+      expect(screen.getByText('login page')).toBeInTheDocument();
+    });
 
     test.each([
       ['ROLE_USER', 'account page'],
       ['ROLE_SHELTER_OWNER', 'shelter page'],
     ] as const)('a user with %s goes to their cabinet', (role, page) => {
-      mockUseAuth.mockReturnValue({
-        isAuthenticated: true,
-        user: { ...response.userInfo, role },
-        login: mockLogin,
-        logout: mockLogout,
-      });
+      mockUser({ ...response.userInfo, role });
 
       renderPage();
 

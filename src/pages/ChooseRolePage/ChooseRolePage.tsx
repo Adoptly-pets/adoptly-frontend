@@ -42,7 +42,9 @@ const ChooseRolePage = () => {
     }
   };
 
-  if (user?.role)
+  // TODO: move to RequireAuth when protected routes are added
+  if (!user) return <Navigate to={langLink('/login')} replace />;
+  if (user.role)
     return <Navigate to={langLink(getPostLoginPath(user.role))} replace />;
 
   return (
