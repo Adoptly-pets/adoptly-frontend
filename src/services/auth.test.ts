@@ -24,38 +24,25 @@ describe('registerWithEmail', () => {
     await registerWithEmail({
       email: 'test@example.com',
       password: 'password123',
-      role: 'adopter',
     });
 
     expect(mockedPost).toHaveBeenCalledTimes(1);
     expect(mockedPost.mock.calls[0][0]).toBe('/auth/register');
   });
 
-  test('maps adopter role to USER', async () => {
+  test('does not send a role', async () => {
     await registerWithEmail({
       email: 'test@example.com',
       password: 'password123',
-      role: 'adopter',
     });
 
-    expect(mockedPost.mock.calls[0][1]).toMatchObject({ role: 'USER' });
-  });
-
-  test('maps shelter role to SHELTER', async () => {
-    await registerWithEmail({
-      email: 'shelter@example.com',
-      password: 'password123',
-      role: 'shelter',
-    });
-
-    expect(mockedPost.mock.calls[0][1]).toMatchObject({ role: 'SHELTER' });
+    expect(mockedPost.mock.calls[0][1]).not.toHaveProperty('role');
   });
 
   test('passes email and password through unchanged', async () => {
     await registerWithEmail({
       email: 'user@example.com',
       password: 'secret123',
-      role: 'adopter',
     });
 
     expect(mockedPost.mock.calls[0][1]).toMatchObject({
@@ -68,7 +55,6 @@ describe('registerWithEmail', () => {
     await registerWithEmail({
       email: 'test@example.com',
       password: 'password123',
-      role: 'adopter',
     });
 
     expect(mockedPost.mock.calls[0][1]).toMatchObject({
@@ -86,7 +72,6 @@ describe('registerWithEmail', () => {
     const result = await registerWithEmail({
       email: 'test@example.com',
       password: 'password123',
-      role: 'adopter',
     });
 
     expect(result).toBe(response);
@@ -104,7 +89,6 @@ describe('registerWithEmail', () => {
       registerWithEmail({
         email: 'taken@example.com',
         password: 'password123',
-        role: 'adopter',
       })
     ).rejects.toEqual(error);
   });
