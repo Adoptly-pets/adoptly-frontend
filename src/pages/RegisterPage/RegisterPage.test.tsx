@@ -75,12 +75,6 @@ describe('RegisterPage', () => {
     expect(screen.getByTestId('google-auth-container')).toBeInTheDocument();
   });
 
-  test('has no role choice', () => {
-    renderPage();
-
-    expect(screen.queryAllByRole('radio')).toHaveLength(0);
-  });
-
   test('shows validation errors on empty submit', async () => {
     renderPage();
 

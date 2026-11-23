@@ -20,44 +20,17 @@ describe('registerWithEmail', () => {
     mockedPost.mockResolvedValue({ data: { accessToken: null } });
   });
 
-  test('posts to /auth/register endpoint', async () => {
+  test('posts email, password and empty profile fields to /auth/register', async () => {
     await registerWithEmail({
-      email: 'test@example.com',
-      password: 'password123',
+      email: 'user@example.com',
+      password: 'secret123',
     });
 
     expect(mockedPost).toHaveBeenCalledTimes(1);
-    expect(mockedPost.mock.calls[0][0]).toBe('/auth/register');
-  });
-
-  test('does not send a role', async () => {
-    await registerWithEmail({
-      email: 'test@example.com',
-      password: 'password123',
-    });
-
-    expect(mockedPost.mock.calls[0][1]).not.toHaveProperty('role');
-  });
-
-  test('passes email and password through unchanged', async () => {
-    await registerWithEmail({
+    expect(mockedPost).toHaveBeenCalledWith('/auth/register', {
       email: 'user@example.com',
       password: 'secret123',
-    });
-
-    expect(mockedPost.mock.calls[0][1]).toMatchObject({
-      email: 'user@example.com',
-      password: 'secret123',
-    });
-  });
-
-  test('includes empty strings for optional backend fields', async () => {
-    await registerWithEmail({
-      email: 'test@example.com',
-      password: 'password123',
-    });
-
-    expect(mockedPost.mock.calls[0][1]).toMatchObject({
+      // Backend returns 409 if any of these fields are missing
       firstName: '',
       lastName: '',
       phone: '',
