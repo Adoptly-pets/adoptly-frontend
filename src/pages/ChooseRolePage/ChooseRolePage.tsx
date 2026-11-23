@@ -5,20 +5,21 @@ import Button from '../../components/Button/Button';
 import { useAuth } from '../../context/useAuth';
 import { useTranslation } from 'react-i18next';
 import { chooseRole } from '../../services/auth';
+import { isApiError } from '../../services/api';
 import { Navigate } from 'react-router-dom';
 import { getPostLoginPath, langLink } from '../../utils/routing';
 
 const ChooseRolePage = () => {
   const [role, setRole] = useState<'USER' | 'SHELTER' | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const { user, login, logout } = useAuth();
   const { t } = useTranslation();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!role) return;
-    setError(false);
+    setError(null);
     setIsSubmitting(true);
     try {
       const response = await chooseRole(role);
@@ -29,8 +30,13 @@ const ChooseRolePage = () => {
         },
         response.userInfo
       );
-    } catch {
-      setError(true);
+    } catch (err) {
+      if (isApiError(err) && err.type === 'network') {
+        setError('errors.networkError');
+        return;
+      }
+      setError('errors.serverError');
+      console.error('Choose role error:', err);
     } finally {
       setIsSubmitting(false);
     }
@@ -99,7 +105,7 @@ const ChooseRolePage = () => {
           </p>
           {error && (
             <p className={styles.error} role="alert">
-              {t('errors.serverError')}
+              {t(error)}
             </p>
           )}
           <div className={styles.actions}>

@@ -177,6 +177,21 @@ describe('ChooseRolePage', () => {
       expect(getShelterOption()).toBeEnabled();
     });
 
+    test('shows a network error when there is no connection', async () => {
+      mockChooseRole.mockRejectedValueOnce({
+        type: 'network',
+        message: 'Network error. Please check your connection.',
+      });
+      renderPage();
+
+      await userEvent.click(getShelterOption());
+      await userEvent.click(getContinueButton());
+
+      expect(await screen.findByRole('alert')).toHaveTextContent(
+        'errors.networkError'
+      );
+    });
+
     test('retry sends again and hides the error', async () => {
       mockChooseRole.mockRejectedValueOnce(new Error('Network error'));
       renderPage();

@@ -164,7 +164,8 @@
     "required": "This field is required",
     "somethingWentWrong": "Something went wrong",
     "reload": "Reload",
-    "serverError": "Server error. Please try again later."
+    "serverError": "Server error. Please try again later.",
+    "networkError": "Network error. Please check your internet connection and try again."
   },
   "notFoundPage": {
     "button": "Return to Home",

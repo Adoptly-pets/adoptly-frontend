@@ -43,10 +43,6 @@
   border-radius: 16px;
   padding: 28px 32px;
   cursor: pointer;
-
-  &:hover {
-    border-color: var(--btn-action-bg);
-  }
 }
 
 .option input {

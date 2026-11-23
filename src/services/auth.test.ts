@@ -1,4 +1,9 @@
-import { registerWithEmail, loginWithEmail, type LoginResponse } from './auth';
+import {
+  registerWithEmail,
+  loginWithEmail,
+  chooseRole,
+  type LoginResponse,
+} from './auth';
 import { apiClient } from './api';
 
 jest.mock('./api', () => ({
@@ -160,5 +165,51 @@ describe('loginWithEmail', () => {
     await expect(
       loginWithEmail({ email: 'inactive@example.com', password: 'secret123' })
     ).rejects.toEqual(error);
+  });
+});
+
+describe('chooseRole', () => {
+  const successResponse: { data: LoginResponse } = {
+    data: {
+      accessToken: 'new-access-token',
+      refreshToken: 'new-refresh-token',
+      expiresIn: 86400000,
+      userInfo: {
+        id: 29,
+        email: 'user@example.com',
+        firstName: '',
+        lastName: '',
+        profileImageUrl: null,
+        location: '',
+        role: 'ROLE_SHELTER_OWNER',
+      },
+    },
+  };
+
+  beforeEach(() => {
+    mockedPost.mockReset();
+    mockedPost.mockResolvedValue(successResponse);
+  });
+
+  test('posts the role to /users/me/role', async () => {
+    await chooseRole('SHELTER');
+
+    expect(mockedPost).toHaveBeenCalledTimes(1);
+    expect(mockedPost.mock.calls[0][0]).toBe('/users/me/role');
+    expect(mockedPost.mock.calls[0][1]).toEqual({ role: 'SHELTER' });
+  });
+
+  test('returns the LoginResponse data', async () => {
+    const result = await chooseRole('SHELTER');
+
+    expect(result).toEqual(successResponse.data);
+  });
+
+  test('propagates errors from apiClient', async () => {
+    const error = { type: 'client', status: 409, message: 'Role already set' };
+    mockedPost.mockReset();
+    mockedPost.mockRejectedValueOnce(error);
+
+    await expect(chooseRole('USER')).rejects.toEqual(error);
   });
 });
