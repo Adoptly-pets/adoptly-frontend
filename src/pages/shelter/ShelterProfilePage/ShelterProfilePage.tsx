@@ -13,11 +13,17 @@ import { useCities } from '../../../hooks/useCities';
 import { Option } from '../../../components/SearchCombobox/SearchCombobox';
 import {
   createShelterProfile,
-  type ShelterProfilePayload,
+  uploadShelterLogo,
+  type ShelterResponse,
 } from '../../../services/shelter';
+import { isApiError } from '../../../services/api';
+import {
+  toCreateShelterRequest,
+  type ShelterProfileFormValues,
+} from '../../../utils/shelterRequest';
 
 type Status = 'form' | 'submitting' | 'sent';
-type ShelterProfileFormData = ShelterProfilePayload & {
+type ShelterProfileFormData = ShelterProfileFormValues & {
   consent: boolean;
   photo?: File | null;
 };
@@ -63,7 +69,7 @@ const ShelterProfilePage = () => {
   }));
 
   useEffect(() => {
-    if (status === 'sent') return;
+    if (status !== 'form') return;
     try {
       const { photo: _photo, ...rest } = watchedValues;
       localStorage.setItem(DRAFT, JSON.stringify(rest));
@@ -104,22 +110,32 @@ const ShelterProfilePage = () => {
   const onSubmit = async (data: ShelterProfileFormData) => {
     setServerError(null);
     setStatus('submitting');
+    const { consent: _consent, photo, ...rest } = data;
+    let created: ShelterResponse;
     try {
-      const { consent: _consent, photo: _photo, ...rest } = data;
-      const payload: ShelterProfilePayload = {
-        ...rest,
-        region:
-          regions.find(r => getRegionSlug(r) === data.region)?.uk ??
-          data.region,
-      };
-      await createShelterProfile(payload);
-      localStorage.removeItem(DRAFT);
-      setStatus('sent');
+      created = await createShelterProfile(toCreateShelterRequest(rest));
     } catch (error) {
       setStatus('form');
-      setServerError(t('errors.serverError'));
+      setServerError(
+        t(
+          isApiError(error) && error.type === 'network'
+            ? 'errors.networkError'
+            : 'errors.serverError'
+        )
+      );
       console.error('createShelterProfile failed:', error);
+      return;
     }
+    localStorage.removeItem(DRAFT);
+    if (photo) {
+      try {
+        await uploadShelterLogo(created.slug, photo);
+      } catch (error) {
+        // TODO: tell the user the photo was not uploaded (UX not decided yet)
+        console.error('uploadShelterLogo failed:', error);
+      }
+    }
+    setStatus('sent');
   };
 
   return (
