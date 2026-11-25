@@ -13,6 +13,7 @@ import { useCities } from '../../../hooks/useCities';
 import { Option } from '../../../components/SearchCombobox/SearchCombobox';
 import {
   createShelterProfile,
+  ShelterResponse,
   uploadShelterLogo,
   type ShelterProfilePayload,
 } from '../../../services/shelter';
@@ -65,7 +66,7 @@ const ShelterProfilePage = () => {
   }));
 
   useEffect(() => {
-    if (status === 'sent') return;
+    if (status !== 'form') return;
     try {
       const { photo: _photo, ...rest } = watchedValues;
       localStorage.setItem(DRAFT, JSON.stringify(rest));
@@ -106,17 +107,26 @@ const ShelterProfilePage = () => {
   const onSubmit = async (data: ShelterProfileFormData) => {
     setServerError(null);
     setStatus('submitting');
+    const { consent: _consent, photo, ...rest } = data;
+    let created: ShelterResponse;
     try {
-      const { consent: _consent, photo, ...rest } = data;
-      const { slug } = await createShelterProfile(toCreateShelterRequest(rest));
-      if (photo) await uploadShelterLogo(slug, photo);
-      localStorage.removeItem(DRAFT);
-      setStatus('sent');
+      created = await createShelterProfile(toCreateShelterRequest(rest));
     } catch (error) {
       setStatus('form');
       setServerError(t('errors.serverError'));
       console.error('createShelterProfile failed:', error);
+      return;
     }
+    localStorage.removeItem(DRAFT);
+    if (photo) {
+      try {
+        await uploadShelterLogo(created.slug, photo);
+      } catch (error) {
+        // TODO: tell the user the photo was not uploaded (UX not decided yet)
+        console.error('uploadShelterLogo failed:', error);
+      }
+    }
+    setStatus('sent');
   };
 
   return (

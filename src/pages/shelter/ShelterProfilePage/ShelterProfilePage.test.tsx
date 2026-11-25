@@ -305,6 +305,31 @@ describe('ShelterProfilePage', () => {
     });
   });
 
+  test('shows sent banner and clears the draft when the photo upload fails', async () => {
+    const consoleError = jest
+      .spyOn(console, 'error')
+      .mockImplementation(() => {});
+    mockedUpload.mockRejectedValueOnce(new Error('Upload failed'));
+    renderPage();
+    fillValidForm();
+    selectPhoto(photoFile);
+
+    fireEvent.click(getSubmitButton());
+
+    await waitFor(() => {
+      expect(
+        screen.getByText('shelter.pages.profile.sentMessage')
+      ).toBeInTheDocument();
+    });
+    expect(mockedCreate).toHaveBeenCalledTimes(1);
+    expect(localStorage.getItem('shelter-profile-draft')).toBeNull();
+    expect(consoleError).toHaveBeenCalledWith(
+      'uploadShelterLogo failed:',
+      expect.any(Error)
+    );
+    consoleError.mockRestore();
+  });
+
   test('restores draft from localStorage on reload', () => {
     localStorage.setItem(
       'shelter-profile-draft',
