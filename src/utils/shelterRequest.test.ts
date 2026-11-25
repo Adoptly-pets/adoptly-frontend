@@ -1,5 +1,8 @@
-import { normalizePhone, toCreateShelterRequest } from './shelterRequest';
-import type { ShelterProfilePayload } from '../services/shelter';
+import {
+  normalizePhone,
+  toCreateShelterRequest,
+  type ShelterProfileFormValues,
+} from './shelterRequest';
 
 describe('normalizePhone', () => {
   test.each([
@@ -15,7 +18,7 @@ describe('normalizePhone', () => {
 });
 
 describe('toCreateShelterRequest', () => {
-  const formData: ShelterProfilePayload = {
+  const formData: ShelterProfileFormValues = {
     name: 'Happy Paws',
     edrpou: '12345678',
     region: 'kyiv-oblast',

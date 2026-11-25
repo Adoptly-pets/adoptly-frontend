@@ -330,6 +330,50 @@ describe('ShelterProfilePage', () => {
     consoleError.mockRestore();
   });
 
+  describe('when the shelter is not created', () => {
+    test('shows the error, keeps the draft and does not upload the photo', async () => {
+      const consoleError = jest
+        .spyOn(console, 'error')
+        .mockImplementation(() => {});
+      mockedCreate.mockRejectedValueOnce({ type: 'server', status: 500 });
+      renderPage();
+      fillValidForm();
+      selectPhoto(photoFile);
+
+      fireEvent.click(getSubmitButton());
+
+      expect(await screen.findByRole('alert')).toHaveTextContent(
+        'errors.serverError'
+      );
+      expect(mockedUpload).not.toHaveBeenCalled();
+      expect(localStorage.getItem('shelter-profile-draft')).not.toBeNull();
+      expect(
+        screen.queryByText('shelter.pages.profile.sentMessage')
+      ).not.toBeInTheDocument();
+      expect(getSubmitButton()).toBeEnabled();
+      consoleError.mockRestore();
+    });
+
+    test('shows a network error when there is no connection', async () => {
+      const consoleError = jest
+        .spyOn(console, 'error')
+        .mockImplementation(() => {});
+      mockedCreate.mockRejectedValueOnce({
+        type: 'network',
+        message: 'Network error. Please check your connection.',
+      });
+      renderPage();
+      fillValidForm();
+
+      fireEvent.click(getSubmitButton());
+
+      expect(await screen.findByRole('alert')).toHaveTextContent(
+        'errors.networkError'
+      );
+      consoleError.mockRestore();
+    });
+  });
+
   test('restores draft from localStorage on reload', () => {
     localStorage.setItem(
       'shelter-profile-draft',

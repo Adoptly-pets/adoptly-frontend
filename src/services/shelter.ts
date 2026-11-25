@@ -1,21 +1,5 @@
 import { apiClient } from './api';
 
-export type ShelterProfilePayload = {
-  name: string;
-  edrpou?: string;
-  region: string;
-  settlement: string;
-  address: string;
-  description: string;
-  website?: string;
-  facebook?: string;
-  instagram?: string;
-  otherLink?: string;
-  firstName: string;
-  lastName?: string;
-  phone: string;
-};
-
 export type CreateShelterRequest = {
   name: string;
   edrpou?: string;

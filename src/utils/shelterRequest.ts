@@ -1,9 +1,23 @@
-import {
-  CreateShelterRequest,
-  ShelterProfilePayload,
-} from '../services/shelter';
+import type { CreateShelterRequest } from '../services/shelter';
 import regions from '../constants/regions.json';
 import { regionSlug } from './region';
+
+// Region is a slug; the request mapping converts it
+export type ShelterProfileFormValues = {
+  name: string;
+  edrpou?: string;
+  region: string;
+  settlement: string;
+  address: string;
+  description: string;
+  website?: string;
+  facebook?: string;
+  instagram?: string;
+  otherLink?: string;
+  firstName: string;
+  lastName?: string;
+  phone: string;
+};
 
 export const PUBLIC_PAGE_FIELDS = [
   'website',
@@ -17,7 +31,7 @@ export const normalizePhone = (phone: string) => {
 };
 
 export const toCreateShelterRequest = (
-  data: ShelterProfilePayload
+  data: ShelterProfileFormValues
 ): CreateShelterRequest => ({
   name: data.name,
   edrpou: data.edrpou?.trim() || undefined,

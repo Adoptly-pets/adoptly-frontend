@@ -13,14 +13,17 @@ import { useCities } from '../../../hooks/useCities';
 import { Option } from '../../../components/SearchCombobox/SearchCombobox';
 import {
   createShelterProfile,
-  ShelterResponse,
   uploadShelterLogo,
-  type ShelterProfilePayload,
+  type ShelterResponse,
 } from '../../../services/shelter';
-import { toCreateShelterRequest } from '../../../utils/shelterRequest';
+import { isApiError } from '../../../services/api';
+import {
+  toCreateShelterRequest,
+  type ShelterProfileFormValues,
+} from '../../../utils/shelterRequest';
 
 type Status = 'form' | 'submitting' | 'sent';
-type ShelterProfileFormData = ShelterProfilePayload & {
+type ShelterProfileFormData = ShelterProfileFormValues & {
   consent: boolean;
   photo?: File | null;
 };
@@ -113,7 +116,13 @@ const ShelterProfilePage = () => {
       created = await createShelterProfile(toCreateShelterRequest(rest));
     } catch (error) {
       setStatus('form');
-      setServerError(t('errors.serverError'));
+      setServerError(
+        t(
+          isApiError(error) && error.type === 'network'
+            ? 'errors.networkError'
+            : 'errors.serverError'
+        )
+      );
       console.error('createShelterProfile failed:', error);
       return;
     }
