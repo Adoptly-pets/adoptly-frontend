@@ -43,7 +43,7 @@ export const createShelterProfile = async (
   return response.data;
 };
 
-export const uploadShelterLog = async (
+export const uploadShelterLogo = async (
   slug: string,
   file: File
 ): Promise<void> => {

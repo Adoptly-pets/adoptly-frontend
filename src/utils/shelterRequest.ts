@@ -1,4 +1,9 @@
-import { CreateShelterRequest, ShelterProfilePayload } from 'services/shelter';
+import {
+  CreateShelterRequest,
+  ShelterProfilePayload,
+} from '../services/shelter';
+import regions from '../constants/regions.json';
+import { regionSlug } from './region';
 
 export const PUBLIC_PAGE_FIELDS = [
   'website',
@@ -8,15 +13,15 @@ export const PUBLIC_PAGE_FIELDS = [
 ] as const;
 
 export const normalizePhone = (phone: string) => {
-  return `+38${phone.replace(/\D/g, '').slice(-9)}`;
+  return `+380${phone.replace(/\D/g, '').slice(-9)}`;
 };
 
-export const toCreateShelterReques = (
+export const toCreateShelterRequest = (
   data: ShelterProfilePayload
 ): CreateShelterRequest => ({
   name: data.name,
   edrpou: data.edrpou?.trim() || undefined,
-  region: data.region,
+  region: regions.find(r => regionSlug(r) === data.region)?.uk ?? data.region,
   city: data.settlement,
   address: data.address,
   description: data.description,

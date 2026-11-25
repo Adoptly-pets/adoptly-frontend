@@ -1,6 +1,6 @@
 import {
   createShelterProfile,
-  uploadShelterLog,
+  uploadShelterLogo,
   type CreateShelterRequest,
   type ShelterResponse,
 } from './shelter';
@@ -65,7 +65,7 @@ describe('createShelterProfile', () => {
   });
 });
 
-describe('uploadShelterLog', () => {
+describe('uploadShelterLogo', () => {
   const file = new File(['image'], 'logo.png', { type: 'image/png' });
 
   beforeEach(() => {
@@ -74,7 +74,7 @@ describe('uploadShelterLog', () => {
   });
 
   test('puts the file as multipart form data to the shelter logo URL', async () => {
-    await uploadShelterLog('happy-paws', file);
+    await uploadShelterLogo('happy-paws', file);
 
     expect(mockedPut).toHaveBeenCalledTimes(1);
     const [url, body, config] = mockedPut.mock.calls[0];
@@ -86,7 +86,7 @@ describe('uploadShelterLog', () => {
   });
 
   test('sends the file in the "file" field', async () => {
-    await uploadShelterLog('happy-paws', file);
+    await uploadShelterLogo('happy-paws', file);
 
     const body = mockedPut.mock.calls[0][1] as FormData;
     const sent = body.get('file') as File;
@@ -97,7 +97,7 @@ describe('uploadShelterLog', () => {
   test('propagates errors from apiClient', async () => {
     mockedPut.mockRejectedValueOnce(apiError);
 
-    await expect(uploadShelterLog('happy-paws', file)).rejects.toEqual(
+    await expect(uploadShelterLogo('happy-paws', file)).rejects.toEqual(
       apiError
     );
   });

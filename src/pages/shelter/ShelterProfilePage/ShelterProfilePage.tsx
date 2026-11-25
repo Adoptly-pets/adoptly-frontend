@@ -13,8 +13,10 @@ import { useCities } from '../../../hooks/useCities';
 import { Option } from '../../../components/SearchCombobox/SearchCombobox';
 import {
   createShelterProfile,
+  uploadShelterLogo,
   type ShelterProfilePayload,
 } from '../../../services/shelter';
+import { toCreateShelterRequest } from '../../../utils/shelterRequest';
 
 type Status = 'form' | 'submitting' | 'sent';
 type ShelterProfileFormData = ShelterProfilePayload & {
@@ -105,14 +107,9 @@ const ShelterProfilePage = () => {
     setServerError(null);
     setStatus('submitting');
     try {
-      const { consent: _consent, photo: _photo, ...rest } = data;
-      const payload: ShelterProfilePayload = {
-        ...rest,
-        region:
-          regions.find(r => getRegionSlug(r) === data.region)?.uk ??
-          data.region,
-      };
-      await createShelterProfile(payload);
+      const { consent: _consent, photo, ...rest } = data;
+      const { slug } = await createShelterProfile(toCreateShelterRequest(rest));
+      if (photo) await uploadShelterLogo(slug, photo);
       localStorage.removeItem(DRAFT);
       setStatus('sent');
     } catch (error) {

@@ -1,10 +1,15 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import ShelterProfilePage from './ShelterProfilePage';
-import { createShelterProfile } from '../../../services/shelter';
+import {
+  createShelterProfile,
+  uploadShelterLogo,
+  type ShelterResponse,
+} from '../../../services/shelter';
 
 jest.mock('../../../services/shelter', () => ({
   createShelterProfile: jest.fn(),
+  uploadShelterLogo: jest.fn(),
 }));
 
 jest.mock('react-i18next', () => ({
@@ -64,6 +69,22 @@ jest.mock('../../../components/SearchCombobox/SearchCombobox', () => {
 const mockedCreate = createShelterProfile as jest.MockedFunction<
   typeof createShelterProfile
 >;
+const mockedUpload = uploadShelterLogo as jest.MockedFunction<
+  typeof uploadShelterLogo
+>;
+
+// Only the slug is used from the create response
+const createdShelter = { slug: 'happypaws' } as ShelterResponse;
+
+const getSubmitButton = () =>
+  screen.getByRole('button', { name: /shelter.pages.profile.submit/ });
+
+const selectPhoto = (file: File) =>
+  fireEvent.change(document.getElementById('photo')!, {
+    target: { files: [file] },
+  });
+
+const photoFile = new File(['image'], 'logo.png', { type: 'image/png' });
 
 const renderPage = () =>
   render(
@@ -111,6 +132,11 @@ describe('ShelterProfilePage', () => {
   beforeEach(() => {
     localStorage.clear();
     jest.clearAllMocks();
+    mockedCreate.mockResolvedValue(createdShelter);
+    mockedUpload.mockResolvedValue(undefined);
+    // jsdom has no object URLs; the photo preview needs one
+    URL.createObjectURL = jest.fn(() => 'blob:preview');
+    URL.revokeObjectURL = jest.fn();
   });
 
   test('submit on empty form shows required errors', async () => {
@@ -193,32 +219,84 @@ describe('ShelterProfilePage', () => {
     expect(description).toHaveValue('hello');
   });
 
-  test('valid submit calls service with payload and shows sent banner', async () => {
-    mockedCreate.mockResolvedValueOnce(undefined);
+  test('valid submit sends the request in the backend format and shows sent banner', async () => {
     renderPage();
     fillValidForm();
 
-    fireEvent.click(
-      screen.getByRole('button', { name: /shelter.pages.profile.submit/ })
-    );
+    fireEvent.click(getSubmitButton());
 
     await waitFor(() => {
       expect(mockedCreate).toHaveBeenCalledTimes(1);
     });
-
-    const payload = mockedCreate.mock.calls[0][0];
-    expect(payload).toMatchObject({
+    expect(mockedCreate).toHaveBeenCalledWith({
       name: 'HappyPaws',
       region: 'Київ',
-      settlement: 'Київ',
+      city: 'Київ',
       address: 'вул. Шевченка, 1',
       description: 'Притулок у Києві',
-      website: 'https://happypaws.ua',
-      firstName: 'Марія',
-      phone: '+380671234567',
+      socialLinks: [{ url: 'https://happypaws.ua' }],
+      contactFirstName: 'Марія',
+      contactPhone: '+380671234567',
     });
-    expect(payload).not.toHaveProperty('consent');
-    expect(payload).not.toHaveProperty('photo');
+
+    await waitFor(() => {
+      expect(
+        screen.getByText('shelter.pages.profile.sentMessage')
+      ).toBeInTheDocument();
+    });
+  });
+
+  test('does not upload a photo when none is selected', async () => {
+    renderPage();
+    fillValidForm();
+
+    fireEvent.click(getSubmitButton());
+
+    await waitFor(() => {
+      expect(
+        screen.getByText('shelter.pages.profile.sentMessage')
+      ).toBeInTheDocument();
+    });
+    expect(mockedUpload).not.toHaveBeenCalled();
+  });
+
+  test('uploads the selected photo with the slug of the created shelter', async () => {
+    renderPage();
+    fillValidForm();
+    selectPhoto(photoFile);
+
+    fireEvent.click(getSubmitButton());
+
+    await waitFor(() => {
+      expect(mockedUpload).toHaveBeenCalledWith('happypaws', photoFile);
+    });
+    await waitFor(() => {
+      expect(
+        screen.getByText('shelter.pages.profile.sentMessage')
+      ).toBeInTheDocument();
+    });
+  });
+
+  test('keeps the button disabled until the photo is uploaded', async () => {
+    let finishUpload: () => void = () => {};
+    mockedUpload.mockReturnValueOnce(
+      new Promise(resolve => {
+        finishUpload = () => resolve(undefined);
+      })
+    );
+    renderPage();
+    fillValidForm();
+    selectPhoto(photoFile);
+
+    fireEvent.click(getSubmitButton());
+
+    await waitFor(() => expect(mockedUpload).toHaveBeenCalled());
+    expect(getSubmitButton()).toBeDisabled();
+    expect(
+      screen.queryByText('shelter.pages.profile.sentMessage')
+    ).not.toBeInTheDocument();
+
+    finishUpload();
 
     await waitFor(() => {
       expect(
