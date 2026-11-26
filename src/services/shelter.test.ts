@@ -1,5 +1,6 @@
 import {
   createShelterProfile,
+  getMyShelter,
   uploadShelterLogo,
   type CreateShelterRequest,
   type ShelterResponse,
@@ -7,7 +8,10 @@ import {
 import { apiClient } from './api';
 
 jest.mock('./api', () => ({
+  // getMyShelter needs the real check to recognise a 404
+  isApiError: jest.requireActual('./api').isApiError,
   apiClient: {
+    get: jest.fn(),
     post: jest.fn(),
     put: jest.fn(),
   },
@@ -15,6 +19,7 @@ jest.mock('./api', () => ({
 
 const mockedPost = apiClient.post as jest.MockedFunction<typeof apiClient.post>;
 const mockedPut = apiClient.put as jest.MockedFunction<typeof apiClient.put>;
+const mockedGet = apiClient.get as jest.MockedFunction<typeof apiClient.get>;
 
 const request: CreateShelterRequest = {
   name: 'Happy Paws',
@@ -100,5 +105,60 @@ describe('uploadShelterLogo', () => {
     await expect(uploadShelterLogo('happy-paws', file)).rejects.toEqual(
       apiError
     );
+  });
+});
+
+describe('getMyShelter', () => {
+  const shelter: ShelterResponse = {
+    ...request,
+    id: 7,
+    slug: 'happy-paws',
+    status: 'PENDING',
+    photoUrl: 'https://example.com/logo.png',
+  };
+
+  beforeEach(() => {
+    mockedGet.mockReset();
+    mockedGet.mockResolvedValue({ data: shelter });
+  });
+
+  test('gets the shelter from /shelters/me', async () => {
+    await getMyShelter();
+
+    expect(mockedGet).toHaveBeenCalledTimes(1);
+    expect(mockedGet).toHaveBeenCalledWith('/shelters/me');
+  });
+
+  test('returns the shelter', async () => {
+    expect(await getMyShelter()).toEqual(shelter);
+  });
+
+  test('returns null when the user has no shelter yet', async () => {
+    mockedGet.mockRejectedValueOnce({
+      type: 'client',
+      status: 404,
+      message: 'Shelter not found',
+    });
+
+    expect(await getMyShelter()).toBeNull();
+  });
+
+  test.each([
+    ['a server error', apiError],
+    [
+      'a network error',
+      {
+        type: 'network',
+        message: 'Network error. Please check your connection.',
+      },
+    ],
+    [
+      'another client error',
+      { type: 'client', status: 401, message: 'Unauthorized' },
+    ],
+  ])('propagates %s', async (_name, error) => {
+    mockedGet.mockRejectedValueOnce(error);
+
+    await expect(getMyShelter()).rejects.toEqual(error);
   });
 });
