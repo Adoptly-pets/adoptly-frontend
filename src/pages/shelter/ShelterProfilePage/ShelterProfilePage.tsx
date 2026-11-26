@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import useMyShelter from '../../../hooks/useMyShelter';
-import ShelterProfileForm from '../ShelterProfileForm/ShelterProfileForm';
+import ShelterProfileForm from '../../../components/shelter/ShelterProfileForm/ShelterProfileForm';
 
 const ShelterProfilePage = () => {
   const { t } = useTranslation();

@@ -2,15 +2,15 @@ import { Trans, useTranslation } from 'react-i18next';
 import styles from './ShelterProfileForm.module.css';
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../../../components/Button/Button';
+import Button from '../../Button/Button';
 import { Controller, useForm } from 'react-hook-form';
 import { langLink } from '../../../utils/routing';
-import { Icon } from '../../../components/Icon/Icon';
+import { Icon } from '../../Icon/Icon';
 import regions from '../../../constants/regions.json';
 import { regionSlug as getRegionSlug } from '../../../utils/region';
-import SearchCombobox from '../../../components/SearchCombobox/SearchCombobox';
+import SearchCombobox from '../../SearchCombobox/SearchCombobox';
 import { useCities } from '../../../hooks/useCities';
-import { Option } from '../../../components/SearchCombobox/SearchCombobox';
+import { Option } from '../../SearchCombobox/SearchCombobox';
 import {
   createShelterProfile,
   uploadShelterLogo,
