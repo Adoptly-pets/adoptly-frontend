@@ -1,4 +1,4 @@
-import { apiClient } from './api';
+import { apiClient, isApiError } from './api';
 
 export type CreateShelterRequest = {
   name: string;
@@ -36,4 +36,14 @@ export const uploadShelterLogo = async (
   await apiClient.put(`/shelters/${slug}/logo`, formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   });
+};
+
+export const getMyShelter = async (): Promise<ShelterResponse | null> => {
+  try {
+    const response = await apiClient.get<ShelterResponse>('/shelters/me');
+    return response.data;
+  } catch (error) {
+    if (isApiError(error) && error.status === 404) return null;
+    throw error;
+  }
 };
