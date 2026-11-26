@@ -308,6 +308,7 @@
     },
     "pages": {
       "profile": {
+        "loadError": "Couldn't load the profile. Please reload the page.",
         "title": "Shelter Profile",
         "sections": {
           "main": "Main information",

@@ -56,7 +56,7 @@ describe('toCreateShelterRequest', () => {
     });
   });
 
-  test('leaves out empty links and keeps the form order', () => {
+  test('sends all four links in the form order, empty ones as ""', () => {
     const request = toCreateShelterRequest({
       ...formData,
       website: '',
@@ -66,7 +66,9 @@ describe('toCreateShelterRequest', () => {
     });
 
     expect(request.socialLinks).toEqual([
+      { url: '' },
       { url: 'https://facebook.com/happypaws' },
+      { url: '' },
       { url: 'https://t.me/happypaws' },
     ]);
   });
@@ -96,7 +98,12 @@ describe('toShelterProfileFormValues', () => {
     city: 'Бровари',
     address: 'вул. Київська, 1',
     description: 'We help dogs and cats',
-    socialLinks: [],
+    socialLinks: [
+      { url: 'https://happypaws.org' },
+      { url: '' },
+      { url: 'https://instagram.com/happypaws' },
+      { url: '' },
+    ],
     contactFirstName: 'Olena',
     contactLastName: 'Shevchenko',
     contactPhone: '+380671234567',
@@ -110,6 +117,10 @@ describe('toShelterProfileFormValues', () => {
       settlement: 'Бровари',
       address: 'вул. Київська, 1',
       description: 'We help dogs and cats',
+      website: 'https://happypaws.org',
+      facebook: '',
+      instagram: 'https://instagram.com/happypaws',
+      otherLink: '',
       firstName: 'Olena',
       lastName: 'Shevchenko',
       phone: '+380671234567',
