@@ -1,4 +1,7 @@
-import type { CreateShelterRequest } from '../services/shelter';
+import type {
+  CreateShelterRequest,
+  ShelterResponse,
+} from '../services/shelter';
 import regions from '../constants/regions.json';
 import { regionSlug } from './region';
 
@@ -46,3 +49,20 @@ export const toCreateShelterRequest = (
   contactLastName: data.lastName?.trim() || undefined,
   contactPhone: normalizePhone(data.phone),
 });
+
+export const toShelterProfileFormValues = (
+  shelter: ShelterResponse
+): ShelterProfileFormValues => {
+  const region = regions.find(r => r.uk === shelter.region);
+  return {
+    name: shelter.name,
+    edrpou: shelter.edrpou,
+    region: region ? regionSlug(region) : shelter.region,
+    settlement: shelter.city,
+    address: shelter.address,
+    description: shelter.description,
+    firstName: shelter.contactFirstName,
+    lastName: shelter.contactLastName,
+    phone: shelter.contactPhone,
+  };
+};

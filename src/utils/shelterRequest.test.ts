@@ -1,8 +1,10 @@
 import {
   normalizePhone,
   toCreateShelterRequest,
+  toShelterProfileFormValues,
   type ShelterProfileFormValues,
 } from './shelterRequest';
+import type { ShelterResponse } from '../services/shelter';
 
 describe('normalizePhone', () => {
   test.each([
@@ -79,5 +81,61 @@ describe('toCreateShelterRequest', () => {
     // undefined fields are dropped from the JSON body
     expect(request.edrpou).toBeUndefined();
     expect(request.contactLastName).toBeUndefined();
+  });
+});
+
+describe('toShelterProfileFormValues', () => {
+  const shelter: ShelterResponse = {
+    id: 7,
+    slug: 'happy-paws',
+    status: 'PENDING',
+    photoUrl: null,
+    name: 'Happy Paws',
+    edrpou: '12345678',
+    region: 'Київська',
+    city: 'Бровари',
+    address: 'вул. Київська, 1',
+    description: 'We help dogs and cats',
+    socialLinks: [],
+    contactFirstName: 'Olena',
+    contactLastName: 'Shevchenko',
+    contactPhone: '+380671234567',
+  };
+
+  test('maps the saved shelter to the form values', () => {
+    expect(toShelterProfileFormValues(shelter)).toEqual({
+      name: 'Happy Paws',
+      edrpou: '12345678',
+      region: 'kyiv-oblast',
+      settlement: 'Бровари',
+      address: 'вул. Київська, 1',
+      description: 'We help dogs and cats',
+      firstName: 'Olena',
+      lastName: 'Shevchenko',
+      phone: '+380671234567',
+    });
+  });
+
+  test('keeps a region that is not in the list as is', () => {
+    const values = toShelterProfileFormValues({
+      ...shelter,
+      region: 'Невідома',
+    });
+
+    expect(values.region).toBe('Невідома');
+  });
+
+  test('maps back to the same request', () => {
+    const {
+      id: _id,
+      slug: _slug,
+      status: _status,
+      photoUrl: _photoUrl,
+      ...request
+    } = shelter;
+
+    expect(toCreateShelterRequest(toShelterProfileFormValues(shelter))).toEqual(
+      request
+    );
   });
 });
