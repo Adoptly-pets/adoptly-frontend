@@ -78,19 +78,25 @@ const ShelterProfileForm = (props: ShelterProfileFormProps) => {
   }));
 
   useEffect(() => {
-    if (status !== 'form') return;
+    if (hasSavedProfile || status !== 'form') return;
     try {
       const { photo: _photo, ...rest } = watchedValues;
       localStorage.setItem(DRAFT, JSON.stringify(rest));
     } catch (err) {
       console.warn('Failed to save draft:', err);
     }
-  }, [watchedValues, status]);
+  }, [watchedValues, status, hasSavedProfile]);
+
+  useEffect(() => {
+    if (hasSavedProfile) localStorage.removeItem(DRAFT);
+  }, [hasSavedProfile]);
 
   const previewUrl = useMemo(
     () => (photo ? URL.createObjectURL(photo) : null),
     [photo]
   );
+
+  const photoSrc = previewUrl ? previewUrl : savedShelter?.photoUrl;
 
   useEffect(() => {
     return () => {
@@ -286,9 +292,9 @@ const ShelterProfileForm = (props: ShelterProfileFormProps) => {
         </div>
         <div className={styles.photoCard}>
           <div className={styles.photoInfo}>
-            {previewUrl ? (
+            {photoSrc ? (
               <img
-                src={previewUrl}
+                src={photoSrc}
                 alt="Preview"
                 className={styles.photoPreview}
               />

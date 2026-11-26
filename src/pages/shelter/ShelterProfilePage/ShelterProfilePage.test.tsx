@@ -10,12 +10,15 @@ jest.mock('react-i18next', () => ({
 jest.mock('../../../hooks/useMyShelter');
 
 // The form has its own tests; here we only check what the page passes to it
-jest.mock('../ShelterProfileForm/ShelterProfileForm', () => ({
-  __esModule: true,
-  default: (props: { savedShelter: ShelterResponse | null }) => (
-    <p>form for {props.savedShelter ? props.savedShelter.slug : 'new'}</p>
-  ),
-}));
+jest.mock(
+  '../../../components/shelter/ShelterProfileForm/ShelterProfileForm',
+  () => ({
+    __esModule: true,
+    default: (props: { savedShelter: ShelterResponse | null }) => (
+      <p>form for {props.savedShelter ? props.savedShelter.slug : 'new'}</p>
+    ),
+  })
+);
 
 const mockedUseMyShelter = useMyShelter as jest.MockedFunction<
   typeof useMyShelter
